@@ -1,0 +1,32 @@
+{
+  "header": {
+    "HOME": "BOSH SAHIFA",
+    "NEWS": "YANGILIKLAR", 
+    "INNOWEEK": "INNOWEEK", 
+    "ABOUTINNOWEEK":"INNOWEEK HAQIDA" ,
+    "COVERAGE": "QAMROV" ,
+    "PROGRAM": "DASTUR",
+    "SPEAKERS": "SPIKERLAR" , 
+    "PARTNERS": "HAMKORLAR" , 
+    "ABOUTUS":"BIZ HAQIMIZDA" ,
+    "GALLERY":"GALEREYA", 
+    "FAQ": "FAQ", 
+    "MARKETPLACE": "MARKETPLEYS", 
+    "CONTACT": "BOG'LANISH" 
+  },
+  "langs": {
+    "uz": "O‘zbek", 
+    "en": "Ingliz",
+    "ru": "Rus"
+  }, 
+  "hero":{
+    "Ideas without borders": "Chegarasiz g'oyalar" ,
+    "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma." , 
+    "hero btn": "INNOWEEK 2025" , 
+    "REGISTER": "RO'YHATDAN O'TISH"
+  } , 
+  "news":{
+    "INNOWEEK": "INNOWEEK" , 
+    "Latest News": "So'ngi Yangiliklar" 
+  }
+}

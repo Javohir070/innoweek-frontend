@@ -1,7 +1,23 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ["innoweek.uz"],
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(mp4|webm)$/,
+      use: {
+        loader: "file-loader",
+        options: {
+          publicPath: "/_next",
+          name: "static/media/[name].[hash].[ext]",
+        },
+      },
+    });
+    return config;
+  }
 };
-
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

@@ -1,0 +1,12 @@
+{
+  "header": {
+    "HOME": "HOME",
+    "NEWS":  "NEWS", 
+    "INNOWEEK": "INNOWEEK", 
+
+    "GALLERY": "GALLERY", 
+    "FAQ": "FAQ", 
+    "MARKETPLACE": "MARKETPLACE", 
+    "CONTACT": "CONTACT"  
+  }
+}

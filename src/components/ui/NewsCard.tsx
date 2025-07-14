@@ -1,0 +1,73 @@
+import React from "react";
+import { Calendar, ArrowRight } from "lucide-react";
+import Image from "next/image";
+
+interface NewsCardProps {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  createdAt: string;
+}
+
+const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt }) => {
+  // HTML taglarini olib tashlash va qisqartirish
+
+  // Sanani formatlash
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("uz-UZ", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+  };
+
+  return (
+    <div className="group relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="relative h-48 overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          width={300}
+          height={200}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+        <div className="absolute top-4 left-4">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500/90 text-white backdrop-blur-sm">
+            INNOWEEK
+          </span>
+        </div>
+      </div>
+
+      <div className="relative p-6 space-y-4">
+        <div className="min-h-[230px]">
+          <div className="flex items-center text-slate-400 text-sm">
+            <Calendar className="w-4 h-4 mr-2" />
+            {formatDate(createdAt)}
+          </div>
+
+          <h3 className="text-base font-bold text-white leading-tight group-hover:text-blue-400 transition-colors duration-300">
+            {title}
+          </h3> 
+        </div>
+
+        <div className="flex items-center justify-between">
+          <button className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors duration-200">
+            Batafsil
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+          </button>
+        </div>
+      </div>
+
+      {/* Hover Glow Effect */}
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 blur-xl"></div>
+      </div>
+    </div>
+  );
+};
+
+export default NewsCard;
