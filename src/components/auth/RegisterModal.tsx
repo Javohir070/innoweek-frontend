@@ -1,5 +1,12 @@
+"use client"
 import { FetchInstance } from "@/api/FetchInstance";
-import { IProfessionItem, IResponse } from "@/types";
+import { useRouter } from "@/i18n/navigation";
+import {
+  IComplateResponce,
+  IProfessionItem,
+  IResponse,
+  IValidateResponce,
+} from "@/types";
 import React, {
   useState,
   ChangeEvent,
@@ -7,6 +14,8 @@ import React, {
   MouseEvent,
   useEffect,
 } from "react";
+import { toast } from "react-toastify";
+import CheckYourTicket from "./CheckYourTicket";
 
 type RegisterModalProps = {
   open: boolean;
@@ -28,6 +37,7 @@ type RegisterForm = {
 
 type RegisterError = {
   phone?: string;
+  status?: string;
 };
 
 const initialForm: RegisterForm = {
@@ -50,8 +60,13 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
   const [step, setStep] = useState<"register" | "otp">("register");
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
-  const [registerBody, setRegisterBody] = useState<any>(null);
+  const [registerBody, setRegisterBody] = useState<
+    Record<string, string | number | boolean | undefined>
+  >({});
   const [authKey, setAuthKey] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -68,6 +83,9 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    console.log(e);
+    
     const phoneRegex = /^\d{9}$/;
     if (!phoneRegex.test(form.phone)) {
       setError({
@@ -82,9 +100,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
       last_name: form.lastName,
       birth_date: form.birth_date,
       gender: form.gender,
-      country: form.country,
-      organization: form.organization,
-      profession_id: form?.profession_id
+      profession_id: form?.profession_id,
     };
 
     // Local uchun telefon, international uchun email
@@ -93,27 +109,41 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
     }
     if (form.type === "international") {
       mappedForm.email = form.email;
-      mappedForm.country =form?.country ; 
-      mappedForm.organization = form?.organization
+      mappedForm.country = form?.country;
+      mappedForm.organization = form?.organization;
     }
-    console.log(mappedForm);
-    
 
-    const res = await FetchInstance("/api/v1.0/register/validate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(mappedForm),
-    });
-    if (res?.success) {
-      setRegisterBody(mappedForm);
-      setAuthKey(res?.data?.auth_key); 
-      setStep("otp");
+    try {
+      const res = await FetchInstance<IValidateResponce>(
+        "/api/v1.0/register/validate",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(mappedForm),
+        }
+      );
+
+      if (res?.success) {
+        setRegisterBody(mappedForm);
+        setAuthKey(res?.data?.auth_key);
+        localStorage?.setItem("auth_key", res?.data?.auth_key);
+        setStep("otp");
+        toast.success("SMS Jo'natildi!");
+      }
+    } catch (err) {
+      console.log(err);
+      
+      setError({
+        status: err?.message ?? "Bu raqam  yoki email oldin ro'yxatdan o'tgan",
+      });
+    } finally {
+      setLoading(false);
     }
-    // else: xatoliklarni ko‘rsating
   };
 
   const handleOtpSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     if (!/^\d{6}$/.test(otp)) {
       setOtpError("6 xonali kod kiriting");
       return;
@@ -126,16 +156,23 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
       access_code: otp,
     };
 
-    const res = await FetchInstance("/api/v1.0/register/complete", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(completeBody),
-    });
-
-    console.log(res);
-    
-
-    // natijani tekshiring va foydalanuvchini keyingi bosqichga yo‘naltiring
+    try {
+      const res = await FetchInstance<IComplateResponce>(
+        "/api/v1.0/register/complete",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(completeBody),
+        }
+      );
+      if (res?.success) {
+        router.push("/ticket");
+      }
+    } catch (error) {
+      setOtpError(error?.message ?? "Tasdiqlash kodi notog'ri kiritildi.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getPrefessionList = async () => {
@@ -254,7 +291,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                     Participation type *
                   </option>
                   {professions?.map((item) => (
-                    <option value="attendee" key={item?.id}>
+                    <option value={item?.id} key={item?.id}>
                       {item?.name}
                     </option>
                   ))}
@@ -347,18 +384,20 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 </select>
                 {/* Participation type */}
                 <select
-                  name="participation"
+                  name="profession_id"
                   className="border rounded px-3 py-2 bg-transparent text-white"
                   required
-                  value={form.participation}
+                  value={form.profession_id}
                   onChange={handleChange}
                 >
                   <option value="" disabled>
                     Participation type *
                   </option>
-                  <option value="attendee">Attendee</option>
-                  <option value="speaker">Speaker</option>
-                  <option value="volunteer">Volunteer</option>
+                  {professions?.map((item) => (
+                    <option value={item?.id} key={item?.id}>
+                      {item?.name}
+                    </option>
+                  ))}
                 </select>
                 {/* Organization */}
                 <input
@@ -372,12 +411,12 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 />
                 {/* Date of Birth */}
                 <input
-                  name="dob"
+                  name="birth_date"
                   type="date"
                   placeholder="Date of Birth *"
                   className="border rounded px-3 py-2 bg-transparent text-white"
                   required
-                  value={form.dob}
+                  value={form.birth_date}
                   onChange={handleChange}
                 />
                 {/* Gender */}
@@ -410,11 +449,22 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
             )}
 
             {/* Submit */}
+            {error.status && (
+              <span className="text-red-500 text-xs">{error.status}</span>
+            )}
             <button
               type="submit"
-              className="bg-[#e3a127] text-white rounded p-2 mt-2"
+              disabled={loading}
+              className="bg-[#e3a127] text-white rounded p-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              Sign Up
+              {loading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Yuborilmoqda...
+                </>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </form>
         ) : (
@@ -427,23 +477,31 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
               maxLength={6}
               pattern="\d{6}"
               value={otp}
-              onChange={e => setOtp(e.target.value.replace(/\D/g, ""))}
+              onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
               className="border rounded px-3 py-2 bg-transparent text-white text-center text-xl tracking-widest"
               placeholder="______"
               required
             />
-            {otpError && <span className="text-red-500 text-xs">{otpError}</span>}
-            <button type="submit" className="bg-[#e3a127] text-white rounded p-2 mt-2">
-              Tasdiqlash
+            {otpError && (
+              <span className="text-red-500 text-xs">{otpError}</span>
+            )}
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-[#e3a127] text-white rounded p-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Tasdiqlanmoqda...
+                </>
+              ) : (
+                "Tasdiqlash"
+              )}
             </button>
           </form>
         )}
-        <div className="text-center mt-4 text-white text-sm">
-          Are you registered?{" "}
-          <a href="#" className="text-gray-400 underline">
-            Check Your Ticket
-          </a>
-        </div>
+        <CheckYourTicket  />
       </div>
     </div>
   );

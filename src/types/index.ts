@@ -41,3 +41,34 @@ export interface IProfessionItem {
   status: string;
   created_at: string;
 }
+
+export interface IValidateResponce {
+  status: number;
+  success: boolean;
+  message: string;
+  data: {
+    auth_key: string;
+  };
+}
+
+export interface IComplateResponce {
+  status: number;
+  success: boolean;
+  message: string;
+}
+
+export interface ITicketItem {
+  id: number;
+  first_name: string;
+  last_name: string;
+  status: string;
+  ticket: {
+    id: number;
+    user_id: number;
+    archive_id: number;
+    ticket_id: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  };
+}

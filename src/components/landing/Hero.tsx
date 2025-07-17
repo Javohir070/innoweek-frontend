@@ -86,19 +86,19 @@ export default function HeroSection() {
                   <div className="countdown" id="countdown">
                     <div className="time-box flex flex-col items-start">
                       <span>{countdown.days}</span>
-                      <div className="time-label">Days</div>
+                      <div className="time-label">{t('day')}</div>
                     </div>
                     <div className="time-box flex flex-col items-start">
                       <span>{countdown.hours}</span>
-                      <div className="time-label">Hours</div>
+                      <div className="time-label">{t("hour")}</div>
                     </div>
                     <div className="time-box flex flex-col items-start">
                       <span>{countdown.minutes}</span>
-                      <div className="time-label">Minutes</div>
+                      <div className="time-label">{t('minute')}</div>
                     </div>
                     <div className="time-box flex flex-col items-start">
                       <span>{countdown.seconds}</span>
-                      <div className="time-label">Seconds</div>
+                      <div className="time-label">{t("second")}</div>
                     </div>
                   </div>
                 </div>

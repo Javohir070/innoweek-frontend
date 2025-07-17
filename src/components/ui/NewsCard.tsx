@@ -1,6 +1,7 @@
 import React from "react";
 import { Calendar, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 
 interface NewsCardProps {
   id: number;
@@ -10,7 +11,7 @@ interface NewsCardProps {
   createdAt: string;
 }
 
-const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt }) => {
+const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt , id }) => {
   // HTML taglarini olib tashlash va qisqartirish
 
   // Sanani formatlash
@@ -51,15 +52,17 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt }) => {
 
           <h3 className="text-base font-bold text-white leading-tight group-hover:text-blue-400 transition-colors duration-300">
             {title}
-          </h3> 
+          </h3>
         </div>
 
-        <div className="flex items-center justify-between">
-          <button className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors duration-200">
-            Batafsil
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-          </button>
-        </div>
+        <Link href={`/news/${id}`}>
+          <div className="flex items-center justify-between">
+            <button className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors duration-200">
+              Batafsil
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+            </button>
+          </div>
+        </Link>
       </div>
 
       {/* Hover Glow Effect */}

@@ -1,32 +1,68 @@
 {
   "header": {
     "HOME": "BOSH SAHIFA",
-    "NEWS": "YANGILIKLAR", 
-    "INNOWEEK": "INNOWEEK", 
-    "ABOUTINNOWEEK":"INNOWEEK HAQIDA" ,
-    "COVERAGE": "QAMROV" ,
+    "NEWS": "YANGILIKLAR",
+    "INNOWEEK": "INNOWEEK",
+    "ABOUTINNOWEEK": "INNOWEEK HAQIDA",
+    "COVERAGE": "QAMROV",
     "PROGRAM": "DASTUR",
-    "SPEAKERS": "SPIKERLAR" , 
-    "PARTNERS": "HAMKORLAR" , 
-    "ABOUTUS":"BIZ HAQIMIZDA" ,
-    "GALLERY":"GALEREYA", 
-    "FAQ": "FAQ", 
-    "MARKETPLACE": "MARKETPLEYS", 
-    "CONTACT": "BOG'LANISH" 
+    "SPEAKERS": "SPIKERLAR",
+    "PARTNERS": "HAMKORLAR",
+    "ABOUTUS": "BIZ HAQIMIZDA",
+    "GALLERY": "GALEREYA",
+    "FAQ": "FAQ",
+    "MARKETPLACE": "MARKETPLEYS",
+    "CONTACT": "BOG'LANISH"
   },
   "langs": {
-    "uz": "O‘zbek", 
+    "uz": "O‘zbek",
     "en": "Ingliz",
     "ru": "Rus"
-  }, 
-  "hero":{
-    "Ideas without borders": "Chegarasiz g'oyalar" ,
-    "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma." , 
-    "hero btn": "INNOWEEK 2025" , 
-    "REGISTER": "RO'YHATDAN O'TISH"
-  } , 
-  "news":{
-    "INNOWEEK": "INNOWEEK" , 
-    "Latest News": "So'ngi Yangiliklar" 
+  },
+  "hero": {
+    "Ideas without borders": "Chegarasiz g'oyalar",
+    "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
+    "hero btn": "INNOWEEK 2025",
+    "REGISTER": "RO'YHATDAN O'TISH",
+    "day": "Kun",
+    "hour": "soat",
+    "minute": "daqiqa",
+    "second": "soniya"
+  },
+  "news": {
+    "INNOWEEK": "INNOWEEK",
+    "Latest News": "So'ngi Yangiliklar"
+  },
+  "about": {
+    "title": "CHEGARASIZ G'OYALAR",
+    "description": "Xalqaro innovatsion g‘oyalar haftaligi — “Innoweek.uz” respublikada innovatsion rivojlanishni jadallashtirish, iqtisodiyotning barcha tarmoqlarida innovatsiyalar va texnologiyalarni keng tatbiq qilish, inson kapitalini, ilm-fan va innovatsiya sohalarini rivojlantirish maqsadida 2018-yildan buyon o‘tkazib kelinmoqda. O‘tgan davr mobaynida Prezident Shavkat Mirziyoyev rahbarligida rivojlanib, Markaziy Osiyoda ilg‘or innovatsiyalarni namoyish qilish va global hamkorlikni rivojlantirish uchun eng yirik maydonga aylandi. Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
+    "features_1": "Deep tech & AI",
+    "features_2": "Health tech & Biotech",
+    "features_3": "EdTech & eLearning",
+    "features_4": "Agri tech & Green tech",
+    "features_5": "Smart Cities",
+    "features_6": "Robotics & Drones"
+  },
+  "stats": {
+    "COVERAGE": "QAMROV",
+    "stats_1_title": "Ko'rgazma maydoni",
+    "stats_1_description": "Tadbirlar uchun alohida 2000m2",
+    "stats_2_title": "Tashrif buyuruvchilar",
+    "stats_2_description": "1200 ta xalqaro mehmonlar",
+    "stats_3_title": "Loyihalar",
+    "stats_3_description": "Go'ya va tayyor ishlanmalar",
+    "stats_4_title": "Ishtirokchilar",
+    "stats_4_description": "Mahalliy va xorijiy kompaniyalar",
+    "stats_5_title": "Davlatlar",
+    "stats_5_description": "Ekspert va spikerlar",
+    "stats_6_title": "Mediya",
+    "stats_6_description": "Mahalliy va xalqaro OAV"
+  },
+  "program": {
+    "INNOWEEK": "INNOWEEK",
+    "PROGRAM": "DASTUR",
+    "day_1": "9-OKTABR",
+    "day_2": "9-OKTABR",
+    "day_3": "9-OKTABR"
   }
 }

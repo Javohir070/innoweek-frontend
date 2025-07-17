@@ -5,3 +5,7 @@
   --font-nunito-sans: '--font-roboto' ; 
   --font-raleway: '--font-raleway' ; 
 }
+
+.Toastify {
+  padding: 0 !important;
+}

@@ -1,16 +1,18 @@
 "use client";
 
-export default function ProgramSection() {
+import { useTranslations } from "next-intl";
 
+export default function ProgramSection() {
+  const t = useTranslations("program");
 
   return (
     <section id="resume" className="resume section bg-transparent">
       <div className="container section-title" data-aos="fade-up">
         <h2 data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
-        INNOWEEK
+          INNOWEEK
         </h2>
         <div data-uz="DASTUR" data-ru="ПРОГРАММА" data-en="PROGRAM">
-        DASTUR
+          {"So'ngi Yangiliklar"}
         </div>
       </div>
 
@@ -24,11 +26,7 @@ export default function ProgramSection() {
                   data-aos="fade-up"
                   data-aos-delay="100"
                 >
-                  <h2
-                    data-uz="9-OKTABR"
-                    data-ru="9 ОКТЯБРЯ"
-                    data-en="OCTOBER 9"
-                  ></h2>
+                  <h2>{t("day_1")}</h2>
                   <div className="timeline">
                     <div
                       className="timeline-item"
@@ -97,11 +95,7 @@ export default function ProgramSection() {
                   data-aos="fade-up"
                   data-aos-delay="100"
                 >
-                  <h2
-                    data-uz="10-OKTABR"
-                    data-ru="10 ОКТЯБРЯ"
-                    data-en="OCTOBER 10"
-                  ></h2>
+                 <h2>{t("day_2")}</h2>
 
                   <div className="timeline">
                     <div
@@ -172,11 +166,7 @@ export default function ProgramSection() {
                   data-aos="fade-up"
                   data-aos-delay="100"
                 >
-                  <h2
-                    data-uz="11-OKTABR"
-                    data-ru="11 ОКТЯБРЯ"
-                    data-en="OCTOBER 11"
-                  ></h2>
+                 <h2>{t("day_3")}</h2>
 
                   <div className="timeline">
                     <div

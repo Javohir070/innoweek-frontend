@@ -32,59 +32,42 @@ const ContactSection = () => {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <div className="contact-card ">
+              <div className="contact-card">
                 <div className="icon-box">
                   <i className="bi bi-geo-alt"></i>
                 </div>
                 <div className="contact-text">
-                  <h4 data-uz="Manzil" data-ru="Адрес" data-en="Address">
-                    Manzil
-                  </h4>
-                  <p
-                    data-uz="Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy"
-                    data-ru="Мирзо-Улугбекский район, улица Миллий Бог, 1"
-                    data-en="1 Milliy Bog Street, Mirzo Ulugbek District"
-                  >
-                    {"Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy"}
+                  <h4 data-uz="Manzil" data-ru="Адрес" data-en="Address">Manzil</h4>
+                  <p data-uz="Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy" data-ru="..." data-en="...">
+                    Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy
                   </p>
                 </div>
-
-                <div className="contact-card">
-                  <div className="icon-box">
-                    <i className="bi bi-envelope"></i>
-                  </div>
-                  <div className="contact-text">
-                    <h4 data-uz="Pochta" data-ru="Почта" data-en="Email"></h4>
-                    <p>info@innoweek.uz</p>
-                  </div>
+              </div>
+              <div className="contact-card">
+                <div className="icon-box">
+                  <i className="bi bi-envelope"></i>
                 </div>
-
-                <div className="contact-card">
-                  <div className="icon-box">
-                    <i className="bi bi-telephone"></i>
-                  </div>
-                  <div className="contact-text">
-                    <h4
-                      data-uz="Telefon"
-                      data-ru="Телефон"
-                      data-en="Email"
-                    ></h4>
-                    <p>+998 71 203 32 00</p>
-                  </div>
+                <div className="contact-text">
+                  <h4 data-uz="Pochta" data-ru="Почта" data-en="Email">Pochta</h4>
+                  <p>info@innoweek.uz</p>
                 </div>
-
-                <div className="contact-card">
-                  <div className="icon-box">
-                    <i className="bi bi-clock"></i>
-                  </div>
-                  <div className="contact-text">
-                    <h4
-                      data-uz="Ish vaqti"
-                      data-ru="Время работы"
-                      data-en="Email"
-                    ></h4>
-                    <p>09:00 - 18:00</p>
-                  </div>
+              </div>
+              <div className="contact-card">
+                <div className="icon-box">
+                  <i className="bi bi-telephone"></i>
+                </div>
+                <div className="contact-text">
+                  <h4 data-uz="Telefon" data-ru="Телефон" data-en="Phone">Telefon</h4>
+                  <p>+998 71 203 32 00</p>
+                </div>
+              </div>
+              <div className="contact-card">
+                <div className="icon-box">
+                  <i className="bi bi-clock"></i>
+                </div>
+                <div className="contact-text">
+                  <h4 data-uz="Ish vaqti" data-ru="Время работы" data-en="Working hours">Ish vaqti</h4>
+                  <p>09:00 - 18:00</p>
                 </div>
               </div>
             </div>
@@ -98,12 +81,14 @@ const ContactSection = () => {
                   data-uz="Hamkorlik uchun"
                   data-ru="Для партнёрства"
                   data-en="For partnership"
-                ></h3>
+                >Hamkorlik uchun</h3>
                 <p
                   data-uz="Biz homiylik imkoniyatlarini nafaqat ishtirokchilar uchun, kompaniyalar uchun ham taklif etamiz, bu esa tadbirning tijoriy salohiyatini maksimal darajada oshirishga xizmat qiladi."
                   data-ru="Мы предлагаем возможности спонсорства не только для участников, но и для компаний, не участвующих в мероприятии, чтобы максимально увеличить коммерческий потенциал мероприятия."
                   data-en="We offer sponsorship opportunities not only for participants but also for companies not participating to maximize the commercial potential of the event."
-                ></p>
+                >
+                  {"Biz homiylik imkoniyatlarini nafaqat ishtirokchilar uchun, kompaniyalar uchun ham taklif etamiz, bu esa tadbirning tijoriy salohiyatini maksimal darajada oshirishga xizmat qiladi."}
+                </p>
 
                 <form
                   action="forms/contact.php"
@@ -117,6 +102,7 @@ const ContactSection = () => {
                         name="name"
                         className="form-control"
                         id="name"
+                        placeholder="Ismingiz"
                         data-uz="Ismingiz"
                         data-ru="Ваше Имя"
                         data-en="Your Name"
@@ -128,6 +114,7 @@ const ContactSection = () => {
                         className="form-control"
                         name="email"
                         id="email"
+                        placeholder="Mail pochtangiz"
                         data-uz="Mail pochtangiz"
                         data-ru="Ваш email"
                         data-en="Your email"
@@ -137,29 +124,24 @@ const ContactSection = () => {
                   <div className="form-group mt-3">
                     <input
                       type="text"
-                      className="form-control "
+                      className="form-control"
                       name="subject"
                       id="subject"
+                      placeholder="Taklif nomi"
                       data-uz="Taklif nomi"
                       data-ru="Введите Тему"
-                      data-en="Enter Message"
-                      placeholder="Xabar"
+                      data-en="Enter Subject"
                     />
                   </div>
-                  <div className="form-group  mt-3">
-                    <input
-                      className="bg-[#474e57] hover:bg-transparent border-2 hover:border-yellow-600 rounded-lg w-full pb-[300px] flex-wrap"
-                      type="text"
-                      data-uz="Taklif kiriting"
-                      data-ru="Введите Сообщение"
-                      data-en="Enter Subject"
-                      name=""
-                      id=""
-                    />
+                  <div className="form-group mt-3">
                     <textarea
                       className="form-control text-gray-500"
                       name="message"
                       rows={5}
+                      placeholder="Taklif kiriting"
+                      data-uz="Taklif kiriting"
+                      data-ru="Введите Сообщение"
+                      data-en="Enter Message"
                     ></textarea>
                   </div>
 
@@ -173,10 +155,13 @@ const ContactSection = () => {
 
                   <div className="form-submit">
                     <button
+                      type="submit"
                       data-uz="RO'YHATDAN O'TISH"
                       data-ru="Отправить сообщение"
                       data-en="Send Message"
-                    ></button>
+                    >
+                      {"RO'YHATDAN O'TISH"}
+                    </button>
                   </div>
                 </form>
               </div>

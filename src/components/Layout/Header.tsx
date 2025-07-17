@@ -1,25 +1,38 @@
-"use client"
-import Image from 'next/image'
-import { useState } from 'react'
-import innoweekLogo from '@/assets/img/services/123.png'
-import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/navigation'
+"use client";
+import Image from "next/image";
+import { useState } from "react";
+import innoweekLogo from "@/assets/img/services/123.png";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { useRouter, usePathname, useParams, } from "next/navigation";
 
 export default function Header() {
-  const [activeMenu, setActiveMenu] = useState("#hero")
-  const t = useTranslations('header')
+  const [activeMenu, setActiveMenu] = useState("#hero");
+  const t = useTranslations("header");
+  const langSwitch = useTranslations('langs')
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams() ;
+  const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
+
+  const changeLang = (lang: string) => {
+    setActiveLang(lang);
+    // Agar Next.js routingda [locale] ishlatilgan bo‘lsa:
+    const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
+    router.push(newPath);
+  };
 
   const menu = [
     {
-      label: t('HOME'),
-      key: "/"
+      label: t("HOME"),
+      key: "/",
     },
     {
-      label: t('NEWS'),
-      key: "/news"
+      label: t("NEWS"),
+      key: "/news",
     },
     {
-      label: t('INNOWEEK'),
+      label: t("INNOWEEK"),
       key: "#about",
       dropdown: [
         { label: "INNOWEEK HAQIDA", key: "#about" },
@@ -27,46 +40,50 @@ export default function Header() {
         { label: "DASTUR", key: "#resume" },
         { label: "SPIKERLAR", key: "#team" },
         { label: "HAMKORLAR", key: "#clients" },
-        { label: "BIZ HAQIMIZDA", key: "#otziv" }
-      ]
+        { label: "BIZ HAQIMIZDA", key: "#otziv" },
+      ],
     },
     {
-      label: t('GALLERY'),
-      key: "#lavhalar"
+      label: t("GALLERY"),
+      key: "/gallery",
     },
     {
-      label: t('FAQ'),
-      key: "#faq"
+      label: t("FAQ"),
+      key: "#faq",
     },
     {
       label: "Spikerlar",
-      key: "#spikers"
+      key: "#spikers",
     },
     {
-      label: t('CONTACT'),
-      key: "#contact"
-    }
+      label: t("CONTACT"),
+      key: "#contact",
+    },
   ];
 
   const handleMenuClick = (key: string) => {
-    setActiveMenu(key)
-  }
- 
+    setActiveMenu(key);
+  };
 
   return (
     <header id="header" className="header flex items-center fixed-top">
       <div className="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-        <Link href="/" className="logo d-flex align-items-center me-auto me-xl-0">
-          <Image src={innoweekLogo} alt="Logo" className='w-[80px] h-[36px]' />
+        <Link
+          href="/"
+          className="logo d-flex align-items-center me-auto me-xl-0"
+        >
+          <Image src={innoweekLogo} alt="Logo" className="w-[80px] h-[36px]" />
         </Link>
 
         <nav id="navmenu" className="navmenu !uppercase">
           <ul>
             {menu.map((item, index) => (
               <li key={index} className={item.dropdown ? "dropdown" : ""}>
-                <Link 
-                  href={item.key} 
-                  className={`${activeMenu === item.key ? 'active' : ''} !font-raleway !font-semibold`}
+                <Link
+                  href={item.key}
+                  className={`${
+                    activeMenu === item.key ? "active" : ""
+                  } !font-raleway !font-semibold`}
                   onClick={() => handleMenuClick(item.key)}
                 >
                   {item.dropdown ? <span>{item.label}</span> : item.label}
@@ -75,7 +92,7 @@ export default function Header() {
                   <ul>
                     {item.dropdown.map((subItem, subIndex) => (
                       <li key={subIndex}>
-                        <Link 
+                        <Link
                           href={subItem.key}
                           onClick={() => handleMenuClick(subItem.key)}
                         >
@@ -91,17 +108,20 @@ export default function Header() {
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <div className="lang-switcher">
-          {/* <div className="btnlan lang-icon" id="langToggle">
-            <h1>{activeLang.toUpperCase()}</h1>
+        <div className="flex items-center justify-end gap-2">
+          <div>
+            <select
+              value={activeLang}
+              onChange={(e) => changeLang(e.target.value)}
+              className="border rounded px-2 py-1"
+            >
+              <option value="uz">{langSwitch("uz")}</option>
+              <option value="en">{langSwitch('en')}</option>
+              <option value="ru">{langSwitch("ru")}</option>
+            </select>
           </div>
-          <div className="lang-options" id="langMenu">
-            <button onClick={() => changeLang('uz')}>{"O'zbekcha"}</button>
-            <button onClick={() => changeLang('ru')}>{"Русский"}</button>
-            <button onClick={() => changeLang('en')}>{"English"}</button>
-          </div> */}
         </div>
       </div>
     </header>
-  )
+  );
 }
