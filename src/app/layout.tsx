@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito_Sans, Raleway, Roboto } from "next/font/google";
+import { ThemeProvider } from "next-themes"; // next-themes ni import qilamiz
 import "./globals.css";
 import "@/assets/vendor/bootstrap/css/bootstrap.min.css";
 import "@/assets/vendor/bootstrap-icons/bootstrap-icons.css";
@@ -28,7 +29,7 @@ export const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   title: "INNOWEEK - International Week of Innovative Ideas",
   description:
-    "InnoWeek.Uz - bu mahalliy va xorijiy tadqiqot markazlari, investitsion fondlar, texnologik agentlik, texnoparklar va biznes-inkubatorlar uchun yagona platforma bo’lib xizmat qiladi desak adashmaymiz. 2021 yildan buyon doimiy o'tkazlib kelinmoqda...",
+    "InnoWeek.Uz - bu mahalliy va xorijiy tadqiqot markazlari, investitsion fondlar, texnologik agentlik, texnoparklar va biznes-inkubatorlar uchun yagona platforma bo'lib xizmat qiladi desak adashmaymiz. 2021 yildan buyon doimiy o'tkazlib kelinmoqda...",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
@@ -46,9 +47,11 @@ export default async function RootLayout({
   return (
     <html lang={locale || "uz"} suppressHydrationWarning>
       <body
-        className={`${roboto.variable} ${raleway.variable} ${nunitoSans.variable} antialiased !bg-[#151a28]`}
+        className={`${roboto.variable} ${raleway.variable} ${nunitoSans.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

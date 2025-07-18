@@ -81,8 +81,8 @@ export default function StatsSection() {
         className="container section-title absolute z-[20] mt-[-40px]"
         data-aos="fade-up"
       >
-        <h2>INNOWEEK</h2>
-        <div>
+        <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+        <div className="text-black dark:!text-white">
           {currentLang === "uz"
             ? "QAMROV"
             : currentLang === "ru"
@@ -94,14 +94,14 @@ export default function StatsSection() {
       <div className="relative">
         <button
           onClick={scrollLeft}
-          className="hidden md:flex absolute left-[-23px] top-1/2 -translate-y-1/2 z-10 bg-gray-900 !rounded-full p-2 shadow hover:bg-yellow-500 transition"
+          className="hidden md:flex absolute left-[-23px] top-1/2 -translate-y-1/2 z-10 bg-gray-300 dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-yellow-500 transition"
         >
           <ChevronLeft />
         </button>
 
         <button
           onClick={scrollRight}
-          className="hidden md:flex absolute right-[-23px] top-1/2 -translate-y-1/2 z-10 bg-gray-900 p-2 shadow hover:bg-yellow-500 transition !rounded-full"
+          className="hidden md:flex absolute right-[-23px] top-1/2 -translate-y-1/2 z-10 bg-gray-300 dark:bg-gray-900 p-2 shadow hover:bg-yellow-500 transition !rounded-full"
         >
           <ChevronRight />
         </button>
@@ -120,7 +120,7 @@ export default function StatsSection() {
                     className="col-xl-3 col-lg-6 col-md-6 min-w-[200px] w-[300px]"
                   >
                     <div
-                      className="metric-card"
+                      className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
                       data-aos="fade-left"
                       data-aos-delay={100 * (index + 1)}
                     >

@@ -13,7 +13,6 @@ const SpeakersSection = () => {
       const res = await FetchInstance<IResponse<ISpeakerItem[]>>(
         `/api/v1.0/speakers/all?limit=10&archive_id=7`
       );
-      console.log(res?.data);
       setData(res?.data);
     } catch (error) {
       console.log(error);
@@ -25,13 +24,13 @@ const SpeakersSection = () => {
   }, []);
 
   return (
-    <section id="team" className="team section light-background bg-transparent">
+    <section id="team" className="team section dark:!bg-transparent transition-colors duration-300 py-16">
       <div className="container section-title" data-aos="fade-up">
-        <h2 data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
+        <h2 className="!text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
           INNOWEEK
         </h2>
-        <div data-uz="SPIKERLAR" data-ru="СПИКЕРЫ" data-en="SPEAKERS">
-          {"SPIKERLAR"}
+        <div className="text-black dark:!text-gray-300" data-uz="SPIKERLAR" data-ru="СПИКЕРЫ" data-en="SPEAKERS">
+          SPIKERLAR
         </div>
       </div>
 
@@ -44,21 +43,20 @@ const SpeakersSection = () => {
               data-aos-delay="100"
               key={item?.full_name}
             >
-              <div className="team-member  d-flex">
-                <div className="member-img">
+              <div className="team-member d-flex bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300">
+                <div className="member-img mr-4">
                   <Image
                     src={item?.image ? `${BASE_URL}${item?.image}` : userAvatar}
-                    className="img-fluid"
+                    className="img-fluid rounded-lg"
                     alt={item?.full_name}
                     loading="lazy"
-                    width={200}
-                    height={200}
+                    width={120}
+                    height={120}
                   />
                 </div>
                 <div className="member-info flex-grow-1">
-                  <h4>{item?.full_name}</h4>
-                  <span>{item?.position}</span>
-                  {/* <p>{item?.position}</p> */}
+                  <h4 className="text-gray-900 dark:text-white mb-1">{item?.full_name}</h4>
+                  <span className="text-gray-600 dark:text-gray-400">{item?.position}</span>
                 </div>
               </div>
             </div>

@@ -25,12 +25,12 @@ export default function NewsSection() {
       const res = await FetchInstance<IResponse<INewsListItem[]>>(
         `/api/v1.0/news/all?limit=5&lang=${params?.locale}`
       );
-      console.log(res?.data[0]?.description);
       setData(res?.data);
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getNews();
   }, [params?.locale]);
@@ -41,11 +41,11 @@ export default function NewsSection() {
   return (
     <section
       id="portfolio"
-      className="testimonials section-light-background bg-transparent"
+      className="testimonials bg-gray-50 dark:bg-gray-900 transition-colors duration-300 py-16"
     >
       <div className="container section-title" data-aos="fade-up">
-        <h2>INNOWEEK</h2>
-        <div>{t("Latest News")}</div>
+        <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+        <div className="text-black dark:!text-gray-300">{t("Latest News")}</div>
       </div>
 
       <div className="container" data-aos="fade-up" data-aos-delay="100">
@@ -75,41 +75,42 @@ export default function NewsSection() {
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <Link href={`/news/${item?.id}`}>
-                <div className="testimonial-item hover:cursor-pointer">
+                <div className="testimonial-item hover:cursor-pointer bg-white dark:!bg-gray-800 m-4 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 ">
                   <div className="row">
                     <div className="col-lg-8">
-                      <h2>{item?.title}</h2>
-                      <p
-                        className="line-clamp-6 dangerous-html "
+                      <h2 className="text-black dark:!text-white">{item?.title}</h2>
+                      <div
+                        className="line-clamp-6 text-gray-700 dark:!text-gray-300"
                         dangerouslySetInnerHTML={{
-                          __html: item?.description?.replaceAll(
-                            "black",
-                            "white"
+                          __html: item?.description?.replace(
+                            /style="color:black;?|color:black;?/gi,
+                            'style="color:inherit;'
                           ),
                         }}
-                      ></p>
-                      {/* <p>{item.details[currentLang]}</p> */}
-                      <div className="profile d-flex align-items-center">
+                      ></div>
+                      <div className="profile d-flex align-items-center mt-4">
                         <Image
                           src={userAvatar}
-                          className="profile-img"
+                          className="profile-img rounded-full"
                           alt={item?.title}
+                          width={50}
+                          height={50}
                         />
-                        <div className="profile-info">
-                          <h3>Innoweek</h3>
-                          <span>{t("INNOWEEK")}</span>
+                        <div className="profile-info ml-3">
+                          <h3 className="text-gray-900 dark:text-white mb-0">Innoweek</h3>
+                          <span className="text-gray-600 dark:text-gray-400">{t("INNOWEEK")}</span>
                         </div>
                       </div>
                     </div>
                     <div className="col-lg-4 d-none d-lg-block">
-                      <div className="featured-img-wrapper">
+                      <div className="featured-img-wrapper rounded-lg overflow-hidden">
                         <Image
                           src={
                             item?.image
                               ? `${BASE_URL}/upload/news/${item?.image}_big_720.png`
                               : newsImage
                           }
-                          className="featured-img"
+                          className="featured-img w-full h-full object-cover"
                           alt={item?.title}
                           width={300}
                           height={500}
@@ -122,22 +123,23 @@ export default function NewsSection() {
             </SwiperSlide>
           ))}
 
-          {/* Navigatsiya tugmalari */}
+          {/* Navigation buttons */}
+          <div className="w-100 d-flex align-items-center justify-center gap-4 mt-8">
+            <button
+              ref={prevRef}
+              className="bg-gray-700  dark:bg-gray-700 hover:bg-amber-500 dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+            >
+              <ChevronLeft />
+            </button>
+            <button
+              ref={nextRef}
+              className="bg-gray-700 dark:bg-gray-700 hover:bg-amber-500 dark:hover:bg-amber-600 text-white 
+              !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+            >
+              <ChevronRight />
+            </button>
+          </div>
         </Swiper>
-        <div className="w-100 d-flex align-items-center justify-center gap-4">
-          <button
-            ref={prevRef}
-            className="bg-[#23272f] hover:bg-[#fbbf24] text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl"
-          >
-            <ChevronLeft />
-          </button>
-          <button
-            ref={nextRef}
-            className="bg-[#23272f] hover:bg-[#fbbf24] text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl"
-          >
-            <ChevronRight />
-          </button>
-        </div>
       </div>
     </section>
   );

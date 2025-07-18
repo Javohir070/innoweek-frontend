@@ -18,10 +18,10 @@ const PartnersSection = () => {
           className="container xl:px-[90px] section-title"
           data-aos="fade-up"
         >
-          <h2 data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
+          <h2 className="text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
             {"INNOWEEK"}
           </h2>
-          <div data-uz="HAMKORLAR" data-ru="ПАРТНЕРЫ" data-en="PARTNERS">
+          <div className="text-black dark:!text-white" data-uz="HAMKORLAR" data-ru="ПАРТНЕРЫ" data-en="PARTNERS">
             {"HAMKORLAR"}
           </div>
         </div>
@@ -32,59 +32,59 @@ const PartnersSection = () => {
             data-aos="fade-right"
             data-aos-delay="200"
           >
-            <div className="clients-slide ">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage1} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage2} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage3} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage4} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage5} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage6} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage7} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage8} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage9} className="img-fluid" alt="Client 1" />
             </div>
 
-            <div className="clients-slide ">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage1} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage2} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage3} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage4} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage5} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage6} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage7} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage8} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage9} className="img-fluid" alt="Client 1" />
             </div>
           </div>
@@ -96,59 +96,59 @@ const PartnersSection = () => {
             data-aos="fade-left"
             data-aos-delay="200"
           >
-            <div className="clients-slide ">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage1} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage2} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage3} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage4} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage5} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage6} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage7} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage8} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage9} className="img-fluid" alt="Client 1" />
             </div>
 
-            <div className="clients-slide ">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage1} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage2} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage3} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage4} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage5} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage6} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage7} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage8} className="img-fluid" alt="Client 1" />
             </div>
-            <div className="clients-slide">
+            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage9} className="img-fluid" alt="Client 1" />
             </div>
           </div>

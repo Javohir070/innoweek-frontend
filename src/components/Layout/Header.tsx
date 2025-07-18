@@ -4,7 +4,8 @@ import { useState } from "react";
 import innoweekLogo from "@/assets/img/services/123.png";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { useRouter, usePathname, useParams, } from "next/navigation";
+import { useRouter, usePathname, useParams } from "next/navigation";
+import { useTheme } from 'next-themes';
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
@@ -12,12 +13,12 @@ export default function Header() {
   const langSwitch = useTranslations('langs')
   const router = useRouter();
   const pathname = usePathname();
-  const params = useParams() ;
+  const params = useParams();
   const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
+  const { theme, setTheme } = useTheme();
 
   const changeLang = (lang: string) => {
     setActiveLang(lang);
-    // Agar Next.js routingda [locale] ishlatilgan bo‘lsa:
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
     router.push(newPath);
   };
@@ -66,8 +67,8 @@ export default function Header() {
   };
 
   return (
-    <header id="header" className="header flex items-center fixed-top">
-      <div className="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    <header id="header" className="header flex items-center fixed-top bg-white dark:!bg-gray-800 text-gray-900">
+      <div className="header-container py-2 container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
         <Link
           href="/"
           className="logo d-flex align-items-center me-auto me-xl-0"
@@ -81,9 +82,8 @@ export default function Header() {
               <li key={index} className={item.dropdown ? "dropdown" : ""}>
                 <Link
                   href={item.key}
-                  className={`${
-                    activeMenu === item.key ? "active" : ""
-                  } !font-raleway !font-semibold`}
+                  className={`${activeMenu === item.key ? "active" : ""
+                    } !font-raleway !font-semibold !text-black dark:!text-amber-50`}
                   onClick={() => handleMenuClick(item.key)}
                 >
                   {item.dropdown ? <span>{item.label}</span> : item.label}
@@ -91,7 +91,7 @@ export default function Header() {
                 {item.dropdown && (
                   <ul>
                     {item.dropdown.map((subItem, subIndex) => (
-                      <li key={subIndex}>
+                      <li  key={subIndex}>
                         <Link
                           href={subItem.key}
                           onClick={() => handleMenuClick(subItem.key)}
@@ -109,11 +109,18 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center justify-end gap-2">
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className=" rounded-md"
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+
           <div>
             <select
               value={activeLang}
               onChange={(e) => changeLang(e.target.value)}
-              className="border rounded px-2 py-1"
+              className="border rounded px-2 py-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             >
               <option value="uz">{langSwitch("uz")}</option>
               <option value="en">{langSwitch('en')}</option>

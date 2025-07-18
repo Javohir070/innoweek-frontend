@@ -25,12 +25,12 @@ const GalerySection = () => {
   }, []);
 
   return (
-    <section id="lavhalar" className="portfolio section bg-transparent">
+    <section id="lavhalar" className="portfolio section bg-transparent dark:bg-gray-900">
       <div className="container section-title" data-aos="fade-up">
-        <h2 data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
+        <h2 className="text-black  dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
           {"INNOWEEK"}
         </h2>
-        <div data-uz="GALEREYA" data-ru="ГАЛЕРЕЯ" data-en="GALLERY">
+        <div className="text-black  dark:!text-gray-300" data-uz="GALEREYA" data-ru="ГАЛЕРЕЯ" data-en="GALLERY">
           {"GALEREYA"}
         </div>
       </div>
@@ -52,7 +52,7 @@ const GalerySection = () => {
                 key={item?.id}
               >
                 <article className="portfolio-entry">
-                  <figure className="entry-image">
+                  <figure className="entry-image dark:brightness-90">
                     <Image
                       src={item?.image ? `${BASE_URL}${item?.image}` : galery_1}
                       className="img-fluid"
@@ -70,7 +70,7 @@ const GalerySection = () => {
                             data-gallery="portfolio-gallery-ui"
                             data-glightbox="title: Lavha; description: Haftalik lavha tasviri."
                           >
-                            <i className="bi bi-arrows-angle-expand"></i>
+                            <i className="bi bi-arrows-angle-expand dark:text-white"></i>
                           </a>
                         </div>
                       </div>

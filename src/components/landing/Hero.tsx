@@ -60,18 +60,18 @@ export default function HeroSection() {
               <div className="divider"></div>
 
               <div className="description">
-                <p>{t("hero description")}</p>
+                <p className='text-white'>{t("hero description")}</p>
               </div>
               
               <div className="buttonslink">
                 <div className="cta-button">
-                  <Link href="#services" className="btn">
-                    <span>{t('hero btn')}</span>
+                  <Link href="#services" className="btn border">
+                    <span className='text-white'>{t('hero btn')}</span>
                   </Link>
                 </div>
                 <div className="cta-button">
-                  <button className="btn" onClick={() => setOpen(true)}>
-                    <span>{t("REGISTER")}</span>
+                  <button className="btn border" onClick={() => setOpen(true)}>
+                    <span className='text-white'>{t("REGISTER")}</span>
                   </button>
                 </div>
               </div>
@@ -84,19 +84,19 @@ export default function HeroSection() {
                 <Image src={innoweekLogo} alt="Abstract Fluid Shape" className="fluid-img" />
                 <div className="timer-container">
                   <div className="countdown" id="countdown">
-                    <div className="time-box flex flex-col items-start">
+                    <div className="time-box dark:bg-[#1b262c] bg-blue-500 text-white dark:!text-[#aaa] flex flex-col items-start">
                       <span>{countdown.days}</span>
                       <div className="time-label">{t('day')}</div>
                     </div>
-                    <div className="time-box flex flex-col items-start">
+                    <div className="time-box dark:bg-[#1b262c] bg-blue-500 text-white dark:!text-[#aaa] flex flex-col items-start">
                       <span>{countdown.hours}</span>
                       <div className="time-label">{t("hour")}</div>
                     </div>
-                    <div className="time-box flex flex-col items-start">
+                    <div className="time-box dark:bg-[#1b262c] bg-blue-500 text-white dark:!text-[#aaa] flex flex-col items-start">
                       <span>{countdown.minutes}</span>
                       <div className="time-label">{t('minute')}</div>
                     </div>
-                    <div className="time-box flex flex-col items-start">
+                    <div className="time-box dark:bg-[#1b262c] bg-blue-500 text-white dark:!text-[#aaa] flex flex-col items-start">
                       <span>{countdown.seconds}</span>
                       <div className="time-label">{t("second")}</div>
                     </div>
