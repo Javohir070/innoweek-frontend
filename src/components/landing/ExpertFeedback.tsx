@@ -111,12 +111,12 @@ const ExpertFeedback = () => {
                                         key={idx}
                                         className="bg-[#0085d4] dark:bg-gray-800 text-white w-[320px] p-6 rounded-lg flex flex-col justify-center mr-6 last:mr-0"
                                     >
-                                        <div className="flex gap-1 mb-2">
+                                        <div className="flex gap-1 ">
                                             {[...Array(5)].map((_, i) => (
                                                 <span key={i}><IoMdStar /></span>
                                             ))}
                                         </div>
-                                        <p className="italic mb-4">“{item.position}”</p>
+                                        <p className="italic mb-4 mt-3 text-[15px]">“{item.position}”</p>
                                         <div className="flex items-center gap-4">
                                             <Image
                                                 src={userAvatar}
