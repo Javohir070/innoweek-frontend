@@ -32,8 +32,8 @@ const NewsList = () => {
       className="testimonials section-light-background bg-transparent min-h-[85vh]"
     >
       <div className="container section-title mt-5 pb-4">
-        <h2>INNOWEEK</h2>
-        <div>{t("Latest News")}</div>
+        <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+        <div className="text-black dark:!text-white">{t("Latest News")}</div>
       </div>
 
       <div className="container grid grid-cols-3 gap-4">

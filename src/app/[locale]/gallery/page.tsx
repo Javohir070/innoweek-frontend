@@ -29,10 +29,10 @@ const Gallery = () => {
   return (
     <section id="lavhalar" className="portfolio section bg-transparent mt-10">
       <div className="container section-title">
-        <h2 data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
+        <h2 className="text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
           {"INNOWEEK"}
         </h2>
-        <div data-uz="GALEREYA" data-ru="ГАЛЕРЕЯ" data-en="GALLERY">
+        <div className="text-black dark:!text-white" data-uz="GALEREYA" data-ru="ГАЛЕРЕЯ" data-en="GALLERY">
           {"FOTO LAVHALAR"}
         </div>
       </div>
@@ -89,15 +89,15 @@ const Gallery = () => {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="px-3 py-1 rounded bg-black/70 disabled:opacity-50"
+              className="px-3 py-1 rounded !bg-black/10 dark:!bg-black/70 disabled:opacity-50"
             >
               Prev
             </button>
-            <span className="px-2">{page}</span>
+            <span className="px-2 !mt-1">{page}</span>
             <button
               onClick={() => setPage((p) => p + 1)}
               disabled={page * limit >= total}
-              className="px-3 py-1 rounded bg-black/70 disabled:opacity-50"
+              className="px-3 py-1 rounded  !bg-black/10 dark:!bg-black/70 disabled:opacity-50"
             >
               Next
             </button>

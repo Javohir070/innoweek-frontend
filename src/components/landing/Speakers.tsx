@@ -55,8 +55,8 @@ const SpeakersSection = () => {
                   />
                 </div>
                 <div className="member-info flex-grow-1">
-                  <h4 className="text-gray-900 dark:text-white mb-1">{item?.full_name}</h4>
-                  <span className="text-gray-600 dark:text-gray-400">{item?.position}</span>
+                  <h4 className="text-black dark:!text-white mb-1">{item?.full_name}</h4>
+                  <span className="text-black dark:!text-gray-400">{item?.position}</span>
                 </div>
               </div>
             </div>
