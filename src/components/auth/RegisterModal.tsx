@@ -134,7 +134,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
       console.log(err);
       
       setError({
-        status: err?.message ?? "Bu raqam  yoki email oldin ro'yxatdan o'tgan",
+        status: err instanceof Error ? err.message : "Bu raqam  yoki email oldin ro'yxatdan o'tgan",
       });
     } finally {
       setLoading(false);
@@ -169,7 +169,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
         router.push("/ticket");
       }
     } catch (error) {
-      setOtpError(error?.message ?? "Tasdiqlash kodi notog'ri kiritildi.");
+      setOtpError(error instanceof Error ? error.message : "Tasdiqlash kodi notog'ri kiritildi.");
     } finally {
       setLoading(false);
     }

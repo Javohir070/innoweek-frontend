@@ -8,19 +8,19 @@ import "@/assets/vendor/aos/aos.css";
 import "@/assets/vendor/swiper/swiper-bundle.min.css";
 import "@/assets/vendor/glightbox/css/glightbox.min.css";
 
-export const roboto = Roboto({
+const roboto_font = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "700", "900"],
 });
 
-export const raleway = Raleway({
+const raleway = Raleway({
   variable: "--font-raleway",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export const nunitoSans = Nunito_Sans({
+const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
   subsets: ["latin"],
   weight: ["200", "300", "400", "600", "700", "800", "900"],
@@ -47,7 +47,7 @@ export default async function RootLayout({
   return (
     <html lang={locale || "uz"} suppressHydrationWarning>
       <body
-        className={`${roboto.variable} ${raleway.variable} ${nunitoSans.variable} antialiased`}
+        className={`${roboto_font.variable} ${raleway.variable} ${nunitoSans.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}

@@ -13,7 +13,6 @@ export default function HeroSection() {
   const t = useTranslations('hero')
   const [open, setOpen] = useState(false);
   // Countdown timer logic
-  const targetDate = new Date('2025-10-09T00:00:00')
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -31,20 +30,21 @@ export default function HeroSection() {
   }, [])
 
   useEffect(() => {
+    const targetDate = new Date('2025-10-09T00:00:00');
     const interval = setInterval(() => {
-      const now = new Date()
-      const difference = targetDate.getTime() - now.getTime()
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
 
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-      setCountdown({ days, hours, minutes, seconds })
-    }, 1000)
+      setCountdown({ days, hours, minutes, seconds });
+    }, 1000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
 
   return (

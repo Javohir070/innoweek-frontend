@@ -3,7 +3,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Globe2Icon,
-  Image,
+  Image as Icon,
   ListChecks,
   Map,
   UserCheckIcon,
@@ -16,7 +16,7 @@ export default function StatsSection() {
   const t = useTranslations("stats");
 
   const [currentLang] = useState("uz");
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const stats = [
     {
@@ -53,7 +53,7 @@ export default function StatsSection() {
       value: "50+",
       title: t("stats_6_title"),
       description: t("stats_6_description"),
-      icon: <Image className="text-yellow-500" />,
+      icon: <Icon className="text-yellow-500" />,
     },
   ];
 

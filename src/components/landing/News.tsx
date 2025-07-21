@@ -20,18 +20,17 @@ export default function NewsSection() {
   const params = useParams();
   const [data, setData] = useState<INewsListItem[]>([]);
 
-  const getNews = async () => {
-    try {
-      const res = await FetchInstance<IResponse<INewsListItem[]>>(
-        `/api/v1.0/news/all?limit=5&lang=${params?.locale}`
-      );
-      setData(res?.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const getNews = async () => {
+      try {
+        const res = await FetchInstance<IResponse<INewsListItem[]>>(
+          `/api/v1.0/news/all?limit=5&lang=${params?.locale}`
+        );
+        setData(res?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getNews();
   }, [params?.locale]);
 

@@ -4,11 +4,8 @@ import { useRouter } from "@/i18n/navigation";
 import { IComplateResponce } from "@/types";
 import React, { useState } from "react";
 
-type CheckYourTicketProps = {
-  onClose?: () => void;
-};
 
-const CheckYourTicket: React.FC<CheckYourTicketProps> = ({ onClose }) => {
+const CheckYourTicket= () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
@@ -58,7 +55,7 @@ const CheckYourTicket: React.FC<CheckYourTicketProps> = ({ onClose }) => {
 
       console.log(res);
     } catch (error) {
-      setUserError(error?.message);
+      setUserError(error instanceof Error ? error.message : String(error));
       console.log(error);
     } finally {
       setUserLoading(false);

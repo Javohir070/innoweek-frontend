@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 export default function AboutSection() {
   const t = useTranslations("about");
 
-  const [currentLang, setCurrentLang] = useState("uz");
+  const [currentLang] = useState("uz");
 
   const features: string[] = [
     t('features_1'),
