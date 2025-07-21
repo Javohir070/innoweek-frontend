@@ -35,16 +35,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx ALPHA HALL</h4>
+                          <h4 className="company  mb-0   !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx ALPHA HALL</h4>
                         </Link>
-                        <span className="period text-blue-500 dark:text-gray-400">10:00 - 12:00</span>
+                        <span className="period  text-black dark:!text-gray-400">10:00 - 12:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx BETA HALL</h3>
+                          <h3 className="position mb-0    !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black  dark:hover:text-blue-400">CAEx BETA HALL</h3>
                         </Link>
-                        <p className="description">
+                        <p className="description m-0">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -57,16 +57,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx BETA HALL</h4>
+                          <h4 className="company  mb-0   !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx BETA HALL</h4>
                         </Link>
-                        <span className="period text-blue-500 dark:text-gray-400">12:00 - 14:00</span>
+                        <span className="period  text-black dark:!text-gray-400">12:00 - 14:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Master of Fine Arts &amp; Graphic Design</h3>
+                          <h3 className="position mb-0    !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Master of Fine Arts &amp; Graphic Design</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -79,16 +79,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx GAMA HALL</h4>
+                          <h4 className="company  mb-0   !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx GAMA HALL</h4>
                         </Link>
-                        <span className="period text-gray-600 dark:text-gray-400">15:00 - 17:00</span>
+                        <span className="period  text-black dark:!text-gray-400">15:00 - 17:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Bachelor of Fine Arts &amp; Graphic Design</h3>
+                          <h3 className="position mb-0    !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Bachelor of Fine Arts &amp; Graphic Design</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -101,7 +101,7 @@ export default function ProgramSection() {
                   data-aos="fade-up"
                   data-aos-delay="100"
                 >
-                  <h2 className="text-black dark:!text-white">{t("day_2")}</h2>
+                  <h2 className="!text-black dark:!text-white">{t("day_2")}</h2>
                   <div className="timeline">
                     <div
                       className="timeline-item border-gray-200 dark:border-gray-700"
@@ -110,16 +110,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx ALPHA HALL</h4>
+                          <h4 className="company  mb-0   !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx ALPHA HALL</h4>
                         </Link>
-                        <span className="period text-gray-600 dark:text-gray-400">10:00 - 12:00</span>
+                        <span className="period  text-black dark:!text-gray-400">10:00 - 12:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Diploma in Consequat</h3>
+                          <h3 className="position mb-0    !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Diploma in Consequat</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -132,16 +132,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx BETA HALL</h4>
+                          <h4 className="company  mb-0   !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx BETA HALL</h4>
                         </Link>
-                        <span className="period text-gray-600 dark:text-gray-400">12:00 - 14:00</span>
+                        <span className="period  text-black dark:!text-gray-400">12:00 - 14:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Master of Fine Arts &amp; Graphic Design</h3>
+                          <h3 className="position mb-0    !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Master of Fine Arts &amp; Graphic Design</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -154,16 +154,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx GAMMA HALL</h4>
+                          <h4 className="company  mb-0   !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx GAMMA HALL</h4>
                         </Link>
-                        <span className="period text-gray-600 dark:text-gray-400">15:00 - 17:00</span>
+                        <span className="period  text-black dark:!text-gray-400">15:00 - 17:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Bachelor of Fine Arts &amp; Graphic Design</h3>
+                          <h3 className="position mb-0    !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Bachelor of Fine Arts &amp; Graphic Design</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -185,16 +185,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx ALPHA HALL</h4>
+                          <h4 className="company  mb-0   text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx ALPHA HALL</h4>
                         </Link>
-                        <span className="period text-gray-600 dark:text-gray-400">10:00 - 12:00</span>
+                        <span className="period  text-black dark:!text-gray-400">10:00 - 12:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Diploma in Consequat</h3>
+                          <h3 className="position mb-0    !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Diploma in Consequat</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -207,16 +207,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx BETA HALL</h4>
+                          <h4 className="company  mb-0   text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx BETA HALL</h4>
                         </Link>
-                        <span className="period text-gray-600 dark:text-gray-400">12:00 - 14:00</span>
+                        <span className="period  text-black dark:!text-gray-400">12:00 - 14:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Master of Fine Arts &amp; Graphic Design</h3>
+                          <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Master of Fine Arts &amp; Graphic Design</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>
@@ -229,16 +229,16 @@ export default function ProgramSection() {
                     >
                       <div className="timeline-left">
                         <Link href="/program-detail">
-                          <h4 className="company text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx GAMMA HALL</h4>
+                          <h4 className="company  mb-0   text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">CAEx GAMMA HALL</h4>
                         </Link>
-                        <span className="period text-black dark:!text-white ">15:00 - 17:00</span>
+                        <span className="period  text-black dark:!text-gray-400 ">15:00 - 17:00</span>
                       </div>
                       <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                       <div className="timeline-right">
                         <Link href="/program-detail">
-                          <h3 className="position text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">Bachelor of Fine Arts &amp; Graphic Design</h3>
+                          <h3 className="position mb-0   !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">Bachelor of Fine Arts &amp; Graphic Design</h3>
                         </Link>
-                        <p className="description text-gray-700 dark:text-gray-300">
+                        <p className="description m-0 text-gray-700 dark:text-gray-300">
                           Curabitur ullamcorper ultricies nisi nam eget dui
                           etiam rhoncus maecenas tempus.
                         </p>

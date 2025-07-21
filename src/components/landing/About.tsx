@@ -39,7 +39,7 @@ export default function AboutSection() {
           <div className="col-xl-5" data-aos="fade-up" data-aos-delay="200">
             <span className="about-meta !text-black dark:!text-white">INNOWEEK 2025</span>
             <h2 className="about-title !text-black dark:!text-white">{t("title")}</h2>
-            <p className="about-description text-gray-700 dark:text-gray-300">{t("description")}</p>
+            <p className="about-description text-black dark:!text-gray-300">{t("description")}</p>
 
             <div className="row feature-list-wrapper">
               <div className="col-md-6">
@@ -47,7 +47,7 @@ export default function AboutSection() {
                   {features.slice(0, 3)
                     .map((feature, index) => (
                       <li key={index} className="text-gray-700 dark:text-gray-300">
-                        <i className="bi bi-check-circle-fill text-blue-600 dark:text-blue-400"></i> {feature}
+                        <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i> {feature}
                       </li>
                     ))}
                 </ul>
@@ -57,7 +57,7 @@ export default function AboutSection() {
                   {features.slice(3)
                     .map((feature, index) => (
                       <li key={index} className="text-gray-700 dark:text-gray-300">
-                        <i className="bi bi-check-circle-fill text-blue-600 dark:text-blue-400"></i> {feature}
+                        <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i> {feature}
                       </li>
                     ))}
                 </ul>

@@ -1,5 +1,6 @@
 import AboutSection from "@/components/landing/About";
 import ContactSection from "@/components/landing/Contact";
+import ExpertFeedback from "@/components/landing/ExpertFeedback";
 import FAQSection from "@/components/landing/FAQSection";
 import GalerySection from "@/components/landing/Galery";
 import HeroSection from "@/components/landing/Hero";
@@ -33,6 +34,7 @@ export default function RootPage() {
           <HeroSection />
           <NewsSection />
           <AboutSection />
+          <ExpertFeedback />
           <StatsSection />
           <ProgramSection />
           <SpeakersSection />

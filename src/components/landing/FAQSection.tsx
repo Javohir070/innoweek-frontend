@@ -60,15 +60,15 @@ const FAQSection = () => {
               {faqData.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`faq-item${openIndex === idx ? ' faq-active' : ''} dark:bg-gray-800 dark:hover:bg-gray-700`}
+                  className={`faq-item${openIndex === idx ? ' faq-active' : ''} !bg-[#0085d4] dark:!bg-gray-800 dark:hover:!bg-gray-700`}
                   onClick={() => handleToggle(idx)}
                   style={{ cursor: 'pointer' }}
                 >
-                  <h3 style={{ color: openIndex === idx ? '#FFD600' : undefined }} className="text-black dark:!text-white">
+                  <h3 style={{ color: openIndex === idx ? '#FFD600' : undefined }} className="text-white dark:!text-white">
                     {item.question}
                   </h3>
                   <div
-                    className="faq-content text-black dark:!text-gray-300"
+                    className="faq-content  text-white dark:!text-gray-300"
                     style={{
                       display: openIndex === idx ? 'block' : 'none',
                       color: openIndex === idx ? '#FFD600' : undefined,
@@ -77,7 +77,7 @@ const FAQSection = () => {
                     <p>{item.answer}</p>
                   </div>
                   <i
-                    className={`faq-toggle bi ${openIndex === idx ? 'bi-chevron-down' : 'bi-chevron-right'} text-black dark:!text-white`}
+                    className={`faq-toggle bi ${openIndex === idx ? 'bi-chevron-down' : 'bi-chevron-right'} text-white dark:!text-white`}
                     style={{ color: openIndex === idx ? '#FFD600' : undefined }}
                   ></i>
                 </div>

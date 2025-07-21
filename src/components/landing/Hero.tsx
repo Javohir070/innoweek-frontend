@@ -64,12 +64,12 @@ export default function HeroSection() {
               </div>
               
               <div className="buttonslink">
-                <div className="cta-button">
+                <div className="cta-button hover:bg-[#e3a127] rounded-full">
                   <Link href="#services" className="btn border">
                     <span className='text-white'>{t('hero btn')}</span>
                   </Link>
                 </div>
-                <div className="cta-button">
+                <div className="cta-button hover:bg-[#e3a127] hover:border-[#e3a127] rounded-full">
                   <button className="btn border" onClick={() => setOpen(true)}>
                     <span className='text-white'>{t("REGISTER")}</span>
                   </button>

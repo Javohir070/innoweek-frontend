@@ -42,7 +42,7 @@
     /* Default color used for the majority of the text content across the entire website */
     --heading-color: #e0e9f2;
     /* Color for headings, subheadings and title throughout the website */
-    --accent-color: #e3a127;
+    --accent-color: #e32727;
     /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
     --surface-color: #1b262c;
     /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
@@ -979,8 +979,8 @@ section,
 }
 
 .hero .cta-button .btn:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
+    /* background-color: var(--accent-color); */
+    border-color: #e3a127 !important;
     color: var(--contrast-color);
 }
 
@@ -4414,9 +4414,7 @@ row
     transform: rotate(360deg);
 }
 
-.stats .metric-card:hover .metric-icon-wrapper i {
-    color: var(--contrast-color);
-}
+/* */
 
 .stats .metric-card .metric-header {
     display: flex;
@@ -4438,7 +4436,7 @@ row
 
 .stats .metric-card .metric-header .metric-icon-wrapper i {
     font-size: 1.8rem;
-    color: var(--accent-color);
+    color: white !important;
     transition: all 0.4s ease;
 }
 
@@ -4704,7 +4702,7 @@ row
     transform: translateX(-50%);
     width: 1rem;
     height: 1rem;
-    background-color: var(--accent-color);
+    /* background-color: var(--accent-color); */
     border-radius: 50%;
 }
 
@@ -4718,7 +4716,7 @@ row
     color: var(--heading-color);
     font-size: 1.2rem;
     margin-bottom: 0.6rem;
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .resume .resume-wrapper .timeline .timeline-item .timeline-right .description {

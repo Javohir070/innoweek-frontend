@@ -74,12 +74,12 @@ export default function NewsSection() {
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <Link href={`/news/${item?.id}`}>
-                <div className="testimonial-item hover:cursor-pointer bg-white dark:!bg-gray-800 m-4 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 ">
+                <div className="testimonial-item hover:cursor-pointer !bg-[#0085d4] dark:!bg-gray-800 m-4 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 ">
                   <div className="row">
                     <div className="col-lg-8">
-                      <h2 className="text-black dark:!text-white">{item?.title}</h2>
+                      <h2 className="!text-white dark:!text-white">{item?.title}</h2>
                       <div
-                        className="line-clamp-6 text-gray-700 dark:!text-gray-300"
+                        className="line-clamp-6 !text-white dark:!text-gray-300"
                         dangerouslySetInnerHTML={{
                           __html: item?.description?.replace(
                             /style="color:black;?|color:black;?/gi,
@@ -97,7 +97,7 @@ export default function NewsSection() {
                         />
                         <div className="profile-info ml-3">
                           <h3 className="text-gray-900 dark:text-white mb-0">Innoweek</h3>
-                          <span className="text-gray-600 dark:text-gray-400">{t("INNOWEEK")}</span>
+                          <span className="text-white dark:text-gray-400">{t("INNOWEEK")}</span>
                         </div>
                       </div>
                     </div>
@@ -126,13 +126,13 @@ export default function NewsSection() {
           <div className="w-100 d-flex align-items-center justify-center gap-4 mt-8">
             <button
               ref={prevRef}
-              className="bg-gray-700  dark:bg-gray-700 hover:bg-amber-500 dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+              className="bg-[#0085d4]  dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
             >
               <ChevronLeft />
             </button>
             <button
               ref={nextRef}
-              className="bg-gray-700 dark:bg-gray-700 hover:bg-amber-500 dark:hover:bg-amber-600 text-white 
+              className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white 
               !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
             >
               <ChevronRight />

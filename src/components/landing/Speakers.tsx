@@ -43,8 +43,8 @@ const SpeakersSection = () => {
               data-aos-delay="100"
               key={item?.full_name}
             >
-              <div className="team-member d-flex bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300">
-                <div className="member-img mr-4">
+              <div className="team-member d-flex !bg-[#0085d4]  dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300 ">
+                <div className="member-img">
                   <Image
                     src={item?.image ? `${BASE_URL}${item?.image}` : userAvatar}
                     className="img-fluid rounded-lg"
@@ -55,8 +55,8 @@ const SpeakersSection = () => {
                   />
                 </div>
                 <div className="member-info flex-grow-1">
-                  <h4 className="text-black dark:!text-white mb-1">{item?.full_name}</h4>
-                  <span className="text-black dark:!text-gray-400">{item?.position}</span>
+                  <h4 className="text-white dark:!text-white mb-1">{item?.full_name}</h4>
+                  <span className="text-white dark:!text-gray-400">{item?.position}</span>
                 </div>
               </div>
             </div>

@@ -161,7 +161,7 @@ const ContactSection = () => {
                       data-uz="RO'YHATDAN O'TISH"
                       data-ru="Отправить сообщение"
                       data-en="Send Message"
-                      className="bg-blue-600 dark:bg-gray-700 text-white px-4 py-2 rounded"
+                      className="bg-white dark:!bg-gray-700 dark:!text-white dark:hover:!bg-gray-900 text-black px-4 py-2 rounded-full hover:!bg-black hover:!text-white transition-colors duration-300"
                     >
                       {"RO'YHATDAN O'TISH"}
                     </button>
