@@ -1,12 +1,133 @@
 {
   "header": {
     "HOME": "HOME",
-    "NEWS":  "NEWS", 
-    "INNOWEEK": "INNOWEEK", 
-
-    "GALLERY": "GALLERY", 
-    "FAQ": "FAQ", 
-    "MARKETPLACE": "MARKETPLACE", 
-    "CONTACT": "CONTACT"  
+    "NEWS": "NEWS",
+    "INNOWEEK": "INNOWEEK",
+    "GALLERY": "GALLERY",
+    "FAQ": "FAQ",
+    "MARKETPLACE": "MARKETPLACE",
+    "CONTACT": "CONTACT"
+  },
+  "langs": {
+    "uz": "Uzbek",
+    "en": "English",
+    "ru": "Russian"
+  },
+  "hero": {
+    "Ideas without borders": "Ideas without borders",
+    "hero description": "The event brings together leading local and international companies, investors, diplomats, entrepreneurs, scientists, startups, technology experts, and representatives of government agencies in one place every year. It is also an ideal platform for communication with leaders of the innovation sector and stakeholders in collaboration and investment.",
+    "hero btn": "INNOWEEK 2025",
+    "REGISTER": "REGISTER",
+    "day": "Day",
+    "hour": "Hour",
+    "minute": "Minute",
+    "second": "Second"
+  },
+  "news": {
+    "INNOWEEK": "INNOWEEK",
+    "Latest News": "Latest News"
+  },
+  "about": {
+    "title": "IDEAS WITHOUT BORDERS",
+    "description": "The International Week of Innovative Ideas — “Innoweek.uz” has been held since 2018 with the aim of accelerating innovative development in the republic, widely implementing innovations and technologies in all sectors of the economy, developing human capital, science and innovation. Over the past period, it has developed under the leadership of President Shavkat Mirziyoyev and has become the largest platform in Central Asia for demonstrating advanced innovations and developing global cooperation. The event annually brings together leading local and international companies, investors, diplomats, entrepreneurs, scientists, startups, technology experts and representatives of government agencies. It is also an ideal platform for communicating with leaders of the innovation sector, stakeholders in the field of cooperation and investment.",
+    "features_1": "Deep tech & AI",
+    "features_2": "Health tech & Biotech",
+    "features_3": "EdTech & eLearning",
+    "features_4": "Agri tech & Green tech",
+    "features_5": "Smart Cities",
+    "features_6": "Robotics & Drones",
+    "about_section_title": "ABOUT INNOWEEK 2025"
+  },
+  "stats": {
+    "COVERAGE": "COVERAGE",
+    "stats_1_title": "Exhibition area",
+    "stats_1_description": "Separate 2000m2 for events",
+    "stats_2_title": "Visitors",
+    "stats_2_description": "1200 international guests",
+    "stats_3_title": "Projects",
+    "stats_3_description": "Ideas and ready-made solutions",
+    "stats_4_title": "Participants",
+    "stats_4_description": "Local and foreign companies",
+    "stats_5_title": "Countries",
+    "stats_5_description": "Experts and speakers",
+    "stats_6_title": "Media",
+    "stats_6_description": "Local and international media"
+  },
+  "program": {
+    "INNOWEEK": "INNOWEEK",
+    "PROGRAM": "PROGRAM",
+    "day_1": "October 9",
+    "day_2": "October 10",
+    "day_3": "October 11"
+  },
+  "expert_feedback": {
+    "about_us": "ABOUT US",
+    "experts_opinion": "EXPERTS' FEEDBACK"
+  },
+  "speakers": {
+    "INNOWEEK": "INNOWEEK",
+    "SPEAKERS": "SPEAKERS"
+  },
+  "partners": {
+    "INNOWEEK": "INNOWEEK",
+    "PARTNERS": "PARTNERS"
+  },
+  "gallery": {
+    "INNOWEEK": "INNOWEEK",
+    "GALLERY": "GALLERY"
+  },
+  "gallery_page": {
+    "INNOWEEK": "INNOWEEK",
+    "PHOTO_GALLERY": "PHOTO GALLERY",
+    "prev": "Prev",
+    "next": "Next",
+    "per_page": "per page"
+  },
+  "contact": {
+    "INNOWEEK": "INNOWEEK",
+    "CONTACT": "CONTACT",
+    "address_title": "Address",
+    "address_value": "Mirzo Ulugbek district, Milliy Bog street, 1",
+    "email_title": "Email",
+    "phone_title": "Phone",
+    "working_hours": "Working hours",
+    "partnership_title": "For partnership",
+    "partnership_text": "We offer sponsorship opportunities not only for participants but also for companies not participating to maximize the commercial potential of the event.",
+    "form_name_placeholder": "Your Name",
+    "form_email_placeholder": "Your email",
+    "form_subject_placeholder": "Enter Subject",
+    "form_message_placeholder": "Enter Message",
+    "form_loading": "Loading",
+    "form_sent_message": "Your message has been sent. Thank you!",
+    "form_submit": "Send Message"
+  },
+  "register_modal": {
+    "title": "Sign Up",
+    "local": "Local",
+    "international": "International",
+    "first_name": "First Name *",
+    "last_name": "Last Name *",
+    "phone": "Phone Number (901234567)",
+    "participation_type": "Participation type *",
+    "birth_date": "Date of Birth *",
+    "gender_label": "Gender:",
+    "male": "Male",
+    "female": "Female",
+    "email": "Email *",
+    "country": "Country *",
+    "organization": "Organization *",
+    "phone_error": "Phone number must be 9 digits in 901234567 format",
+    "sending": "Sending...",
+    "sign_up": "Sign Up",
+    "otp_label": "Enter the 6-digit code sent to your phone number",
+    "verifying": "Verifying...",
+    "verify": "Verify"
+  },
+  "check_ticket": {
+    "are_you_registered": "Are you registered?",
+    "check_your_ticket": "Check Your Ticket",
+    "loading": "Loading...",
+    "input_placeholder": "939432111 or email@gmail.com",
+    "submit": "Submit"
   }
 }

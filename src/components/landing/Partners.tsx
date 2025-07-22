@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 import partnerImage1 from "@/assets/img/clients/clients-1.webp";
 import partnerImage2 from "@/assets/img/clients/clients-2.webp";
 import partnerImage3 from "@/assets/img/clients/clients-3.webp";
@@ -11,6 +12,7 @@ import partnerImage9 from "@/assets/img/clients/clients-9.webp";
 import Image from "next/image";
 
 const PartnersSection = () => {
+  const t = useTranslations("partners");
   return (
     <section className="clients section py-[200px] bg-transparent">
       <div id="clients" className="">
@@ -18,11 +20,11 @@ const PartnersSection = () => {
           className="container xl:px-[90px] section-title"
           data-aos="fade-up"
         >
-          <h2 className="text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
-            {"INNOWEEK"}
+          <h2 className="text-black dark:!text-white">
+            {t("INNOWEEK")}
           </h2>
-          <div className="text-black dark:!text-white" data-uz="HAMKORLAR" data-ru="ПАРТНЕРЫ" data-en="PARTNERS">
-            {"HAMKORLAR"}
+          <div className="text-black dark:!text-white">
+            {t("PARTNERS")}
           </div>
         </div>
 

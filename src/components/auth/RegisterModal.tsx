@@ -16,6 +16,7 @@ import React, {
 } from "react";
 import { toast } from "react-toastify";
 import CheckYourTicket from "./CheckYourTicket";
+import { useTranslations } from "next-intl";
 
 type RegisterModalProps = {
   open: boolean;
@@ -54,6 +55,7 @@ const initialForm: RegisterForm = {
 };
 
 export default function RegisterModal({ open, onClose }: RegisterModalProps) {
+  const t = useTranslations("register_modal");
   const [form, setForm] = useState<RegisterForm>(initialForm);
   const [error, setError] = useState<RegisterError>({});
   const [professions, setProfessions] = useState<IProfessionItem[]>([]);
@@ -85,7 +87,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
     e.preventDefault();
     setLoading(true);
     console.log(e);
-    
+
     const phoneRegex = /^\d{9}$/;
     if (!phoneRegex.test(form.phone)) {
       setError({
@@ -132,7 +134,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
       }
     } catch (err) {
       console.log(err);
-      
+
       setError({
         status: err instanceof Error ? err.message : "Bu raqam  yoki email oldin ro'yxatdan o'tgan",
       });
@@ -196,21 +198,21 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
   if (!open) return null;
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      className="fixed inset-0  bg-black/50 flex items-center justify-center z-50"
       onClick={onClose}
     >
       <div
-        className="bg-[#151a28] rounded-lg p-8 w-full max-w-md relative"
+        className="bg-white dark:!bg-[#151a28] rounded-lg p-8 w-full max-w-md relative shadow-lg dark:shadow-gray-900 border border-gray-200 dark:!border-gray-700"
         onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-xl text-white"
+          className="absolute top-2 right-2 text-xl text-gray-700 dark:text-white hover:text-red-500 dark:hover:text-red-400 transition-colors"
         >
           &times;
         </button>
-        <h2 className="text-xl font-bold mb-4 text-white">
-          {"Ro'yxatdan o'tish"}
+        <h2 className="text-xl font-bold mb-4 text-black dark:!text-white">
+          {t("title")}
         </h2>
         {step === "register" ? (
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -218,25 +220,23 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
             <div className="flex gap-2 justify-center mb-2">
               <button
                 type="button"
-                className={`px-6 py-2 rounded border ${
-                  form.type === "local"
-                    ? "bg-[#e3a127] text-white border-[#e3a127]"
-                    : "bg-transparent text-white border-white"
-                }`}
+                className={`px-6 py-2 rounded border transition-colors duration-200 ${form.type === "local"
+                  ? "bg-[#e3a127] text-white border-[#e3a127]"
+                  : "bg-transparent text-gray-900 dark:text-white border-gray-400 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
                 onClick={() => handleType("local")}
               >
-                Local
+                {t("local")}
               </button>
               <button
                 type="button"
-                className={`px-6 py-2 rounded border ${
-                  form.type === "international"
-                    ? "bg-[#e3a127] text-white border-[#e3a127]"
-                    : "bg-transparent text-white border-white"
-                }`}
+                className={`px-6 py-2 rounded border transition-colors duration-200 ${form.type === "international"
+                  ? "bg-[#e3a127] text-white border-[#e3a127]"
+                  : "bg-transparent text-gray-900 dark:text-white border-gray-400 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
                 onClick={() => handleType("international")}
               >
-                International
+                {t("international")}
               </button>
             </div>
 
@@ -247,8 +247,8 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="firstName"
                   type="text"
-                  placeholder="First Name *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("first_name")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.firstName}
                   onChange={handleChange}
@@ -257,8 +257,8 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="lastName"
                   type="text"
-                  placeholder="Last Name *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("last_name")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.lastName}
                   onChange={handleChange}
@@ -267,28 +267,27 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="phone"
                   type="tel"
-                  placeholder="Phone Number (901234567)"
+                  placeholder={t("phone")}
                   maxLength={9}
-                  className={`border rounded px-3 py-2 bg-transparent text-white ${
-                    error.phone ? "border-red-500" : ""
-                  }`}
+                  className={`border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white ${error.phone ? "border-red-500" : ""
+                    }`}
                   required
                   value={form.phone}
                   onChange={handleChange}
                 />
                 {error.phone && (
-                  <span className="text-red-500 text-xs">{error.phone}</span>
+                  <span className="text-red-500 text-xs">{error.phone && t("phone_error")}</span>
                 )}
                 {/* Participation type */}
                 <select
                   name="profession_id"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.profession_id}
                   onChange={handleChange}
                 >
                   <option value="" disabled>
-                    Participation type *
+                    {t("participation_type")}
                   </option>
                   {professions?.map((item) => (
                     <option value={item?.id} key={item?.id}>
@@ -300,16 +299,16 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="birth_date"
                   type="date"
-                  placeholder="Date of Birth *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("birth_date")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.birth_date}
                   onChange={handleChange}
                 />
                 {/* Gender */}
                 <div className="flex items-center gap-4">
-                  <span className="text-white">Gender:</span>
-                  <label className="flex items-center gap-1 text-white">
+                  <span className="text-gray-900 dark:text-white">{t("gender_label")}</span>
+                  <label className="flex items-center gap-1 text-gray-900 dark:text-white">
                     <input
                       type="radio"
                       name="gender"
@@ -317,10 +316,11 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                       checked={form.gender === "1"}
                       onChange={handleChange}
                       required
+                      className="!mr-1"
                     />
-                    Male
+                    {t("male")}
                   </label>
-                  <label className="flex items-center gap-1 text-white">
+                  <label className="flex items-center gap-1 text-gray-900 dark:text-white">
                     <input
                       type="radio"
                       name="gender"
@@ -328,8 +328,9 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                       checked={form.gender === "2"}
                       onChange={handleChange}
                       required
+                      className="!mr-1"
                     />
-                    Female
+                    {t("female")}
                   </label>
                 </div>
               </>
@@ -340,8 +341,8 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="firstName"
                   type="text"
-                  placeholder="First Name *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("first_name")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.firstName}
                   onChange={handleChange}
@@ -350,8 +351,8 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="lastName"
                   type="text"
-                  placeholder="Last Name *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("last_name")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.lastName}
                   onChange={handleChange}
@@ -360,8 +361,8 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="email"
                   type="email"
-                  placeholder="Email *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("email")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.email || ""}
                   onChange={handleChange}
@@ -369,13 +370,13 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 {/* Country */}
                 <select
                   name="country"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.country || ""}
                   onChange={handleChange}
                 >
                   <option value="" disabled>
-                    Country *
+                    {t("country")}
                   </option>
                   <option value="Uzbekistan">Uzbekistan</option>
                   <option value="Kazakhstan">Kazakhstan</option>
@@ -385,13 +386,13 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 {/* Participation type */}
                 <select
                   name="profession_id"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.profession_id}
                   onChange={handleChange}
                 >
                   <option value="" disabled>
-                    Participation type *
+                    {t("participation_type")}
                   </option>
                   {professions?.map((item) => (
                     <option value={item?.id} key={item?.id}>
@@ -403,8 +404,8 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="organization"
                   type="text"
-                  placeholder="Organization *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("organization")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.organization || ""}
                   onChange={handleChange}
@@ -413,16 +414,16 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 <input
                   name="birth_date"
                   type="date"
-                  placeholder="Date of Birth *"
-                  className="border rounded px-3 py-2 bg-transparent text-white"
+                  placeholder={t("birth_date")}
+                  className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.birth_date}
                   onChange={handleChange}
                 />
                 {/* Gender */}
                 <div className="flex items-center gap-4">
-                  <span className="text-white">Gender:</span>
-                  <label className="flex items-center gap-1 text-white">
+                  <span className="text-gray-900 dark:text-white">{t("gender_label")}</span>
+                  <label className="flex items-center gap-1 text-gray-900 dark:text-white">
                     <input
                       type="radio"
                       name="gender"
@@ -431,9 +432,9 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                       onChange={handleChange}
                       required
                     />
-                    Male
+                    {t("male")}
                   </label>
-                  <label className="flex items-center gap-1 text-white">
+                  <label className="flex items-center gap-1 text-gray-900 dark:text-white">
                     <input
                       type="radio"
                       name="gender"
@@ -442,7 +443,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                       onChange={handleChange}
                       required
                     />
-                    Female
+                    {t("female")}
                   </label>
                 </div>
               </>
@@ -460,17 +461,17 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
               {loading ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Yuborilmoqda...
+                  {t("sending")}
                 </>
               ) : (
-                "Sign Up"
+                t("sign_up")
               )}
             </button>
           </form>
         ) : (
           <form className="flex flex-col gap-4" onSubmit={handleOtpSubmit}>
-            <label className="text-white text-center text-lg mb-2">
-              Telefon raqamingizga yuborilgan 6 xonali kodni kiriting
+            <label className="text-gray-900 dark:text-white text-center text-lg mb-2">
+              {t("otp_label")}
             </label>
             <input
               type="text"
@@ -478,7 +479,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
               pattern="\d{6}"
               value={otp}
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-              className="border rounded px-3 py-2 bg-transparent text-white text-center text-xl tracking-widest"
+              className="border rounded px-3 py-2 bg-transparent text-gray-900 dark:text-white text-center text-xl tracking-widest"
               placeholder="______"
               required
             />
@@ -493,15 +494,15 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
               {loading ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Tasdiqlanmoqda...
+                  {t("verifying")}
                 </>
               ) : (
-                "Tasdiqlash"
+                t("verify")
               )}
             </button>
           </form>
         )}
-        <CheckYourTicket  />
+        <CheckYourTicket />
       </div>
     </div>
   );

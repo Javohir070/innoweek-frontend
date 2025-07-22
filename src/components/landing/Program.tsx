@@ -9,11 +9,11 @@ export default function ProgramSection() {
   return (
     <section id="resume" className="resume section bg-white dark:!bg-[#031119] transition-colors duration-300">
       <div className="container section-title" data-aos="fade-up">
-        <h2 className="text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
-          INNOWEEK
+        <h2 className="text-black dark:!text-white">
+          {t("INNOWEEK")}
         </h2>
-        <div className="text-black dark:!text-gray-300" data-uz="DASTUR" data-ru="ПРОГРАММА" data-en="PROGRAM">
-          {t("Latest News")}
+        <div className="text-black dark:!text-gray-300">
+          {t("PROGRAM")}
         </div>
       </div>
       <div className="container" data-aos="fade-up" data-aos-delay="100">

@@ -339,7 +339,7 @@ h6 {
     .navmenu .dropdown ul {
         margin: 0;
         padding: 10px 0;
-        background: var(--nav-dropdown-background-color);
+        background: white;
         display: block;
         position: absolute;
         visibility: hidden;
@@ -352,6 +352,11 @@ h6 {
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
     }
 
+    .dark .navmenu .dropdown ul {
+        background: var(--surface-color);
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    }
+
     .navmenu .dropdown ul li {
         min-width: 200px;
     }
@@ -360,7 +365,7 @@ h6 {
         padding: 10px 15px;
         font-size: 15px;
         text-transform: none;
-        /* color: var(--nav-dropdown-color); */
+        /* color: red; */
     }
 
     .navmenu .dropdown ul a i {
@@ -2745,7 +2750,7 @@ section,
 .contact .contact-form-wrapper .form-group .input-with-icon i {
     position: absolute;
     left: 15px;
-    top: 50%;
+    top:  50%;
     transform: translateY(-50%);
     color: color-mix(in srgb, var(--default-color), transparent 40%);
     font-size: 18px;
@@ -5084,7 +5089,7 @@ row
 .contact .contact-form-container .php-email-form .form-control:focus {
     background-color: var(--surface-color);
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 85%);
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--accent-color), transparent 90%);
 }
 
 .contact .contact-form-container .php-email-form .form-control::placeholder {

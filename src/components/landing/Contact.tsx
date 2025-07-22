@@ -1,17 +1,19 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
 const ContactSection = () => {
+  const t = useTranslations('contact');
   return (
     <section
       id="contact"
       className="contact section bg-transparent "
     >
       <div className="container section-title" data-aos="fade-up">
-        <h2 className="text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
-          {"INNOWEEK"}
+        <h2 className="text-black dark:!text-white">
+          {t("INNOWEEK")}
         </h2>
-        <div className="text-black dark:!text-white" data-uz="BOG'LANISH" data-ru="СВЯЗАТЬСЯ" data-en="CONTACT">
-          {"BOG'LANISH"}
+        <div className="text-black dark:!text-white">
+          {t("CONTACT")}
         </div>
       </div>
 
@@ -38,10 +40,8 @@ const ContactSection = () => {
                   <i className="bi bi-geo-alt"></i>
                 </div>
                 <div className="contact-text">
-                  <h4 data-uz="Manzil" data-ru="Адрес" data-en="Address">Manzil</h4>
-                  <p className="text-white" data-uz="Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy" data-ru="..." data-en="...">
-                    Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy
-                  </p>
+                  <h4>{t("address_title")}</h4>
+                  <p className="text-white">{t("address_value")}</p>
                 </div>
               </div>
               <div className="contact-card !bg-[#3b82f6] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
@@ -49,7 +49,7 @@ const ContactSection = () => {
                   <i className="bi bi-envelope"></i>
                 </div>
                 <div className="contact-text">
-                  <h4 data-uz="Pochta" data-ru="Почта" data-en="Email">Pochta</h4>
+                  <h4>{t("email_title")}</h4>
                   <p className="text-white">info@innoweek.uz</p>
                 </div>
               </div>
@@ -58,7 +58,7 @@ const ContactSection = () => {
                   <i className="bi bi-telephone !text-[#3256ca]"></i>
                 </div>
                 <div className="contact-text">
-                  <h4 data-uz="Telefon" data-ru="Телефон" data-en="Phone">Telefon</h4>
+                  <h4>{t("phone_title")}</h4>
                   <p className="text-white">+998 71 203 32 00</p>
                 </div>
               </div>
@@ -67,7 +67,7 @@ const ContactSection = () => {
                   <i className="bi bi-clock"></i>
                 </div>
                 <div className="contact-text">
-                  <h4 className="text-white" data-uz="Ish vaqti" data-ru="Время работы" data-en="Working hours">Ish vaqti</h4>
+                  <h4 className="text-white">{t("working_hours")}</h4>
                   <p className="text-white">09:00 - 18:00</p>
                 </div>
               </div>
@@ -78,20 +78,8 @@ const ContactSection = () => {
                 data-aos="fade-up"
                 data-aos-delay="400"
               >
-                <h3
-                  data-uz="Hamkorlik uchun"
-                  data-ru="Для партнёрства"
-                  data-en="For partnership"
-                >Hamkorlik uchun</h3>
-                <p
-                className="!text-white"
-                  data-uz="Biz homiylik imkoniyatlarini nafaqat ishtirokchilar uchun, kompaniyalar uchun ham taklif etamiz, bu esa tadbirning tijoriy salohiyatini maksimal darajada oshirishga xizmat qiladi."
-                  data-ru="Мы предлагаем возможности спонсорства не только для участников, но и для компаний, не участвующих в мероприятии, чтобы максимально увеличить коммерческий потенциал мероприятия."
-                  data-en="We offer sponsorship opportunities not only for participants but also for companies not participating to maximize the commercial potential of the event."
-                >
-                  {"Biz homiylik imkoniyatlarini nafaqat ishtirokchilar uchun, kompaniyalar uchun ham taklif etamiz, bu esa tadbirning tijoriy salohiyatini maksimal darajada oshirishga xizmat qiladi."}
-                </p>
-
+                <h3>{t("partnership_title")}</h3>
+                <p className="!text-white">{t("partnership_text")}</p>
                 <form
                   action="forms/contact.php"
                   method="post"
@@ -104,10 +92,7 @@ const ContactSection = () => {
                         name="name"
                         className="form-control bg-white dark:!bg-gray-700 dark:text-white"
                         id="name"
-                        placeholder="Ismingiz"
-                        data-uz="Ismingiz"
-                        data-ru="Ваше Имя"
-                        data-en="Your Name"
+                        placeholder={t("form_name_placeholder")}
                       />
                     </div>
                     <div className="col-md-6 form-group mt-3 mt-md-0">
@@ -116,10 +101,7 @@ const ContactSection = () => {
                         className="form-control bg-white dark:!bg-gray-700 dark:text-white"
                         name="email"
                         id="email"
-                        placeholder="Mail pochtangiz"
-                        data-uz="Mail pochtangiz"
-                        data-ru="Ваш email"
-                        data-en="Your email"
+                        placeholder={t("form_email_placeholder")}
                       />
                     </div>
                   </div>
@@ -129,10 +111,7 @@ const ContactSection = () => {
                       className="form-control bg-white dark:!bg-gray-700 dark:text-white"
                       name="subject"
                       id="subject"
-                      placeholder="Taklif nomi"
-                      data-uz="Taklif nomi"
-                      data-ru="Введите Тему"
-                      data-en="Enter Subject"
+                      placeholder={t("form_subject_placeholder")}
                     />
                   </div>
                   <div className="form-group mt-3">
@@ -140,30 +119,24 @@ const ContactSection = () => {
                       className="form-control text-gray-500 bg-white dark:!bg-gray-700 dark:text-white"
                       name="message"
                       rows={5}
-                      placeholder="Taklif kiriting"
-                      data-uz="Taklif kiriting"
-                      data-ru="Введите Сообщение"
-                      data-en="Enter Message"
+                      placeholder={t("form_message_placeholder")}
                     ></textarea>
                   </div>
 
                   <div className="my-3">
-                    <div className="loading">Loading</div>
+                    <div className="loading">{t("form_loading")}</div>
                     <div className="error-message"></div>
                     <div className="sent-message">
-                      Your message has been sent. Thank you!
+                      {t("form_sent_message")}
                     </div>
                   </div>
 
                   <div className="form-submit">
                     <button
                       type="submit"
-                      data-uz="RO'YHATDAN O'TISH"
-                      data-ru="Отправить сообщение"
-                      data-en="Send Message"
                       className="bg-white dark:!bg-gray-700 dark:!text-white dark:hover:!bg-gray-900 text-black px-4 py-2 rounded-full hover:!bg-black hover:!text-white transition-colors duration-300"
                     >
-                      {"RO'YHATDAN O'TISH"}
+                      {t("form_submit")}
                     </button>
                   </div>
                 </form>

@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 
 export default function AboutSection() {
   const t = useTranslations("about");
+  const locale = typeof window !== 'undefined' ? (window.location.pathname.split('/')[1] || 'uz') : 'uz';
 
   const [currentLang] = useState("uz");
 
@@ -26,11 +27,7 @@ export default function AboutSection() {
       <div className="container section-title" data-aos="fade-up">
         <h2 className="text-black dark:!text-white">INNOWEEK</h2>
         <div className="text-black dark:!text-gray-300">
-          {currentLang === "uz"
-            ? "INNOWEEK 2025 HAQIDA"
-            : currentLang === "ru"
-              ? "О INNOWEEK 2025"
-              : "ABOUT INNOWEEK 2025"}
+          {t("about_section_title")}
         </div>
       </div>
 

@@ -34,8 +34,8 @@ export default async function NewsDetailPage({ params }: INewsById) {
   return (
     <div className="container py-10">
       <div className="section-title">
-        <h1 className="text-3xl font-bold pt-4">{data.title}</h1>
-        <div className="text-gray-400 text-sm">
+        <h1 className="text-3xl text-black dark:!text-white font-bold pt-4">{data.title}</h1>
+        <div className="text-black  dark:!text-gray-400 text-sm">
           {data.created_at && (
             <span>
               {new Date(data.created_at).toLocaleDateString("uz-UZ", {

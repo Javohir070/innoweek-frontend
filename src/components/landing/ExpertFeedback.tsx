@@ -6,6 +6,7 @@ import userAvatar from "@/assets/img/person/person-m-7.webp";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { IoMdStar } from "react-icons/io";
 import { LuMoveLeft, LuMoveRight } from "react-icons/lu";
+import { useTranslations } from "next-intl";
 
 const staticData = [
     {
@@ -32,11 +33,13 @@ const staticData = [
         image: "",
         country: "O'zbekiston",
     },
+    
 ];
 
 
 
 const ExpertFeedback = () => {
+    const t = useTranslations("expert_feedback");
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const data = staticData;
@@ -70,14 +73,14 @@ const ExpertFeedback = () => {
                 <div className="section-title" data-aos="fade-up">
                     <h2 className="text-black dark:!text-white">INNOWEEK</h2>
                     <div className="text-black dark:!text-gray-300">
-                        BIZ HAQIMIZDA
+                        {t("about_us")}
                     </div>
                 </div>
                 <div className="flex relative flex-col md:flex-row items-start gap-18">
                     {/* Chap panel */}
                     <div className="flex flex-col items-center md:items-start w-full md:w-1/3">
                         <h3 className="text-xl !font-bold text-black dark:!text-gray-300 mb-6">
-                            EKSPERTLAR FIKRI
+                            {t("experts_opinion")}
                         </h3>
                         <div className="md:absolute md:bottom-10 flex items-center gap-3 mt-6 md:mt-0">
                             <button

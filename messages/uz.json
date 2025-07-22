@@ -41,7 +41,8 @@
     "features_3": "EdTech & eLearning",
     "features_4": "Agri tech & Green tech",
     "features_5": "Smart Cities",
-    "features_6": "Robotics & Drones"
+    "features_6": "Robotics & Drones",
+    "about_section_title": "INNOWEEK 2025 HAQIDA"
   },
   "stats": {
     "COVERAGE": "QAMROV",
@@ -62,7 +63,77 @@
     "INNOWEEK": "INNOWEEK",
     "PROGRAM": "DASTUR",
     "day_1": "9-OKTABR",
-    "day_2": "9-OKTABR",
-    "day_3": "9-OKTABR"
+    "day_2": "10-OKTABR",
+    "day_3": "11-OKTABR"
+  },
+  "expert_feedback": {
+    "about_us": "BIZ HAQIMIZDA",
+    "experts_opinion": "EKSPERTLAR FIKRI"
+  },
+  "speakers": {
+    "INNOWEEK": "INNOWEEK",
+    "SPEAKERS": "SPIKERLAR"
+  },
+  "partners": {
+    "INNOWEEK": "INNOWEEK",
+    "PARTNERS": "HAMKORLAR"
+  },
+  "gallery": {
+    "INNOWEEK": "INNOWEEK",
+    "GALLERY": "GALEREYA"
+  },
+  "contact": {
+    "title": "Biz bilan bog'lanish",
+    "description": "Savollaringiz bormi? Biz bilan bog'laning!",
+    "address_title": "Manzil",
+    "address_value": "Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy",
+    "email_title": "Pochta",
+    "phone_title": "Telefon",
+    "working_hours": "Ish vaqti",
+    "partnership_title": "Hamkorlik uchun",
+    "partnership_text": "Biz homiylik imkoniyatlarini nafaqat ishtirokchilar uchun, kompaniyalar uchun ham taklif etamiz, bu esa tadbirning tijoriy salohiyatini maksimal darajada oshirishga xizmat qiladi.",
+    "form_name_placeholder": "Ismingiz",
+    "form_email_placeholder": "Mail pochtangiz",
+    "form_subject_placeholder": "Taklif nomi",
+    "form_message_placeholder": "Taklif kiriting",
+    "form_loading": "Yuklanmoqda",
+    "form_sent_message": "Xabaringiz yuborildi. Rahmat!",
+    "form_submit": "Yuborish"
+  },
+  "register_modal": {
+    "title": "Ro'yxatdan o'tish",
+    "local": "Mahalliy",
+    "international": "Xalqaro",
+    "first_name": "Ism *",
+    "last_name": "Familiya *",
+    "phone": "Telefon raqam (901234567)",
+    "participation_type": "Ishtirok turi *",
+    "birth_date": "Tug'ilgan sana *",
+    "gender_label": "Jinsi:",
+    "male": "Erkak",
+    "female": "Ayol",
+    "email": "Email *",
+    "country": "Davlat *",
+    "organization": "Tashkilot *",
+    "phone_error": "Telefon raqam 901234567 formatida, 9 ta raqam bo‘lishi kerak",
+    "sending": "Yuborilmoqda...",
+    "sign_up": "Ro'yxatdan o'tish",
+    "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
+    "verifying": "Tasdiqlanmoqda...",
+    "verify": "Tasdiqlash"
+  },
+  "check_ticket": {
+    "are_you_registered": "Ro'yxatdan o'tganmisiz?",
+    "check_your_ticket": "Chiptangizni tekshiring",
+    "loading": "Yuklanmoqda...",
+    "input_placeholder": "939432111 yoki email@gmail.com",
+    "submit": "Yuborish"
+  },
+  "gallery_page": {
+    "INNOWEEK": "INNOWEEK",
+    "PHOTO_GALLERY": "FOTO LAVHALAR",
+    "prev": "Oldingi",
+    "next": "Keyingi",
+    "per_page": "sahifada"
   }
 }

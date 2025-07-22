@@ -71,7 +71,7 @@ export default function Header() {
       <div className="header-container py-2 container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
         <Link
           href="/"
-          className="logo d-flex align-items-center me-auto me-xl-0"
+          className="logo d-flex align-items-center me-auto me-xl-0 bg-gray-800 rounded-lg p-2 !pl-4"
         >
           <Image src={innoweekLogo} alt="Logo" className="w-[80px] h-[36px]" />
         </Link>

@@ -4,8 +4,10 @@ import userAvatar from "@/assets/img/person/person-m-7.webp";
 import Image from "next/image";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IResponse, ISpeakerItem } from "@/types";
+import { useTranslations } from "next-intl";
 
 const SpeakersSection = () => {
+  const t = useTranslations("speakers");
   const [data, setData] = useState<ISpeakerItem[]>([]);
 
   const getSpeakers = async () => {
@@ -26,11 +28,11 @@ const SpeakersSection = () => {
   return (
     <section id="team" className="team section dark:!bg-transparent transition-colors duration-300 py-16">
       <div className="container section-title" data-aos="fade-up">
-        <h2 className="!text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
-          INNOWEEK
+        <h2 className="!text-black dark:!text-white">
+          {t("INNOWEEK")}
         </h2>
-        <div className="text-black dark:!text-gray-300" data-uz="SPIKERLAR" data-ru="СПИКЕРЫ" data-en="SPEAKERS">
-          SPIKERLAR
+        <div className="text-black dark:!text-gray-300">
+          {t("SPEAKERS")}
         </div>
       </div>
 

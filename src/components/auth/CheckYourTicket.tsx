@@ -2,10 +2,12 @@
 import { FetchInstance } from "@/api/FetchInstance";
 import { useRouter } from "@/i18n/navigation";
 import { IComplateResponce } from "@/types";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
 
-const CheckYourTicket= () => {
+const CheckYourTicket = () => {
+  const t = useTranslations("check_ticket");
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
@@ -63,16 +65,15 @@ const CheckYourTicket= () => {
   };
 
   return (
-    <div className="text-center mt-4 text-white text-sm">
-      Are you registered?{" "}
+    <div className="text-center mt-4 text-black dark:!text-white text-sm">
+      {t("are_you_registered")} {" "}
       <span
         className="underline text-[#e3a127] hover:cursor-pointer"
         onClick={() => {
-          // onClose() ;
           setOpen(true);
         }}
       >
-        Check Your Ticket
+        {t("check_your_ticket")}
       </span>
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -85,16 +86,16 @@ const CheckYourTicket= () => {
               &times;
             </button>
             <h2 className="text-lg font-semibold mb-4 text-center text-white">
-              Check Your Ticket
+              {t("check_your_ticket")}
             </h2>
             {userLoading ? (
-              <div className="text-white text-center mb-2">Yuklanmoqda...</div>
+              <div className="text-white text-center mb-2">{t("loading")}</div>
             ) : userError ? (
               <div className="text-red-500 text-center mb-2">{userError}</div>
             ) : null}
             <input
               type="text"
-              placeholder="939432111 yoki email@gmail.com"
+              placeholder={t("input_placeholder")}
               value={value}
               onChange={(e) => {
                 setValue(e.target.value);
@@ -111,7 +112,7 @@ const CheckYourTicket= () => {
               className="w-full bg-[#e3a127] text-white py-2 rounded hover:bg-[#c98c1e] transition"
               onClick={handleSubmit}
             >
-              Submit
+              {t("submit")}
             </button>
           </div>
         </div>
