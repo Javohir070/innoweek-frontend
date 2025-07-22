@@ -12,7 +12,7 @@ import partnerImage9 from "@/assets/img/clients/clients-9.webp";
 import Image from "next/image";
 
 const PartnersSection = () => {
-  const t = useTranslations("partners");
+  const t = useTranslations('partner')
   return (
     <section className="clients section py-[200px] bg-transparent">
       <div id="clients" className="">
@@ -20,7 +20,7 @@ const PartnersSection = () => {
           className="container xl:px-[90px] section-title"
           data-aos="fade-up"
         >
-          <h2 className="text-black dark:!text-white">
+          <h2 className="text-black dark:!text-white" data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
             {t("INNOWEEK")}
           </h2>
           <div className="text-black dark:!text-white">
