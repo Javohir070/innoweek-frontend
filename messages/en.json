@@ -121,7 +121,14 @@
     "sign_up": "Sign Up",
     "otp_label": "Enter the 6-digit code sent to your phone number",
     "verifying": "Verifying...",
-    "verify": "Verify"
+    "verify": "Verify",
+    "register_modal_title": "Select registration type",
+    "participant": "Participant",
+    "speaker": "Speaker",
+    "guest": "Guest",
+    "investor": "Investor",
+    "media": "Media",
+    "student": "Student"
   },
   "check_ticket": {
     "are_you_registered": "Are you registered?",

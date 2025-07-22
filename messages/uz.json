@@ -122,7 +122,14 @@
     "sign_up": "Ro'yxatdan o'tish",
     "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
     "verifying": "Tasdiqlanmoqda...",
-    "verify": "Tasdiqlash"
+    "verify": "Tasdiqlash",
+    "register_modal_title": "Ro'yxatdan o'tish turi",
+    "participant": "Ishtirokchi",
+    "speaker": "Spiker",
+    "guest": "Mehmon",
+    "investor": "Investor",
+    "media": "Media",
+    "student": "Talaba"
   },
   "check_ticket": {
     "are_you_registered": "Ro'yxatdan o'tganmisiz?",
