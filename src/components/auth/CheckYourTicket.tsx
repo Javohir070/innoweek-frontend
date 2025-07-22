@@ -65,7 +65,7 @@ const CheckYourTicket = () => {
   };
 
   return (
-    <div className="text-center mt-4 text-black dark:!text-white text-sm">
+    <div className="text-center bg-white mt-4 text-black dark:!text-white text-sm">
       {t("are_you_registered")} {" "}
       <span
         className="underline text-[#e3a127] hover:cursor-pointer"
@@ -77,7 +77,7 @@ const CheckYourTicket = () => {
       </span>
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="bg-[#151a28] bg-opacity-90 rounded-lg p-6 w-full max-w-xs relative">
+          <div className="bg-white shadow-2xl border dark:!border-[#313a54] dark:!bg-[#151a28] bg-opacity-90 rounded-lg p-6 w-full max-w-xs relative">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-black"
               onClick={() => setOpen(false)}
@@ -85,7 +85,7 @@ const CheckYourTicket = () => {
             >
               &times;
             </button>
-            <h2 className="text-lg font-semibold mb-4 text-center text-white">
+            <h2 className="text-lg font-semibold mb-4 text-center  dark:!text-white text-black">
               {t("check_your_ticket")}
             </h2>
             {userLoading ? (

@@ -129,5 +129,23 @@
     "loading": "Loading...",
     "input_placeholder": "939432111 or email@gmail.com",
     "submit": "Submit"
+  },
+  "faq": {
+    "title": "Have a question? Check out the FAQ",
+    "description": "",
+    "items": [
+      {
+        "question": "How to get to CAEx?",
+        "answer": "To ensure convenient access to the “InnoWeek-2025” event, taking place from October 9–11, 2025, the Ministry of Higher Education, Science and Innovation will provide free shuttle buses from the “Uzbekistan” Hotel and “Do‘stlik” metro station to the “CAEx Uzbekistan” exhibition complex."
+      },
+      {
+        "question": "Are there any restaurants or cafes near CAEx?",
+        "answer": "Food and beverage services will be available inside the exhibition pavilion, including local restaurants and cafes."
+      },
+      {
+        "question": "Where will the forums of “InnoWeek-2025” take place?",
+        "answer": "All events and forums scheduled within the framework of “InnoWeek-2025” will be held on the CAEx premises. You can view the full program via the link (....), or through special digital displays during the event."
+      }
+    ]
   }
 }
