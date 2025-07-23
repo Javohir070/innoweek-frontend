@@ -12,7 +12,7 @@ import partnerImage9 from "@/assets/img/clients/clients-9.webp";
 import Image from "next/image";
 
 const PartnersSection = () => {
-  const t = useTranslations('partner')
+  const t = useTranslations('partners')
   return (
     <section className="clients section py-[200px] bg-transparent">
       <div id="clients" className="">
