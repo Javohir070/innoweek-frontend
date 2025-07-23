@@ -26,7 +26,8 @@
     "react-qr-code": "^2.0.18",
     "react-toastify": "^11.0.5",
     "swiper": "^11.2.10",
-    "swiper-react": "^1.0.0"
+    "swiper-react": "^1.0.0",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

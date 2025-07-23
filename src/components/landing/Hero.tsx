@@ -7,6 +7,7 @@ import innoweekLogo from '@/assets/img/services/1234.png'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import RegisterModal from '../auth/RegisterModal'
+import RegisterModal2 from '../auth/RegisterModal2'
 
 
 export default function HeroSection() {
@@ -107,7 +108,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      <RegisterModal open={open} onClose={() => setOpen(false)} />
+      <RegisterModal2 open={open} onClose={() => setOpen(false)} />  
     </section>
   )
 }
