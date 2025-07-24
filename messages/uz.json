@@ -126,6 +126,7 @@
     "register_modal_title": "Ro'yxatdan o'tish turi",
     "participant": "Ishtirokchi",
     "speaker": "Spiker",
+    "passwords_do_not_match": "Parollar mos emas",
     "guest": "Mehmon",
     "investor": "Investor",
     "media": "Media",
@@ -162,5 +163,40 @@
         "answer": "“InnoWeek-2025” doirasida belgilangan tadbirlarning barchasi CAEx hududida oʻtkaziladi. Koʻrgazma dasturi bilan (.......) havola orqali, tadbir davomida esa maxsus tablolar orqali onlayn tanishishingiz mumkin."
       }
     ]
+  },
+  "profile": {
+    "profile_title": "Profil",
+    "no_profile_found": "Profil topilmadi",
+    "firstName": "Ism",
+    "lastName": "Familiya",
+    "gender": "Jinsi",
+    "birth_date": "Tug'ilgan sana",
+    "country": "Davlat",
+    "phone": "Telefon",
+    "organization": "Tashkilot",
+    "position": "Lavozim",
+    "email": "Email",
+    "save_changes": "O'zgartirishlarni saqlash",
+    "cancel": "Bekor qilish",
+    "edit_profile": "Profilni tahrirlash",
+    "change_password": "Parolni o'zgartirish",
+    "current_password": "Joriy parol",
+    "new_password": "Yangi parol",
+    "confirm_password": "Parolni tasdiqlash",
+    "passwords_do_not_match": "Parollar mos emas",
+    "update_success": "Profil muvaffaqiyatli yangilandi",
+    "update_error": "Yangilashda xato yuz berdi",
+    "old_password_incorrect": "Eski parol noto'g'ri",
+    "new_password_placeholder": "Yangi parolni kiriting",
+    "confirm_password_placeholder": "Yangi parolni tasdiqlang",
+    "change_avatar": "Avatarni o'zgartirish",
+    "upload_avatar": "Avatarni yuklash",
+    "avatar_size_error": "Avatar hajmi 2MB dan oshmasligi kerak",
+    "avatar_type_error": "Avatar faqat .jpg, .jpeg, .png formatlarida bo'lishi mumkin",
+    "remove_avatar": "Avatarni olib tashlash",
+    "avatar_removed": "Avatar muvaffaqiyatli olib tashlandi",
+    "avatar_upload_error": "Avatarni yuklashda xato yuz berdi",
+    "avatar_upload_success": "Avatar muvaffaqiyatli yuklandi",
+    "male": "Erkak"
   }
 }

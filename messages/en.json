@@ -111,6 +111,7 @@
     "participation_type": "Participation type *",
     "birth_date": "Date of Birth *",
     "gender_label": "Gender:",
+    "passwords_do_not_match": "Passwords do not match",
     "male": "Male",
     "female": "Female",
     "email": "Email *",
@@ -154,5 +155,19 @@
         "answer": "All events and forums scheduled within the framework of “InnoWeek-2025” will be held on the CAEx premises. You can view the full program via the link (....), or through special digital displays during the event."
       }
     ]
+  },
+  "profile": {
+    "profile_title": "Profile",
+    "no_profile_found": "No profile found",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "gender": "Gender",
+    "birth_date": "Birth date",
+    "country": "Country",
+    "phone": "Phone",
+    "organization": "Organization",
+    "position": "Position",
+    "email": "Email",
+    "male": "Male"
   }
 }

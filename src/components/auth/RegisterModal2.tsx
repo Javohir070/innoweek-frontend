@@ -223,7 +223,7 @@ export default function RegisterModal2({ open, onClose }: RegisterModalProps) {
       onClick={onClose}
     >
       <div
-        className="bg-[#348fc370] dark:!bg-[#151a28] rounded-lg p-8 w-full max-w-6/12 relative shadow-lg dark:shadow-gray-900 border !border-blue-300/30 dark:!border-gray-700"
+        className="bg-[#348fc370] rounded-lg p-8 w-full max-w-6/12 relative shadow-lg dark:shadow-gray-900 border !border-blue-300/30 dark:!border-gray-700"
         onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
         <button
