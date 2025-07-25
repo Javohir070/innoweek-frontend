@@ -70,7 +70,7 @@ export default function RegisterRolePage() {
             return;
         }
         setError("");
-        localStorage.setItem(`register_${role}`, JSON.stringify(form));
+        localStorage.setItem(`register_${role} `, JSON.stringify(form));
         registerStore.save(role, form);
         setSaved(true);
     };
@@ -78,7 +78,7 @@ export default function RegisterRolePage() {
     return (
         <div className=" mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28]">
 
-            <div className="bg-white dark:!bg-transparent rounded-2xl p-8 max-w-9/12 w-full shadow-2xl border dark:!border-gray-700  relative">
+            <div className="bg-white dark:!bg-transparent rounded-2xl p-8 max-w-9/12 w-full shadow-2xl shadow-[#10374d] border dark:!border-gray-700  relative">
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-15 h-15 rounded-full bg-[#0085d4] flex items-center justify-center shadow-lg border-4 border-white dark:border-[#151a28]">
                     <svg width="30" height="30" fill="#fff" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                 </div>
@@ -133,6 +133,7 @@ export default function RegisterRolePage() {
                                     placeholder="Enter your birthday"
                                     className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
                                     required
+
                                     value={form.birth_date}
                                     onChange={handleChange}
                                 />
@@ -197,6 +198,7 @@ export default function RegisterRolePage() {
                                     name="password"
                                     type="password"
                                     placeholder="Enter your password"
+
                                     className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
                                     required
                                     value={form.password}
@@ -241,4 +243,4 @@ export default function RegisterRolePage() {
             </div>
         </div>
     );
-}
+} 
