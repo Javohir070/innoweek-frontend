@@ -92,7 +92,7 @@ const Ticket = () => {
       id="portfolio"
       className="testimonials section-light-background bg-transparent min-h-[70vh] py-2"
     >
-      <div className="min-h-[70vh] flex items-center justify-center gap-16 mt-24">
+      <div className="min-h-[70vh] flex items-center justify-center gap-16 mt-6">
         {/* Ticket Card */}
         <div
           ref={ticketRef}
