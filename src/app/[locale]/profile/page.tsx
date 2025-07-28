@@ -67,14 +67,14 @@ export default function ProfilePage() {
             <div className="max-w-full mx-auto flex flex-col md:flex-row gap-6">
                 {/* Sidebar - Improved Design */}
                 <aside className="w-full md:w-64 bg-white dark:!bg-transparent rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500">
-                    <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-                        <div className="flex items-center justify-between gap-2 space-x-3">
+                    <div className="py-4 px-3 border-b border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center justify-between gap-2.5 space-x-3">
                             <div className="!w-12 !h-12 m-0 rounded-full bg-gradient-to-r from-[#0085d4] to-[#e3a127] flex items-center justify-center px-3 py-3 text-white font-bold text-lg">
                                 {profile.firstName.charAt(0)}{profile.lastName.charAt(0)}
                             </div>
                             <div>
-                                <h3 className="font-medium text-gray-900 dark:!text-white !mb-0">{profile.firstName} {profile.lastName}</h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 m-0">{role || "participant"}</p>
+                                <h3 className="font-medium !text-gray-900 dark:!text-white !mb-0">{profile.firstName} {profile.lastName}</h3>
+                                <p className="text-sm !text-gray-600 dark:text-gray-400 m-0">{role || "participant"}</p>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@ export default function ProfilePage() {
 
                                     {/* Professional Information */}
                                     <div className="space-y-4">
-                                        <h3 className="font-semibold !text-gray-600 dark:!text-gray-400 uppercase !text-[20px] tracking-wider mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
+                                        <h3 className="!font-semibold !text-gray-600 dark:!text-gray-400 uppercase !text-[20px] tracking-wider mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
                                             Professional Information
                                         </h3>
                                         <ProfileField label={t("organization")} value={profile.organization} />
@@ -143,9 +143,9 @@ export default function ProfilePage() {
                     )}
 
                     {activeTab === "certificate" && (
-                        <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg shadow-blue-500 border border-gray-200 dark:!border-gray-700 overflow-hidden">
+                        <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg shadow-gray-300 dark:shadow-blue-500 border border-gray-200 dark:!border-gray-700 overflow-hidden">
                             <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-                                <h3 className="font-semibold text-gray-800 !text-2xl dark:text-white">My Certificate</h3>
+                                <h3 className="font-semibold !text-gray-800 !text-2xl dark:text-white">My Certificate</h3>
                             </div>
                             <div className="p-4 md:p-8 flex items-center justify-center !min-h-[400px]">
                                 <iframe
@@ -160,7 +160,7 @@ export default function ProfilePage() {
                     {activeTab === "ticket" && (
                         <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 overflow-hidden shadow-gray-300 dark:shadow-blue-500">
                             <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-                                <h3 className="font-semibold text-gray-800 dark:text-white">My Ticket</h3>
+                                <h3 className="font-semibold !text-gray-800 dark:text-white">My Ticket</h3>
                             </div>
                             <div className="p-0 md:p-8 min-h-[400px]">
                                 <Ticket />

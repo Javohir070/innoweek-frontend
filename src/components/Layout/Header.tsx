@@ -54,12 +54,25 @@ export default function Header() {
     },
     {
       label: "Spikerlar",
-      key: "#spikers",
+      key: "/spikers",
     },
     {
       label: t("CONTACT"),
       key: "#contact",
     },
+  ];
+
+  const sectionAnchors = [
+    "#hero",
+    "#about",
+    "#stats",
+    "#resume",
+    "#team",
+    "#clients",
+    "#otziv",
+    "#faq",
+    "#contact",
+    "#spikers"
   ];
 
   const handleMenuClick = (key: string) => {
@@ -82,19 +95,51 @@ export default function Header() {
               <li key={index} className={item.dropdown ? "dropdown" : ""}>
                 <Link
                   href={item.key}
-                  className={`${activeMenu === item.key ? "active" : ""
-                    } !font-raleway !font-semibold !text-black dark:!text-amber-50`}
-                  onClick={() => handleMenuClick(item.key)}
+                  className={`$${activeMenu === item.key ? "active" : ""} !font-raleway !font-semibold`}
+                  onClick={(e) => {
+                    if (item.key === "/spikers") {
+                      router.push(`/${activeLang}/spikers`);
+                      setActiveMenu(item.key);
+                      return;
+                    }
+                    if (sectionAnchors.includes(item.key)) {
+                      e.preventDefault();
+                      if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
+                        const el = document.querySelector(item.key);
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                        setActiveMenu(item.key);
+                      } else {
+                        router.push(`/${activeLang}${item.key}`);
+                      }
+                    } else {
+                      handleMenuClick(item.key);
+                    }
+                  }}
+                  scroll={false}
                 >
                   {item.dropdown ? <span>{item.label}</span> : item.label}
                 </Link>
                 {item.dropdown && (
                   <ul>
                     {item.dropdown.map((subItem, subIndex) => (
-                      <li  key={subIndex}>
+                      <li key={subIndex}>
                         <Link
                           href={subItem.key}
-                          onClick={() => handleMenuClick(subItem.key)}
+                          onClick={(e) => {
+                            if (sectionAnchors.includes(subItem.key)) {
+                              e.preventDefault();
+                              if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
+                                const el = document.querySelector(subItem.key);
+                                if (el) el.scrollIntoView({ behavior: "smooth" });
+                                setActiveMenu(subItem.key);
+                              } else {
+                                router.push(`/${activeLang}${subItem.key}`);
+                              }
+                            } else {
+                              handleMenuClick(subItem.key);
+                            }
+                          }}
+                          scroll={false}
                         >
                           {subItem.label}
                         </Link>

@@ -5,7 +5,7 @@ import { IGalleryItem, IResponse } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Image as AntdImage } from "antd";
+import { Image as AntdImage, Pagination } from "antd";
 import "antd/dist/reset.css";
 
 const Gallery = () => {
@@ -69,40 +69,18 @@ const Gallery = () => {
         </div>
 
         <div className="flex items-center justify-end mb-4 gap-2">
-          <div className="flex gap-2">
-            <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              disabled={page === 1}
-              className="px-3 py-1 rounded !bg-black/10 dark:!bg-black/70 disabled:opacity-50"
-            >
-              {t("prev")}
-            </button>
-            <span className="px-2 !mt-1">{page}</span>
-            <button
-              onClick={() => setPage((p) => p + 1)}
-              disabled={page * limit >= total}
-              className="px-3 py-1 rounded  !bg-black/10 dark:!bg-black/70 disabled:opacity-50"
-            >
-              {t("next")}
-            </button>
-          </div>
-          <div>
-            <select
-              value={limit}
-              onChange={(e) => {
-                setLimit(Number(e.target.value));
-                setPage(1);
-              }}
-              className="border rounded px-2 py-1"
-            >
-              {[5, 10, 20, 50, 100].map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
-            <span className="ml-2 text-sm text-gray-500">{t("per_page")}</span>
-          </div>
+          <Pagination
+            current={page}
+            pageSize={limit}
+            total={total}
+            showSizeChanger
+            pageSizeOptions={[5, 10, 20, 50, 100]}
+            onChange={(p, l) => {
+              setPage(p);
+              setLimit(l);
+            }}
+            className="!mt-4"
+          />
         </div>
       </div>
     </section>
