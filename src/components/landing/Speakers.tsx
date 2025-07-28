@@ -6,6 +6,8 @@ import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IResponse, ISpeakerItem } from "@/types";
 import { useTranslations } from "next-intl";
 
+import Aos from "aos";
+
 const SpeakersSection = () => {
   const t = useTranslations("speakers");
   const [data, setData] = useState<ISpeakerItem[]>([]);
@@ -23,6 +25,7 @@ const SpeakersSection = () => {
 
   useEffect(() => {
     getSpeakers();
+    Aos.init()
   }, []);
 
   return (

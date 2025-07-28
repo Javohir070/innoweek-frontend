@@ -49,7 +49,7 @@ export default async function RootLayout({
       <body
         className={`${roboto_font.variable} ${raleway.variable} ${nunitoSans.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="light">
           {children}
         </ThemeProvider>
       </body>
