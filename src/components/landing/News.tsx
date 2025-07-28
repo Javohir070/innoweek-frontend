@@ -87,7 +87,7 @@ export default function NewsSection() {
                           ),
                         }}
                       ></div>
-                      <div className="profile d-flex align-items-center mt-4">
+                      {/* <div className="profile d-flex align-items-center mt-4">
                         <Image
                           src={userAvatar}
                           className="profile-img rounded-full"
@@ -99,7 +99,7 @@ export default function NewsSection() {
                           <h3 className="text-gray-900 dark:text-white mb-0">Innoweek</h3>
                           <span className="text-white dark:text-gray-400">{t("INNOWEEK")}</span>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="col-lg-4 d-none d-lg-block">
                       <div className="featured-img-wrapper rounded-lg overflow-hidden">

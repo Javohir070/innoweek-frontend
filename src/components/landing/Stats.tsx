@@ -20,7 +20,7 @@ export default function StatsSection() {
 
   const stats = [
     {
-      value: "4 000 m2",
+      value: "15 000 m2",
       title: t("stats_1_title"),
       description: t("stats_1_description"),
       icon: <Map className="text-white" />,

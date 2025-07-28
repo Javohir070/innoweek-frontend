@@ -36,7 +36,7 @@
     "features_4": "Agri tech & Green tech",
     "features_5": "Smart Cities",
     "features_6": "Robotics & Drones",
-    "about_section_title": "О INNOWEEK 2025"
+    "about_section_title": "ОБ INNOWEEK 2025"
   },
   "stats": {
     "COVERAGE": "ОХВАТ",
@@ -123,7 +123,7 @@
     "otp_label": "Введите 6-значный код, отправленный на ваш номер телефона",
     "verifying": "Проверка...",
     "verify": "Подтвердить",
-    "register_modal_title": "Выберите тип регистрации",
+    "register_modal_title": "регистрации",
     "participant": "Участник",
     "speaker": "Спикер",
     "guest": "Гость",

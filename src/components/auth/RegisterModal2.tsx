@@ -15,7 +15,6 @@ import React, {
   useEffect,
 } from "react";
 import { toast } from "react-toastify";
-// import CheckYourTicket from "./CheckYourTicket";
 import { useTranslations } from "next-intl";
 
 import img1 from "@/assets/img/ITweek1.jpg";

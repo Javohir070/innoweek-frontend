@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import innoweekLogo from "@/assets/img/services/123.png";
+// import innoweekLogo from "@/assets/img/services/123.png";
+import innoweekLogo from '@/assets/img/services/1234.png'
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { useRouter, usePathname, useParams } from "next/navigation";
-import { useTheme } from 'next-themes';
+import { Link, useRouter } from "@/i18n/navigation";
+import { usePathname, useParams } from "next/navigation";
+import { useTheme } from "next-themes";
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
-  const langSwitch = useTranslations('langs')
+  const langSwitch = useTranslations("langs");
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
@@ -41,21 +42,21 @@ export default function Header() {
         { label: "DASTUR", key: "#resume" },
         { label: "SPIKERLAR", key: "#team" },
         { label: "HAMKORLAR", key: "#clients" },
-        { label: "BIZ HAQIMIZDA", key: "#otziv" },
+        // { label: "BIZ HAQIMIZDA", key: "#otziv" },
       ],
     },
     {
       label: t("GALLERY"),
       key: "/gallery",
     },
-    {
-      label: t("FAQ"),
-      key: "#faq",
-    },
-    {
-      label: "Spikerlar",
-      key: "/spikers",
-    },
+    // {
+    //   label: t("FAQ"),
+    //   key: "#faq",
+    // },
+    // {
+    //   label: "Spikerlar",
+    //   key: "#spikers",
+    // },
     {
       label: t("CONTACT"),
       key: "#contact",
@@ -80,7 +81,10 @@ export default function Header() {
   };
 
   return (
-    <header id="header" className="header flex items-center fixed-top bg-white dark:!bg-gray-800 text-gray-900">
+    <header
+      id="header"
+      className="header flex items-center fixed-top bg-white dark:!bg-gray-800 text-gray-900 shadow"
+    >
       <div className="header-container py-2 container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
         <Link
           href="/"
@@ -92,54 +96,26 @@ export default function Header() {
         <nav id="navmenu" className="navmenu !uppercase">
           <ul>
             {menu.map((item, index) => (
-              <li key={index} className={item.dropdown ? "dropdown" : ""}>
+              <li key={index} className={item.dropdown ? "dropdown " : "hover:scale-105"}>
                 <Link
                   href={item.key}
-                  className={`$${activeMenu === item.key ? "active" : ""} !font-raleway !font-semibold`}
-                  onClick={(e) => {
-                    if (item.key === "/spikers") {
-                      router.push(`/${activeLang}/spikers`);
-                      setActiveMenu(item.key);
-                      return;
-                    }
-                    if (sectionAnchors.includes(item.key)) {
-                      e.preventDefault();
-                      if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
-                        const el = document.querySelector(item.key);
-                        if (el) el.scrollIntoView({ behavior: "smooth" });
-                        setActiveMenu(item.key);
-                      } else {
-                        router.push(`/${activeLang}${item.key}`);
-                      }
-                    } else {
-                      handleMenuClick(item.key);
-                    }
-                  }}
-                  scroll={false}
+                  className={`${
+                    activeMenu === item.key ? "active" : ""
+                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  onClick={() => handleMenuClick(item.key)}
                 >
                   {item.dropdown ? <span>{item.label}</span> : item.label}
                 </Link>
                 {item.dropdown && (
                   <ul>
                     {item.dropdown.map((subItem, subIndex) => (
-                      <li key={subIndex}>
+                      <li key={subIndex}
+                      
+                      >
                         <Link
                           href={subItem.key}
-                          onClick={(e) => {
-                            if (sectionAnchors.includes(subItem.key)) {
-                              e.preventDefault();
-                              if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
-                                const el = document.querySelector(subItem.key);
-                                if (el) el.scrollIntoView({ behavior: "smooth" });
-                                setActiveMenu(subItem.key);
-                              } else {
-                                router.push(`/${activeLang}${subItem.key}`);
-                              }
-                            } else {
-                              handleMenuClick(subItem.key);
-                            }
-                          }}
-                          scroll={false}
+                          onClick={() => handleMenuClick(subItem.key)}
+                          
                         >
                           {subItem.label}
                         </Link>
@@ -150,25 +126,31 @@ export default function Header() {
               </li>
             ))}
           </ul>
+
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
         <div className="flex items-center justify-end gap-2">
-          <button
+          {/* <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className=" rounded-md"
           >
             {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
+          </button> */}
 
-          <div>
+          <div className="flex gap-3">
+            <div className="cta-button bg-gray-500 hover:bg-blue-500 hover:bg-blue-500 rounded-full">
+              <button className="btn !outline-none" onClick={()=>{router.push(`/register/user`)}}>
+                <span className="text-white">{"Ro'yxatdan o'tish"}</span>
+              </button>
+            </div>
             <select
               value={activeLang}
               onChange={(e) => changeLang(e.target.value)}
               className="border rounded px-2 py-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             >
               <option value="uz">{langSwitch("uz")}</option>
-              <option value="en">{langSwitch('en')}</option>
+              <option value="en">{langSwitch("en")}</option>
               <option value="ru">{langSwitch("ru")}</option>
             </select>
           </div>

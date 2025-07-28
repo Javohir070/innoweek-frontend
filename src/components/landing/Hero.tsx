@@ -6,7 +6,6 @@ import 'aos/dist/aos.css'
 import innoweekLogo from '@/assets/img/services/1234.png'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import RegisterModal from '../auth/RegisterModal'
 import RegisterModal2 from '../auth/RegisterModal2'
 
 
@@ -64,7 +63,7 @@ export default function HeroSection() {
                 <p className='text-white'>{t("hero description")}</p>
               </div>
               
-              <div className="buttonslink">
+              {/* <div className="buttonslink">
                 <div className="cta-button hover:bg-[#e3a127] rounded-full">
                   <Link href="#services" className="btn border">
                     <span className='text-white'>{t('hero btn')}</span>
@@ -75,7 +74,7 @@ export default function HeroSection() {
                     <span className='text-white'>{t("REGISTER")}</span>
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
