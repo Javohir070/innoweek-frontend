@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-// import innoweekLogo from "@/assets/img/services/123.png";
 import innoweekLogo from '@/assets/img/services/1234.png'
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import { usePathname, useParams } from "next/navigation";
-import { useTheme } from "next-themes";
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
@@ -16,7 +14,6 @@ export default function Header() {
   const pathname = usePathname();
   const params = useParams();
   const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
-  const { theme, setTheme } = useTheme();
 
   const changeLang = (lang: string) => {
     setActiveLang(lang);
@@ -63,18 +60,18 @@ export default function Header() {
     },
   ];
 
-  const sectionAnchors = [
-    "#hero",
-    "#about",
-    "#stats",
-    "#resume",
-    "#team",
-    "#clients",
-    "#otziv",
-    "#faq",
-    "#contact",
-    "#spikers"
-  ];
+  // const sectionAnchors = [
+  //   "#hero",
+  //   "#about",
+  //   "#stats",
+  //   "#resume",
+  //   "#team",
+  //   "#clients",
+  //   "#otziv",
+  //   "#faq",
+  //   "#contact",
+  //   "#spikers"
+  // ];
 
   const handleMenuClick = (key: string) => {
     setActiveMenu(key);
@@ -139,7 +136,7 @@ export default function Header() {
           </button> */}
 
           <div className="flex gap-3">
-            <div className="cta-button bg-gray-500 hover:bg-blue-500 hover:bg-blue-500 rounded-full">
+            <div className="cta-button bg-gray-500 hover:bg-blue-500 rounded-full">
               <button className="btn !outline-none" onClick={()=>{router.push(`/register/user`)}}>
                 <span className="text-white">{"Ro'yxatdan o'tish"}</span>
               </button>
