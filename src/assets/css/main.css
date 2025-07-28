@@ -5177,3 +5177,9 @@ row
 
 
 /* ///// */
+
+.not-italic p , .not-italic span{
+    font-style: normal !important;
+    color: white !important; 
+    font-size: 18px !important;
+  }

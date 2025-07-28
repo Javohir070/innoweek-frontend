@@ -66,10 +66,6 @@
     "day_2": "10-OKTABR",
     "day_3": "11-OKTABR"
   },
-  "expert_feedback": {
-    "about_us": "BIZ HAQIMIZDA",
-    "experts_opinion": "EKSPERTLAR FIKRI"
-  },
   "speakers": {
     "INNOWEEK": "INNOWEEK",
     "SPEAKERS": "SPIKERLAR"
@@ -198,5 +194,21 @@
     "avatar_upload_error": "Avatarni yuklashda xato yuz berdi",
     "avatar_upload_success": "Avatar muvaffaqiyatli yuklandi",
     "male": "Erkak"
+  },
+  "expert_feedback": {
+    "about_us": "BIZ HAQIMIZDA",
+    "experts_opinion": "EKSPERTLAR FIKRI",
+    "feedback_1_desc": "“InnoWeek 2024 chinakam global muloqot maydoniga aylandi. Bu yerda shunchaki gʻoyalar emas, balki butun mintaqaga tadbiq etilishi mumkin boʻlgan amaliy yechimlar yaratilmoqda.”",
+    "feedback_1_expert": "Turaj Amrey",
+    "expert_1_country": "Eron",
+    "feedback_2_desc": "“Oʻzbekistonning innovatsion ekotizimidagi ochiqlik meni hayratga soldi. InnoWeek ilmiy va amaliy ishlanmalar boʻyicha yuqori tashkilotchilik darajasi va strategik fikrlashni namoyon etdi.”", 
+    "feedback_2_expert": "Vesselin Halachev", 
+    "expert_2_country": "Bolgariya" ,
+    "feedback_3_desc": "“InnoWeek 2024'dа barqarorlik va yoshlar startaplariga qaratilgan e’tibor haqiqiy ilhom manbai boʻldi. Oʻzbekiston davlat innovatsion biznes uchun qanday ishonchli hamkor boʻla olishini koʻrsatmoqda.”", 
+    "feedback_3_expert": "Sasha Wunsch-Vincent", 
+    "expert_3_country": "Angliya",
+    "feedback_4_desc": "“Toshkentdagi InnoWeek oddiy koʻrgazma emas — bu Markaziy Osiyo bozoriga kirish uchun strategik eshik. Bu yerda oʻsish energiyasi va xalqaro hamkorlik uchun ulkan salohiyat seziladi.”", 
+    "feedback_4_expert": "Yerbol Suleymanov", 
+    "expert_4_country": "Qozog'iston" 
   }
 }

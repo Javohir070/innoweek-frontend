@@ -4,14 +4,15 @@ import { useState } from "react";
 import { Select } from "antd";
 import innoweekLogo from '@/assets/img/services/1234.png'
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "@/i18n/navigation";
-import { usePathname, useParams } from "next/navigation";
+import { Link, useRouter as Router} from "@/i18n/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
   const langSwitch = useTranslations("langs");
-  const router = useRouter();
+  const router = Router();
+  const routerLang = useRouter()
   const pathname = usePathname();
   const params = useParams();
   const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
@@ -19,7 +20,7 @@ export default function Header() {
   const changeLang = (lang: string) => {
     setActiveLang(lang);
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
-    router.push(newPath);
+    routerLang.push(newPath)
   };
 
   const menu = [

@@ -60,10 +60,7 @@
     "day_2": "October 10",
     "day_3": "October 11"
   },
-  "expert_feedback": {
-    "about_us": "ABOUT US",
-    "experts_opinion": "EXPERTS' FEEDBACK"
-  },
+
   "speakers": {
     "INNOWEEK": "INNOWEEK",
     "SPEAKERS": "SPEAKERS"
@@ -169,5 +166,21 @@
     "position": "Position",
     "email": "Email",
     "male": "Male"
+  },
+  "expert_feedback": {
+    "about_us": "ABOUT US",
+    "experts_opinion": "EXPERTS' FEEDBACK",
+    "feedback_1_desc": "“InnoWeek 2024 became a true platform for global dialogue. It’s not just about ideas here — it’s about real solutions that can be scaled across the region.”",
+    "feedback_1_expert": "Turaj Amraee",
+    "expert_1_country": "Iran",
+    "feedback_2_desc": "“I was impressed by the openness of Uzbekistan’s innovation ecosystem. InnoWeek showcased outstanding organization and strategic thinking in both scientific and applied development fields.”",
+    "feedback_2_expert": "Vesselin Halachev",
+    "expert_2_country": "Bulgaria",
+    "feedback_3_desc": "“The focus on sustainability and youth-led startups at InnoWeek 2024 was truly inspiring. Uzbekistan is showing how a government can be a reliable partner for innovative business.”",
+    "feedback_3_expert": "Sacha Wunsch-Vincent",
+    "expert_3_country": "England",
+    "feedback_4_desc": "“InnoWeek in Tashkent is not just an exhibition — it’s a strategic gateway to the Central Asian market. You can feel the energy of growth and huge potential for international collaboration.”",
+    "feedback_4_expert": "Yerbol Suleymanov",
+    "expert_4_country": "Kazakhstan"
   }
 }

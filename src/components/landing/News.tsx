@@ -79,12 +79,9 @@ export default function NewsSection() {
                     <div className="col-lg-8">
                       <h2 className="!text-white dark:!text-white">{item?.title}</h2>
                       <div
-                        className="line-clamp-6 !text-white dark:!text-gray-300"
+                        className="line-clamp-6 !text-white dark:!text-gray-300 !font-normal not-italic"
                         dangerouslySetInnerHTML={{
-                          __html: item?.description?.replace(
-                            /style="color:black;?|color:black;?/gi,
-                            'style="color:inherit;'
-                          ),
+                          __html: item?.description,
                         }}
                       ></div>
                       {/* <div className="profile d-flex align-items-center mt-4">

@@ -18,7 +18,7 @@ export default function RootPage() {
         id="hero"
         className="absolute w-full ml-[-30px] mt-[-30px] h-screen overflow-hidden -z-50"
       >
-        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-[0,5px] z-[1]"></div>
+        <div className="absolute inset-0 bg-black/55 dark:bg-black/70 backdrop-blur-[0,5px] z-[1]"></div>
         <video
           className="absolute w-full h-full object-cover z-0"
           autoPlay

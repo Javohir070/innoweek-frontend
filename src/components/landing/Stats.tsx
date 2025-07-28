@@ -32,13 +32,13 @@ export default function StatsSection() {
       icon: <Users className="text-white" />,
     },
     {
-      value: "100+",
+      value: "1000+",
       title: t("stats_3_title"),
       description: t("stats_3_description"),
       icon: <ListChecks className="text-white" />,
     },
     {
-      value: "200+",
+      value: "15000+",
       title: t("stats_4_title"),
       description: t("stats_4_description"),
       icon: <UserCheckIcon className="text-white" />,
