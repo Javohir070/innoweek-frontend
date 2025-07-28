@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { Select } from "antd";
 import innoweekLogo from '@/assets/img/services/1234.png'
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
@@ -60,18 +61,18 @@ export default function Header() {
     },
   ];
 
-  // const sectionAnchors = [
-  //   "#hero",
-  //   "#about",
-  //   "#stats",
-  //   "#resume",
-  //   "#team",
-  //   "#clients",
-  //   "#otziv",
-  //   "#faq",
-  //   "#contact",
-  //   "#spikers"
-  // ];
+  const sectionAnchors = [
+    "#hero",
+    "#about",
+    "#stats",
+    "#resume",
+    "#team",
+    "#clients",
+    "#otziv",
+    "#faq",
+    "#contact",
+    "#spikers"
+  ];
 
   const handleMenuClick = (key: string) => {
     setActiveMenu(key);
@@ -96,10 +97,28 @@ export default function Header() {
               <li key={index} className={item.dropdown ? "dropdown " : "hover:scale-105"}>
                 <Link
                   href={item.key}
-                  className={`${
-                    activeMenu === item.key ? "active" : ""
-                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
-                  onClick={() => handleMenuClick(item.key)}
+                  className={`${activeMenu === item.key ? "active" : ""
+                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  onClick={(e) => {
+                    if (item.key === "/spikers") {
+                      router.push(`/${activeLang}/spikers`);
+                      setActiveMenu(item.key);
+                      return;
+                    }
+                    if (sectionAnchors.includes(item.key)) {
+                      e.preventDefault();
+                      if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
+                        const el = document.querySelector(item.key);
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                        setActiveMenu(item.key);
+                      } else {
+                        // Boshqa sahifada bo'lsa, landingga push va hash qo'shish
+                        window.location.href = `/${activeLang}${item.key}`;
+                      }
+                    } else {
+                      handleMenuClick(item.key);
+                    }
+                  }}
                 >
                   {item.dropdown ? <span>{item.label}</span> : item.label}
                 </Link>
@@ -107,12 +126,25 @@ export default function Header() {
                   <ul>
                     {item.dropdown.map((subItem, subIndex) => (
                       <li key={subIndex}
-                      
+
                       >
                         <Link
                           href={subItem.key}
-                          onClick={() => handleMenuClick(subItem.key)}
-                          
+                          onClick={(e) => {
+                            if (sectionAnchors.includes(subItem.key)) {
+                              e.preventDefault();
+                              if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
+                                const el = document.querySelector(subItem.key);
+                                if (el) el.scrollIntoView({ behavior: "smooth" });
+                                setActiveMenu(subItem.key);
+                              } else {
+                                window.location.href = `/${activeLang}${subItem.key}`;
+                              }
+                            } else {
+                              handleMenuClick(subItem.key);
+                            }
+                          }}
+                          scroll={false}
                         >
                           {subItem.label}
                         </Link>
@@ -137,19 +169,20 @@ export default function Header() {
 
           <div className="flex gap-3">
             <div className="cta-button bg-gray-500 hover:bg-blue-500 rounded-full">
-              <button className="btn !outline-none" onClick={()=>{router.push(`/register/user`)}}>
+              <button className="btn !outline-none" onClick={() => { router.push(`/register/user`) }}>
                 <span className="text-white">{"Ro'yxatdan o'tish"}</span>
               </button>
             </div>
-            <select
+            <Select
               value={activeLang}
-              onChange={(e) => changeLang(e.target.value)}
-              className="border rounded px-2 py-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-            >
-              <option value="uz">{langSwitch("uz")}</option>
-              <option value="en">{langSwitch("en")}</option>
-              <option value="ru">{langSwitch("ru")}</option>
-            </select>
+              onChange={changeLang}
+              style={{ width: 100 }}
+              options={[
+                { value: "uz", label: langSwitch("uz") },
+                { value: "en", label: langSwitch("en") },
+                { value: "ru", label: langSwitch("ru") },
+              ]}
+            />
           </div>
         </div>
       </div>
