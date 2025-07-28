@@ -129,6 +129,7 @@ body {
     font-family: var(--default-font);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 a {
     color: var(--accent-color);
     text-decoration: none;
@@ -2750,7 +2751,7 @@ section,
 .contact .contact-form-wrapper .form-group .input-with-icon i {
     position: absolute;
     left: 15px;
-    top:  50%;
+    top: 50%;
     transform: translateY(-50%);
     color: color-mix(in srgb, var(--default-color), transparent 40%);
     font-size: 18px;
@@ -5178,8 +5179,55 @@ row
 
 /* ///// */
 
-.not-italic p , .not-italic span{
+.not-italic p,
+.not-italic span {
     font-style: normal !important;
-    color: white !important; 
+    color: white !important;
     font-size: 18px !important;
-  }
+}
+
+
+.ant-select {
+    width: 100% !important;
+    border-radius: 10px !important;
+    background-color: #031119 !important;
+    color: wheat !important;
+}
+
+
+
+.ant-select-selector {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.ant-select-open .ant-select-selector,
+.ant-select-focused .ant-select-selector {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+.ant-select-arrow {
+    display: none !important;
+}
+
+.rc-virtual-list-holder-inner {
+    text-align: start;
+    padding: 0px 0 !important;
+}
+
+.ant-select-item-option-content {
+    padding: 3px 10px !important;
+    color: #0085d4 !important;
+}
+
+.ant-select-selection-item {
+    font-size: 18px !important;
+}
+
+.ant-select-selection-item:hover {
+    color: #0085d4 !important;
+}

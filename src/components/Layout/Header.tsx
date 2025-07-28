@@ -24,14 +24,8 @@ export default function Header() {
   };
 
   const menu = [
-    {
-      label: t("HOME"),
-      key: "/",
-    },
-    {
-      label: t("NEWS"),
-      key: "/news",
-    },
+    { label: t("HOME"), key: "/" },
+    { label: t("NEWS"), key: "/news" },
     {
       label: t("INNOWEEK"),
       key: "#about",
@@ -41,25 +35,10 @@ export default function Header() {
         { label: "DASTUR", key: "#resume" },
         { label: "SPIKERLAR", key: "#team" },
         { label: "HAMKORLAR", key: "#clients" },
-        // { label: "BIZ HAQIMIZDA", key: "#otziv" },
       ],
     },
-    {
-      label: t("GALLERY"),
-      key: "/gallery",
-    },
-    // {
-    //   label: t("FAQ"),
-    //   key: "#faq",
-    // },
-    // {
-    //   label: "Spikerlar",
-    //   key: "#spikers",
-    // },
-    {
-      label: t("CONTACT"),
-      key: "#contact",
-    },
+    { label: t("GALLERY"), key: "/gallery" },
+    { label: t("CONTACT"), key: "#contact" },
   ];
 
   const sectionAnchors = [
@@ -79,12 +58,21 @@ export default function Header() {
     setActiveMenu(key);
   };
 
+  const langOptions = [
+    { value: "uz", label: "O‘zbekcha" },
+    { value: "en", label: "English" },
+    { value: "ru", label: "Русский" },
+  ];
+
+  const shortLabel = {
+    uz: "UZ",
+    en: "EN",
+    ru: "RU",
+  };
+
   return (
-    <header
-      id="header"
-      className="header flex items-center fixed-top bg-white dark:!bg-gray-800 text-gray-900 shadow"
-    >
-      <div className="header-container py-2 container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    <header className="header flex items-center fixed-top bg-white dark:bg-gray-800 text-gray-900 shadow w-full z-50">
+      <div className="container-fluid container-xl py-2 flex justify-between items-center w-full">
         <Link
           href="/"
           className="logo d-flex align-items-center me-auto me-xl-0 bg-gray-800 rounded-lg p-2 !pl-4"
@@ -101,9 +89,8 @@ export default function Header() {
               >
                 <Link
                   href={item.key}
-                  className={`${
-                    activeMenu === item.key ? "active" : ""
-                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className={`${activeMenu === item.key ? "active" : ""
+                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -120,7 +107,6 @@ export default function Header() {
                         if (el) el.scrollIntoView({ behavior: "smooth" });
                         setActiveMenu(item.key);
                       } else {
-                        // Boshqa sahifada bo'lsa, landingga push va hash qo'shish
                         window.location.href = `/${activeLang}${item.key}`;
                       }
                     } else {
@@ -135,7 +121,7 @@ export default function Header() {
                     {item.dropdown.map((subItem, subIndex) => (
                       <li
                         key={subIndex}
-                        
+
                       >
                         <Link
                           href={subItem.key}
@@ -169,40 +155,36 @@ export default function Header() {
               </li>
             ))}
           </ul>
-
-          <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <div className="flex items-center justify-end gap-2">
-          {/* <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className=" rounded-md"
-          >
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </button> */}
-
-          <div className="flex gap-3">
-            <div className="cta-button bg-gray-500 hover:bg-blue-500 rounded-full">
-              <button
-                className="btn !outline-none"
-                onClick={() => {
-                  router.push(`/register/user`);
-                }}
-              >
-                <span className="text-white">{"Ro'yxatdan o'tish"}</span>
-              </button>
-            </div>
-            <Select
-              value={activeLang}
-              onChange={changeLang}
-              style={{ width: 100 }}
-              options={[
-                { value: "uz", label: langSwitch("uz") },
-                { value: "en", label: langSwitch("en") },
-                { value: "ru", label: langSwitch("ru") },
-              ]}
-            />
+        <div className="flex items-center justify-end gap-4">
+          <div className="cta-button bg-gray-500 hover:bg-blue-500 rounded-full">
+            <button
+              className="btn !w-[160px] !outline-none px-4 py-1"
+              onClick={() => {
+                router.push(`/register/user`);
+              }}
+            >
+              <span className="text-white text-sm font-medium">
+                {"Ro'yxatdan o'tish"}
+              </span>
+            </button>
           </div>
+
+          <Select
+            value={shortLabel[activeLang as keyof typeof shortLabel]}
+            onChange={changeLang}
+            style={{ width: 80, textAlign: "center" }}
+            dropdownMatchSelectWidth={false}
+            options={langOptions}
+            dropdownRender={(menu) => (
+              <div className="bg-white text-center text-blue-600 font-medium">
+                {menu}
+              </div>
+            )}
+            dropdownClassName="!p-0 !text-center"
+            className="text-center uppercase font-semibold"
+          />
         </div>
       </div>
     </header>
