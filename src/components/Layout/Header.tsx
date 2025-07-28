@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Select } from "antd";
-import innoweekLogo from '@/assets/img/services/1234.png'
+import innoweekLogo from "@/assets/img/services/1234.png";
 import { useTranslations } from "next-intl";
-import { Link, useRouter as Router} from "@/i18n/navigation";
+import { Link, useRouter as Router } from "@/i18n/navigation";
 import { usePathname, useParams, useRouter } from "next/navigation";
 
 export default function Header() {
@@ -12,7 +12,7 @@ export default function Header() {
   const t = useTranslations("header");
   const langSwitch = useTranslations("langs");
   const router = Router();
-  const routerLang = useRouter()
+  const routerLang = useRouter();
   const pathname = usePathname();
   const params = useParams();
   const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
@@ -20,7 +20,7 @@ export default function Header() {
   const changeLang = (lang: string) => {
     setActiveLang(lang);
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
-    routerLang.push(newPath)
+    routerLang.push(newPath);
   };
 
   const menu = [
@@ -72,7 +72,7 @@ export default function Header() {
     "#otziv",
     "#faq",
     "#contact",
-    "#spikers"
+    "#spikers",
   ];
 
   const handleMenuClick = (key: string) => {
@@ -95,11 +95,15 @@ export default function Header() {
         <nav id="navmenu" className="navmenu !uppercase">
           <ul>
             {menu.map((item, index) => (
-              <li key={index} className={item.dropdown ? "dropdown " : "hover:scale-105"}>
+              <li
+                key={index}
+                className={item.dropdown ? "dropdown " : "hover:scale-105"}
+              >
                 <Link
                   href={item.key}
-                  className={`${activeMenu === item.key ? "active" : ""
-                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className={`${
+                    activeMenu === item.key ? "active" : ""
+                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -108,7 +112,10 @@ export default function Header() {
                     }
                     if (sectionAnchors.includes(item.key)) {
                       e.preventDefault();
-                      if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
+                      if (
+                        pathname === `/${activeLang}` ||
+                        pathname === `/${activeLang}/`
+                      ) {
                         const el = document.querySelector(item.key);
                         if (el) el.scrollIntoView({ behavior: "smooth" });
                         setActiveMenu(item.key);
@@ -126,17 +133,23 @@ export default function Header() {
                 {item.dropdown && (
                   <ul>
                     {item.dropdown.map((subItem, subIndex) => (
-                      <li key={subIndex}
-
+                      <li
+                        key={subIndex}
+                        
                       >
                         <Link
                           href={subItem.key}
+                          className="!font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50"
                           onClick={(e) => {
                             if (sectionAnchors.includes(subItem.key)) {
                               e.preventDefault();
-                              if (pathname === `/${activeLang}` || pathname === `/${activeLang}/`) {
+                              if (
+                                pathname === `/${activeLang}` ||
+                                pathname === `/${activeLang}/`
+                              ) {
                                 const el = document.querySelector(subItem.key);
-                                if (el) el.scrollIntoView({ behavior: "smooth" });
+                                if (el)
+                                  el.scrollIntoView({ behavior: "smooth" });
                                 setActiveMenu(subItem.key);
                               } else {
                                 window.location.href = `/${activeLang}${subItem.key}`;
@@ -170,7 +183,12 @@ export default function Header() {
 
           <div className="flex gap-3">
             <div className="cta-button bg-gray-500 hover:bg-blue-500 rounded-full">
-              <button className="btn !outline-none" onClick={() => { router.push(`/register/user`) }}>
+              <button
+                className="btn !outline-none"
+                onClick={() => {
+                  router.push(`/register/user`);
+                }}
+              >
                 <span className="text-white">{"Ro'yxatdan o'tish"}</span>
               </button>
             </div>
