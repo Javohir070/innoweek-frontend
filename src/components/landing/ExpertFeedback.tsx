@@ -62,7 +62,7 @@ const ExpertFeedback = () => {
   };
 
   // Slider uchun translateX hisoblash
-  const slidePercent = (currentIndex / data.length) * 100;
+  // const slidePercent = (currentIndex / data.length) * 100;
 
   return (
     <section className="py-16 ">
