@@ -137,7 +137,7 @@ const ExpertFeedback = () => {
                     <div className="flex gap-1">
                       {[...Array(5)].map((_, i) => (
                         <span key={i}>
-                          <IoMdStar className="text-yellow-300" />
+                          <IoMdStar className="text-lg" />
                         </span>
                       ))}
                     </div>

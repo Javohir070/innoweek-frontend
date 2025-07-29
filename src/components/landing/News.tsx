@@ -45,14 +45,14 @@ export default function NewsSection() {
   return (
     <section
       id="portfolio"
-      className="testimonials bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-6"
+      className="testimonials bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-6 m-0 !p-0"
     >
       <div className="container section-title pb-4" data-aos="fade-up">
         <h2 className="text-black dark:!text-white">INNOWEEK</h2>
         <div className="text-black dark:!text-gray-300">{t("Latest News")}</div>
       </div>
 
-      <div className="container" data-aos="fade-up" data-aos-delay="100">
+      <div className="container m-auto !px-0" data-aos="fade-up" data-aos-delay="100">
         <Swiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           key={data.length} // <-- yangi key
@@ -86,9 +86,9 @@ export default function NewsSection() {
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <Link href={`/news/${item?.id}`}>
-                <div className="testimonial-item hover:cursor-pointer !bg-[#0085d4] dark:!bg-gray-800 m-4 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01]">
-                  <div className="row">
-                    <div className="col-lg-8">
+                <div className="testimonial-item hover:cursor-pointer !h-full !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[450px]" style={{ minHeight: 320, height: '100%' }}>
+                  <div className="row flex w-full">
+                    <div className="col-lg-8 flex flex-col justify-between">
                       <h2 className="!text-white dark:!text-white">{item?.title}</h2>
                       <div
                         className="line-clamp-6 !text-white dark:!text-gray-300 !font-normal not-italic"
@@ -97,7 +97,7 @@ export default function NewsSection() {
                         }}
                       ></div>
                     </div>
-                    <div className="col-lg-4 d-none d-lg-block">
+                    <div className="col-lg-4 d-none d-lg-block flex items-center">
                       <div className="featured-img-wrapper rounded-lg overflow-hidden">
                         <Image
                           src={
@@ -119,7 +119,7 @@ export default function NewsSection() {
           ))}
 
           {/* Navigation buttons */}
-          <div className="w-100 d-flex align-items-center justify-center gap-4 mt-8">
+          <div className="w-100 d-flex align-items-center justify-center gap-4">
             <button
               ref={prevRef}
               className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"

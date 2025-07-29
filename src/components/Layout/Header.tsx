@@ -18,6 +18,10 @@ export default function Header() {
   const params = useParams();
   const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
 
+  // importlar tepasida kerakli state:
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
   const changeLang = (lang: string) => {
     setActiveLang(lang);
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
@@ -158,7 +162,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center justify-end gap-4">
+        <div className="flex max-[1200px]:hidden items-center justify-end gap-4">
           <div className="cta-button bg-gray-800/70 hover:bg-gray-800 rounded-full">
             <button
               className="btn !w-[160px] !outline-none px-4 py-1"
@@ -188,6 +192,81 @@ export default function Header() {
           />
         </div>
       </div>
+      {/* MOBIL - Hamburger tugmasi */}
+      <div className="xl:hidden absolute top-4 right-4">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="text-gray-800 dark:text-white focus:outline-none"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      {/* MOBIL menyu ochilganda ko‘rinadigan qism */}
+      {isMenuOpen && (
+        <div className="xl:hidden absolute top-16 left-0 w-full bg-white dark:bg-gray-800 shadow-md z-40 px-4 py-4">
+          <ul className="flex flex-col gap-3">
+            {menu.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.key}
+                  className="block text-black dark:text-white font-semibold"
+                  onClick={(e) => {
+                    if (sectionAnchors.includes(item.key)) {
+                      e.preventDefault();
+                      if (
+                        pathname === `/${activeLang}` ||
+                        pathname === `/${activeLang}/`
+                      ) {
+                        const el = document.querySelector(item.key);
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                        setActiveMenu(item.key);
+                      } else {
+                        window.location.href = `/${activeLang}${item.key}`;
+                      }
+                    } else {
+                      setActiveMenu(item.key);
+                    }
+                    setIsMenuOpen(false); // menyuni yopish
+                  }}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+
+            <li>
+              <button
+                className="mt-2 w-full bg-gray-800 text-white py-2 rounded"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  router.push(`/register`);
+                }}
+              >
+                {registerLangs("REGISTER")}
+              </button>
+            </li>
+
+            <li>
+              <Select
+                value={shortLabel[activeLang as keyof typeof shortLabel]}
+                onChange={(lang) => {
+                  changeLang(lang);
+                  setIsMenuOpen(false);
+                }}
+                style={{ width: "100%" }}
+                dropdownMatchSelectWidth={false}
+                options={langOptions}
+                dropdownClassName="!p-0 !text-center"
+                className="w-full text-center uppercase font-semibold mt-2"
+              />
+            </li>
+          </ul>
+        </div>
+      )}
+
     </header>
   );
 }

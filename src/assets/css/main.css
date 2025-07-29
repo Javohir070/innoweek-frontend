@@ -255,7 +255,7 @@ h6 {
     background: color-mix(in srgb, var(--accent-color), transparent 15%);
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
     .header {
         padding-top: 10px;
     }
@@ -279,7 +279,7 @@ h6 {
     .header .navmenu {
         order: 3;
     }
-}
+} */
 
 
 /*--------------------------------------------------------------
@@ -4400,7 +4400,7 @@ row
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent-color), var(--heading-color));
+    background: linear-gradient(90deg, var(--heading-color), var(--heading-color));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
@@ -4458,11 +4458,11 @@ row
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: var(--heading-color);
+    color: white;
 }
 
 .stats .metric-card .metric-info p {
-    color: color-mix(in srgb, var(--default-color), transparent 30%);
+    color: white;
     font-size: 15px;
     margin-bottom: 0;
     line-height: 1.5;
