@@ -55,6 +55,9 @@ export default function RegisterRolePage() {
   >({});
   const [authKey, setAuthKey] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [registerType, setRegisterType] = useState<
+    "local" | "international" | null
+  >("local");
 
   // Strict form validation: all required fields must be filled and valid
   const isFormValid =
@@ -217,15 +220,31 @@ export default function RegisterRolePage() {
           {t("register_modal_title")}
         </h2>
 
-        {step === "register" ? (
+        <div className="flex flex-row justify-center items-center gap-4 mb-8">
+          <button
+            onClick={() => setRegisterType("local")}
+            className="w-[200px] bg-[#0085d4] text-white px-6 py-2 rounded-full font-bold"
+          >
+            Local
+          </button>
+          <button
+            onClick={() => setRegisterType("international")}
+            className="w-[200px] bg-[#e3a127] text-white px-6 py-2 rounded-full font-bold"
+          >
+            International
+          </button>
+        </div>
+
+        {/* Local registration form */}
+        {registerType === "local" && (
           <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 gap-6">
               <div>
                 <input
                   name="firstName"
                   type="text"
-                  placeholder="F.I.Sh"
-                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
+                  placeholder="Ism"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                   required
                   value={form.firstName}
                   onChange={handleChange}
@@ -236,87 +255,94 @@ export default function RegisterRolePage() {
                   name="lastName"
                   type="text"
                   placeholder="Familiya"
-                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                   required
                   value={form.lastName}
                   onChange={handleChange}
                 />
               </div>
               <div>
-                <input
-                  name="organization"
-                  type="text"
-                  placeholder="Ish joyingiz"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
+                {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Telefon raqam
+                </label> */}
+                <div className="flex">
+                  <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-[#0085d4] bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                    +998
+                  </span>
+                  <input
+                    name="phone"
+                    type="tel"
+                    placeholder="Telefon raqam (901234567)"
+                    className="border-2 border-[#0085d4] rounded-r-lg px-3 py-2 w-full"
+                    required
+                    maxLength={9}
+                    pattern="\d{9}"
+                    value={form.phone}
+                    onChange={(e) => {
+                      let val = e.target.value.replace(/\D/g, "").slice(0, 9);
+                      setForm((prev) => ({
+                        ...prev,
+                        phone: val,
+                      }));
+                    }}
+                  />
+                </div>
+                {/* <span className="text-xs text-gray-500 dark:text-gray-400">
+                  Format: 901234567
+                </span> */}
+              </div>
+              <div>
+                <select
+                  name="profession_id"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                   required
-                  value={form.organization}
+                  value={form.profession_id}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    Kasbni tanlang
+                  </option>
+                  {professions?.map((item) => (
+                    <option value={item?.id} key={item?.id}>
+                      {item?.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <input
+                  name="birth_date"
+                  type="date"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.birth_date}
                   onChange={handleChange}
                 />
               </div>
               <div>
-                <input
-                  name="position"
-                  type="text"
-                  placeholder="Lavozimingiz"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
+                <select
+                  name="gender"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                   required
-                  value={form.position}
+                  value={form.gender}
                   onChange={handleChange}
-                />
-              </div>
-
-              <div className="flex items-center gap-2 border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0">
-                <span className="text-gray-700 dark:text-gray-300 font-semibold">
-                  +998
-                </span>
-                <input
-                  name="phone"
-                  type="tel"
-                  placeholder="90 000 00 00"
-                  className="outline-none w-full bg-transparent text-gray-900 dark:text-white"
-                  required
-                  value={form.phone}
-                  onChange={(e) => {
-                    let val = e.target.value.replace(/\D/g, "").slice(0, 9);
-                    setForm((prev) => ({
-                      ...prev,
-                      phone: val,
-                    }));
-                  }}
-                />
-              </div>
-
-              <input
-                name="email"
-                type="email"
-                placeholder="Email manzilingiz (qo'shimcha)"
-                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
-                value={form.email}
-                onChange={handleChange}
-              />
-
-              <select
-                name="profession_id"
-                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
-                required
-                value={form.profession_id}
-                onChange={handleChange}
-              >
-                <option value="" disabled>
-                  {t("participation_type")}
-                </option>
-                {professions?.map((item) => (
-                  <option value={item?.id} key={item?.id}>
-                    {item?.name}
+                >
+                  <option value="" disabled>
+                    Jins
                   </option>
-                ))}
-              </select>
+                  <option value="1">Erkak</option>
+                  <option value="2">Ayol</option>
+                </select>
+              </div>
+            </div>
+            {/* Password inputs */}
+            <div className="grid grid-cols-2 gap-6">
               <div>
                 <input
                   name="password"
                   type="password"
-                  placeholder="Yangi parolni kiriting"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
+                  placeholder="Parol"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                   required
                   value={form.password}
                   onChange={handleChange}
@@ -326,8 +352,8 @@ export default function RegisterRolePage() {
                 <input
                   name="passwordRepeat"
                   type="password"
-                  placeholder="Parolni takrorlang"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
+                  placeholder="Parolni qayta kiriting"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                   required
                   value={form.passwordRepeat}
                   onChange={handleChange}
@@ -371,7 +397,181 @@ export default function RegisterRolePage() {
               )}
             </button>
           </form>
-        ) : (
+        )}
+
+        {/* International registration form */}
+        {registerType === "international" && (
+          <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <input
+                  name="firstName"
+                  type="text"
+                  placeholder="Ism"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.firstName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  name="lastName"
+                  type="text"
+                  placeholder="Familiya"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.lastName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <select
+                  name="country"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.country}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    Davlatni tanlang
+                  </option>
+                  {/* country list mapping */}
+                  <option value="2">Country 2</option>
+                  {/* ... */}
+                </select>
+              </div>
+              <div>
+                <select
+                  name="profession_id"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.profession_id}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    Kasbni tanlang
+                  </option>
+                  {professions?.map((item) => (
+                    <option value={item?.id} key={item?.id}>
+                      {item?.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <input
+                  name="organization"
+                  type="text"
+                  placeholder="Tashkilot"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.organization}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  name="birth_date"
+                  type="date"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.birth_date}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <select
+                  name="gender"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.gender}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    Jins
+                  </option>
+                  <option value="1">Erkak</option>
+                  <option value="2">Ayol</option>
+                </select>
+              </div>
+            </div>
+            {/* Password inputs */}
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Parol"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  name="passwordRepeat"
+                  type="password"
+                  placeholder="Parolni qayta kiriting"
+                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                  required
+                  value={form.passwordRepeat}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                name="acceptTerms"
+                type="checkbox"
+                className="mr-2 accent-[#0085d4]"
+                checked={form.acceptTerms}
+                onChange={handleChange}
+                required
+              />
+              <span className="text-sm text-gray-700 dark:text-gray-300">
+                Foydalanish shartlarini qabul qilaman
+              </span>
+            </div>
+
+            {error.status && (
+              <span className="text-red-500 text-xs">{error.status}</span>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading || !isFormValid}
+              className={`w-[200px] font-bold !rounded-full p-2 flex items-center justify-center gap-2 shadow-lg transition-all duration-200 text-lg tracking-wide mx-auto ${
+                loading || !isFormValid
+                  ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                  : "bg-[#0085d4] hover:bg-[#e3a127] text-white"
+              }`}
+            >
+              {loading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  {t("sending")}
+                </>
+              ) : (
+                t("sign_up")
+              )}
+            </button>
+          </form>
+        )}
+
+        {step === "otp" && (
           <form className="flex flex-col gap-6" onSubmit={handleOtpSubmit}>
             <div className="text-center">
               <h3 className="text-xl font-bold text-[#0085d4] mb-2">
