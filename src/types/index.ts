@@ -42,7 +42,12 @@ export interface IProfessionItem {
   created_at: string;
 }
 
-export interface IRegisterFormType  {
+export interface ICountryItem {
+  id: number;
+  name: string;
+}
+
+export interface IRegisterFormType {
   firstName: string;
   lastName: string;
   phone: string;
@@ -55,7 +60,7 @@ export interface IRegisterFormType  {
   password: string;
   passwordRepeat: string;
   acceptTerms?: boolean;
-};
+}
 
 export interface IValidateResponce {
   status: number;
@@ -87,5 +92,3 @@ export interface ITicketItem {
     updated_at: string;
   };
 }
-
-
