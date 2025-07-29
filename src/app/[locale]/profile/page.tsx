@@ -5,10 +5,12 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import Ticket from "../ticket/page";
 import { IoPersonSharp } from "react-icons/io5";
+import { FetchInstance } from "@/api/FetchInstance";
 
-interface RegisterFormType {
-    firstName: string;
-    lastName: string;
+interface UserProfile {
+    id: number;
+    first_name: string;
+    last_name: string;
     gender: string;
     birth_date: string;
     country: string;
@@ -16,9 +18,8 @@ interface RegisterFormType {
     organization: string;
     position: string;
     email: string;
-    password: string;
-    passwordRepeat: string;
-    acceptTerms: boolean;
+    role?: string;
+    // Add other fields as needed from your API response
 }
 
 const SIDEBAR_ITEMS = [
@@ -30,21 +31,60 @@ const SIDEBAR_ITEMS = [
 export default function ProfilePage() {
     const t = useTranslations("profile");
     const params = useParams();
-    const role = typeof params.role === "string" ? params.role : Array.isArray(params.role) ? params.role[0] : "";
-    const [profile, setProfile] = useState<RegisterFormType | null>(null);
+    const [profile, setProfile] = useState<UserProfile | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<string>("profile");
 
     useEffect(() => {
-        let data = null;
-        if (role) {
-            data = localStorage.getItem(`register_${role}`);
-        }
-        if (!data) {
-            const keys = Object.keys(localStorage).filter((k) => k.startsWith("register_"));
-            if (keys.length > 0) data = localStorage.getItem(keys[0]);
-        }
-        if (data) setProfile(JSON.parse(data));
-    }, [role]);
+        const fetchProfile = async () => {
+            try {
+                setLoading(true);
+                const response = await FetchInstance<UserProfile>("/api/v1.0/user/me", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        // Add authorization header if needed
+                        // "Authorization": `Bearer ${localStorage.getItem('token')}`
+                    },
+                });
+
+                if (response) {
+                    setProfile(response);
+                } else {
+                    setError("Failed to fetch profile data");
+                }
+            } catch (err) {
+                setError(err instanceof Error ? err.message : "An unknown error occurred");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProfile();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#0085d4]"></div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0085d4]/10 to-[#031119]/10">
+                <div className="text-center p-8 bg-white dark:bg-[#151a28] rounded-2xl shadow-xl !max-w-6xl !w-full">
+                    <div className="text-5xl mb-4">⚠️</div>
+                    <h3 className="text-xl font-bold text-gray-700 dark:text-white mb-2">
+                        {t("error_occurred")}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-300">{error}</p>
+                </div>
+            </div>
+        );
+    }
 
     if (!profile) {
         return (
@@ -62,19 +102,29 @@ export default function ProfilePage() {
         );
     }
 
+    const role = params.role
+        ? typeof params.role === "string"
+            ? params.role
+            : Array.isArray(params.role)
+                ? params.role[0]
+                : profile.role || "participant"
+        : profile.role || "participant";
+
     return (
         <div className="pt-16 pb-8 px-2 container md:px-4">
             <div className="max-w-full mx-auto flex flex-col md:flex-row gap-6">
-                {/* Sidebar - Improved Design */}
+                {/* Sidebar */}
                 <aside className="w-full md:w-64 bg-white dark:!bg-transparent rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500">
                     <div className="py-4 px-3 border-b border-gray-200 dark:border-gray-700">
                         <div className="flex items-center justify-between gap-2.5 space-x-3">
                             <div className="!w-12 !h-12 m-0 rounded-full bg-gradient-to-r from-[#0085d4] to-[#e3a127] flex items-center justify-center px-3 py-3 text-white font-bold text-lg">
-                                {profile.firstName.charAt(0)}{profile.lastName.charAt(0)}
+                                {profile.first_name?.charAt(0)}{profile.last_name?.charAt(0)}
                             </div>
                             <div>
-                                <h3 className="font-medium !text-gray-900 dark:!text-white !mb-0">{profile.firstName} {profile.lastName}</h3>
-                                <p className="text-sm !text-gray-600 dark:text-gray-400 m-0">{role || "participant"}</p>
+                                <h3 className="font-medium !text-gray-900 dark:!text-white !mb-0">
+                                    {profile.first_name} {profile.last_name}
+                                </h3>
+                                <p className="text-sm !text-gray-600 dark:text-gray-400 m-0">{role}</p>
                             </div>
                         </div>
                     </div>
@@ -83,8 +133,9 @@ export default function ProfilePage() {
                             <button
                                 key={item.key}
                                 className={`w-full flex items-center space-x-3 px-4 py-3 mb-1 rounded-lg transition-all duration-200 ${activeTab === item.key
-                                    ? 'bg-[#0085d4]/10 dark:bg-[#e3a127]/20 text-[#0085d4] dark:text-[#e3a127] font-semibold'
-                                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                                        ? 'bg-[#0085d4]/10 dark:bg-[#e3a127]/20 text-[#0085d4] dark:text-[#e3a127] font-semibold'
+                                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                    }`}
                                 onClick={() => setActiveTab(item.key)}
                             >
                                 <span className="text-lg">{item.icon}</span>
@@ -104,10 +155,10 @@ export default function ProfilePage() {
                                     {profile.position} at {profile.organization}
                                 </div>
                                 <div className="w-20 h-20 mx-auto rounded-full bg-white/20 backdrop-blur-md border-4 border-white/30 flex items-center justify-center text-3xl text-white font-bold mb-3">
-                                    {profile.firstName.charAt(0)}{profile.lastName.charAt(0)}
+                                    {profile.first_name?.charAt(0)}{profile.last_name?.charAt(0)}
                                 </div>
-                                <h1 className="text-2xl mt-0 font-bold  text-white">
-                                    {profile.firstName} {profile.lastName}
+                                <h1 className="text-2xl mt-0 font-bold text-white">
+                                    {profile.first_name} {profile.last_name}
                                 </h1>
                                 <p className="text-white/90 mt-1 text-sm">{profile.email}</p>
                             </div>
@@ -150,7 +201,7 @@ export default function ProfilePage() {
                             <div className="p-4 md:p-8 flex items-center justify-center !min-h-[400px]">
                                 <iframe
                                     src="/pdf/Certificate%20(2).pdf"
-                                    className="w-full h-[600px]  rounded-lg border dark:!border-gray-700"
+                                    className="w-full h-[600px] rounded-lg border dark:!border-gray-700"
                                     title="Certificate"
                                 />
                             </div>
