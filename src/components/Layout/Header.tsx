@@ -10,6 +10,7 @@ import { usePathname, useParams, useRouter } from "next/navigation";
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
+  const registerLangs = useTranslations("hero");
   const langSwitch = useTranslations("langs");
   const router = Router();
   const routerLang = useRouter();
@@ -158,7 +159,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center justify-end gap-4">
-          <div className="cta-button bg-gray-500 hover:bg-blue-500 rounded-full">
+          <div className="cta-button bg-blue-500/75 hover:bg-blue-500 rounded-full">
             <button
               className="btn !w-[160px] !outline-none px-4 py-1"
               onClick={() => {
@@ -166,7 +167,7 @@ export default function Header() {
               }}
             >
               <span className="text-white text-sm font-medium">
-                {"Ro'yxatdan o'tish"}
+                {registerLangs("REGISTER")}
               </span>
             </button>
           </div>

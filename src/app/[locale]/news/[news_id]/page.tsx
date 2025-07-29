@@ -59,7 +59,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
         </div>
       )}
       {/* <div className="mb-4 text-lg font-semibold">{data.description}</div> */}
-      <div className="prose prose-lg max-w-none !text-white" dangerouslySetInnerHTML={{ __html: data.description }} />
+      <div className="prose prose-lg max-w-none text-black dark:text-white" dangerouslySetInnerHTML={{ __html: data.description }} />
     </div>
   );
 }

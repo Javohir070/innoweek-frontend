@@ -52,7 +52,7 @@ export default function RegisterRolePage() {
   const getPrefessionList = async () => {
     try {
       const res = await FetchInstance<IResponse<IProfessionItem[]>>(
-        "/api/v1.0/profession/list"
+        "/api/v1.0/profession/list?status=active"
       );
       setProfessions(res?.data);
       console.log(res);
