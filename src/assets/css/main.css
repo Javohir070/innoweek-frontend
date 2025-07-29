@@ -857,12 +857,12 @@ section,
 
 .hero {
     position: relative;
-    min-height: 100vh;
+    height: 100vh !important;
+    min-height: 992px !important;
     width: 100%;
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: 100px 0;
 }
 
 .hero::after {
