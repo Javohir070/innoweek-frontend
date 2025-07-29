@@ -1,65 +1,45 @@
 "use client";
 import { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { create } from "zustand";
 
-// Define types for the form and store
-interface RegisterFormType {
+type RegisterFormType = {
   firstName: string;
   lastName: string;
-  gender: string;
-  birth_date: string;
-  country: string;
   phone: string;
-  organization: string;
-  position: string;
-  email: string;
+  profession_id: string;
+  birth_date: string;
+  gender: string;
+  email?: string;
+  country?: string;
+  organization?: string;
   password: string;
   passwordRepeat: string;
-  acceptTerms: boolean;
-}
+};
 
-interface RegisterStoreType {
-  data: Record<string, RegisterFormType>;
-  save: (role: string, form: RegisterFormType) => void;
-}
+type RegisterError = {
+  phone?: string;
+  status?: string;
+};
 
 const initialForm: RegisterFormType = {
   firstName: "",
   lastName: "",
-  gender: "",
-  birth_date: "",
-  country: "",
   phone: "",
-  organization: "",
-  position: "",
+  profession_id: "",
+  birth_date: "",
+  gender: "",
   email: "",
+  country: "",
+  organization: "",
   password: "",
   passwordRepeat: "",
-  acceptTerms: false,
 };
-
-const useRegisterStore = create<RegisterStoreType>((set) => ({
-  data: {},
-  save: (role, form) =>
-    set((state) => ({ data: { ...state.data, [role]: form } })),
-}));
-
 export default function RegisterRolePage() {
   const t = useTranslations("register_modal");
-  const router = useRouter();
-  const params = useParams();
-  const role =
-    typeof params.role === "string"
-      ? params.role
-      : Array.isArray(params.role)
-      ? params.role[0]
-      : "";
+ 
   const [form, setForm] = useState<RegisterFormType>(initialForm);
   const [saved, setSaved] = useState(false);
-  const [error, setError] = useState<string>("");
-  const registerStore = useRegisterStore();
+    const [error, setError] = useState<RegisterError>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -75,13 +55,13 @@ export default function RegisterRolePage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (form.password !== form.passwordRepeat) {
-      setError(t("passwords_do_not_match"));
+      setError({status: "passwords_do_not_match"});
       return;
     }
-    setError("");
-    localStorage.setItem(`register_${role} `, JSON.stringify(form));
-    registerStore.save(role, form);
-    setSaved(true);
+    // setError({});
+    // localStorage.setItem(`register_${role} `, JSON.stringify(form));
+    // registerStore.save(role, form);
+    // setSaved(true);
   };
 
   return (
@@ -113,17 +93,6 @@ export default function RegisterRolePage() {
                   onChange={handleChange}
                 />
               </div>
-              {/* <div>
-                                <input
-                                    name="organization"
-                                    type="text"
-                                    placeholder="Tashkiloti"
-                                    className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                                    required
-                                    value={form.organization}
-                                    onChange={handleChange}
-                                />
-                            </div> */}
               <div>
                 <input
                   name="position"
@@ -146,65 +115,26 @@ export default function RegisterRolePage() {
                   onChange={handleChange}
                 />
               </div>
-              {/* <div>
-                                <input
-                                    name="lastName"
-                                    type="text"
-                                    placeholder="Last name"
-                                    className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                                    required
-                                    value={form.lastName}
-                                    onChange={handleChange}
-                                />
-                            </div> */}
-              {/* <div>
-                                <select
-                                    name="gender"
-                                    className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                                    value={form.gender}
-                                    onChange={handleChange}
-                                    required
-                                >
-                                    <option value="" disabled>Select gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div> */}
-              {/* <div>
-                                <input
-                                    name="birth_date"
-                                    type="date"
-                                    placeholder="Enter your birthday"
-                                    className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                                    required
-
-                                    value={form.birth_date}
-                                    onChange={handleChange}
-                                />
-                            </div> */}
-              {/* <div>
-                                <input
-                                    name="country"
-                                    type="text"
-                                    placeholder="Enter your country"
-                                    className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                                    required
-                                    value={form.country}
-                                    onChange={handleChange}
-                                />
-                            </div> */}
-
               {/* 998 ko'nishi kerak */}
-              <div>
+              <div className="flex items-center gap-2 border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0">
+                <span className="text-gray-700 dark:text-gray-300 font-semibold">
+                  +998
+                </span>
                 <input
                   name="phone"
                   type="tel"
-                  placeholder="Telefon raqamingiz"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent  dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
+                  placeholder="999999999"
+                  className="outline-none w-full bg-transparent text-gray-900 dark:text-white"
                   required
                   value={form.phone}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    // Only allow numbers, max 9 digits
+                    let val = e.target.value.replace(/\D/g, "").slice(0, 9);
+                    setForm((prev) => ({
+                      ...prev,
+                      phone: val,
+                    }));
+                  }}
                 />
               </div>
 

@@ -162,7 +162,7 @@ export default function Header() {
             <button
               className="btn !w-[160px] !outline-none px-4 py-1"
               onClick={() => {
-                router.push(`/register/user`);
+                router.push(`/register`);
               }}
             >
               <span className="text-white text-sm font-medium">
