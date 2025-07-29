@@ -6,6 +6,7 @@ import galery_1 from "@/assets/img/abstract/gallery_1732534936.jpg";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IGalleryItem, IResponse } from "@/types";
 import { useTranslations } from "next-intl";
+import { EyeOutlined, PlusOutlined, ZoomInOutlined } from "@ant-design/icons"; // 👈 Shu joyda import qiling
 import "antd/dist/reset.css";
 
 const GalerySection = () => {
@@ -67,9 +68,11 @@ const GalerySection = () => {
                         alt="Lavha 1"
                         className="img-fluid rounded-lg cursor-pointer"
                         style={{ objectFit: "cover" }}
-                        preview={{ visible: false }}
-                        onClick={() => {
-                          // AntdImage.PreviewGroup avtomatik ochiladi
+                        preview={{
+                          src: item?.image ? `${BASE_URL}${item?.image}` : galery_1.src,
+                          iconRender: () => (
+                            <ZoomInOutlined style={{ fontSize: 24, color: "#fff" }} />
+                          ),
                         }}
                       />
                     </figure>

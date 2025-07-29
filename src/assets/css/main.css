@@ -1111,8 +1111,8 @@ section,
 --------------------------------------------------------------*/
 
 .about {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .about .about-image {
@@ -1877,7 +1877,7 @@ section,
 .testimonials .testimonials-slider {
     width: 100%;
     position: relative;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
 }
 
 .testimonials .swiper-wrapper {
@@ -5230,4 +5230,18 @@ row
 
 .ant-select-selection-item:hover {
     color: #0085d4 !important;
+}
+
+.ant-image-mask-info {
+    /* visibility: hidden !important; */
+}
+
+.ant-image-mask-info>span {
+    /* display: none !important; */
+    position: absolute !important;
+    left: 10 !important;
+    bottom: 10 !important;
+    display: block !important;
+    font-size: 50px !important;
+
 }

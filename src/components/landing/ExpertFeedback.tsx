@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { IoMdStar } from "react-icons/io";
 import { LuMoveLeft, LuMoveRight } from "react-icons/lu";
@@ -40,16 +40,31 @@ const ExpertFeedback = () => {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [autoScroll, setAutoScroll] = useState(true);
   const pairCount = 1;
   const maxIndex = data.length - pairCount;
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (autoScroll) {
+      interval = setInterval(() => {
+        handleNext();
+      }, 3000); // Change slide every 3 seconds
+    }
+
+    return () => clearInterval(interval);
+  }, [autoScroll, currentIndex]);
 
   const handlePrev = () => {
     if (isAnimating) return;
     setIsAnimating(true);
+    setAutoScroll(false); // Pause auto-scroll when user interacts
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - pairCount + data.length) % data.length);
       setIsAnimating(false);
-    }, 400); // animatsiya davomiyligi bilan mos
+    }, 400);
   };
 
   const handleNext = () => {
@@ -61,18 +76,28 @@ const ExpertFeedback = () => {
     }, 400);
   };
 
-  // Slider uchun translateX hisoblash
-  // const slidePercent = (currentIndex / data.length) * 100;
+  // Restart auto-scroll after user interaction timeout
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (!autoScroll) {
+      timeout = setTimeout(() => {
+        setAutoScroll(true);
+      }, 10000); // Resume auto-scroll after 10 seconds of inactivity
+    }
+
+    return () => clearTimeout(timeout);
+  }, [autoScroll]);
 
   return (
-    <section className="py-16 ">
+    <section className="py-16">
       <div className="container mx-auto">
         <div className="section-title" data-aos="fade-up">
           <h2 className="text-black dark:!text-white">INNOWEEK</h2>
           <div className="text-black dark:!text-gray-300">{t("about_us")}</div>
         </div>
         <div className="flex relative flex-col md:flex-row items-start gap-18">
-          {/* Chap panel */}
+          {/* Left panel */}
           <div className="flex flex-col items-center md:items-start w-full md:w-1/3">
             <h3 className="text-xl !font-bold text-black dark:!text-gray-300 mb-6">
               {t("experts_opinion")}
@@ -80,21 +105,21 @@ const ExpertFeedback = () => {
             <div className="md:absolute md:bottom-10 flex items-center gap-3 mt-6 md:mt-0">
               <button
                 onClick={handlePrev}
-                className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500"
+                className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
                 disabled={isAnimating}
               >
                 <LuMoveLeft size={28} />
               </button>
               <button
                 onClick={handleNext}
-                className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500"
+                className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
                 disabled={isAnimating}
               >
                 <LuMoveRight size={28} />
               </button>
             </div>
           </div>
-          {/* O'ng panel - Slider */}
+          {/* Right panel - Slider */}
           <div className="w-full md:w-2/3 flex justify-center">
             <div className="overflow-hidden w-[680px]">
               <div
@@ -109,15 +134,15 @@ const ExpertFeedback = () => {
                     key={idx}
                     className="bg-[#0085d4] dark:bg-gray-800 text-white w-[320px] p-6 rounded-lg flex flex-col justify-center mr-6 last:mr-0"
                   >
-                    <div className="flex gap-1 ">
+                    <div className="flex gap-1">
                       {[...Array(5)].map((_, i) => (
                         <span key={i}>
-                          <IoMdStar />
+                          <IoMdStar className="text-yellow-300" />
                         </span>
                       ))}
                     </div>
                     <p className="italic mb-4 mt-3 text-[15px]">
-                      “{item.position}”
+                      "{item.position}"
                     </p>
                     <div className="flex items-center gap-4">
                       <Image

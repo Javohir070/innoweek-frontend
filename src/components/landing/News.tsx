@@ -45,7 +45,7 @@ export default function NewsSection() {
   return (
     <section
       id="portfolio"
-      className="testimonials bg-gray-50 dark:bg-gray-900 transition-colors duration-300 !py-0 lg:py-10 xl:py-12"
+      className="testimonials bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-6"
     >
       <div className="container section-title pb-4" data-aos="fade-up">
         <h2 className="text-black dark:!text-white">INNOWEEK</h2>
@@ -60,7 +60,12 @@ export default function NewsSection() {
           spaceBetween={30}
           slidesPerView={1}
           loop={true}
-          autoplay={{ delay: 3000 }}
+          autoplay={{
+            delay: 3000, // Changed to 2 seconds (2000ms)
+            disableOnInteraction: false, // Continue autoplay after user interaction
+            pauseOnMouseEnter: true, // Pause on hover
+          }}
+          speed={800} // Smooth transition speed
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
@@ -81,7 +86,7 @@ export default function NewsSection() {
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <Link href={`/news/${item?.id}`}>
-                <div className="testimonial-item hover:cursor-pointer !bg-[#0085d4] dark:!bg-gray-800 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 ">
+                <div className="testimonial-item hover:cursor-pointer !bg-[#0085d4] dark:!bg-gray-800 m-4 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01]">
                   <div className="row">
                     <div className="col-lg-8">
                       <h2 className="!text-white dark:!text-white">{item?.title}</h2>
@@ -91,19 +96,6 @@ export default function NewsSection() {
                           __html: item?.description,
                         }}
                       ></div>
-                      {/* <div className="profile d-flex align-items-center mt-4">
-                        <Image
-                          src={userAvatar}
-                          className="profile-img rounded-full"
-                          alt={item?.title}
-                          width={50}
-                          height={50}
-                        />
-                        <div className="profile-info ml-3">
-                          <h3 className="text-gray-900 dark:text-white mb-0">Innoweek</h3>
-                          <span className="text-white dark:text-gray-400">{t("INNOWEEK")}</span>
-                        </div>
-                      </div> */}
                     </div>
                     <div className="col-lg-4 d-none d-lg-block">
                       <div className="featured-img-wrapper rounded-lg overflow-hidden">
@@ -130,14 +122,13 @@ export default function NewsSection() {
           <div className="w-100 d-flex align-items-center justify-center gap-4 mt-8">
             <button
               ref={prevRef}
-              className="bg-[#0085d4]  dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+              className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
             >
               <ChevronLeft />
             </button>
             <button
               ref={nextRef}
-              className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white 
-              !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+              className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
             >
               <ChevronRight />
             </button>
