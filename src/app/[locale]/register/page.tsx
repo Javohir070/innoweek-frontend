@@ -1,27 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-
-type RegisterFormType = {
-  firstName: string;
-  lastName: string;
-  phone: string;
-  profession_id: string;
-  birth_date: string;
-  gender: string;
-  email?: string;
-  country?: string;
-  organization?: string;
-  password: string;
-  passwordRepeat: string;
-};
+import { IProfessionItem, IRegisterFormType, IResponse } from "@/types";
+import { FetchInstance } from "@/api/FetchInstance";
 
 type RegisterError = {
   phone?: string;
   status?: string;
 };
 
-const initialForm: RegisterFormType = {
+const initialForm: IRegisterFormType = {
   firstName: "",
   lastName: "",
   phone: "",
@@ -33,13 +21,14 @@ const initialForm: RegisterFormType = {
   organization: "",
   password: "",
   passwordRepeat: "",
+  acceptTerms: false,
 };
 export default function RegisterRolePage() {
   const t = useTranslations("register_modal");
- 
-  const [form, setForm] = useState<RegisterFormType>(initialForm);
-  const [saved, setSaved] = useState(false);
-    const [error, setError] = useState<RegisterError>({});
+
+  const [form, setForm] = useState<IRegisterFormType>(initialForm);
+  const [error, setError] = useState<RegisterError>({});
+  const [professions, setProfessions] = useState<IProfessionItem[]>([]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -55,14 +44,26 @@ export default function RegisterRolePage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (form.password !== form.passwordRepeat) {
-      setError({status: "passwords_do_not_match"});
+      setError({ status: "passwords_do_not_match" });
       return;
     }
-    // setError({});
-    // localStorage.setItem(`register_${role} `, JSON.stringify(form));
-    // registerStore.save(role, form);
-    // setSaved(true);
   };
+
+  const getPrefessionList = async () => {
+    try {
+      const res = await FetchInstance<IResponse<IProfessionItem[]>>(
+        "/api/v1.0/profession/list"
+      );
+      setProfessions(res?.data);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPrefessionList();
+  }, []);
 
   return (
     <div className=" mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28]">
@@ -75,138 +76,136 @@ export default function RegisterRolePage() {
         <h2 className="!text-2xl !mt-2 font-extrabold !mb-4 !text-[#0085d4] text-center tracking-wide">
           {t("register_modal_title")}
         </h2>
-        {saved ? (
-          <div className="text-green-600 text-center font-semibold mb-4">
-            {t("form_sent_message")}
-          </div>
-        ) : (
-          <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-3 gap-6">
-              <div>
-                <input
-                  name="firstName"
-                  type="text"
-                  placeholder="F.I.Sh"
-                  className="border-2 border-[#0085d4] rounded-lg px-3 py-2  w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                  required
-                  value={form.firstName}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
-                  name="position"
-                  type="text"
-                  placeholder="Lavozimingiz"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                  required
-                  value={form.position}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
-                  name="position"
-                  type="text"
-                  placeholder="Ish joyingiz"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                  required
-                  value={form.position}
-                  onChange={handleChange}
-                />
-              </div>
-              {/* 998 ko'nishi kerak */}
-              <div className="flex items-center gap-2 border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0">
-                <span className="text-gray-700 dark:text-gray-300 font-semibold">
-                  +998
-                </span>
-                <input
-                  name="phone"
-                  type="tel"
-                  placeholder="999999999"
-                  className="outline-none w-full bg-transparent text-gray-900 dark:text-white"
-                  required
-                  value={form.phone}
-                  onChange={(e) => {
-                    // Only allow numbers, max 9 digits
-                    let val = e.target.value.replace(/\D/g, "").slice(0, 9);
-                    setForm((prev) => ({
-                      ...prev,
-                      phone: val,
-                    }));
-                  }}
-                />
-              </div>
-
+        <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+          <div className="grid grid-cols-3 gap-6">
+            <div>
               <input
-                name="email"
-                type="email"
-                placeholder="Email manzilingiz"
-                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
+                name="firstName"
+                type="text"
+                placeholder="F.I.Sh"
+                className="border-2 border-[#0085d4] rounded-lg px-3 py-2  w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
                 required
-                value={form.email}
+                value={form.firstName}
                 onChange={handleChange}
               />
-              <select
-                name="user_type"
-                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                id="user_type"
-              >
-                <option value="">{"Ishtirokchi"}</option>
-                <option value="">{"Homiy"}</option>
-                <option value="">{"OAV"}</option>
-              </select>
             </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <input
-                  name="password"
-                  type="password"
-                  placeholder="Yangi parolni kiriting"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                  required
-                  value={form.password}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
-                  name="passwordRepeat"
-                  type="password"
-                  placeholder="Parolni takrorlang"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
-                  required
-                  value={form.passwordRepeat}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
+            <div>
               <input
-                name="acceptTerms"
-                type="checkbox"
-                className="mr-2 accent-[#0085d4]"
-                checked={form.acceptTerms}
-                onChange={handleChange}
+                name="position"
+                type="text"
+                placeholder="Lavozimingiz"
+                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
                 required
+                value={form.position}
+                onChange={handleChange}
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">
-                {"Foydalanish shartlarini qabul qilaman"}
+            </div>
+            <div>
+              <input
+                name="position"
+                type="text"
+                placeholder="Ish joyingiz"
+                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
+                required
+                value={form.position}
+                onChange={handleChange}
+              />
+            </div>
+            {/* 998 ko'nishi kerak */}
+            <div className="flex items-center gap-2 border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0">
+              <span className="text-gray-700 dark:text-gray-300 font-semibold">
+                +998
               </span>
+              <input
+                name="phone"
+                type="tel"
+                placeholder="999999999"
+                className="outline-none w-full bg-transparent text-gray-900 dark:text-white"
+                required
+                value={form.phone}
+                onChange={(e) => {
+                  // Only allow numbers, max 9 digits
+                  let val = e.target.value.replace(/\D/g, "").slice(0, 9);
+                  setForm((prev) => ({
+                    ...prev,
+                    phone: val,
+                  }));
+                }}
+              />
             </div>
-            {error && (
-              <div className="text-red-600 text-center font-semibold mb-2">
-                {error}
-              </div>
-            )}
-            <button
-              type="submit"
-              className="bg-[#0085d4] w-[200px] hover:bg-[#e3a127] text-white font-bold !rounded-full p-2 flex items-center justify-center gap-2 shadow-lg transition-all duration-200 text-lg tracking-wide"
+
+            <input
+              name="email"
+              type="email"
+              placeholder="Email manzilingiz"
+              className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
+              required
+              value={form.email}
+              onChange={handleChange}
+            />
+            <select
+              name="user_type"
+              className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
+              id="user_type"
             >
-              {t("sign_up")}
-            </button>
-          </form>
-        )}
+              <option value="" disabled>
+                {t("participation_type")}
+              </option>
+              {professions?.map((item) => (
+                <option value={item?.id} key={item?.id}>
+                  {item?.name}
+                </option>
+              ))}
+              {/* <option value="">{"Ishtirokchi"}</option>
+              <option value="">{"Homiy"}</option>
+              <option value="">{"OAV"}</option> */}
+            </select>
+          </div>
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <input
+                name="password"
+                type="password"
+                placeholder="Yangi parolni kiriting"
+                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
+                required
+                value={form.password}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <input
+                name="passwordRepeat"
+                type="password"
+                placeholder="Parolni takrorlang"
+                className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0 "
+                required
+                value={form.passwordRepeat}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <input
+              name="acceptTerms"
+              type="checkbox"
+              className="mr-2 accent-[#0085d4]"
+              checked={form.acceptTerms}
+              onChange={handleChange}
+              required
+            />
+            <span className="text-sm text-gray-700 dark:text-gray-300">
+              {"Foydalanish shartlarini qabul qilaman"}
+            </span>
+          </div>
+
+          <button
+            type="submit"
+            className="bg-[#0085d4] w-[200px] hover:bg-[#e3a127] text-white font-bold !rounded-full p-2 flex items-center justify-center gap-2 shadow-lg transition-all duration-200 text-lg tracking-wide"
+          >
+            {t("sign_up")}
+          </button>
+        </form>
       </div>
     </div>
   );

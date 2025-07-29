@@ -106,14 +106,14 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
     };
 
     // Local uchun telefon, international uchun email
-    if (form.type === "local") {
-      mappedForm.phone = form.phone;
-    }
-    if (form.type === "international") {
-      mappedForm.email = form.email;
-      mappedForm.country = form?.country;
-      mappedForm.organization = form?.organization;
-    }
+    // if (form.type === "local") {
+    //   mappedForm.phone = form.phone;
+    // }
+    // if (form.type === "international") {
+    //   mappedForm.email = form.email;
+    //   mappedForm.country = form?.country;
+    //   mappedForm.organization = form?.organization;
+    // }
 
     try {
       const res = await FetchInstance<IValidateResponce>(

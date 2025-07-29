@@ -42,6 +42,21 @@ export interface IProfessionItem {
   created_at: string;
 }
 
+export interface IRegisterFormType  {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  profession_id: string;
+  birth_date: string;
+  gender: string;
+  email?: string;
+  country?: string;
+  organization?: string;
+  password: string;
+  passwordRepeat: string;
+  acceptTerms?: boolean;
+};
+
 export interface IValidateResponce {
   status: number;
   success: boolean;
@@ -72,3 +87,5 @@ export interface ITicketItem {
     updated_at: string;
   };
 }
+
+
