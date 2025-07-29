@@ -18,11 +18,11 @@ export default function RootPage() {
         <main className="main relative z-10">
           <NewsSection />
           <AboutSection />
-          <ExpertFeedback />
           <StatsSection />
           <ProgramSection />
           <SpeakersSection />
           <PartnersSection />
+          <ExpertFeedback />
           <GalerySection />
           <FAQSection />
           <ContactSection />

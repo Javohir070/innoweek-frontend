@@ -2,7 +2,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { IProfessionItem, IRegisterFormType, IResponse, IValidateResponce, IComplateResponce } from "@/types";
+import {
+  IProfessionItem,
+  IRegisterFormType,
+  IResponse,
+  IValidateResponce,
+  IComplateResponce,
+} from "@/types";
 import { FetchInstance } from "@/api/FetchInstance";
 import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/navigation";
@@ -21,7 +27,7 @@ const initialForm: RegisterFormWithPosition = {
   firstName: "",
   lastName: "",
   phone: "",
-  profession_id: ""  ,
+  profession_id: "",
   birth_date: "",
   gender: "",
   email: "",
@@ -44,7 +50,9 @@ export default function RegisterRolePage() {
   const [step, setStep] = useState<"register" | "otp">("register");
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
-  const [registerBody, setRegisterBody] = useState<Record<string, string | number | boolean | undefined>>({});
+  const [registerBody, setRegisterBody] = useState<
+    Record<string, string | number | boolean | undefined>
+  >({});
   const [authKey, setAuthKey] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -131,7 +139,10 @@ export default function RegisterRolePage() {
     } catch (err) {
       console.log(err);
       setError({
-        status: err instanceof Error ? err.message : "Bu raqam yoki email oldin ro'yxatdan o'tgan",
+        status:
+          err instanceof Error
+            ? err.message
+            : "Bu raqam yoki email oldin ro'yxatdan o'tgan",
       });
     } finally {
       setLoading(false);
@@ -169,7 +180,11 @@ export default function RegisterRolePage() {
         router.push("/profile");
       }
     } catch (error) {
-      setOtpError(error instanceof Error ? error.message : "Tasdiqlash kodi noto'g'ri kiritildi.");
+      setOtpError(
+        error instanceof Error
+          ? error.message
+          : "Tasdiqlash kodi noto'g'ri kiritildi."
+      );
     } finally {
       setLoading(false);
     }
@@ -229,23 +244,23 @@ export default function RegisterRolePage() {
               </div>
               <div>
                 <input
-                  name="position"
-                  type="text"
-                  placeholder="Lavozimingiz"
-                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
-                  required
-                  value={form.position}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
                   name="organization"
                   type="text"
                   placeholder="Ish joyingiz"
                   className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
                   required
                   value={form.organization}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  name="position"
+                  type="text"
+                  placeholder="Lavozimingiz"
+                  className="border-2 border-[#0085d4] rounded-lg px-2 py-2 w-full bg-white text-gray-900 dark:!bg-transparent dark:text-white focus:border-[#e3a127] focus:ring-[#e3a127] focus:outline-none focus:ring-0"
+                  required
+                  value={form.position}
                   onChange={handleChange}
                 />
               </div>
@@ -270,7 +285,6 @@ export default function RegisterRolePage() {
                   }}
                 />
               </div>
-
 
               <input
                 name="email"
@@ -297,9 +311,6 @@ export default function RegisterRolePage() {
                   </option>
                 ))}
               </select>
-            </div>
-
-            <div className="grid grid-cols-2 gap-6">
               <div>
                 <input
                   name="password"
@@ -323,7 +334,6 @@ export default function RegisterRolePage() {
                 />
               </div>
             </div>
-
             <div className="flex items-center gap-2">
               <input
                 name="acceptTerms"
@@ -345,10 +355,11 @@ export default function RegisterRolePage() {
             <button
               type="submit"
               disabled={loading || !isFormValid}
-              className={`w-[200px] font-bold !rounded-full p-2 flex items-center justify-center gap-2 shadow-lg transition-all duration-200 text-lg tracking-wide mx-auto ${loading || !isFormValid
+              className={`w-[200px] font-bold !rounded-full p-2 flex items-center justify-center gap-2 shadow-lg transition-all duration-200 text-lg tracking-wide mx-auto ${
+                loading || !isFormValid
                   ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                   : "bg-[#0085d4] hover:bg-[#e3a127] text-white"
-                }`}
+              }`}
             >
               {loading ? (
                 <>
@@ -390,10 +401,11 @@ export default function RegisterRolePage() {
             <button
               type="submit"
               disabled={loading}
-              className={`w-[200px] font-bold !rounded-full p-2 flex items-center justify-center gap-2 shadow-lg transition-all duration-200 text-lg tracking-wide mx-auto ${loading
-                ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-                : "bg-[#0085d4] hover:bg-[#e3a127] text-white"
-                }`}
+              className={`w-[200px] font-bold !rounded-full p-2 flex items-center justify-center gap-2 shadow-lg transition-all duration-200 text-lg tracking-wide mx-auto ${
+                loading
+                  ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                  : "bg-[#0085d4] hover:bg-[#e3a127] text-white"
+              }`}
             >
               {loading ? (
                 <>

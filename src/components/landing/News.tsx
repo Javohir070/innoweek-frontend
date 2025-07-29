@@ -1,13 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
-import userAvatar from "@/assets/img/services/616.jpg";
 import newsImage from "@/assets/img/about/news1.png";
-import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { useParams } from "next/navigation";
@@ -36,24 +34,33 @@ export default function NewsSection() {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.start();
+    }
+  }, [data]);
 
   return (
     <section
       id="portfolio"
-      className="testimonials bg-gray-50 dark:bg-gray-900 transition-colors duration-300 py-16"
+      className="testimonials bg-gray-50 dark:bg-gray-900 transition-colors duration-300 !py-0 lg:py-10 xl:py-12"
     >
-      <div className="container section-title" data-aos="fade-up">
+      <div className="container section-title pb-4" data-aos="fade-up">
         <h2 className="text-black dark:!text-white">INNOWEEK</h2>
         <div className="text-black dark:!text-gray-300">{t("Latest News")}</div>
       </div>
 
       <div className="container" data-aos="fade-up" data-aos-delay="100">
         <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          key={data.length} // <-- yangi key
           modules={[Navigation, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
           loop={true}
-          autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 3000 }}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
@@ -69,12 +76,12 @@ export default function NewsSection() {
               swiper.navigation.update();
             }
           }}
-          className="testimonials-slider"
+          className="testimonials-slider !pb-5"
         >
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <Link href={`/news/${item?.id}`}>
-                <div className="testimonial-item hover:cursor-pointer !bg-[#0085d4] dark:!bg-gray-800 m-4 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 ">
+                <div className="testimonial-item hover:cursor-pointer !bg-[#0085d4] dark:!bg-gray-800 rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 ">
                   <div className="row">
                     <div className="col-lg-8">
                       <h2 className="!text-white dark:!text-white">{item?.title}</h2>
