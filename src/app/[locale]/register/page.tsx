@@ -335,34 +335,6 @@ export default function RegisterRolePage() {
                       ))}
                     </select>
                   </div>
-                  {/* <div>
-                    <input
-                      name="birth_date"
-                      type="date"
-                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
-                      required
-                      value={form.birth_date}
-                      onChange={handleChange}
-                    />
-                  </div> */}
-                  <div>
-                    <select
-                      name="gender"
-                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
-                      required
-                      value={form.gender}
-                      onChange={handleChange}
-                    >
-                      <option value="" disabled>
-                        Jins
-                      </option>
-                      <option value="1">Erkak</option>
-                      <option value="2">Ayol</option>
-                    </select>
-                  </div>
-                </div>
-                {/* Password inputs */}
-                <div className="grid grid-cols-2 gap-6">
                   <div>
                     <input
                       name="password"
@@ -385,20 +357,64 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     />
                   </div>
+                  {/* <div>
+                    <input
+                      name="birth_date"
+                      type="date"
+                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                      required
+                      value={form.birth_date}
+                      onChange={handleChange}
+                    />
+                  </div> */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Jins
+                    </label>
+                    <div className="flex gap-6 items-center">
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="gender"
+                          value="1"
+                          checked={form.gender === "1"}
+                          onChange={handleChange}
+                          className="accent-[#0085d4]"
+                          required
+                        />
+                        <span>Erkak</span>
+                      </label>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="gender"
+                          value="2"
+                          checked={form.gender === "2"}
+                          onChange={handleChange}
+                          className="accent-[#0085d4]"
+                          required
+                        />
+                        <span>Ayol</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <input
+                      name="acceptTerms"
+                      type="checkbox"
+                      className="mr-2 accent-[#0085d4]"
+                      checked={form.acceptTerms}
+                      onChange={handleChange}
+                      required
+                    />
+                    <span className="text-sm text-gray-700 dark:text-gray-300">
+                      Foydalanish shartlarini qabul qilaman
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <input
-                    name="acceptTerms"
-                    type="checkbox"
-                    className="mr-2 accent-[#0085d4]"
-                    checked={form.acceptTerms}
-                    onChange={handleChange}
-                    required
-                  />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">
-                    Foydalanish shartlarini qabul qilaman
-                  </span>
-                </div>
+                {/* Foydalanish shartlari */}
+
+                {/* Password inputs */}
 
                 {error.status && (
                   <span className="text-red-500 text-xs">{error.status}</span>
@@ -509,34 +525,6 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     />
                   </div>
-                  {/* <div>
-                    <input
-                      name="birth_date"
-                      type="date"
-                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
-                      required
-                      value={form.birth_date}
-                      onChange={handleChange}
-                    />
-                  </div> */}
-                  <div>
-                    <select
-                      name="gender"
-                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
-                      required
-                      value={form.gender}
-                      onChange={handleChange}
-                    >
-                      <option value="" disabled>
-                        Jins
-                      </option>
-                      <option value="1">Erkak</option>
-                      <option value="2">Ayol</option>
-                    </select>
-                  </div>
-                </div>
-                {/* Password inputs */}
-                <div className="grid grid-cols-2 gap-6">
                   <div>
                     <input
                       name="password"
@@ -559,20 +547,64 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     />
                   </div>
+                  {/* <div>
+                    <input
+                      name="birth_date"
+                      type="date"
+                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                      required
+                      value={form.birth_date}
+                      onChange={handleChange}
+                    />
+                  </div> */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Jins
+                    </label>
+                    <div className="flex gap-6 items-center">
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="gender"
+                          value="1"
+                          checked={form.gender === "1"}
+                          onChange={handleChange}
+                          className="accent-[#0085d4]"
+                          required
+                        />
+                        <span>Erkak</span>
+                      </label>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="gender"
+                          value="2"
+                          checked={form.gender === "2"}
+                          onChange={handleChange}
+                          className="accent-[#0085d4]"
+                          required
+                        />
+                        <span>Ayol</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <input
+                      name="acceptTerms"
+                      type="checkbox"
+                      className="mr-2 accent-[#0085d4]"
+                      checked={form.acceptTerms}
+                      onChange={handleChange}
+                      required
+                    />
+                    <span className="text-sm text-gray-700 dark:text-gray-300">
+                      Foydalanish shartlarini qabul qilaman
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <input
-                    name="acceptTerms"
-                    type="checkbox"
-                    className="mr-2 accent-[#0085d4]"
-                    checked={form.acceptTerms}
-                    onChange={handleChange}
-                    required
-                  />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">
-                    Foydalanish shartlarini qabul qilaman
-                  </span>
-                </div>
+                {/* Foydalanish shartlari */}
+
+                {/* Password inputs */}
 
                 {error.status && (
                   <span className="text-red-500 text-xs">{error.status}</span>
