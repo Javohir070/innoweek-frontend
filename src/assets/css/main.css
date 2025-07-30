@@ -225,7 +225,7 @@ h6 {
 }
 
 .header .logo img {
-    max-height: 36px;
+    /* max-height: 36px; */
     margin-right: 8px;
 }
 
@@ -857,8 +857,8 @@ section,
 
 .hero {
     position: relative;
-    height: 100vh !important;
-    min-height: 992px !important;
+    /* height: 90vh !important; */
+    min-height: 900px !important;
     width: 100%;
     display: flex;
     align-items: center;

@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { INewsListItem, IResponse } from "@/types";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import section from "@/assets/img/section_bg_2.jpg";
 
 export default function NewsSection() {
   const t = useTranslations("news");
@@ -43,13 +44,20 @@ export default function NewsSection() {
   }, [data]);
 
   return (
-    <div className="!bg-[#0085D41A] !w-full pt-10 pb-6">
+    <div
+      className={`!w-full pt-10 pb-6`}
+      style={{
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
+    >
       <section
         id="portfolio"
-        className="testimonials !bg-transparent dark:bg-gray-900 transition-colors duration-300 !p-0"
+        className="testimonials !bg-transparent dark:bg-gray-900 transition-colors duration-300 pt-2 !p-0"
       >
         <div className="container section-title pb-4" data-aos="fade-up">
-          <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+          <h2 className="text-black dark:!text-white py-1">INNOWEEK</h2>
           <div className="text-black dark:!text-gray-300">
             {t("Latest News")}
           </div>

@@ -9,6 +9,7 @@ import expert_1_avatar from "@/assets/img/person/person-f-1.webp";
 import expert_2_avatar from "@/assets/img/person/person-m-1.webp";
 import expert_3_avatar from "@/assets/img/person/person-f-2.webp";
 import expert_4_avatar from "@/assets/img/person/person-f-3.webp";
+import section from "@/assets/img/section_bg_2.jpg";
 
 const ExpertFeedback = () => {
   const t = useTranslations("expert_feedback");
@@ -89,7 +90,13 @@ const ExpertFeedback = () => {
   }, [autoScroll]);
 
   return (
-    <div className="!bg-[#0085D41A] !w-full">
+    <div className=" !w-full"
+     style={{
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
+    >
       <section className="py-16 bg-transparent">
         <div className="container mx-auto">
           <div className="section-title" data-aos="fade-up">

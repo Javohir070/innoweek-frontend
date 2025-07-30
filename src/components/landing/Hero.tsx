@@ -6,6 +6,7 @@ import innoweekLogo from "@/assets/img/services/1234.png";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import RegisterModal2 from "../auth/RegisterModal2";
+import { Link } from "@/i18n/navigation";
 const HeroVideo = "/video/1.mp4";
 
 export default function HeroSection() {
@@ -63,7 +64,7 @@ export default function HeroSection() {
           <source src={HeroVideo} type="video/mp4" />
         </video>
       </div>
-      <section className="hero section bg-transparent !h-[80vh] !max-h-[992px] !p-0">
+      <section className="hero section bg-transparent !h-[60vh] !max-h-[992px] !p-0">
         <div className="container bg-transparent">
           <div className="row">
             <div className="col-lg-7 content-col" data-aos="fade-up">
@@ -78,18 +79,18 @@ export default function HeroSection() {
                   <p className="text-white">{t("hero description")}</p>
                 </div>
 
-                {/* <div className="buttonslink">
-                <div className="cta-button hover:bg-[#e3a127] rounded-full">
-                  <Link href="#services" className="btn border">
-                    <span className='text-white'>{t('hero btn')}</span>
-                  </Link>
+                <div className="buttonslink">
+                  {/* <div className="cta-button hover:bg-[#e3a127] rounded-full">
+                    <Link href="#services" className="btn border">
+                      <span className="text-white">{t("hero btn")}</span>
+                    </Link>
+                  </div> */}
+                  <div className="cta-button hover:bg-[#e3a127] hover:border-[#e3a127] rounded-full">
+                    <Link href="/register" className="btn border">
+                      <span className="text-white">{t("REGISTER")}</span>
+                    </Link>
+                  </div>
                 </div>
-                <div className="cta-button hover:bg-[#e3a127] hover:border-[#e3a127] rounded-full">
-                  <button className="btn border" onClick={() => setOpen(true)}>
-                    <span className='text-white'>{t("REGISTER")}</span>
-                  </button>
-                </div>
-              </div> */}
               </div>
             </div>
 

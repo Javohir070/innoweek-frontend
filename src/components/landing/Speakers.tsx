@@ -5,6 +5,7 @@ import Image from "next/image";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IResponse, ISpeakerItem } from "@/types";
 import { useTranslations } from "next-intl";
+import section from "@/assets/img/section_bg_2.jpg";
 
 import Aos from "aos";
 import { useParams } from "next/navigation";
@@ -14,16 +15,16 @@ const SpeakersSection = () => {
   const t = useTranslations("speakers");
   const lang = useParams<{ locale: string }>().locale || "uz";
   const [data, setData] = useState<ISpeakerItem[]>([]);
-  const [total, setTotal] = useState<number>(0);
-  const [limit, setLimit] = useState<number>(2);
+  // const [total, setTotal] = useState<number>(0);
+  // const [limit, setLimit] = useState<number>(2);
 
   const getSpeakers = async () => {
     try {
       const res = await FetchInstance<IResponse<ISpeakerItem[]>>(
-        `/api/v1.0/speakers/all?limit=${limit}&archive_id=7&lang=${lang}`
+        `/api/v1.0/speakers/all?limit=8&archive_id=7&lang=${lang}`
       );
       setData(res?.data);
-      setTotal(res?.pagination?.total || 0);
+      // setTotal(res?.pagination?.total || 0);
     } catch (error) {
       console.log(error);
     }
@@ -32,10 +33,17 @@ const SpeakersSection = () => {
   useEffect(() => {
     getSpeakers();
     Aos.init();
-  }, [limit, lang]);
+  }, [lang]);
 
   return (
-    <div className="!bg-[#0085D41A] !w-full">
+    <div
+      className="!w-full"
+      style={{
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
+    >
       <section
         id="team"
         className="team section !bg-transparent transition-colors duration-300 py-16"
@@ -80,7 +88,7 @@ const SpeakersSection = () => {
             ))}
           </div>
         </div>
-        {total >= limit && (
+        {/* {total >= limit && (
           <div className="text-center mt-8">
             <button
               onClick={() => setLimit(limit + 2)}
@@ -90,7 +98,7 @@ const SpeakersSection = () => {
               <DownCircleOutlined className="inline-block ml-2 text-lg" />
             </button>
           </div>
-        )}
+        )} */}
       </section>
     </div>
   );

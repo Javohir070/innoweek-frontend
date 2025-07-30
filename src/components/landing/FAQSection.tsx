@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import section from '@/assets/img/section_bg_2.jpg';
 
 const FAQSection = () => {
   const t = useTranslations('faq');
@@ -12,6 +13,14 @@ const FAQSection = () => {
   };
 
   return (
+    <div
+      style={{
+        width: "100%",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
+    >
     <section className="faq-9 faq section bg-transparent dark:bg-gray-900" id="faq">
       <div className="container section-title" data-aos="fade-up">
         <h2 className="text-black  dark:!text-white">INNOWEEK</h2>
@@ -64,6 +73,8 @@ const FAQSection = () => {
         </div>
       </div>
     </section>
+
+    </div>
   );
 };
 

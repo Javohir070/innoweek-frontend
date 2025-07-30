@@ -60,13 +60,13 @@
     "PROGRAM": "ПРОГРАММА",
     "day_1": "9-ОКТЯБРЯ",
     "day_2": "10-ОКТЯБРЯ",
-    "day_3": "11-ОКТЯБРЯ"
+    "day_3": "11-ОКТЯБРЯ",
+    "LOAD_MORE": "Загрузить больше"
   },
 
   "speakers": {
     "INNOWEEK": "INNOWEEK",
-    "SPEAKERS": "СПИКЕРЫ",
-    "LOAD_MORE": "Ещё загрузить"
+    "SPEAKERS": "СПИКЕРЫ"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",

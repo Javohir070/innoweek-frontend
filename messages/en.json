@@ -27,7 +27,7 @@
   "news": {
     "INNOWEEK": "INNOWEEK",
     "Latest News": "Latest News",
-    "more":"More"
+    "more": "More"
   },
   "about": {
     "title": "IDEAS WITHOUT BORDERS",
@@ -60,13 +60,13 @@
     "PROGRAM": "PROGRAM",
     "day_1": "October 9",
     "day_2": "October 10",
-    "day_3": "October 11"
+    "day_3": "October 11",
+    "LOAD_MORE": "Load More"
   },
 
   "speakers": {
     "INNOWEEK": "INNOWEEK",
-    "SPEAKERS": "SPEAKERS",
-    "LOAD_MORE": "Load More"
+    "SPEAKERS": "SPEAKERS"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",
@@ -175,8 +175,8 @@
     "password": "Enter password",
     "no_account": "Don't have an account?",
     "register": "Register",
-    "logging_in": "Logging in...", 
-     "login_error": "Login error"
+    "logging_in": "Logging in...",
+    "login_error": "Login error"
   },
   "register_modal": {
     "register_modal_title": "General Information",

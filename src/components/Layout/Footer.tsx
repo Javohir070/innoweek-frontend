@@ -1,6 +1,6 @@
 import React from "react";
 import bg from "@/assets/img/footer_bg.png";
-import footer_logo from "@/assets/img/logo.webp";
+import footer_logo from "@/assets/img/services/1234.png";
 import Image from "next/image";
 import { RiFacebookBoxFill, RiInstagramFill, RiTelegram2Fill, RiTwitchFill, RiTwitterFill } from "react-icons/ri";
 
@@ -32,8 +32,8 @@ const Footer = () => {
               />
               {/* <h2 className="text-xl font-bold uppercase mb-6">INNOWEEK</h2> */}
             </div>
-            <p className="text-lg mb-6">Follow Us</p>
-            <ul className="list-none p-0 flex flex-row gap-4">
+            <p className="text-lg mb-1 ml-1.5">Follow Us</p>
+            <ul className="list-none p-0 flex flex-row gap-4 ml-1.5">
               <li className="mb-2">
                 <a
                   href="#"

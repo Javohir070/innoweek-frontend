@@ -6,6 +6,7 @@ import innoweekLogo from "@/assets/img/logo_inno.png";
 import { useTranslations } from "next-intl";
 import { Link, useRouter as Router } from "@/i18n/navigation";
 import { usePathname, useParams, useRouter } from "next/navigation";
+import { LoginOutlined } from "@ant-design/icons";
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
@@ -78,9 +79,13 @@ export default function Header() {
       <div className="container-fluid container-xl py-2 flex justify-between items-center w-full">
         <Link
           href="/"
-          className="logo d-flex align-items-center me-auto me-xl-0 rounded-lg p-2 !pl-4"
+          className="logo d-flex align-items-center me-auto me-xl-0 rounded-lg"
         >
-          <Image src={innoweekLogo} alt="Logo" className="w-[110px] !h-[60px]" />
+          <Image
+            src={innoweekLogo}
+            alt="Logo"
+            className="w-[110px]"
+          />
         </Link>
 
         <nav id="navmenu" className="navmenu !uppercase">
@@ -158,16 +163,25 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex max-[1200px]:hidden items-center justify-end gap-4">
+        <div className="flex max-[1200px]:hidden items-center justify-end gap-3">
+            <button
+            className="!outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full whitespace-nowrap"
+            onClick={() => {
+              router.push(`/register`);
+            }}
+            >
+            {registerLangs("REGISTER")}
+            </button>
           <div className="cta-button rounded-full">
             <button
-               className="!w-[200px] !outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full"
+              className="!bg-transparent"
               onClick={() => {
                 router.push(`/login`);
               }}
             >
               <span className="text-sm font-medium">
-                {registerLangs("LOGIN")}
+                <LoginOutlined className="inline-block text-2xl" />
+                {/* {registerLangs("REGISTER")} */}
               </span>
             </button>
           </div>

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useRef } from "react";
+import section from "@/assets/img/section_bg_2.jpg";
 
 export default function StatsSection() {
   const t = useTranslations("stats");
@@ -76,9 +77,16 @@ export default function StatsSection() {
   };
 
   return (
-    <div className="!bg-[#0085D41A] !w-full">
+    <div
+      className="!w-full"
+      style={{
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
+    >
       <section
-        className="relative py-8 px-4 md:px-10 bg-transparent"
+        className="relative !pb-0 !pt-10 px-4 md:px-10 bg-transparent"
         id="stats"
       >
         <div
@@ -86,9 +94,7 @@ export default function StatsSection() {
           data-aos="fade-up"
         >
           <h2 className="text-black dark:!text-white">INNOWEEK</h2>
-          <div className="text-black dark:!text-white">
-            {t('COVERAGE')}
-          </div>
+          <div className="text-black dark:!text-white">{t("COVERAGE")}</div>
         </div>
 
         <div className="relative">
@@ -119,10 +125,7 @@ export default function StatsSection() {
               >
                 <div className="g-4 flex gap-6">
                   {stats.map((stat, index) => (
-                    <div
-                      key={index}
-                      className="min-w-[200px] w-[350px]"
-                    >
+                    <div key={index} className="min-w-[200px] w-[350px]">
                       <div
                         className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
                         data-aos="fade-left"
