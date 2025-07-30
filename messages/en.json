@@ -17,7 +17,8 @@
     "Ideas without borders": "Ideas without borders",
     "hero description": "The event brings together leading local and international companies, investors, diplomats, entrepreneurs, scientists, startups, technology experts, and representatives of government agencies in one place every year. It is also an ideal platform for communication with leaders of the innovation sector and stakeholders in collaboration and investment.",
     "hero btn": "INNOWEEK 2025",
-    "REGISTER": "Sign up",
+    "REGISTER": "SIGN UP",
+    "LOGIN": "SIGN IN",
     "day": "Day",
     "hour": "Hour",
     "minute": "Minute",
@@ -139,6 +140,18 @@
     "title": "Have a question? Check out the FAQ",
     "description": "",
     "items": [
+      {
+        "question": "What is the main goal of the event?",
+        "answer": "The main goal of InnoWeek is to promote innovative ideas, scientific developments, and technologies in Uzbekistan, strengthen international cooperation, and support young innovators."
+      },
+      {
+        "question": "Which innovative developments or projects will be presented?",
+        "answer": "nnovative projects in artificial intelligence, digital transformation, biotechnology, green energy, and industrial engineering will be showcased."
+      },
+      {
+        "question": "What opportunities are provided for youth and students?",
+        "answer": "Youth and students can participate in startup competitions, masterclasses, training sessions, and meetings with potential investors."
+      },
       {
         "question": "How to get to CAEx?",
         "answer": "To ensure convenient access to the “InnoWeek-2025” event, taking place from October 9–11, 2025, the Ministry of Higher Education, Science and Innovation will provide free shuttle buses from the “Uzbekistan” Hotel and “Do‘stlik” metro station to the “CAEx Uzbekistan” exhibition complex."

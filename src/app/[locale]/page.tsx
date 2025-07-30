@@ -14,7 +14,7 @@ export default function RootPage() {
   return (
     <>
       <HeroSection />
-      <section className="xl:px-[80px] lg:px-[20px] bg-transparent ">
+      <section className="!p-0 bg-transparent ">
         <main className="main relative z-10">
           <NewsSection />
           <AboutSection />

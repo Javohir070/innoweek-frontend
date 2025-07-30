@@ -35,36 +35,36 @@ const ContactSection = () => {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <div className="contact-card !bg-[#3b82f6] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
-                <div className="icon-box">
-                  <i className="bi bi-geo-alt"></i>
+              <div className="contact-card !bg-[#0085d4] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
+                <div className="icon-box !bg-[#3b9ded]">
+                  <i className="bi bi-geo-alt text-white"></i>
                 </div>
                 <div className="contact-text">
                   <h4>{t("address_title")}</h4>
                   <p className="text-white">{t("address_value")}</p>
                 </div>
               </div>
-              <div className="contact-card !bg-[#3b82f6] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
-                <div className="icon-box">
-                  <i className="bi bi-envelope"></i>
+              <div className="contact-card !bg-[#0085d4] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
+                <div className="icon-box !bg-[#3b9ded]">
+                  <i className="bi bi-envelope text-white"></i>
                 </div>
                 <div className="contact-text">
                   <h4>{t("email_title")}</h4>
                   <p className="text-white">info@innoweek.uz</p>
                 </div>
               </div>
-              <div className="contact-card !bg-[#3b82f6] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
-                <div className="icon-box">
-                  <i className="bi bi-telephone !text-[#3256ca]"></i>
+              <div className="contact-card !bg-[#0085d4] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
+                <div className="icon-box !bg-[#3b9ded]">
+                  <i className="bi bi-telephone text-white"></i>
                 </div>
                 <div className="contact-text">
                   <h4>{t("phone_title")}</h4>
                   <p className="text-white">+998 71 203 32 00</p>
                 </div>
               </div>
-              <div className="contact-card !bg-[#3b82f6] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
-                <div className="icon-box">
-                  <i className="bi bi-clock"></i>
+              <div className="contact-card !bg-[#0085d4] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
+                <div className="icon-box !bg-[#3b9ded]">
+                  <i className="bi bi-clock text-white"></i>
                 </div>
                 <div className="contact-text">
                   <h4 className="text-white">{t("working_hours")}</h4>
@@ -74,7 +74,7 @@ const ContactSection = () => {
             </div>
             <div>
               <div
-                className="contact-form-container !bg-[#3b82f6] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-6 mt-8"
+                className="contact-form-container !bg-[#0085d4] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-6 mt-8"
                 data-aos="fade-up"
                 data-aos-delay="400"
               >

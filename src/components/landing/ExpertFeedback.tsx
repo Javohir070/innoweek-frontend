@@ -90,83 +90,87 @@ const ExpertFeedback = () => {
   }, [autoScroll]);
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto">
-        <div className="section-title" data-aos="fade-up">
-          <h2 className="text-black dark:!text-white">INNOWEEK</h2>
-          <div className="text-black dark:!text-gray-300">{t("about_us")}</div>
-        </div>
-        <div className="flex relative flex-col md:flex-row items-start gap-18">
-          {/* Left panel */}
-          <div className="flex flex-col items-center md:items-start w-full md:w-1/3">
-            <h3 className="text-xl !font-bold text-black dark:!text-gray-300 mb-6">
-              {t("experts_opinion")}
-            </h3>
-            <div className="md:absolute md:bottom-10 flex items-center gap-3 mt-6 md:mt-0">
-              <button
-                onClick={handlePrev}
-                className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
-                disabled={isAnimating}
-              >
-                <LuMoveLeft size={28} />
-              </button>
-              <button
-                onClick={handleNext}
-                className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
-                disabled={isAnimating}
-              >
-                <LuMoveRight size={28} />
-              </button>
+    <div className="!bg-[#0085D41A] !w-full pt-10 pb-6">
+      <section className="py-16 bg-transparent">
+        <div className="container mx-auto">
+          <div className="section-title" data-aos="fade-up">
+            <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+            <div className="text-black dark:!text-gray-300">
+              {t("about_us")}
             </div>
           </div>
-          {/* Right panel - Slider */}
-          <div className="w-full md:w-2/3 flex justify-center">
-            <div className="overflow-hidden w-[680px]">
-              <div
-                className="flex transition-transform duration-400 ease-in-out"
-                style={{
-                  width: `${data.length * 320 + (data.length - 1) * 24}px`,
-                  transform: `translateX(-${currentIndex * (320 + 24)}px)`,
-                }}
-              >
-                {data.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-[#0085d4] dark:bg-gray-800 text-white w-[320px] p-6 rounded-lg flex flex-col justify-center mr-6 last:mr-0"
-                  >
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i}>
-                          <IoMdStar className="text-lg" />
-                        </span>
-                      ))}
-                    </div>
-                    <p className="italic mb-4 mt-3 text-[15px]">
-                      "{item.position}"
-                    </p>
-                    <div className="flex items-center gap-4">
-                      <Image
-                        src={item?.image}
-                        alt={item.full_name}
-                        width={48}
-                        height={48}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <p className="font-semibold m-0">{item.full_name}</p>
-                        <p className="text-sm text-white/80 m-0">
-                          {item.country}
-                        </p>
+          <div className="flex relative flex-col md:flex-row items-start gap-18">
+            {/* Left panel */}
+            <div className="flex flex-col items-center md:items-start w-full md:w-1/3">
+              <h3 className="text-xl !font-bold text-black dark:!text-gray-300 mb-6">
+                {t("experts_opinion")}
+              </h3>
+              <div className="md:absolute md:bottom-10 flex items-center gap-3 mt-6 md:mt-0">
+                <button
+                  onClick={handlePrev}
+                  className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
+                  disabled={isAnimating}
+                >
+                  <LuMoveLeft size={28} />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
+                  disabled={isAnimating}
+                >
+                  <LuMoveRight size={28} />
+                </button>
+              </div>
+            </div>
+            {/* Right panel - Slider */}
+            <div className="w-full md:w-2/3 flex justify-center">
+              <div className="overflow-hidden w-full">
+                <div
+                  className="flex transition-transform duration-400 ease-in-out"
+                  style={{
+                    width: `${data.length * 320 + (data.length - 1) * 24}px`,
+                    transform: `translateX(-${currentIndex * (320 + 24)}px)`,
+                  }}
+                >
+                  {data.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-[#0085d4] dark:bg-gray-800 text-white w-[320px] p-6 rounded-lg flex flex-col justify-center mr-6 last:mr-0"
+                    >
+                      <div className="flex gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i}>
+                            <IoMdStar className="text-lg" />
+                          </span>
+                        ))}
+                      </div>
+                      <p className="italic mb-4 mt-3 text-[15px]">
+                        {item.position}
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <Image
+                          src={item?.image}
+                          alt={item.full_name}
+                          width={48}
+                          height={48}
+                          className="rounded-full"
+                        />
+                        <div>
+                          <p className="font-semibold m-0">{item.full_name}</p>
+                          <p className="text-sm text-white/80 m-0">
+                            {item.country}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

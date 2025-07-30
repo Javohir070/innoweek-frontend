@@ -58,7 +58,7 @@ export interface IRegisterFormType {
   country?: string;
   organization?: string;
   password: string;
-  passwordRepeat: string;
+  password_confirmation: string;
   acceptTerms?: boolean;
 }
 

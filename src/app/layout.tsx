@@ -47,7 +47,7 @@ export default async function RootLayout({
   return (
     <html lang={locale || "uz"} suppressHydrationWarning>
       <body
-        className={`${roboto_font.variable} ${raleway.variable} ${nunitoSans.variable} antialiased !font-nunito-sans `}
+        className={`${roboto_font.variable} ${raleway.variable} ${nunitoSans.variable} antialiased !font-nunito-sans !p-0`}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
           {children}

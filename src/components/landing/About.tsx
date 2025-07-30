@@ -22,7 +22,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="about section bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      className="about section bg-gray-50 dark:bg-gray-900 transition-colors duration-300 !pt-10 !pb-6"
     >
       <div className="container section-title" data-aos="fade-up">
         <h2 className="text-black dark:!text-white">INNOWEEK</h2>

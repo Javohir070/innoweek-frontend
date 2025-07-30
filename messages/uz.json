@@ -23,7 +23,8 @@
     "Ideas without borders": "Chegarasiz g'oyalar",
     "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
     "hero btn": "INNOWEEK 2025",
-    "REGISTER": "Ro'yxatdan o'tish",
+    "REGISTER": "RO'YXATDAN O'TISH",
+    "LOGIN": "KIRISH",
     "day": "Kun",
     "hour": "soat",
     "minute": "daqiqa",
@@ -147,6 +148,18 @@
     "description": "",
     "items": [
       {
+        "question": "Tadbirning asosiy maqsadi nima?",
+        "answer": "InnoWeek tadbirining asosiy maqsadi — O‘zbekistonda innovatsion g‘oyalar, ilmiy ishlanmalar va texnologiyalarni ommalashtirish, xalqaro hamkorlikni mustahkamlash hamda yosh innovatorlarni qo‘llab-quvvatlashdir."
+      },
+      {
+        "question": "Ko‘rgazmada qanday innovatsion ishlanmalar yoki loyihalar namoyish etiladi?",
+        "answer": "Tadbirda sun’iy intellekt, raqamli transformatsiya, biotexnologiya, yashil energiya va sanoat muhandisligiga oid innovatsion ishlanmalar namoyish etiladi."
+      },
+      {
+        "question": "Yoshlar va talabalar uchun qanday imkoniyatlar mavjud?",
+        "answer": "Yoshlar va talabalar uchun startap tanlovlari, master-klasslar, treninglar va investorlar bilan uchrashuvlar tashkil etilgan."
+      },
+      {
         "question": "СAEx ga qanday yetib borsa buladi?",
         "answer": "2025-yil 9–11-oktabr kunlari boʻlib oʻtadigan “InnoWeek-2025”da ishtirok etish uchun qulaylik yaratish maqsadida Oliy taʼlim, fan va innovatsiyalar vazirligi, “O‘zbekiston” mehmonxonasi hamda “Do‘stlik” metro bekatlaridan \"CAEx Uzbekistan\" koʻrgazmalar majmuasiga bepul avtobuslar qatnovi yoʻlga qoʻyiladi."
       },
@@ -201,14 +214,14 @@
     "feedback_1_desc": "“InnoWeek 2024 chinakam global muloqot maydoniga aylandi. Bu yerda shunchaki gʻoyalar emas, balki butun mintaqaga tadbiq etilishi mumkin boʻlgan amaliy yechimlar yaratilmoqda.”",
     "feedback_1_expert": "Turaj Amrey",
     "expert_1_country": "Eron",
-    "feedback_2_desc": "“Oʻzbekistonning innovatsion ekotizimidagi ochiqlik meni hayratga soldi. InnoWeek ilmiy va amaliy ishlanmalar boʻyicha yuqori tashkilotchilik darajasi va strategik fikrlashni namoyon etdi.”", 
-    "feedback_2_expert": "Vesselin Halachev", 
-    "expert_2_country": "Bolgariya" ,
-    "feedback_3_desc": "“InnoWeek 2024'dа barqarorlik va yoshlar startaplariga qaratilgan e’tibor haqiqiy ilhom manbai boʻldi. Oʻzbekiston davlat innovatsion biznes uchun qanday ishonchli hamkor boʻla olishini koʻrsatmoqda.”", 
-    "feedback_3_expert": "Sasha Wunsch-Vincent", 
+    "feedback_2_desc": "“Oʻzbekistonning innovatsion ekotizimidagi ochiqlik meni hayratga soldi. InnoWeek ilmiy va amaliy ishlanmalar boʻyicha yuqori tashkilotchilik darajasi va strategik fikrlashni namoyon etdi.”",
+    "feedback_2_expert": "Vesselin Halachev",
+    "expert_2_country": "Bolgariya",
+    "feedback_3_desc": "“InnoWeek 2024'dа barqarorlik va yoshlar startaplariga qaratilgan e’tibor haqiqiy ilhom manbai boʻldi. Oʻzbekiston davlat innovatsion biznes uchun qanday ishonchli hamkor boʻla olishini koʻrsatmoqda.”",
+    "feedback_3_expert": "Sasha Wunsch-Vincent",
     "expert_3_country": "Angliya",
-    "feedback_4_desc": "“Toshkentdagi InnoWeek oddiy koʻrgazma emas — bu Markaziy Osiyo bozoriga kirish uchun strategik eshik. Bu yerda oʻsish energiyasi va xalqaro hamkorlik uchun ulkan salohiyat seziladi.”", 
-    "feedback_4_expert": "Yerbol Suleymanov", 
-    "expert_4_country": "Qozog'iston" 
+    "feedback_4_desc": "“Toshkentdagi InnoWeek oddiy koʻrgazma emas — bu Markaziy Osiyo bozoriga kirish uchun strategik eshik. Bu yerda oʻsish energiyasi va xalqaro hamkorlik uchun ulkan salohiyat seziladi.”",
+    "feedback_4_expert": "Yerbol Suleymanov",
+    "expert_4_country": "Qozog'iston"
   }
 }

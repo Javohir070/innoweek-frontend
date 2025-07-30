@@ -2,10 +2,11 @@
 
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IGalleryItem, IResponse } from "@/types";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Image as AntdImage, Pagination } from "antd";
+import galery_1 from "@/assets/img/abstract/gallery_1732534936.jpg";
+import { ArrowsAltOutlined } from "@ant-design/icons";
 import "antd/dist/reset.css";
 
 const Gallery = () => {
@@ -44,7 +45,7 @@ const Gallery = () => {
         <div className="isotope-layout">
           <AntdImage.PreviewGroup items={images}>
             <div className="row g-4 isotope-container">
-              {data?.map((item, idx) => (
+              {data?.map((item) => (
                 <div
                   className="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-ui"
                   key={item?.id}
@@ -53,12 +54,24 @@ const Gallery = () => {
                     <figure className="entry-image">
                       <AntdImage
                         src={item?.image ? `${BASE_URL}${item?.image}` : ""}
-                        width={305}
-                        height={225}
+                         width={"100%"}
+                        height={"100%"}
                         alt="Lavha 1"
                         className="img-fluid rounded-lg cursor-pointer"
                         style={{ objectFit: "cover" }}
-                        preview={{ visible: false }}
+                        preview={{
+                          src: item?.image
+                            ? `${BASE_URL}${item?.image}`
+                            : galery_1.src,
+                          mask: (
+                            <div
+                              className="absolute left-[16px] bottom-[16px] bg-[#0085d4] hover:bg-gray-900 bg-opacity-80 rounded-md p-2 flex items-center gap-2 shadow"
+                              style={{ zIndex: 2 }}
+                            >
+                              <ArrowsAltOutlined style={{ fontSize: 22 }} />
+                            </div>
+                          ),
+                        }}
                       />
                     </figure>
                   </article>

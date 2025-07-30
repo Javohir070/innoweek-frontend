@@ -7,6 +7,11 @@ export const FetchInstance = async <T>(
     const headers: HeadersInit = {
       "Content-Type": "application/json",
     };
+    const token = localStorage.getItem("token")
+    if(token){
+      headers.Authorization = `Bearer ${token}`
+    }
+
     const res = await fetch(`${BASE_URL}${endpoint}`, {
       ...options,
       headers,

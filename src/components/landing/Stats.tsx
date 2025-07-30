@@ -76,72 +76,83 @@ export default function StatsSection() {
   };
 
   return (
-    <section className="relative py-8 px-4 md:px-10 bg-transparent">
-      <div
-        className="container section-title absolute z-[20] pb-0"
-        data-aos="fade-up"
+    <div className="!bg-[#0085D41A] !w-full">
+      <section
+        className="relative py-8 px-4 md:px-10 bg-transparent"
+        id="stats"
       >
-        <h2 className="text-black dark:!text-white">INNOWEEK</h2>
-        <div className="text-black dark:!text-white">
-          {currentLang === "uz"
-            ? "QAMROV"
-            : currentLang === "ru"
-            ? "ОХВАТ"
-            : "COVERAGE"}
+        <div
+          className="container section-title absolute z-[20] pb-0"
+          data-aos="fade-up"
+        >
+          <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+          <div className="text-black dark:!text-white">
+            {currentLang === "uz"
+              ? "QAMROV"
+              : currentLang === "ru"
+              ? "ОХВАТ"
+              : "COVERAGE"}
+          </div>
         </div>
-      </div>
 
-      <div className="relative">
-        <button
-          onClick={scrollLeft}
-          className="hidden md:flex absolute left-[-23px] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-black transition"
-        >
-          <ChevronLeft />
-        </button>
+        <div className="relative">
+          <button
+            onClick={scrollLeft}
+            className="hidden md:flex absolute left-[-23px] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-black transition"
+          >
+            <ChevronLeft />
+          </button>
 
-        <button
-          onClick={scrollRight}
-          className="hidden md:flex absolute right-[-23px] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 p-2 shadow hover:bg-black transition !rounded-full"
-        >
-          <ChevronRight />
-        </button>
+          <button
+            onClick={scrollRight}
+            className="hidden md:flex absolute right-[-23px] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 p-2 shadow hover:bg-black transition !rounded-full"
+          >
+            <ChevronRight />
+          </button>
 
-        <section className="stats section min-w-full bg-transparent">
-          <div className="container" data-aos="fade-left" data-aos-delay="100">
+          <section className="stats section min-w-full bg-transparent">
             <div
-              ref={scrollContainerRef}
-              id="scrollContainer"
-              className="overflow-x-hidden scroll-smooth flex gap-6  px-1"
+              className="container"
+              data-aos="fade-left"
+              data-aos-delay="100"
             >
-              <div className="g-4 flex gap-6">
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="col-xl-3 col-lg-6 col-md-6 min-w-[200px] w-[300px]"
-                  >
+              <div
+                ref={scrollContainerRef}
+                id="scrollContainer"
+                className="overflow-x-hidden scroll-smooth flex gap-6  px-1"
+              >
+                <div className="g-4 flex gap-6">
+                  {stats.map((stat, index) => (
                     <div
-                      className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
-                      data-aos="fade-left"
-                      data-aos-delay={100 * (index + 1)}
+                      key={index}
+                      className="col-xl-3 col-lg-3 col-md-3 min-w-[200px] w-[300px]"
                     >
-                      <div className="metric-header">
-                        <div className="metric-icon-wrapper ">{stat?.icon}</div>
-                        <div className="metric-value">
-                          <span>{stat.value}</span>
+                      <div
+                        className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
+                        data-aos="fade-left"
+                        data-aos-delay={100 * (index + 1)}
+                      >
+                        <div className="metric-header">
+                          <div className="metric-icon-wrapper ">
+                            {stat?.icon}
+                          </div>
+                          <div className="metric-value">
+                            <span>{stat.value}</span>
+                          </div>
+                        </div>
+                        <div className="metric-info">
+                          <h4>{stat.title}</h4>
+                          <p className="text-white">{stat.description}</p>
                         </div>
                       </div>
-                      <div className="metric-info">
-                        <h4>{stat.title}</h4>
-                        <p className="text-white">{stat.description}</p>
-                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </div>
-    </section>
+          </section>
+        </div>
+      </section>
+    </div>
   );
 }

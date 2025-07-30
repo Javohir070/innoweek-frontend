@@ -35,7 +35,7 @@ const initialForm: RegisterFormWithPosition = {
   country: "",
   organization: "",
   password: "",
-  passwordRepeat: "",
+  password_confirmation: "",
   acceptTerms: false,
   position: "",
   type: "local",
@@ -67,8 +67,9 @@ export default function RegisterRolePage() {
     form.lastName.trim() !== "" &&
     form.phone.trim().length === 9 &&
     form.profession_id !== "" &&
-    form.password.length >= 6 &&
-    form.password === form.passwordRepeat &&
+    form.password.length >= 8 &&
+    form.password === form.password_confirmation &&
+    form.gender !== "" &&
     form.acceptTerms;
   console.log(isFormValid);
 
@@ -88,7 +89,7 @@ export default function RegisterRolePage() {
     setLoading(true);
 
     // Password validation
-    if (form.password !== form.passwordRepeat) {
+    if (form.password !== form.password_confirmation) {
       setError({ status: "passwords_do_not_match" });
       setLoading(false);
       return;
@@ -115,6 +116,7 @@ export default function RegisterRolePage() {
         profession_id: form.profession_id,
         gender: form.gender,
         password: form.password,
+        password_confirmation: form.password_confirmation
       };
     } else if (form.type === "international") {
       mappedForm = {
@@ -247,13 +249,13 @@ export default function RegisterRolePage() {
             <div className="flex flex-row justify-center items-center gap-4 mb-8">
               <button
                 onClick={() => setRegisterType("local")}
-                className="w-[200px] bg-[#0085d4] text-white px-6 py-2 rounded-full font-bold"
+                className="w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold"
               >
                 Local
               </button>
               <button
                 onClick={() => setRegisterType("international")}
-                className="w-[200px] bg-[#e3a127] text-white px-6 py-2 rounded-full font-bold"
+                className="w-[200px] !rounded-3xl !border-[#e3a127] border text-[#e3a127] px-6 py-2 font-bold"
               >
                 International
               </button>
@@ -289,15 +291,15 @@ export default function RegisterRolePage() {
                     {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Telefon raqam
                     </label> */}
-                    <div className="flex">
-                      <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-[#0085d4] bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                    <div className="flex border-2 border-[#0085d4] !rounded-lg px-3 py-2 w-full">
+                      <span className="">
                         +998
                       </span>
                       <input
                         name="phone"
                         type="tel"
                         placeholder="Telefon raqam (901234567)"
-                        className="border-2 border-[#0085d4] rounded-r-lg px-3 py-2 w-full"
+                        className="outline-none w-full !ml-2"
                         required
                         maxLength={9}
                         pattern="\d{9}"
@@ -348,12 +350,12 @@ export default function RegisterRolePage() {
                   </div>
                   <div>
                     <input
-                      name="passwordRepeat"
+                      name="password_confirmation"
                       type="password"
                       placeholder="Parolni qayta kiriting"
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
-                      value={form.passwordRepeat}
+                      value={form.password_confirmation}
                       onChange={handleChange}
                     />
                   </div>
@@ -538,12 +540,12 @@ export default function RegisterRolePage() {
                   </div>
                   <div>
                     <input
-                      name="passwordRepeat"
+                      name="password_confirmation"
                       type="password"
                       placeholder="Parolni qayta kiriting"
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
-                      value={form.passwordRepeat}
+                      value={form.password_confirmation}
                       onChange={handleChange}
                     />
                   </div>

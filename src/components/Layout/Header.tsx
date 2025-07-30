@@ -21,7 +21,6 @@ export default function Header() {
   // importlar tepasida kerakli state:
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
   const changeLang = (lang: string) => {
     setActiveLang(lang);
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
@@ -94,8 +93,9 @@ export default function Header() {
               >
                 <Link
                   href={item.key}
-                  className={`${activeMenu === item.key ? "active" : ""
-                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className={`${
+                    activeMenu === item.key ? "active" : ""
+                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -124,10 +124,7 @@ export default function Header() {
                 {item.dropdown && (
                   <ul>
                     {item.dropdown.map((subItem, subIndex) => (
-                      <li
-                        key={subIndex}
-
-                      >
+                      <li key={subIndex}>
                         <Link
                           href={subItem.key}
                           className="!font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50"
@@ -165,13 +162,13 @@ export default function Header() {
         <div className="flex max-[1200px]:hidden items-center justify-end gap-4">
           <div className="cta-button bg-gray-800/70 hover:bg-gray-800 rounded-full">
             <button
-              className="btn !w-[160px] !outline-none px-4 py-1"
+              className="btn !w-[200px] !outline-none px-4 py-2 "
               onClick={() => {
-                router.push(`/register`);
+                router.push(`/login`);
               }}
             >
               <span className="text-white text-sm font-medium">
-                {registerLangs("REGISTER")}
+                {registerLangs("LOGIN")}
               </span>
             </button>
           </div>
@@ -198,8 +195,18 @@ export default function Header() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="text-gray-800 dark:text-white focus:outline-none"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
       </div>
@@ -236,19 +243,6 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-
-            <li>
-              <button
-                className="mt-2 w-full bg-gray-800 text-white py-2 rounded"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  router.push(`/register`);
-                }}
-              >
-                {registerLangs("REGISTER")}
-              </button>
-            </li>
-
             <li>
               <Select
                 value={shortLabel[activeLang as keyof typeof shortLabel]}
@@ -257,16 +251,25 @@ export default function Header() {
                   setIsMenuOpen(false);
                 }}
                 style={{ width: "100%" }}
-                dropdownMatchSelectWidth={false}
                 options={langOptions}
-                dropdownClassName="!p-0 !text-center"
-                className="w-full text-center uppercase font-semibold mt-2"
+                className="!w-[200px] text-start uppercase font-semibold mt-2"
               />
+            </li>
+
+            <li>
+              <button
+                className="mt-2 w-[200px] bg-gray-800 text-white py-2 rounded"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  router.push(`/login`);
+                }}
+              >
+                {registerLangs("LOGIN")}
+              </button>
             </li>
           </ul>
         </div>
       )}
-
     </header>
   );
 }
