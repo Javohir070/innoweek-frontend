@@ -26,7 +26,8 @@
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
-    "Latest News": "Последние новости"
+    "Latest News": "Последние новости",
+    "more": "Подробнее"
   },
   "about": {
     "title": "ИДЕИ БЕЗ ГРАНИЦ",
@@ -183,7 +184,8 @@
     "password": "Введите пароль",
     "no_account": "У вас нет аккаунта?",
     "register": "Зарегистрироваться",
-    "logging_in": "Вход в систему..."
+    "logging_in": "Вход в систему...",
+    "login_error": "Ошибка входа"
   },
   "register_modal": {
     "register_modal_title": "Общая информация",
@@ -201,7 +203,7 @@
     "female": "Женский",
     "accept_terms": "Я принимаю условия использования",
     "select_country": "Выберите страну *",
-    "organization": "Организация *", 
+    "organization": "Организация *",
     "sign_up": "Зарегистрироваться",
     "email": "Эл. почта *",
     "country": "Страна *",

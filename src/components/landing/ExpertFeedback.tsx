@@ -90,7 +90,7 @@ const ExpertFeedback = () => {
   }, [autoScroll]);
 
   return (
-    <div className="!bg-[#0085D41A] !w-full pt-10 pb-6">
+    <div className="!bg-[#0085D41A] !w-full">
       <section className="py-16 bg-transparent">
         <div className="container mx-auto">
           <div className="section-title" data-aos="fade-up">

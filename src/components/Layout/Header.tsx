@@ -160,7 +160,7 @@ export default function Header() {
         </nav>
 
         <div className="flex max-[1200px]:hidden items-center justify-end gap-4">
-          <div className="cta-button bg-gray-800/70 hover:bg-gray-800 rounded-full">
+          <div className="cta-button bg-gray-800 hover:bg-gray-800/70 rounded-full">
             <button
               className="btn !w-[200px] !outline-none px-4 py-2 "
               onClick={() => {

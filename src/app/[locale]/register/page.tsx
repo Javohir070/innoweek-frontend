@@ -322,7 +322,7 @@ export default function RegisterRolePage() {
                   <div>
                     <select
                       name="profession_id"
-                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full !font-nunito-sans"
                       required
                       value={form.profession_id}
                       onChange={handleChange}

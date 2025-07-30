@@ -32,7 +32,8 @@
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
-    "Latest News": "So'ngi Yangiliklar"
+    "Latest News": "So'ngi Yangiliklar",
+    "more":"Batafsil"
   },
   "about": {
     "title": "CHEGARASIZ G'OYALAR",
@@ -200,7 +201,8 @@
     "password": "Parolingizni kiriting",
     "no_account": "Hisobingiz yo'qmi?",
     "register": "Ro'yxatdan o'tish",
-    "logging_in": "Kirilmoqda..."
+    "logging_in": "Kirilmoqda...", 
+        "login_error": "Kirishda xato yuz berdi"
   },
   "register_modal": {
     "register_modal_title": "Umumiy ma'lumot",

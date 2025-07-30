@@ -1,7 +1,8 @@
-import React from "react";
+import React, { use } from "react";
 import { Calendar, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface NewsCardProps {
   id: number;
@@ -12,9 +13,7 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt, id }) => {
-  // HTML taglarini olib tashlash va qisqartirish
 
-  // Sanani formatlash
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("uz-UZ", {
@@ -23,6 +22,8 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt, id }) => {
       day: "2-digit",
     });
   };
+
+  const t = useTranslations("news");
 
   return (
     <div className="group relative bg-white text-black dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer">
@@ -58,7 +59,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt, id }) => {
         <Link href={`/news/${id}`}>
           <div className="flex items-center justify-between">
             <button className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors duration-200">
-              Batafsil
+              {t("more")}
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
             </button>
           </div>

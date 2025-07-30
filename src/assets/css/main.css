@@ -4856,7 +4856,7 @@ row
 .clients .clients-slide img {
     max-width: 80%;
     max-height: 60%;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
     opacity: 0.7;
     transition: all 0.3s ease;
 }

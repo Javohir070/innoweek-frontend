@@ -26,7 +26,8 @@
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
-    "Latest News": "Latest News"
+    "Latest News": "Latest News",
+    "more":"More"
   },
   "about": {
     "title": "IDEAS WITHOUT BORDERS",
@@ -173,7 +174,8 @@
     "password": "Enter password",
     "no_account": "Don't have an account?",
     "register": "Register",
-    "logging_in": "Logging in..."
+    "logging_in": "Logging in...", 
+     "login_error": "Login error"
   },
   "register_modal": {
     "register_modal_title": "General Information",
