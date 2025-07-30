@@ -44,7 +44,7 @@
     "features_4": "Agri tech & Green tech",
     "features_5": "Smart Cities",
     "features_6": "Robotics & Drones",
-    "about_section_title": "INNOWEEK 2025 HAQIDA"
+    "about_section_title": "INNOWEEK HAQIDA"
   },
   "stats": {
     "COVERAGE": "QAMROV",
@@ -230,6 +230,7 @@
     "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
     "verifying": "Tasdiqlanmoqda...",
     "verify": "Tasdiqlash",
+     "position": "Lavozim",
 
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",

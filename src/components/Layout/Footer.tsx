@@ -2,7 +2,7 @@ import React from "react";
 import bg from "@/assets/img/footer_bg.png";
 import footer_logo from "@/assets/img/services/1234.png";
 import Image from "next/image";
-import { RiFacebookBoxFill, RiInstagramFill, RiTelegram2Fill, RiTwitchFill, RiTwitterFill } from "react-icons/ri";
+import { RiFacebookBoxFill, RiInstagramFill, RiTelegram2Fill, RiTwitchFill, RiTwitterFill, RiYoutubeFill } from "react-icons/ri";
 
 const Footer = () => {
   return (
@@ -36,23 +36,7 @@ const Footer = () => {
             <ul className="list-none p-0 flex flex-row gap-4 ml-1.5">
               <li className="mb-2">
                 <a
-                  href="#"
-                  className="text-white hover:text-white transition"
-                >
-                  <RiFacebookBoxFill className="inline-block text-2xl" />
-                </a>
-              </li>
-              <li className="mb-2">
-                <a
-                  href="#"
-                  className="text-white hover:text-white transition"
-                >
-                  <RiTwitterFill className="inline-block text-2xl" />
-                </a>
-              </li>
-              <li className="mb-2">
-                <a
-                  href="#"
+                  href="https://www.instagram.com/innovation.gov.uz?igsh=MXNxazh3anNmdjNsOQ=="
                   className="text-white hover:text-white transition"
                 >
                   <RiInstagramFill className="inline-block text-2xl" />
@@ -60,7 +44,23 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/innovation.gov.uz"
+                  className="text-white hover:text-white transition"
+                >
+                  <RiFacebookBoxFill className="inline-block text-2xl" />
+                </a>
+              </li>
+              <li className="mb-2">
+                <a
+                  href="https://www.youtube.com/@innovation.gov-uz"
+                  className="text-white hover:text-white transition"
+                >
+                  <RiYoutubeFill className="inline-block text-2xl" />
+                </a>
+              </li>
+              <li className="mb-2">
+                <a
+                  href="https://t.me/innovatsion_rivojlanish"
                   className="text-white hover:text-white transition"
                 >
                   <RiTelegram2Fill className="inline-block text-2xl" />

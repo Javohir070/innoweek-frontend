@@ -89,7 +89,6 @@ export default function RegisterRolePage() {
     setLoading(true);
 
     console.log("Form submitted:", registerType);
-    
 
     // Password validation
     if (form.password !== form.password_confirmation) {
@@ -348,6 +347,28 @@ export default function RegisterRolePage() {
                   </div>
                   <div>
                     <input
+                      name="organization"
+                      type="text"
+                      placeholder={t("organization")}
+                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                      required
+                      value={form.organization}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      name="position"
+                      type="text"
+                      placeholder={t("position")}
+                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                      required
+                      value={form.position}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <input
                       name="password"
                       type="password"
                       placeholder={t("password")}
@@ -368,16 +389,6 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     />
                   </div>
-                  {/* <div>
-                    <input
-                      name="birth_date"
-                      type="date"
-                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
-                      required
-                      value={form.birth_date}
-                      onChange={handleChange}
-                    />
-                  </div> */}
                   <div>
                     {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Jins
@@ -533,6 +544,17 @@ export default function RegisterRolePage() {
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.organization}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      name="position"
+                      type="text"
+                      placeholder={t("position")}
+                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
+                      required
+                      value={form.position}
                       onChange={handleChange}
                     />
                   </div>

@@ -105,8 +105,8 @@ export default function NewsSection() {
                     className="testimonial-item hover:cursor-pointer !h-full !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[450px]"
                     style={{ minHeight: 320, height: "100%" }}
                   >
-                    <div className="row flex w-full">
-                      <div className="col-lg-8 flex flex-col gap-y-3.5">
+                    <div className="flex flex-row gap-5 w-full">
+                      <div className="flex flex-col gap-y-3.5 w-[55%]">
                         <h2 className="!text-white dark:!text-white">
                           {item?.title}
                         </h2>
@@ -117,15 +117,15 @@ export default function NewsSection() {
                           }}
                         ></div>
                       </div>
-                      <div className="col-lg-4 d-none d-lg-block flex items-center">
-                        <div className="featured-img-wrapper rounded-lg overflow-hidden">
+                      <div className="flex items-center w-[45%]">
+                        <div className="featured-img-wrapper rounded-lg overflow-hidden w-full h-full">
                           <Image
                             src={
                               item?.image
                                 ? `${BASE_URL}/upload/news/${item?.image}_big_720.png`
                                 : newsImage
                             }
-                            className="featured-img w-full h-full object-cover"
+                            className="featured-img !w-full !h-full object-cover"
                             alt={item?.title}
                             width={300}
                             height={500}

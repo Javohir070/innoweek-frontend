@@ -81,11 +81,7 @@ export default function Header() {
           href="/"
           className="logo d-flex align-items-center me-auto me-xl-0 rounded-lg"
         >
-          <Image
-            src={innoweekLogo}
-            alt="Logo"
-            className="w-[110px]"
-          />
+          <Image src={innoweekLogo} alt="Logo" className="w-[110px]" />
         </Link>
 
         <nav id="navmenu" className="navmenu !uppercase">
@@ -163,16 +159,16 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex max-[1200px]:hidden items-center justify-end gap-3">
-            <button
+        <div className="flex max-[1200px]:hidden items-start justify-end gap-3">
+          <button
             className="!outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full whitespace-nowrap"
             onClick={() => {
               router.push(`/register`);
             }}
-            >
+          >
             {registerLangs("REGISTER")}
-            </button>
-          <div className="cta-button rounded-full">
+          </button>
+          <div className="cta-button rounded-full mt-1">
             <button
               className="!bg-transparent"
               onClick={() => {
@@ -210,12 +206,32 @@ export default function Header() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMenuOpen ? (
-            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-7 h-7 text-white"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           ) : (
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              className="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           )}
         </button>

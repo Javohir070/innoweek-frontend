@@ -38,7 +38,7 @@
     "features_4": "Agri tech & Green tech",
     "features_5": "Smart Cities",
     "features_6": "Robotics & Drones",
-    "about_section_title": "ABOUT INNOWEEK 2025"
+    "about_section_title": "ABOUT INNOWEEK"
   },
   "stats": {
     "COVERAGE": "COVERAGE",
@@ -202,6 +202,7 @@
     "sending": "Sending...",
     "otp_label": "Enter the 6-digit code sent to your phone number",
     "verifying": "Verifying...",
-    "verify": "Verify"
+    "verify": "Verify",
+    "position": "Position"
   }
 }
