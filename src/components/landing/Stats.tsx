@@ -121,7 +121,7 @@ export default function StatsSection() {
                   {stats.map((stat, index) => (
                     <div
                       key={index}
-                      className="col-xl-3 col-lg-3 col-md-3 min-w-[200px] w-[300px]"
+                      className="min-w-[200px] w-[350px]"
                     >
                       <div
                         className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"

@@ -65,7 +65,8 @@
 
   "speakers": {
     "INNOWEEK": "INNOWEEK",
-    "SPEAKERS": "СПИКЕРЫ"
+    "SPEAKERS": "СПИКЕРЫ",
+    "LOAD_MORE": "Ещё загрузить"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",

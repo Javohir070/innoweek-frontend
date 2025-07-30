@@ -88,6 +88,9 @@ export default function RegisterRolePage() {
     e.preventDefault();
     setLoading(true);
 
+    console.log("Form submitted:", registerType);
+    
+
     // Password validation
     if (form.password !== form.password_confirmation) {
       setError({ status: "passwords_do_not_match" });
@@ -96,7 +99,7 @@ export default function RegisterRolePage() {
     }
 
     // Phone validation for local type
-    if (form.type === "local" && !/^\d{9}$/.test(form.phone)) {
+    if (registerType === "local" && !/^\d{9}$/.test(form.phone)) {
       setError({
         phone: "Telefon raqam 901234567 formatida, 9 ta raqam bo'lishi kerak",
       });
@@ -108,7 +111,7 @@ export default function RegisterRolePage() {
 
     let mappedForm: Record<string, string | number | boolean | undefined> = {};
 
-    if (form.type === "local") {
+    if (registerType === "local") {
       mappedForm = {
         first_name: form.firstName,
         last_name: form.lastName,
@@ -116,9 +119,9 @@ export default function RegisterRolePage() {
         profession_id: form.profession_id,
         gender: form.gender,
         password: form.password,
-        password_confirmation: form.password_confirmation
+        password_confirmation: form.password_confirmation,
       };
-    } else if (form.type === "international") {
+    } else if (registerType === "international") {
       mappedForm = {
         first_name: form.firstName,
         last_name: form.lastName,
@@ -146,7 +149,7 @@ export default function RegisterRolePage() {
         setAuthKey(res?.data?.auth_key);
         localStorage?.setItem("auth_key", res?.data?.auth_key);
         setStep("otp");
-        toast.success("SMS Jo'natildi!");
+        toast.success(t("sended_sms"));
       }
     } catch (err) {
       console.log(err);
@@ -231,7 +234,7 @@ export default function RegisterRolePage() {
   }, []);
 
   return (
-    <div className="mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28] min-h-[85vh]">
+    <div className="mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28] min-h-[55vh]">
       <div className="bg-white dark:!bg-transparent rounded-2xl p-8 max-w-9/12 w-full shadow-2xl shadow-[#10374d74] border dark:!border-gray-700 relative">
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-15 h-15 rounded-full bg-[#0085d4] flex items-center justify-center shadow-lg border-4 border-white dark:border-[#151a28]">
           <svg width="30" height="30" fill="#fff" viewBox="0 0 24 24">
@@ -249,13 +252,21 @@ export default function RegisterRolePage() {
             <div className="flex flex-row justify-center items-center gap-4 mb-8">
               <button
                 onClick={() => setRegisterType("local")}
-                className={`${registerType== "local" ? "bg-[#0085d4] text-white" : "bg-white text-[#0085d4]"} w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold`}
+                className={`${
+                  registerType == "local"
+                    ? "bg-[#0085d4] text-white"
+                    : "bg-white !text-[#0085d4]"
+                } w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold`}
               >
-                {t('local')}
+                {t("local")}
               </button>
               <button
                 onClick={() => setRegisterType("international")}
-                className={`${registerType== "international" ? "bg-[#0085d4] text-white" : "bg-white text-[#0085d4]"} w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold`}
+                className={`${
+                  registerType == "international"
+                    ? "bg-[#0085d4] text-white"
+                    : "bg-white !text-[#0085d4]"
+                } w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold`}
               >
                 {t("international")}
               </button>
@@ -292,9 +303,7 @@ export default function RegisterRolePage() {
                       Telefon raqam
                     </label> */}
                     <div className="flex border-2 border-[#0085d4] !rounded-lg px-3 py-2 w-full">
-                      <span className="">
-                        +998
-                      </span>
+                      <span className="">+998</span>
                       <input
                         name="phone"
                         type="tel"
@@ -328,7 +337,7 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     >
                       <option value="" disabled>
-                        {t('participation_type')}
+                        {t("participation_type")}
                       </option>
                       {professions?.map((item) => (
                         <option value={item?.id} key={item?.id}>
@@ -531,7 +540,7 @@ export default function RegisterRolePage() {
                     <input
                       name="password"
                       type="password"
-                      placeholder={t('password')}
+                      placeholder={t("password")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.password}
@@ -542,7 +551,7 @@ export default function RegisterRolePage() {
                     <input
                       name="password_confirmation"
                       type="password"
-                      placeholder={t('confirm_password')}
+                      placeholder={t("confirm_password")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.password_confirmation}
@@ -610,6 +619,7 @@ export default function RegisterRolePage() {
                       ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                       : "bg-[#0085d4] hover:bg-[#e3a127] text-white"
                   }`}
+                  // onClick={handleSubmit}
                 >
                   {loading ? (
                     <>
@@ -629,10 +639,10 @@ export default function RegisterRolePage() {
         {step === "otp" && (
           <form className="flex flex-col gap-6" onSubmit={handleOtpSubmit}>
             <div className="text-center">
-              <h3 className="text-xl font-bold text-[#0085d4] mb-2">
+              <h3 className="text-xl font-bold !text-[#0085d4]">
                 {t("otp_title")}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-300">
                 {t("otp_description")}
               </p>
             </div>

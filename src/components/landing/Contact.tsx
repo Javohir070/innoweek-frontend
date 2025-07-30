@@ -1,8 +1,60 @@
+"use client";
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { useState } from "react";
 
 const ContactSection = () => {
-  const t = useTranslations('contact');
+  const t = useTranslations("contact");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSent(false);
+
+    try {
+      console.log(formData);
+
+      // const response = await ("/api/sendEmail", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     ...formData,
+      //     to: "info@innoweek.uz", // Recipient email
+      //     subject: `INNOWEEK Partnership Inquiry: ${formData.subject}`, // Customize subject
+      //   }),
+      // });
+
+      // const data = await response.json();
+
+      // if (response.ok) {
+      //   setSent(true);
+      //   setFormData({ name: "", email: "", subject: "", message: "" }); // Reset form
+      // } else {
+      //   setError(data.error || t("form_error")); // Use translation
+      // }
+    } catch (err) {
+      console.error(err);
+      setError(t("form_error")); // Use translation
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -80,11 +132,7 @@ const ContactSection = () => {
               >
                 <h3>{t("partnership_title")}</h3>
                 <p className="!text-white">{t("partnership_text")}</p>
-                <form
-                  action="forms/contact.php"
-                  method="post"
-                  className="php-email-form"
-                >
+                <form onSubmit={handleSubmit} className="php-email-form">
                   <div className="row">
                     <div className="col-md-6 form-group">
                       <input
@@ -93,6 +141,9 @@ const ContactSection = () => {
                         className="form-control bg-white dark:!bg-gray-700 dark:text-white"
                         id="name"
                         placeholder={t("form_name_placeholder")}
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="col-md-6 form-group mt-3 mt-md-0">
@@ -102,6 +153,9 @@ const ContactSection = () => {
                         name="email"
                         id="email"
                         placeholder={t("form_email_placeholder")}
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -112,6 +166,9 @@ const ContactSection = () => {
                       name="subject"
                       id="subject"
                       placeholder={t("form_subject_placeholder")}
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="form-group mt-3">
@@ -120,20 +177,24 @@ const ContactSection = () => {
                       name="message"
                       rows={5}
                       placeholder={t("form_message_placeholder")}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
                     ></textarea>
                   </div>
 
                   <div className="my-3">
-                    <div className="loading">{t("form_loading")}</div>
-                    <div className="error-message"></div>
-                    <div className="sent-message">
-                      {t("form_sent_message")}
-                    </div>
+                    {loading && <div className="loading">{t("form_loading")}</div>}
+                    {error && <div className="error-message">{error}</div>}
+                    {sent && (
+                      <div className="sent-message">{t("form_sent_message")}</div>
+                    )}
                   </div>
 
                   <div className="form-submit">
                     <button
                       type="submit"
+                      disabled={loading}
                       className="bg-white dark:!bg-gray-700 dark:!text-white dark:hover:!bg-gray-900 text-black px-4 py-2 rounded-full hover:!bg-black hover:!text-white transition-colors duration-300"
                     >
                       {t("form_submit")}

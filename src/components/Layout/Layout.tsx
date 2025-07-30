@@ -16,7 +16,7 @@ const Layout: React.FC<IlayoutProps> = ({ children }) => {
       <Header />
       {children}
       <Footer />
-      <ToastContainer position="top-right" autoClose={4000} theme="dark"  />
+      <ToastContainer position="top-right" autoClose={4000} theme="light"  />
     </div>
   );
 };

@@ -7,17 +7,23 @@ import { IResponse, ISpeakerItem } from "@/types";
 import { useTranslations } from "next-intl";
 
 import Aos from "aos";
+import { useParams } from "next/navigation";
+import { DownCircleOutlined } from "@ant-design/icons";
 
 const SpeakersSection = () => {
   const t = useTranslations("speakers");
+  const lang = useParams<{ locale: string }>().locale || "uz";
   const [data, setData] = useState<ISpeakerItem[]>([]);
+  const [total, setTotal] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(2);
 
   const getSpeakers = async () => {
     try {
       const res = await FetchInstance<IResponse<ISpeakerItem[]>>(
-        `/api/v1.0/speakers/all?limit=10&archive_id=7`
+        `/api/v1.0/speakers/all?limit=${limit}&archive_id=7&lang=${lang}`
       );
       setData(res?.data);
+      setTotal(res?.pagination?.total || 0);
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +32,7 @@ const SpeakersSection = () => {
   useEffect(() => {
     getSpeakers();
     Aos.init();
-  }, []);
+  }, [limit, lang]);
 
   return (
     <div className="!bg-[#0085D41A] !w-full">
@@ -74,6 +80,17 @@ const SpeakersSection = () => {
             ))}
           </div>
         </div>
+        {total >= limit && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setLimit(limit + 2)}
+              className="btn btn-primary !bg-[#0085d4] dark:!bg-gray-800 hover:!bg-[#006eb3] dark:hover:!bg-gray-700 transition-colors duration-300 flex items-center justify-center"
+            >
+              <span> {t("LOAD_MORE")}</span>
+              <DownCircleOutlined className="inline-block ml-2 text-lg" />
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );

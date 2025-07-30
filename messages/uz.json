@@ -70,7 +70,8 @@
   },
   "speakers": {
     "INNOWEEK": "INNOWEEK",
-    "SPEAKERS": "SPIKERLAR"
+    "SPEAKERS": "SPIKERLAR", 
+    "LOAD_MORE": "Yana yuklash"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",
@@ -228,6 +229,10 @@
     "sending": "Yuborilmoqda...",
     "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
     "verifying": "Tasdiqlanmoqda...",
-    "verify": "Tasdiqlash"
+    "verify": "Tasdiqlash" , 
+
+    "sended_sms": "SMS yuborildi",
+    "otp_title": "SMS orqali yuborilgan kodni kiriting", 
+    "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting."
   }
 }

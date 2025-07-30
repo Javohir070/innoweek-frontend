@@ -42,7 +42,6 @@ const ExpertFeedback = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [autoScroll, setAutoScroll] = useState(true);
   const pairCount = 1;
-  const maxIndex = data.length - pairCount;
 
   // Auto-scroll functionality
   useEffect(() => {
@@ -99,9 +98,9 @@ const ExpertFeedback = () => {
               {t("about_us")}
             </div>
           </div>
-          <div className="flex relative flex-col md:flex-row items-start gap-18">
+          <div className="flex relative flex-col md:flex-row items-start gap-6">
             {/* Left panel */}
-            <div className="flex flex-col items-center md:items-start w-full md:w-1/3">
+            <div className="flex flex-col items-center md:items-start w-full md:w-1/5">
               <h3 className="text-xl !font-bold text-black dark:!text-gray-300 mb-6">
                 {t("experts_opinion")}
               </h3>
@@ -123,19 +122,19 @@ const ExpertFeedback = () => {
               </div>
             </div>
             {/* Right panel - Slider */}
-            <div className="w-full md:w-2/3 flex justify-center">
+            <div className="w-full md:w-4/5 flex justify-center">
               <div className="overflow-hidden w-full">
                 <div
                   className="flex transition-transform duration-400 ease-in-out"
                   style={{
-                    width: `${data.length * 320 + (data.length - 1) * 24}px`,
-                    transform: `translateX(-${currentIndex * (320 + 24)}px)`,
+                    width: `${data.length * 330 + (data.length - 1) * 24}px`,
+                    transform: `translateX(-${currentIndex * (330 + 24)}px)`,
                   }}
                 >
                   {data.map((item, idx) => (
                     <div
                       key={idx}
-                      className="bg-[#0085d4] dark:bg-gray-800 text-white w-[320px] p-6 rounded-lg flex flex-col justify-center mr-6 last:mr-0"
+                      className="bg-[#0085d4] dark:bg-gray-800 text-white w-[360px] p-6 rounded-lg flex flex-col justify-center mr-6 last:mr-0"
                     >
                       <div className="flex gap-1">
                         {[...Array(5)].map((_, i) => (

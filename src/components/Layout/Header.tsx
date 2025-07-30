@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Select } from "antd";
-import innoweekLogo from "@/assets/img/services/1234.png";
+import innoweekLogo from "@/assets/img/logo_inno.png";
 import { useTranslations } from "next-intl";
 import { Link, useRouter as Router } from "@/i18n/navigation";
 import { usePathname, useParams, useRouter } from "next/navigation";
@@ -11,7 +11,6 @@ export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
   const registerLangs = useTranslations("hero");
-  const langSwitch = useTranslations("langs");
   const router = Router();
   const routerLang = useRouter();
   const pathname = usePathname();
@@ -79,9 +78,9 @@ export default function Header() {
       <div className="container-fluid container-xl py-2 flex justify-between items-center w-full">
         <Link
           href="/"
-          className="logo d-flex align-items-center me-auto me-xl-0 bg-gray-800 rounded-lg p-2 !pl-4"
+          className="logo d-flex align-items-center me-auto me-xl-0 rounded-lg p-2 !pl-4"
         >
-          <Image src={innoweekLogo} alt="Logo" className="w-[80px] h-[36px]" />
+          <Image src={innoweekLogo} alt="Logo" className="w-[110px] !h-[60px]" />
         </Link>
 
         <nav id="navmenu" className="navmenu !uppercase">
@@ -160,14 +159,14 @@ export default function Header() {
         </nav>
 
         <div className="flex max-[1200px]:hidden items-center justify-end gap-4">
-          <div className="cta-button bg-gray-800 hover:bg-gray-800/70 rounded-full">
+          <div className="cta-button rounded-full">
             <button
-              className="btn !w-[200px] !outline-none px-4 py-2 "
+               className="!w-[200px] !outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full"
               onClick={() => {
                 router.push(`/login`);
               }}
             >
-              <span className="text-white text-sm font-medium">
+              <span className="text-sm font-medium">
                 {registerLangs("LOGIN")}
               </span>
             </button>

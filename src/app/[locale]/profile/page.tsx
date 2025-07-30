@@ -78,6 +78,7 @@ export default function ProfilePage() {
             method: "POST",
           }
         );
+console.log(response);
 
         if (response) {
           setProfile(response?.data);
