@@ -99,36 +99,7 @@
     "form_sent_message": "Your message has been sent. Thank you!",
     "form_submit": "Send Message"
   },
-  "register_modal": {
-    "title": "Sign Up",
-    "local": "Local",
-    "international": "International",
-    "first_name": "First Name *",
-    "last_name": "Last Name *",
-    "phone": "Phone Number (901234567)",
-    "participation_type": "Participation type *",
-    "birth_date": "Date of Birth *",
-    "gender_label": "Gender:",
-    "passwords_do_not_match": "Passwords do not match",
-    "male": "Male",
-    "female": "Female",
-    "email": "Email *",
-    "country": "Country *",
-    "organization": "Organization *",
-    "phone_error": "Phone number must be 9 digits in 901234567 format",
-    "sending": "Sending...",
-    "sign_up": "Sign Up",
-    "otp_label": "Enter the 6-digit code sent to your phone number",
-    "verifying": "Verifying...",
-    "verify": "Verify",
-    "register_modal_title": "Registration",
-    "participant": "Participant",
-    "speaker": "Speaker",
-    "guest": "Guest",
-    "investor": "Investor",
-    "media": "Media",
-    "student": "Student"
-  },
+
   "check_ticket": {
     "are_you_registered": "Are you registered?",
     "check_your_ticket": "Check Your Ticket",
@@ -195,7 +166,7 @@
     "feedback_4_desc": "“InnoWeek in Tashkent is not just an exhibition — it’s a strategic gateway to the Central Asian market. You can feel the energy of growth and huge potential for international collaboration.”",
     "feedback_4_expert": "Yerbol Suleymanov",
     "expert_4_country": "Kazakhstan"
-  }, 
+  },
   "login": {
     "login_title": "Sign In",
     "phone_or_email": "Enter phone or email",
@@ -203,5 +174,31 @@
     "no_account": "Don't have an account?",
     "register": "Register",
     "logging_in": "Logging in..."
+  },
+  "register_modal": {
+    "register_modal_title": "General Information",
+    "local": "Local",
+    "international": "International",
+    "first_name": "First Name *",
+    "last_name": "Last Name *",
+    "phone": "Phone Number (901234567)",
+    "participation_type": "Participation Type *",
+    "password": "Enter your password (must be at least 8 characters)",
+    "confirm_password": "Confirm Password (repeat your password)",
+    "passwords_do_not_match": "Passwords do not match",
+    "gender_label": "Gender:",
+    "male": "Male",
+    "female": "Female",
+    "accept_terms": "I accept the terms of use",
+    "select_country": "Select Country *",
+    "organization": "Organization *",
+    "sign_up": "Sign Up",
+    "email": "Email *",
+    "country": "Country *",
+    "phone_error": "Phone number must be in 901234567 format, 9 digits required",
+    "sending": "Sending...",
+    "otp_label": "Enter the 6-digit code sent to your phone number",
+    "verifying": "Verifying...",
+    "verify": "Verify"
   }
 }

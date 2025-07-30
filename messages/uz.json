@@ -219,14 +219,11 @@
     "accept_terms": "Foydalanish shartlarini qabul qilaman",
     "select_country": "Davlatni tanlang *",
     "organization": "Tashkilot *",
-
-    "title": "Ro'yxatdan o'tish",
-    "birth_date": "Tug'ilgan sana *",
+    "sign_up": "Ro'yxatdan o'tish",
     "email": "Email *",
     "country": "Davlat *",
     "phone_error": "Telefon raqam 901234567 formatida, 9 ta raqam bo‘lishi kerak",
     "sending": "Yuborilmoqda...",
-    "sign_up": "Ro'yxatdan o'tish",
     "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
     "verifying": "Tasdiqlanmoqda...",
     "verify": "Tasdiqlash"

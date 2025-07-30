@@ -65,7 +65,7 @@ export default function RegisterRolePage() {
   const isFormValid =
     form.firstName.trim() !== "" &&
     form.lastName.trim() !== "" &&
-    form.phone.trim().length === 9 &&
+    (form.phone.trim().length === 9 || form.email !== "") &&
     form.profession_id !== "" &&
     form.password.length >= 8 &&
     form.password === form.password_confirmation &&
@@ -590,7 +590,7 @@ export default function RegisterRolePage() {
                       required
                     />
                     <span className="text-sm text-gray-700 dark:text-gray-300">
-                      {t("accept_terms  ")}
+                      {t("accept_terms")}
                     </span>
                   </div>
                 </div>
@@ -629,7 +629,7 @@ export default function RegisterRolePage() {
         {step === "otp" && (
           <form className="flex flex-col gap-6" onSubmit={handleOtpSubmit}>
             <div className="text-center">
-              <h3 className="text-xl text-black font-bold text-[#0085d4] mb-2">
+              <h3 className="text-xl font-bold text-[#0085d4] mb-2">
                 {t("otp_title")}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
