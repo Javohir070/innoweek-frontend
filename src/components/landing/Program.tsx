@@ -266,10 +266,10 @@ export default function ProgramSection() {
                     handleShowMore();
                   }}
                 >
-                  <span className="text-lg text-[#0085d4] font-bold">
+                  <span className="text-lg text-gray-800 font-bold">
                     {t("LOAD_MORE")}
                   </span>
-                  <DownCircleOutlined className="inline-block ml-2 text-lg !text-[#0085d4]" />
+                  <DownCircleOutlined className="inline-block ml-2 text-lg !text-gray-800" />
                 </div>
               )}
 
@@ -326,10 +326,10 @@ export default function ProgramSection() {
                     setIsShowMoreVisible2(visibleDays2[0].events.length);
                   }}
                 >
-                  <span className="text-lg text-[#0085d4] font-bold">
+                  <span className="text-lg text-gray-800 font-bold">
                     {t("LOAD_MORE")}
                   </span>
-                  <DownCircleOutlined className="inline-block ml-2 text-lg !text-[#0085d4]" />
+                  <DownCircleOutlined className="inline-block ml-2 text-lg !text-gray-800" />
                 </div>
               )}
               {visibleDays3.map((dayItem, dayIdx) => (
