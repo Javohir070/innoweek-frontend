@@ -195,5 +195,13 @@
     "feedback_4_desc": "“InnoWeek in Tashkent is not just an exhibition — it’s a strategic gateway to the Central Asian market. You can feel the energy of growth and huge potential for international collaboration.”",
     "feedback_4_expert": "Yerbol Suleymanov",
     "expert_4_country": "Kazakhstan"
+  }, 
+  "login": {
+    "login_title": "Sign In",
+    "phone_or_email": "Enter phone or email",
+    "password": "Enter password",
+    "no_account": "Don't have an account?",
+    "register": "Register",
+    "logging_in": "Logging in..."
   }
 }

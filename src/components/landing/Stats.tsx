@@ -87,11 +87,7 @@ export default function StatsSection() {
         >
           <h2 className="text-black dark:!text-white">INNOWEEK</h2>
           <div className="text-black dark:!text-white">
-            {currentLang === "uz"
-              ? "QAMROV"
-              : currentLang === "ru"
-              ? "ОХВАТ"
-              : "COVERAGE"}
+            {t('COVERAGE')}
           </div>
         </div>
 

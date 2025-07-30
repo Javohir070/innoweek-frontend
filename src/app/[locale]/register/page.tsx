@@ -231,7 +231,7 @@ export default function RegisterRolePage() {
   }, []);
 
   return (
-    <div className="mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28]">
+    <div className="mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28] min-h-[85vh]">
       <div className="bg-white dark:!bg-transparent rounded-2xl p-8 max-w-9/12 w-full shadow-2xl shadow-[#10374d74] border dark:!border-gray-700 relative">
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-15 h-15 rounded-full bg-[#0085d4] flex items-center justify-center shadow-lg border-4 border-white dark:border-[#151a28]">
           <svg width="30" height="30" fill="#fff" viewBox="0 0 24 24">
@@ -249,15 +249,15 @@ export default function RegisterRolePage() {
             <div className="flex flex-row justify-center items-center gap-4 mb-8">
               <button
                 onClick={() => setRegisterType("local")}
-                className="w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold"
+                className={`${registerType== "local" ? "bg-[#0085d4] text-white" : "bg-white text-[#0085d4]"} w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold`}
               >
-                Local
+                {t('local')}
               </button>
               <button
                 onClick={() => setRegisterType("international")}
-                className="w-[200px] !rounded-3xl !border-[#e3a127] border text-[#e3a127] px-6 py-2 font-bold"
+                className={`${registerType== "international" ? "bg-[#0085d4] text-white" : "bg-white text-[#0085d4]"} w-[200px] !rounded-3xl !border-[#0085d4] border text-[#0085d4] px-6 py-2 font-bold`}
               >
-                International
+                {t("international")}
               </button>
             </div>
 
@@ -269,7 +269,7 @@ export default function RegisterRolePage() {
                     <input
                       name="firstName"
                       type="text"
-                      placeholder="Ism"
+                      placeholder={t("first_name")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.firstName}
@@ -280,7 +280,7 @@ export default function RegisterRolePage() {
                     <input
                       name="lastName"
                       type="text"
-                      placeholder="Familiya"
+                      placeholder={t("last_name")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.lastName}
@@ -298,7 +298,7 @@ export default function RegisterRolePage() {
                       <input
                         name="phone"
                         type="tel"
-                        placeholder="Telefon raqam (901234567)"
+                        placeholder={t("phone")}
                         className="outline-none w-full !ml-2"
                         required
                         maxLength={9}
@@ -328,7 +328,7 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     >
                       <option value="" disabled>
-                        Kasbni tanlang
+                        {t('participation_type')}
                       </option>
                       {professions?.map((item) => (
                         <option value={item?.id} key={item?.id}>
@@ -341,7 +341,7 @@ export default function RegisterRolePage() {
                     <input
                       name="password"
                       type="password"
-                      placeholder="Parol"
+                      placeholder={t("password")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.password}
@@ -352,7 +352,7 @@ export default function RegisterRolePage() {
                     <input
                       name="password_confirmation"
                       type="password"
-                      placeholder="Parolni qayta kiriting"
+                      placeholder={t("confirm_password")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.password_confirmation}
@@ -370,9 +370,9 @@ export default function RegisterRolePage() {
                     />
                   </div> */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Jins
-                    </label>
+                    </label> */}
                     <div className="flex gap-6 items-center">
                       <label className="flex items-center gap-2">
                         <input
@@ -384,7 +384,7 @@ export default function RegisterRolePage() {
                           className="accent-[#0085d4]"
                           required
                         />
-                        <span>Erkak</span>
+                        <span className="pl-2">{t("male")}</span>
                       </label>
                       <label className="flex items-center gap-2">
                         <input
@@ -396,7 +396,7 @@ export default function RegisterRolePage() {
                           className="accent-[#0085d4]"
                           required
                         />
-                        <span>Ayol</span>
+                        <span className="pl-2">{t("female")}</span>
                       </label>
                     </div>
                   </div>
@@ -410,7 +410,7 @@ export default function RegisterRolePage() {
                       required
                     />
                     <span className="text-sm text-gray-700 dark:text-gray-300">
-                      Foydalanish shartlarini qabul qilaman
+                      {t("accept_terms")}
                     </span>
                   </div>
                 </div>
@@ -451,7 +451,7 @@ export default function RegisterRolePage() {
                     <input
                       name="firstName"
                       type="text"
-                      placeholder="Ism"
+                      placeholder={t("first_name")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.firstName}
@@ -462,7 +462,7 @@ export default function RegisterRolePage() {
                     <input
                       name="lastName"
                       type="text"
-                      placeholder="Familiya"
+                      placeholder={t("last_name")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.lastName}
@@ -473,7 +473,7 @@ export default function RegisterRolePage() {
                     <input
                       name="email"
                       type="email"
-                      placeholder="Email"
+                      placeholder={t("email")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.email}
@@ -489,7 +489,7 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     >
                       <option value="" disabled>
-                        Davlatni tanlang
+                        {t("select_country")}
                       </option>
                       {countries?.map((item) => (
                         <option value={item?.id} key={item?.id}>
@@ -507,7 +507,7 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                     >
                       <option value="" disabled>
-                        Kasbni tanlang
+                        {t("participation_type")}
                       </option>
                       {professions?.map((item) => (
                         <option value={item?.id} key={item?.id}>
@@ -520,7 +520,7 @@ export default function RegisterRolePage() {
                     <input
                       name="organization"
                       type="text"
-                      placeholder="Tashkilot"
+                      placeholder={t("organization")}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.organization}
@@ -531,7 +531,7 @@ export default function RegisterRolePage() {
                     <input
                       name="password"
                       type="password"
-                      placeholder="Parol"
+                      placeholder={t('password')}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.password}
@@ -542,27 +542,17 @@ export default function RegisterRolePage() {
                     <input
                       name="password_confirmation"
                       type="password"
-                      placeholder="Parolni qayta kiriting"
+                      placeholder={t('confirm_password')}
                       className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
                       required
                       value={form.password_confirmation}
                       onChange={handleChange}
                     />
                   </div>
-                  {/* <div>
-                    <input
-                      name="birth_date"
-                      type="date"
-                      className="border-2 border-[#0085d4] rounded-lg px-3 py-2 w-full"
-                      required
-                      value={form.birth_date}
-                      onChange={handleChange}
-                    />
-                  </div> */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Jins
-                    </label>
+                    </label> */}
                     <div className="flex gap-6 items-center">
                       <label className="flex items-center gap-2">
                         <input
@@ -574,7 +564,7 @@ export default function RegisterRolePage() {
                           className="accent-[#0085d4]"
                           required
                         />
-                        <span>Erkak</span>
+                        <span className="pl-2">{t("male")}</span>
                       </label>
                       <label className="flex items-center gap-2">
                         <input
@@ -586,7 +576,7 @@ export default function RegisterRolePage() {
                           className="accent-[#0085d4]"
                           required
                         />
-                        <span>Ayol</span>
+                        <span className="pl-2">{t("female")}</span>
                       </label>
                     </div>
                   </div>
@@ -600,7 +590,7 @@ export default function RegisterRolePage() {
                       required
                     />
                     <span className="text-sm text-gray-700 dark:text-gray-300">
-                      Foydalanish shartlarini qabul qilaman
+                      {t("accept_terms  ")}
                     </span>
                   </div>
                 </div>
