@@ -23,7 +23,7 @@ export default function NewsSection() {
     const getNews = async () => {
       try {
         const res = await FetchInstance<IResponse<INewsListItem[]>>(
-          `/api/v1.0/news/all?limit=5&lang=${params?.locale}`
+          `/api/v1.0/news/all?limit=5&lang=${params?.locale}&archive_id=8`
         );
         setData(res?.data);
       } catch (error) {

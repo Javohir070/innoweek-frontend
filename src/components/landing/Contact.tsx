@@ -102,7 +102,7 @@ const ContactSection = () => {
                 </div>
                 <div className="contact-text">
                   <h4>{t("email_title")}</h4>
-                  <p className="text-white">info@innoweek.uz</p>
+                  <p className="text-white">innoweek@ilmiy.uz</p>
                 </div>
               </div>
               <div className="contact-card !bg-[#0085d4] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">

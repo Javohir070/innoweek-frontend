@@ -26,9 +26,9 @@
     "REGISTER": "RO'YXATDAN O'TISH",
     "LOGIN": "KIRISH",
     "day": "Kun",
-    "hour": "soat",
-    "minute": "daqiqa",
-    "second": "soniya"
+    "hour": "Soat",
+    "minute": "Daqiqa",
+    "second": "Soniya"
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
@@ -38,12 +38,12 @@
   "about": {
     "title": "CHEGARASIZ G'OYALAR",
     "description": "Xalqaro innovatsion g‘oyalar haftaligi — “Innoweek.uz” respublikada innovatsion rivojlanishni jadallashtirish, iqtisodiyotning barcha tarmoqlarida innovatsiyalar va texnologiyalarni keng tatbiq qilish, inson kapitalini, ilm-fan va innovatsiya sohalarini rivojlantirish maqsadida 2018-yildan buyon o‘tkazib kelinmoqda. O‘tgan davr mobaynida Prezident Shavkat Mirziyoyev rahbarligida rivojlanib, Markaziy Osiyoda ilg‘or innovatsiyalarni namoyish qilish va global hamkorlikni rivojlantirish uchun eng yirik maydonga aylandi. Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
-    "features_1": "Deep tech & AI",
-    "features_2": "Health tech & Biotech",
-    "features_3": "EdTech & eLearning",
-    "features_4": "Agri tech & Green tech",
-    "features_5": "Smart Cities",
-    "features_6": "Robotics & Drones",
+    "features_1": "Ilgʻor texnologiyalar va sunʼiy intellekt",
+    "features_2": "Tibbiyot texnologiyalari va biotexnologiyalar",
+    "features_3": "Taʼlim texnologiyalari va elektron oʻqitish",
+    "features_4": "Agrosanoat texnologiyalari",
+    "features_5": "Aqlli shaharlar",
+    "features_6": "Robototexnika va dronlar",
     "about_section_title": "INNOWEEK HAQIDA"
   },
   "stats": {
@@ -65,8 +65,23 @@
     "INNOWEEK": "INNOWEEK",
     "PROGRAM": "DASTUR",
     "day_1": "9-OKTABR",
+    "day_1_program_1_title": "Chegarasiz innovatsion g'oyalar: dunyoni o'zgartiruvchi texnologiyalar",
+    "day_1_program_2_title": "Laboratoriyadan bozorga: tadqiqotlarni tijoratlashtirish imkoniyatlari",
+    "day_1_program_3_title": "Markaziy Osiyoda startap ekotizimlari",
+    "day_1_program_4_title": "Texnoparklar xalqaro forumi",
+    "day_1_program_5_title": "Ilm-fan va ishlab chiqarish integratsiyasi: ilmiy-tadqiqot ishlari natijalarini sanoatga joriy etishni qo‘llab-quvvatlash",
+
     "day_2": "10-OKTABR",
+    "day_2_program_1_title": "Global innovatsiyalar indeksi 2025: Milliy ishga tushirish",
+    "day_2_program_2_title": "Ta'limdagi innovatsiyalar: tanqidiy fikrlash, ijodkorlik va muammolarni hal qilish ko'nikmalarini rivojlantirish ",
+    "day_2_program_3_title": "O‘zbekiston ilmiy kommunikatsiyalari konferensiyasi ",
+    "day_2_program_4_title": "Xalqaro donorlar bilan DEMO DAY",
+    "day_2_program_5_title": "Markaziy Osiyo ilm-fan kuni",
+    "day_2_program_6_title": "Venchur fondlar forumi",
+
     "day_3": "11-OKTABR",
+    "day_3_program_1_title": "Taqdirlash marosimi",
+    "day_3_program_2_title": "Yopilish marosimi",
     "LOAD_MORE": "Ko'proq ko'rish"
   },
   "speakers": {
@@ -230,7 +245,7 @@
     "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
     "verifying": "Tasdiqlanmoqda...",
     "verify": "Tasdiqlash",
-     "position": "Lavozim",
+    "position": "Lavozim",
 
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",

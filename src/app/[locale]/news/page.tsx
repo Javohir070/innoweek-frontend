@@ -18,7 +18,7 @@ const NewsList = () => {
   const getNews = async () => {
     try {
       const res = await FetchInstance<IResponse<INewsListItem[]>>(
-        `/api/v1.0/news/all?limit=${limit}&page=${page}&lang=${params?.locale}`
+        `/api/v1.0/news/all?limit=${limit}&page=${page}&lang=${params?.locale}&archive_id=8`
       );
       setData(res?.data);
       setTotal(res?.pagination?.total || 0);

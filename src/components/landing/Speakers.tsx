@@ -6,10 +6,8 @@ import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IResponse, ISpeakerItem } from "@/types";
 import { useTranslations } from "next-intl";
 import section from "@/assets/img/section_bg_2.jpg";
-
 import Aos from "aos";
 import { useParams } from "next/navigation";
-import { DownCircleOutlined } from "@ant-design/icons";
 
 const SpeakersSection = () => {
   const t = useTranslations("speakers");
@@ -21,10 +19,9 @@ const SpeakersSection = () => {
   const getSpeakers = async () => {
     try {
       const res = await FetchInstance<IResponse<ISpeakerItem[]>>(
-        `/api/v1.0/speakers/all?limit=8&archive_id=7&lang=${lang}`
+        `/api/v1.0/speakers/all?limit=8&archive_id=8&lang=${lang}`
       );
       setData(res?.data);
-      // setTotal(res?.pagination?.total || 0);
     } catch (error) {
       console.log(error);
     }

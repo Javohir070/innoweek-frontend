@@ -15,7 +15,7 @@ const GalerySection = () => {
   const getGalery = async () => {
     try {
       const res = await FetchInstance<IResponse<IGalleryItem[]>>(
-        "/api/v1.0/gallery/list?limit=8&archive_id=7"
+        "/api/v1.0/gallery/list?limit=8&archive_id=8"
       );
       setData(res?.data);
     } catch (error) {

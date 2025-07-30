@@ -59,8 +59,23 @@
     "INNOWEEK": "INNOWEEK",
     "PROGRAM": "PROGRAM",
     "day_1": "October 9",
+    "day_1_program_1_title": "Innovative Ideas Without Borders: World-Changing Technologies",
+    "day_1_program_2_title": "From Lab to Market: The Power of Research Commercialization",
+    "day_1_program_3_title": "Startup ecosystem in Central Asia",
+    "day_1_program_4_title": "International Forum of Technoparks",
+    "day_1_program_5_title": "Integrating Science and Industry: Supporting Industrial Implementation of R&D Results",
+
     "day_2": "October 10",
+    "day_2_program_1_title": "Global Innovation Index 2025: National launch",
+    "day_2_program_2_title": "Innovations in Education: Fostering Critical Thinking, Creativity, and Problem-Solving Skills",
+    "day_2_program_3_title": "Uzbekistan Science Communication Conference",
+    "day_2_program_4_title": "DEMO DAY with international donors",
+    "day_2_program_5_title": "Central Asian Science Day",
+    "day_2_program_6_title": "Venture Capital Forum",
+
     "day_3": "October 11",
+    "day_3_program_1_title": "Ceremony of Awarding",
+    "day_3_program_2_title": "Closing ceremony",
     "LOAD_MORE": "Load More"
   },
 
