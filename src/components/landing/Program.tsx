@@ -164,7 +164,7 @@ export const programData = [
           //   "Curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus maecenas tempus.",
         },
       },
-       {
+      {
         left: {
           hall: "CAEx ALPHA HALL",
           time: "14.00-16.00",
@@ -232,11 +232,11 @@ export default function ProgramSection() {
                           data-aos-delay={200 + eventIdx * 100}
                         >
                           <div className="timeline-left">
-                            <Link href="/program-detail">
-                              <h4 className="company mb-0 !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">
-                                {event.left.hall}
-                              </h4>
-                            </Link>
+                            {/* <Link href="/program-detail"> */}
+                            <h4 className="company mb-0 !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">
+                              {event.left.hall}
+                            </h4>
+                            {/* </Link> */}
                             <span className="period text-black dark:!text-gray-400">
                               {event.left.time}
                             </span>
@@ -265,7 +265,8 @@ export default function ProgramSection() {
                     setIsShowMoreVisible1(visibleDays1[0].events.length);
                     handleShowMore();
                   }}
-                  data-aos="fade-up" data-aos-delay="100"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
                 >
                   <span className="text-lg text-gray-800 font-bold">
                     {t("LOAD_MORE")}
@@ -295,22 +296,20 @@ export default function ProgramSection() {
                           data-aos-delay={200 + eventIdx * 100}
                         >
                           <div className="timeline-left">
-                            <Link href="/program-detail">
-                              <h4 className="company mb-0 !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">
-                                {event.left.hall}
-                              </h4>
-                            </Link>
+                            <h4 className="company mb-0 !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">
+                              {event.left.hall}
+                            </h4>
                             <span className="period text-black dark:!text-gray-400">
                               {event.left.time}
                             </span>
                           </div>
                           <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                           <div className="timeline-right">
-                            <Link href="/program-detail">
-                              <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
-                                {t(event.right.title)}
-                              </h3>
-                            </Link>
+                            {/* <Link href="/program-detail"> */}
+                            <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
+                              {t(event.right.title)}
+                            </h3>
+                            {/* </Link> */}
                             <p className="description m-0 text-gray-700 dark:text-gray-300">
                               {event.right.description}
                             </p>
@@ -326,7 +325,8 @@ export default function ProgramSection() {
                   onClick={() => {
                     setIsShowMoreVisible2(visibleDays2[0].events.length);
                   }}
-                  data-aos="fade-up" data-aos-delay="100"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
                 >
                   <span className="text-lg text-gray-800 font-bold">
                     {t("LOAD_MORE")}
@@ -355,22 +355,20 @@ export default function ProgramSection() {
                           data-aos-delay={200 + eventIdx * 100}
                         >
                           <div className="timeline-left">
-                            <Link href="/program-detail">
-                              <h4 className="company mb-0 !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">
-                                {event.left.hall}
-                              </h4>
-                            </Link>
+                            <h4 className="company mb-0 !text-black dark:!text-white cursor-pointer hover:text-blue-500 dark:hover:text-blue-400">
+                              {event.left.hall}
+                            </h4>
                             <span className="period text-black dark:!text-gray-400">
                               {event.left.time}
                             </span>
                           </div>
                           <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                           <div className="timeline-right">
-                            <Link href="/program-detail">
-                              <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
-                                {t(event.right.title)}
-                              </h3>
-                            </Link>
+                            {/* <Link href="/program-detail"> */}
+                            <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
+                              {t(event.right.title)}
+                            </h3>
+                            {/* </Link> */}
                             <p className="description m-0 text-gray-700 dark:text-gray-300">
                               {event.right.description}
                             </p>

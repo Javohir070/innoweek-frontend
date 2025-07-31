@@ -70,8 +70,8 @@ interface ProfessionObj {
 
 const SIDEBAR_ITEMS = [
   { key: "profile", labelKey: "sidebar_profile", icon: <IoPersonSharp /> },
-  { key: "certificate", labelKey: "sidebar_certificate", icon: <PiCertificateFill /> },
-  { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
+  // { key: "certificate", labelKey: "sidebar_certificate", icon: <PiCertificateFill /> },
+  // { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
 ];
 
 export default function ProfilePage() {
