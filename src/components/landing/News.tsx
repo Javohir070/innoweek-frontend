@@ -110,7 +110,7 @@ export default function NewsSection() {
                           {item?.title}
                         </h2>
                         <div
-                          className="line-clamp-6 !text-white dark:!text-gray-300 !font-normal not-italic"
+                          className="line-clamp-6 !text-white dark:!text-gray-300 !font-normal not-italic !font-nunito-sans *:!font-nunito-sans"
                           dangerouslySetInnerHTML={{
                             __html: item?.description,
                           }}

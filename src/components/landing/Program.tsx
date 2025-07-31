@@ -1,7 +1,5 @@
 "use client";
-
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import { DownCircleOutlined } from "@ant-design/icons";
 
