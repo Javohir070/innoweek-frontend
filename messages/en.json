@@ -306,6 +306,7 @@
     "activity": "Activity",
     "active": "Active",
     "inactive": "Inactive",
-    "no_activity": "No activity found"
+    "no_activity": "No activity found",
+    "logout": "Logout"
   }
 }
