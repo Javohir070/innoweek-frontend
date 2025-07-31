@@ -85,7 +85,7 @@ const Footer = () => {
           </div>
 
           {/* Linklar qismi */}
-          <div className="md:w-2/4 grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <div className="md:w-3/4 grid grid-cols-2 sm:grid-cols-3 gap-8">
             {[0, 1, 2].map((colIdx) => (
               <div key={colIdx}>
                 <ul className="space-y-2">
