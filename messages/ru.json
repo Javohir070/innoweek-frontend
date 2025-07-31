@@ -23,7 +23,8 @@
     "DASTUR": "ПРОГРАММА",
     "SPIKERLAR": "СПИКЕРЫ",
     "HAMKORLAR": "ПАРТНЕРЫ",
-    "INNOWEEK HAQIDA": "О INNOWEEK"
+    "INNOWEEK HAQIDA": "О INNOWEEK",
+    "REGISTER": "РЕГИСТРАЦИЯ"
   },
   "langs": {
     "uz": "Узбекский",
@@ -205,11 +206,26 @@
     "confirm_password": "Подтвердите пароль (повторите пароль)",
     "passwords_do_not_match": "Пароли не совпадают",
     "gender_label": "Пол:",
+    "male": "Мужской",
+    "female": "Женский",
+    "accept_terms": "Я принимаю условия использования",
+    "select_country": "Выберите страну *",
+    "organization": "Организация *",
+    "sign_up": "Зарегистрироваться",
+    "email": "Эл. почта *",
+    "country": "Страна *",
+    "phone_error": "Номер телефона должен быть в формате 901234567, необходимо 9 цифр",
+    "sending": "Отправка...",
+    "otp_label": "Введите 6-значный код, отправленный на ваш номер телефона",
+    "verifying": "Проверка...",
+    "verify": "Проверить",
+    "position": "Должность",
     "sended_sms": "SMS отправлено",
     "otp_title": "Введите 6-значный код, отправленный через SMS",
     "otp_description": "Введите 6-значный код, отправленный на ваш номер телефона.",
     "registration_successful": "Регистрация успешна."
   },
+
   "accept_terms": {
     "accept_terms": "Я принимаю условия использования",
     "close": "Закрыть",

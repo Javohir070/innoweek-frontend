@@ -11,7 +11,7 @@ import { LoginOutlined } from "@ant-design/icons";
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
-  const registerLangs = useTranslations("hero");
+  const registerLangs = useTranslations("header");
   const router = Router();
   const routerLang = useRouter();
   const pathname = usePathname();
