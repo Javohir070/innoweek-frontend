@@ -100,14 +100,14 @@ export default function StatsSection() {
         <div className="relative">
           <button
             onClick={scrollLeft}
-            className="hidden md:flex absolute left-[-23px] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-black transition"
+            className=" md:flex absolute sm:left-[-23px] max-[620px]:top-6 max-[620px]:left-[40%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-black transition"
           >
             <ChevronLeft />
           </button>
 
           <button
             onClick={scrollRight}
-            className="hidden md:flex absolute right-[-23px] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 p-2 shadow hover:bg-black transition !rounded-full"
+            className=" md:flex absolute sm:right-[-23px] max-[620px]:top-6 max-[620px]:left-[55%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 p-2 shadow hover:bg-black transition !rounded-full"
           >
             <ChevronRight />
           </button>

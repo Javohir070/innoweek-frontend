@@ -52,7 +52,7 @@ export default function HeroSection() {
     <>
       <div
         id="hero"
-        className="absolute w-full left-0 right-0 !h-screen max-h-[992px] overflow-hidden -z-50"
+        className="absolute w-full left-0 right-0 !h-screen !max-h-[992px] !min-h-[800px] overflow-hidden -z-50"
       >
         <div className="absolute inset-0 bg-black/55 dark:bg-black/70 backdrop-blur-[0,5px] z-[1]"></div>
         <video
@@ -64,7 +64,7 @@ export default function HeroSection() {
           <source src={HeroVideo} type="video/mp4" />
         </video>
       </div>
-      <section className="hero section bg-transparent !h-[60vh] !max-h-[992px] !p-0 !mt-16 xl:!mt-0">
+      <section className="hero section bg-transparent !h-[60vh] !max-h-[992px] !min-h-[800px]  !p-0 !mt-16 xl:!mt-0">
         <div className="container bg-transparent">
           <div className="row">
             <div className="col-lg-7 content-col" data-aos="fade-up">
