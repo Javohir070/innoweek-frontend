@@ -28,7 +28,7 @@ const Footer = () => {
     { name: t("program"), href: "#resume" },
     { name: t("speakers"), href: "#team" },
     { name: t("partners"), href: "#clients" },
-    { name: t("feedback"), href: "#otziv" },
+    { name: t("feedback"), href: "#expert-feedback" },
     { name: t("gallery"), href: "/gallery" },
     { name: t("faq"), href: "#faq" },
     { name: t("contact"), href: "#contact" },

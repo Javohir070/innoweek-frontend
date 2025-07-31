@@ -97,7 +97,7 @@ const ExpertFeedback = () => {
         backgroundImage: `url(${section.src})`,
       }}
     >
-      <section className="py-16 bg-transparent">
+      <section className="py-16 bg-transparent" id="expert-feedback">
         <div className="container mx-auto">
           <div className="section-title" data-aos="fade-up">
             <h2 className="text-black dark:!text-white">INNOWEEK</h2>
