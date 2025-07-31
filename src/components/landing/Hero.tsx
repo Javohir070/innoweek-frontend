@@ -64,7 +64,7 @@ export default function HeroSection() {
           <source src={HeroVideo} type="video/mp4" />
         </video>
       </div>
-      <section className="hero section bg-transparent !h-[60vh] !max-h-[992px] !p-0">
+      <section className="hero section bg-transparent !h-[60vh] !max-h-[992px] !p-0 !mt-16 xl:!mt-0">
         <div className="container bg-transparent">
           <div className="row">
             <div className="col-lg-7 content-col" data-aos="fade-up">
