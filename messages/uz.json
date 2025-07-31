@@ -225,7 +225,8 @@
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",
     "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting.",
-    "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi."
+    "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi.", 
+    "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan."
   },
   "accept_terms": {
     "accept_terms": "Foydalanish shartlarini qabul qilaman",

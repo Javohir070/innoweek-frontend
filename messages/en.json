@@ -223,7 +223,8 @@
     "sended_sms": "SMS sent",
     "otp_title": "Enter the 6-digit code sent via SMS",
     "otp_description": "Enter the 6-digit code sent to your phone number.",
-    "registration_successful": "Registration successful."
+    "registration_successful": "Registration successful.", 
+    "phone_allready_registered": "This phone number is already registered."
   },
   "accept_terms": {
     "accept_terms": "I accept the terms of use",

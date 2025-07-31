@@ -47,7 +47,6 @@ export default function RegisterRolePage() {
   const t = useTranslations("register_modal");
   const router = useRouter();
   const locale = useParams().locale || "uz";
-  
 
   const [form, setForm] = useState<RegisterFormWithPosition>(initialForm);
   const [error, setError] = useState<RegisterError>({});
@@ -143,7 +142,6 @@ export default function RegisterRolePage() {
         }
       );
       console.log(res);
-      
 
       if (res?.success) {
         setRegisterBody(mappedForm);
@@ -151,16 +149,27 @@ export default function RegisterRolePage() {
         localStorage?.setItem("auth_key", res?.data?.auth_key);
         setStep("otp");
         toast.success(t("sended_sms"));
+      } else {
+        for (const key in res?.error?.errors) {
+          if (Object.prototype.hasOwnProperty.call(res.error.errors, key)) {
+            console.log(key);
+            if (key === "phone") {
+              setError({ status: t("phone_allready_registered") });
+            }
+
+            // const errorMessage = res.error.errors[key];
+            // console.log(errorMessage);
+            // setError({ status: errorMessage });
+          }
+        }
       }
     } catch (err) {
-      console.log(err);
-      
-      // setError({
-      //   status:
-      //     err instanceof Error
-      //       ? err.message
-      //       : "Bu raqam yoki email oldin ro'yxatdan o'tgan",
-      // });
+      setError({
+        status:
+          err instanceof Error
+            ? err.message
+            : "Bu raqam yoki email oldin ro'yxatdan o'tgan",
+      });
     } finally {
       setLoading(false);
     }

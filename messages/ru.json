@@ -223,7 +223,8 @@
     "sended_sms": "SMS отправлено",
     "otp_title": "Введите 6-значный код, отправленный через SMS",
     "otp_description": "Введите 6-значный код, отправленный на ваш номер телефона.",
-    "registration_successful": "Регистрация успешна."
+    "registration_successful": "Регистрация успешна.",
+    "phone_allready_registered": "Этот номер телефона уже зарегистрирован."
   },
 
   "accept_terms": {
