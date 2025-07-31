@@ -8,25 +8,43 @@ import {
   RiYoutubeFill,
 } from "react-icons/ri";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter as Router } from "@/i18n/navigation";
+import { usePathname, useParams } from "next/navigation";
 
 const Footer = () => {
   const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
+  const params = useParams();
+  const router = Router();
+  const pathname = usePathname();
+
+  const activeLang = params?.locale || "en";
 
   const footerLinks = [
-    { name: t("home"), href: "#" },
-    { name: t("news"), href: "#" },
-    { name: t("about_innoweek"), href: "#" },
-    { name: t("coverage"), href: "#" },
-    { name: t("program"), href: "#" },
-    { name: t("speakers"), href: "#" },
-    { name: t("partners"), href: "#" },
-    { name: t("feedback"), href: "#" },
-    { name: t("gallery"), href: "#" },
-    { name: t("faq"), href: "#" },
-    { name: t("contact"), href: "#" },
-    { name: t("map"), href: "#" },
+    { name: t("home"), href: "/" },
+    { name: t("news"), href: "/news" },
+    { name: t("about_innoweek"), href: "#about" },
+    { name: t("coverage"), href: "#stats" },
+    { name: t("program"), href: "#resume" },
+    { name: t("speakers"), href: "#team" },
+    { name: t("partners"), href: "#clients" },
+    { name: t("feedback"), href: "#otziv" },
+    { name: t("gallery"), href: "/gallery" },
+    { name: t("faq"), href: "#faq" },
+    { name: t("contact"), href: "#contact" },
+    { name: t("map"), href: "#contact" },
+  ];
+  const sectionAnchors = [
+    "#hero",
+    "#about",
+    "#stats",
+    "#resume",
+    "#team",
+    "#clients",
+    "#otziv",
+    "#faq",
+    "#contact",
+    "#spikers",
   ];
 
   return (
@@ -47,7 +65,7 @@ const Footer = () => {
             <div className="flex flex-row items-center gap-4">
               <Image src={footer_logo} alt="Footer Logo" className="w-32" />
             </div>
-            <p className="text-lg mb-1 ml-1.5">Follow Us</p>
+            <p className="text-lg mb-1 ml-1.5">{t("follow_us")}</p>
             <ul className="list-none p-0 flex flex-row gap-4 ml-1.5">
               <li className="mb-2">
                 <a
@@ -99,6 +117,26 @@ const Footer = () => {
                         <Link
                           href={link.href}
                           className="text-white cursor-pointer hover:text-blue-500 transition"
+                          onClick={(e) => {
+                            if (link.href === "/spikers") {
+                              router.push(`/${activeLang}/spikers`);
+                              return;
+                            }
+                            if (sectionAnchors.includes(link.href)) {
+                              e.preventDefault();
+                              if (
+                                pathname === `/${activeLang}` ||
+                                pathname === `/${activeLang}/`
+                              ) {
+                                const el = document.querySelector(link.href);
+                                if (el)
+                                  el.scrollIntoView({ behavior: "smooth" });
+                                // setActiveMenu(link.href);
+                              } else {
+                                window.location.href = `/${activeLang}${link.href}`;
+                              }
+                            }
+                          }}
                         >
                           {link.name}
                         </Link>
