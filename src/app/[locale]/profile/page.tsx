@@ -175,8 +175,15 @@ export default function ProfilePage() {
                   {profile.first_name} {profile.last_name}
                 </h3>
                 <p className="text-sm !text-gray-600 dark:text-gray-400 m-0">
-                  {/* {role} */}
-                  {profile.profession?.name_uz || "Participant"}
+                  {(() => {
+                    if (profile.profession && typeof profile.profession === "object") {
+                      const locale = params?.locale || "uz";
+                      if (locale === "en") return profile.profession.name_en || profile.profession.name_uz || profile.profession.name_ru || "-";
+                      if (locale === "ru") return profile.profession.name_ru || profile.profession.name_uz || profile.profession.name_en || "-";
+                      return profile.profession.name_uz || profile.profession.name_en || profile.profession.name_ru || "-";
+                    }
+                    return "-";
+                  })()}
                 </p>
               </div>
             </div>
@@ -205,7 +212,7 @@ export default function ProfilePage() {
               {/* Profile Header */}
               <div className="bg-gradient-to-r from-[#0085d4] to-[#e3a127] p-6 text-center relative">
                 <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs text-white">
-                  {profile?.status || "Unknown"}
+                  <span className="font-semibold">{profile?.status === "active" ? t("active") : t("inactive")}</span>
                 </div>
                 <div className="w-20 h-20 mx-auto rounded-full bg-white/20 backdrop-blur-md border-4 border-white/30 flex items-center justify-center text-3xl text-white font-bold mb-3">
                   {profile.first_name?.charAt(0)}
@@ -214,6 +221,17 @@ export default function ProfilePage() {
                 <h1 className="text-2xl mt-0 font-bold text-white">
                   {profile.first_name} {profile.last_name}
                 </h1>
+                <p className="m-0 text-white bottom-3">
+                  {(() => {
+                    if (profile.profession && typeof profile.profession === "object") {
+                      const locale = params?.locale || "uz";
+                      if (locale === "en") return profile.profession.name_en || profile.profession.name_uz || profile.profession.name_ru || "-";
+                      if (locale === "ru") return profile.profession.name_ru || profile.profession.name_uz || profile.profession.name_en || "-";
+                      return profile.profession.name_uz || profile.profession.name_en || profile.profession.name_ru || "-";
+                    }
+                    return "-";
+                  })()}
+                </p>
               </div>
 
               {/* Profile Details */}
@@ -240,13 +258,18 @@ export default function ProfilePage() {
                     />
                     <ProfileField
                       label={t("country")}
-                      value={
-                        profile.country && typeof profile.country === "object"
-                          ? profile.country.name_uz || profile.country.name_en || profile.country.name_ru || "-"
-                          : typeof profile.country === "string" && profile.country
-                            ? profile.country
-                            : "-"
-                      }
+                      value={(() => {
+                        if (profile.country && typeof profile.country === "object") {
+                          const locale = params?.locale || "uz";
+                          if (locale === "en") return profile.country.name_en || profile.country.name_uz || profile.country.name_ru || "-";
+                          if (locale === "ru") return profile.country.name_ru || profile.country.name_uz || profile.country.name_en || "-";
+                          return profile.country.name_uz || profile.country.name_en || profile.country.name_ru || "-";
+                        }
+                        if (typeof profile.country === "string" && profile.country) {
+                          return profile.country;
+                        }
+                        return "-";
+                      })()}
                     />
 
                     <ProfileField label={t("phone")} value={profile.phone || "-"} />
@@ -265,11 +288,15 @@ export default function ProfilePage() {
                     />
                     <ProfileField
                       label={t("profession")}
-                      value={
-                        profile.profession && typeof profile.profession === "object"
-                          ? profile.profession.name_uz || profile.profession.name_en || profile.profession.name_ru || "-"
-                          : "-"
-                      }
+                      value={(() => {
+                        if (profile.profession && typeof profile.profession === "object") {
+                          const locale = params?.locale || "uz";
+                          if (locale === "en") return profile.profession.name_en || profile.profession.name_uz || profile.profession.name_ru || "-";
+                          if (locale === "ru") return profile.profession.name_ru || profile.profession.name_uz || profile.profession.name_en || "-";
+                          return profile.profession.name_uz || profile.profession.name_en || profile.profession.name_ru || "-";
+                        }
+                        return "-";
+                      })()}
                     />
                     <div className="mt-6">
                       <ProfileField label={t("email")} value={profile.email || "-"} />

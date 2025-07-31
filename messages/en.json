@@ -302,6 +302,10 @@
     "My_Ticket": "My Ticket",
     "sidebar_ticket": "My Tickets",
     "sidebar_certificate": "My Certificates",
-    "sidebar_profile": "My Profile"
+    "sidebar_profile": "My Profile",
+    "activity": "Activity",
+    "active": "Active",
+    "inactive": "Inactive",
+    "no_activity": "No activity found"
   }
 }

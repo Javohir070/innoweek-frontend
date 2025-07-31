@@ -303,6 +303,10 @@
     "My_Ticket": "Мой билет",
     "sidebar_ticket": "Мои билеты",
     "sidebar_certificate": "Мои сертификаты",
-    "sidebar_profile": "Профиль"
+    "sidebar_profile": "Профиль",
+    "activity": "Активность",
+    "active": "Активный",
+    "inactive": "Неактивный",
+    "no_activity": "Активность не найдена"
   }
 }
