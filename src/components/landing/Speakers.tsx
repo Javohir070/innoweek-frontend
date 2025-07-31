@@ -65,7 +65,7 @@ const SpeakersSection = () => {
                       src={
                         item?.image ? `${BASE_URL}${item?.image}` : userAvatar
                       }
-                      className="img-fluid rounded-lg !w-full !h-[300px] !object-cover"
+                      className="img-fluid rounded-lg !w-full sm:!h-[300px] lg:!h-[200px] !object-cover"
                       alt={item?.full_name}
                       loading="lazy"
                       width={200}
