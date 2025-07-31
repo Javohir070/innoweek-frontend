@@ -13,6 +13,7 @@ import {
 import { FetchInstance } from "@/api/FetchInstance";
 import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/navigation";
+import AcceptTerms from "@/components/ui/AcceptTerms";
 
 type RegisterError = {
   phone?: string;
@@ -420,7 +421,7 @@ export default function RegisterRolePage() {
                       </label>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center gap-2">
                     <input
                       name="acceptTerms"
                       type="checkbox"
@@ -429,9 +430,7 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                       required
                     />
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
-                      {t("accept_terms")}
-                    </span>
+                    <AcceptTerms />
                   </div>
                 </div>
                 {/* Foydalanish shartlari */}
@@ -620,9 +619,7 @@ export default function RegisterRolePage() {
                       onChange={handleChange}
                       required
                     />
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
-                      {t("accept_terms")}
-                    </span>
+                    <AcceptTerms />
                   </div>
                 </div>
                 {/* Foydalanish shartlari */}

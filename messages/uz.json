@@ -250,5 +250,43 @@
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",
     "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting."
+  },
+
+  "accept_terms": {
+    "accept_terms": "Foydalanish shartlarini qabul qilaman",
+    "close": "Yopish",
+    "accept": "Qabul qilish",
+    "terms_conditions": "MAXFIYLIK SIYOSATI",
+    "terms_conditions_description": "Shaxsiy maʼlumotlarning maxfiylik siyosati (keyingi o‘rinlarda - Siyosat) “innoweek.uz” rasmiy sayti (keyingi o‘rinlarda - innoweek.uz sayti) innoweek.uz sayti yoki shu saytga aloqador boshqa mobil ilovalardan foydalanish chogʻida foydalanuvchi haqida olinadigan maʼlumotlarga nisbatan qoʻllaniladi. innoweek.uz sayti Oʻzbekiston Respublikasi qonunlariga binoan rasman roʻyxatdan oʻtgan sayt hisoblanadi. innoweek.uz saytining har qanday resurslaridan foydalanish foydalanuvchi tomonidan mazkur Siyosat va unda koʻrsatilgan shartlarga soʻzsiz rozi ekanligini anglatadi. Agar foydalanuvchi mazkur Siyosat shartlariga rozi boʻlmagan taqdirda u innoweek.uz resurslaridan foydalanmasligi kerak.",
+    "blog_1": "TERMINLAR",
+    "term_1": "innoweek.uz sayti (keyingi o‘rinlarda - Sayt) – bu kontentning serverdagi joylashuv oʻrnidir.",
+    "term_2": "“innoweek.uz” rasmiy sayti – yangi innovatsion gʻoyalar va yangiliklarni ulashuvchi sayt.",
+    "term_3": "Shaxsiy maʼlumotlar – muayyan jismoniy yoki yuridik shaxsga (shaxsiy maʼlumot subyekti) bevosita yoki bilvosita aloqador boʻlgan har qanday maʼlumot hisoblanadi.",
+    "term_4": "Shaxsiy maʼlumotlarning maxfiyligi – jismoniy yoki yuridik shaxslarning maʼlumotlaridan foydalanish huquqiga ega boʻlgan shaxslarning boshqalarga taalluqli maʼlumotlardan ularning roziligisiz yoki qonuniy asoslarsiz foydalanmasligi va tarqatmasligi uchun majburiy talab hisoblanadi.",
+
+    "blog_2": "FOYDALANUVCHINING INNOWEEK.UZ SAYTI TOMONIDAN YIGʻILADIGAN VA QAYTA ISHLANADIGAN SHAXSIY MAʼLUMOTI",
+    "term_5": "Ushbu Maxfiylik siyosati foydalanuvchining saytdan roʻyxatdan oʻtish, huquqiy hujjatlardan foydalanish chogʻida sayt tomonidan soʻralgan maʼlumotlar kiritilganda ushbu maʼlumotlarning maxfiyligini muhofaza qilish va oshkor etmaslik tartibini taʼminlashga qaratilgan innoweek.uz sayti maʼmuriyatining (bundan keyin matnda Maʼmuriyat deb yuritiladi) majburiyatlarini belgilaydi.",
+    "term_6": "Ushbu Maxfiylik siyosati doirasida qayta ishlashga ruxsat berilgan shaxsiy maʼlumotlar Saytda roʻyxatdan oʻtish chogʻida jadvalni toʻldirish orqali foydalanuvchi tomonidan mustaqil ravishda taqdim etiladi va u quyidagilarni oʻz ichiga oladi: Foydalanuvchining familiyasi, ismi-sharifi, foydalanuvchining telefon raqami, elektron pochta manzili (e-mail). Shuningdek, ishlov beriluvchi maʼlumotlarga Foydalanuvchi tomonidan mustaqil ravishda sayt maʼmuriyatiga yoki maʼmuriyatning iltimosiga koʻra taqdim etilgan har qanday qoʻshimcha maʼlumot kiradi.",
+
+    "blog_3": "SHAXSIY MAʼLUMOTLAR XAVFSIZLIGI",
+    "term_7": "Shaxsiy maʼlumotlarni noqonuniy xatti-harakatlardan, yoʻqolish, yoʻq qilish va uchinchi shaxslar tomonidan ruxsatsiz kirishdan himoya qilish uchun maʼmuriyat zamonaviy dasturiy taʼminot va apparatni himoya qilish vositalaridan hamda tashkiliy xavfsizlik choralaridan foydalanadi. Maʼmuriyat maʼlumotlarning maxfiyligini taʼminlash uchun barcha imkoniyatlarni ishga solishni oʻz zimmasiga oladi. <br /> Maʼmuriyat foydalanuvchining iltimosi yoki uchinchi shaxslarning daʼvolari boʻyicha sud yoxud huquqni muhofaza qiluvchi organlarning soʻroviga asosan, maʼmuriyatning huquqlari va qonuniy manfaatlarini taʼminlash yuzasidan, shuningdek qonunchilikda belgilangan boshqa hollarda foydalanuvchining shaxsiy maʼlumotlariga kirish huquqiga ega.",
+
+    "blog_4": "MAXFIYLIK SIYOSATINI OʻZGARTIRISH",
+    "term_8": "Maʼmuriyat ushbu Siyosatga mustaqil ravishda oʻzgartirish kiritish huquqiga ega. Siyosatning oʻzgartirilgan versiyasi Saytda eʼlon qilingan paytdan boshlab darhol kuchga kiradi va foydalanuvchi uchun majburiy hisoblanadi. Foydalanuvchilarga Siyosat oʻzgarishi toʻgʻrisida maxsus xabar berish mumkin, ammo bunday ogohlantirish talab qilinmaydi va Maʼmuriyat barcha manfaatdor tomonlarni Siyosatdagi oʻzgarishlarni kuzatishga undaydi. Siyosatdagi oʻzgarishlarga rozi boʻlmagan taqdirda, foydalanuvchi Saytdan foydalanishni toʻxtatishi shart."
+  },
+  "footer": {
+    "home": "Bosh sahifa",
+    "news": "Yangiliklar",
+    "about_innoweek": "Innoweek haqida",
+    "coverage": "Qamrov",
+    "program": "Dastur",
+    "speakers": "Spikerlar",
+    "partners": "Hamkorlar",
+    "feedback": "Fikr-mulohazalar",
+    "gallery": "Galereya",
+    "faq": "FAQ",
+    "contact": "Bog'lanish",
+    "map": "Xarita",
+    "All Rights Reserved © 2025": "Barcha huquqlar himoyalangan © "
   }
 }

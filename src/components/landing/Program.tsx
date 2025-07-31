@@ -265,6 +265,7 @@ export default function ProgramSection() {
                     setIsShowMoreVisible1(visibleDays1[0].events.length);
                     handleShowMore();
                   }}
+                  data-aos="fade-up" data-aos-delay="100"
                 >
                   <span className="text-lg text-gray-800 font-bold">
                     {t("LOAD_MORE")}
@@ -325,6 +326,7 @@ export default function ProgramSection() {
                   onClick={() => {
                     setIsShowMoreVisible2(visibleDays2[0].events.length);
                   }}
+                  data-aos="fade-up" data-aos-delay="100"
                 >
                   <span className="text-lg text-gray-800 font-bold">
                     {t("LOAD_MORE")}

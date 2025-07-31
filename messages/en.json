@@ -219,5 +219,42 @@
     "verifying": "Verifying...",
     "verify": "Verify",
     "position": "Position"
+  },
+  "accept_terms": {
+    "accept_terms": "I accept the terms of use",
+    "close": "Close",
+    "accept": "Accept",
+    "terms_conditions": "PRIVACY POLICY",
+    "terms_conditions_description": "The Personal Data Privacy Policy (hereinafter referred to as the “Policy”) applies to information received about the user during their use of the official website “innoweek.uz” (hereinafter referred to as the “innoweek.uz website”), as well as other mobile applications related to this website. The innoweek.uz website is officially registered in accordance with the legislation of the Republic of Uzbekistan. Use of any resources of the innoweek.uz website implies the user’s unconditional consent to this Policy and its terms. If the user disagrees with the terms of the Policy, they must refrain from using the resources of the innoweek.uz website.",
+    "blog_1": " DEFINITIONS",
+    "term_1": "innoweek.uz website — refers to the placement of content on a server.",
+    "term_2": "innoweek.uz website — is a platform for disseminating new innovative ideas and news.",
+    "term_3": "Personal data — any information that directly or indirectly relates to a specific individual or legal entity (personal data subject).",
+    "term_4": "Confidentiality of personal data — a mandatory requirement under which persons who have access to such data are not permitted to disclose or distribute it without the consent of the personal data subject or without other legal grounds.",
+
+    "blog_2": "USER PERSONAL DATA COLLECTED AND PROCESSED BY THE INNOWEEK.UZ WEBSITE",
+    "term_5": "This Privacy Policy outlines the obligations of the administration of the innoweek.uz website (hereinafter referred to as the “Administration”) to ensure the confidentiality and protection of personal information provided by the user during registration on the website and/or while using legal documents, as well as in other cases when the user completes relevant forms on the site.",
+    "term_6": "Personal data permitted for processing under this Privacy Policy is voluntarily provided by the user during registration on the website by filling out a form and may include: the user’s last name, first name, patronymic, phone number, and email address. Additionally, any other information voluntarily submitted by the user to the Administration, or provided upon request, is also subject to processing.",
+
+    "blog_3": "SECURITY OF PERSONAL DATA",
+    "term_7": "The Administration uses modern software and hardware security tools, as well as organizational measures, to protect personal data from unlawful actions, loss, destruction, and unauthorized access by third parties. The Administration undertakes to make every effort to ensure the confidentiality of the data. The Administration has the right to access the user’s personal data based on the user’s request, third-party claims, court orders or law enforcement requests, for the protection of the Administration’s rights and legal interests, as well as in other cases stipulated by law.",
+
+    "blog_4": "CHANGES TO THE PRIVACY POLICY",
+    "term_8": "The Administration reserves the right to unilaterally make changes to this Policy. The updated version of the Policy comes into force immediately upon its publication on the Website and becomes binding for the user. Users may be notified of changes to the Policy separately; however, such notification is not mandatory. The Administration encourages all interested parties to monitor the Policy for changes independently. In case of disagreement with the changes made, the user must stop using the Website."
+  },
+  "footer": {
+    "home": "Home",
+    "news": "News",
+    "about_innoweek": "About Innoweek",
+    "coverage": "Coverage",
+    "program": "Program",
+    "speakers": "Speakers",
+    "partners": "Partners",
+    "feedback": "Feedback",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "map": "Map", 
+    "All Rights Reserved © 2025": "All Rights Reserved © "
   }
 }
