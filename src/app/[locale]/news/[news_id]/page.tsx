@@ -3,12 +3,12 @@ import { INewsListItem, IResponse } from "@/types";
 import Image from "next/image";
 
 interface INewsById {
-  params: Promise<{news_id: string}>
+  params: Promise<{news_id: string, locale: string}>
 }
 
-const getNewsById = async (id: string)=>{
+const getNewsById = async (id: string, locale: string)=>{
   try {
-    const res = await FetchInstance<IResponse<INewsListItem>>(`/api/v1.0/news/get/${id}`)
+    const res = await FetchInstance<IResponse<INewsListItem>>(`/api/v1.0/news/get/${id}?lang=${locale}`);
     console.log(res);
     
     return res?.data
@@ -20,8 +20,10 @@ const getNewsById = async (id: string)=>{
 }
 
 export default async function NewsDetailPage({ params }: INewsById) {
-  const { news_id } = await params;
-  const data = await getNewsById(news_id);
+  const { news_id , locale } = await params;
+  const data = await getNewsById(news_id , locale);
+  console.log(locale);
+  
 
   if (!data) {
     return (
