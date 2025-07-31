@@ -152,31 +152,6 @@
       }
     ]
   },
-  "profile": {
-    "profile_title": "Профиль",
-    "no_profile_found": "Профиль не найден",
-    "firstName": "Имя",
-    "lastName": "Фамилия",
-    "gender": "Пол",
-    "birth_date": "Дата рождения",
-    "country": "Страна",
-    "phone": "Телефон",
-    "organization": "Организация",
-    "position": "Должность",
-    "email": "Эл. почта",
-    "save_changes": "Сохранить изменения",
-    "cancel": "Отмена",
-    "edit_profile": "Редактировать профиль",
-    "change_password": "Сменить пароль",
-    "current_password": "Текущий пароль",
-    "new_password": "Новый пароль",
-    "confirm_password": "Подтвердите новый пароль",
-    "passwords_do_not_match": "Пароли не совпадают",
-    "updating": "Обновление...",
-    "update_success": "Профиль успешно обновлен",
-    "update_error": "Ошибка при обновлении профиля",
-    "male": "мужской"
-  },
   "expert_feedback": {
     "about_us": "О НАС",
     "experts_opinion": "МНЕНИЕ ЭКСПЕРТОВ",
@@ -271,5 +246,30 @@
     "map": "Карта",
     "All Rights Reserved © 2025": "Все права защищены © ",
     "follow_us": "Следите за нами"
+  },
+  "profile": {
+    "profile_title": "Профиль",
+    "no_profile_found": "Профиль не найден",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "gender": "Пол",
+    "birth_date": "Дата рождения",
+    "country": "Страна",
+    "phone": "Телефон",
+    "organization": "Организация",
+    "position": "Должность",
+    "email": "Эл. почта",
+    "save_changes": "Сохранить изменения",
+    "cancel": "Отмена",
+    "edit_profile": "Редактировать профиль",
+    "change_password": "Сменить пароль",
+    "current_password": "Текущий пароль",
+    "new_password": "Новый пароль",
+    "confirm_password": "Подтвердите новый пароль",
+    "passwords_do_not_match": "Пароли не совпадают",
+    "updating": "Обновление...",
+    "update_success": "Профиль успешно обновлен",
+    "update_error": "Ошибка при обновлении профиля",
+    "male": "мужской"
   }
 }
