@@ -1,11 +1,14 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import Ticket from "../ticket/page";
 import { IoPersonSharp } from "react-icons/io5";
+import { PiCertificateFill } from "react-icons/pi";
+import { FaTicketAlt } from "react-icons/fa";
 import { FetchInstance } from "@/api/FetchInstance";
-import { IResponse } from "@/types";
+import { CountryObj, IResponse } from "@/types";
 
 interface UserProfile {
   id: number;
@@ -39,7 +42,7 @@ interface UserProfile {
   birth_date: string | null;
   profession_id: number | null;
   organization: string | null;
-  gender: string | null;
+  gender: string | number | null;
   ticket: {
     id: number;
     user_id: number;
@@ -50,13 +53,25 @@ interface UserProfile {
     updated_at: string;
   };
   role?: string;
-  country?: string;
+  country?: string | CountryObj | null;
+  profession?: ProfessionObj | null;
+}
+
+interface ProfessionObj {
+  id: number;
+  user_id: number;
+  name_uz?: string;
+  name_en?: string;
+  name_ru?: string;
+  status?: string;
+  created_at?: string | null;
+  updated_at?: string | null;
 }
 
 const SIDEBAR_ITEMS = [
-  { key: "profile", label: "Shaxsiy kabinet", icon: <IoPersonSharp /> },
-  { key: "certificate", label: "Sertifikatim", icon: <IoPersonSharp /> },
-  { key: "ticket", label: "Ticket", icon: <IoPersonSharp /> },
+  { key: "profile", labelKey: "sidebar_profile", icon: <IoPersonSharp /> },
+  { key: "certificate", labelKey: "sidebar_certificate", icon: <PiCertificateFill /> },
+  { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
 ];
 
 export default function ProfilePage() {
@@ -77,7 +92,7 @@ export default function ProfilePage() {
             method: "POST",
           }
         );
-console.log(response);
+        console.log(response);
 
         if (response) {
           setProfile(response?.data);
@@ -134,12 +149,14 @@ console.log(response);
     );
   }
 
+  console.log("profile", profile);
+
   const role = params.role
     ? typeof params.role === "string"
       ? params.role
       : Array.isArray(params.role)
-      ? params.role[0]
-      : profile.role || "participant"
+        ? params.role[0]
+        : profile.role || "participant"
     : profile.role || "participant";
 
   return (
@@ -158,7 +175,8 @@ console.log(response);
                   {profile.first_name} {profile.last_name}
                 </h3>
                 <p className="text-sm !text-gray-600 dark:text-gray-400 m-0">
-                  {role}
+                  {/* {role} */}
+                  {profile.profession?.name_uz || "Participant"}
                 </p>
               </div>
             </div>
@@ -167,15 +185,14 @@ console.log(response);
             {SIDEBAR_ITEMS.map((item) => (
               <button
                 key={item.key}
-                className={`w-full flex items-center space-x-3 px-4 py-3 mb-1 rounded-lg transition-all duration-200 ${
-                  activeTab === item.key
-                    ? "bg-[#0085d4]/10 dark:bg-[#e3a127]/20 text-[#0085d4] dark:text-[#e3a127] font-semibold"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
+                className={`w-full flex items-center space-x-3 px-4 py-3 mb-1 rounded-lg transition-all duration-200 ${activeTab === item.key
+                  ? "bg-[#0085d4]/10 dark:bg-[#e3a127]/20 text-[#0085d4] dark:text-[#e3a127] font-semibold"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
                 onClick={() => setActiveTab(item.key)}
               >
                 <span className="text-lg">{item.icon}</span>
-                <span>{item.label}</span>
+                <span>{t(item.labelKey)}</span>
               </button>
             ))}
           </nav>
@@ -188,7 +205,7 @@ console.log(response);
               {/* Profile Header */}
               <div className="bg-gradient-to-r from-[#0085d4] to-[#e3a127] p-6 text-center relative">
                 <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs text-white">
-                  {profile.organization} ({profile.position})
+                  {profile?.status || "Unknown"}
                 </div>
                 <div className="w-20 h-20 mx-auto rounded-full bg-white/20 backdrop-blur-md border-4 border-white/30 flex items-center justify-center text-3xl text-white font-bold mb-3">
                   {profile.first_name?.charAt(0)}
@@ -197,47 +214,65 @@ console.log(response);
                 <h1 className="text-2xl mt-0 font-bold text-white">
                   {profile.first_name} {profile.last_name}
                 </h1>
-                <p className="text-white/90 mt-1 text-sm">{profile.email}</p>
               </div>
 
               {/* Profile Details */}
               <div className="p-6 dark:!bg-gray-900">
+                <h3 className="!font-semibold !text-gray-600 dark:!text-gray-400 uppercase !text-[20px] tracking-wider mb-4 pb-2 border-b border-gray-200 dark:!border-gray-700">
+                  {t("personal_information")}
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   {/* Personal Information */}
                   <div className="space-y-4">
-                    <h3 className="!font-semibold !text-gray-600 dark:!text-gray-400 uppercase !text-[20px] tracking-wider mb-4 pb-2 border-b border-gray-200 dark:!border-gray-700">
-                      Personal Information
-                    </h3>
                     <ProfileField
                       label={t("gender")}
-                      value={profile.gender}
+                      value={
+                        String(profile.gender) === "1"
+                          ? t("male")
+                          : String(profile.gender) === "2"
+                            ? t("female")
+                            : profile.gender ? String(profile.gender) : "-"
+                      }
                     />
                     <ProfileField
                       label={t("birth_date")}
-                      value={profile.birth_date}
+                      value={profile.birth_date || "-"}
                     />
                     <ProfileField
                       label={t("country")}
-                      value={profile.country}
+                      value={
+                        profile.country && typeof profile.country === "object"
+                          ? profile.country.name_uz || profile.country.name_en || profile.country.name_ru || "-"
+                          : typeof profile.country === "string" && profile.country
+                            ? profile.country
+                            : "-"
+                      }
                     />
-                    <ProfileField label={t("phone")} value={profile.phone} />
+
+                    <ProfileField label={t("phone")} value={profile.phone || "-"} />
                   </div>
 
                   {/* Professional Information */}
                   <div className="space-y-4">
-                    <h3 className="!font-semibold !text-gray-600 dark:!text-gray-400 uppercase !text-[20px] tracking-wider mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
-                      Professional Information
-                    </h3>
+
                     <ProfileField
                       label={t("organization")}
-                      value={profile.organization}
+                      value={profile.organization || "-"}
                     />
                     <ProfileField
                       label={t("position")}
-                      value={profile.position}
+                      value={profile.position || "-"}
+                    />
+                    <ProfileField
+                      label={t("profession")}
+                      value={
+                        profile.profession && typeof profile.profession === "object"
+                          ? profile.profession.name_uz || profile.profession.name_en || profile.profession.name_ru || "-"
+                          : "-"
+                      }
                     />
                     <div className="mt-6">
-                      <ProfileField label={t("email")} value={profile.email} />
+                      <ProfileField label={t("email")} value={profile.email || "-"} />
                     </div>
                   </div>
                 </div>
@@ -249,7 +284,7 @@ console.log(response);
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg shadow-gray-300 dark:shadow-blue-500 border border-gray-200 dark:!border-gray-700 overflow-hidden h-full">
               <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-semibold !text-gray-800 !text-2xl dark:text-white">
-                  My Certificate
+                  {t("My_ertificate")}
                 </h3>
               </div>
               <div className="p-4 md:p-8 flex items-center justify-center !min-h-[400px]">
@@ -266,7 +301,7 @@ console.log(response);
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 overflow-hidden shadow-gray-300 dark:shadow-blue-500 h-full">
               <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-semibold !text-gray-800 dark:text-white">
-                  My Ticket
+                  {t("My_Ticket")}
                 </h3>
               </div>
               <div className="p-0 md:p-8 min-h-[400px]">

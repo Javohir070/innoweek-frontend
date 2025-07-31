@@ -1,4 +1,16 @@
 {
+  "ticket": {
+    "electronic_ticket": "ELECTRONIC TICKET",
+    "ticket_to_enter": "Ticket to enter InnoWeek-2025",
+    "validity_period": "Validity period",
+    "date_and_time_of_visit": "Date and time of visit",
+    "address": "Tashkent, Mirzo Ulug'bek district, Milliy Bog' street, 1",
+    "forbidden_for_others": "It is strictly forbidden for another person to use this pass.",
+    "download_as_image": "Download as Image",
+    "download_app_prompt": "Download this app to access or use our system!"
+  },
+  "male": "Male",
+  "female": "Female",
   "header": {
     "HOME": "HOME",
     "NEWS": "NEWS",
@@ -64,7 +76,6 @@
     "day_1_program_3_title": "Startup ecosystem in Central Asia",
     "day_1_program_4_title": "International Forum of Technoparks",
     "day_1_program_5_title": "Integrating Science and Industry: Supporting Industrial Implementation of R&D Results",
-
     "day_2": "October 10",
     "day_2_program_1_title": "Global Innovation Index 2025: National launch",
     "day_2_program_2_title": "Innovations in Education: Fostering Critical Thinking, Creativity, and Problem-Solving Skills",
@@ -72,13 +83,11 @@
     "day_2_program_4_title": "DEMO DAY with international donors",
     "day_2_program_5_title": "Central Asian Science Day",
     "day_2_program_6_title": "Venture Capital Forum",
-
     "day_3": "October 11",
     "day_3_program_1_title": "Ceremony of Awarding",
     "day_3_program_2_title": "Closing ceremony",
     "LOAD_MORE": "Load More"
   },
-
   "speakers": {
     "INNOWEEK": "INNOWEEK",
     "SPEAKERS": "SPEAKERS"
@@ -116,7 +125,6 @@
     "form_sent_message": "Your message has been sent. Thank you!",
     "form_submit": "Send Message"
   },
-
   "check_ticket": {
     "are_you_registered": "Are you registered?",
     "check_your_ticket": "Check Your Ticket",
@@ -154,7 +162,6 @@
       }
     ]
   },
-
   "expert_feedback": {
     "about_us": "ABOUT US",
     "experts_opinion": "EXPERTS' FEEDBACK",
@@ -178,7 +185,8 @@
     "no_account": "Don't have an account?",
     "register": "Register",
     "logging_in": "Logging in...",
-    "login_error": "Login error"
+    "login_error": "Login error",
+    "login_success": "Successfully logged in!"
   },
   "register_modal": {
     "register_modal_title": "General Information",
@@ -206,7 +214,6 @@
     "verifying": "Verifying...",
     "verify": "Verify",
     "position": "Position",
-
     "sended_sms": "SMS sent",
     "otp_title": "Enter the 6-digit code sent via SMS",
     "otp_description": "Enter the 6-digit code sent to your phone number.",
@@ -223,14 +230,11 @@
     "term_2": "innoweek.uz website — is a platform for disseminating new innovative ideas and news.",
     "term_3": "Personal data — any information that directly or indirectly relates to a specific individual or legal entity (personal data subject).",
     "term_4": "Confidentiality of personal data — a mandatory requirement under which persons who have access to such data are not permitted to disclose or distribute it without the consent of the personal data subject or without other legal grounds.",
-
     "blog_2": "USER PERSONAL DATA COLLECTED AND PROCESSED BY THE INNOWEEK.UZ WEBSITE",
     "term_5": "This Privacy Policy outlines the obligations of the administration of the innoweek.uz website (hereinafter referred to as the “Administration”) to ensure the confidentiality and protection of personal information provided by the user during registration on the website and/or while using legal documents, as well as in other cases when the user completes relevant forms on the site.",
     "term_6": "Personal data permitted for processing under this Privacy Policy is voluntarily provided by the user during registration on the website by filling out a form and may include: the user’s last name, first name, patronymic, phone number, and email address. Additionally, any other information voluntarily submitted by the user to the Administration, or provided upon request, is also subject to processing.",
-
     "blog_3": "SECURITY OF PERSONAL DATA",
     "term_7": "The Administration uses modern software and hardware security tools, as well as organizational measures, to protect personal data from unlawful actions, loss, destruction, and unauthorized access by third parties. The Administration undertakes to make every effort to ensure the confidentiality of the data. The Administration has the right to access the user’s personal data based on the user’s request, third-party claims, court orders or law enforcement requests, for the protection of the Administration’s rights and legal interests, as well as in other cases stipulated by law.",
-
     "blog_4": "CHANGES TO THE PRIVACY POLICY",
     "term_8": "The Administration reserves the right to unilaterally make changes to this Policy. The updated version of the Policy comes into force immediately upon its publication on the Website and becomes binding for the user. Users may be notified of changes to the Policy separately; however, such notification is not mandatory. The Administration encourages all interested parties to monitor the Policy for changes independently. In case of disagreement with the changes made, the user must stop using the Website."
   },
@@ -246,22 +250,37 @@
     "gallery": "Gallery",
     "faq": "FAQ",
     "contact": "Contact",
-    "map": "Map",
-    "All Rights Reserved © 2025": "All Rights Reserved © ",
-    "follow_us": "Follow us"
-  },
-  "profile": {
-    "profile_title": "Profile",
-    "no_profile_found": "No profile found",
-    "firstName": "First name",
-    "lastName": "Last name",
-    "gender": "Gender",
-    "birth_date": "Birth date",
-    "country": "Country",
-    "phone": "Phone",
-    "organization": "Organization",
     "position": "Position",
     "email": "Email",
-    "male": "Male"
+    "save_changes": "Save changes",
+    "cancel": "Cancel",
+    "edit_profile": "Edit profile",
+    "change_password": "Change password",
+    "current_password": "Current password",
+    "new_password": "New password",
+    "confirm_password": "Confirm new password",
+    "passwords_do_not_match": "Passwords do not match",
+    "update_success": "Profile updated successfully",
+    "update_error": "An error occurred while updating profile",
+    "old_password_incorrect": "Old password is incorrect",
+    "new_password_placeholder": "Enter new password",
+    "confirm_password_placeholder": "Confirm new password",
+    "change_avatar": "Change avatar",
+    "upload_avatar": "Upload avatar",
+    "avatar_size_error": "Avatar must be less than 2MB",
+    "avatar_type_error": "Avatar must be in .jpg, .jpeg, or .png format",
+    "remove_avatar": "Remove avatar",
+    "avatar_removed": "Avatar removed successfully",
+    "avatar_upload_error": "Error uploading avatar",
+    "avatar_upload_success": "Avatar uploaded successfully",
+    "male": "Male",
+    "profession": "Profession",
+    "updating": "Updating...",
+    "personal_information": "Personal Information",
+    "My_ertificate": "My Certificate",
+    "My_Ticket": "My Ticket",
+    "sidebar_ticket": "My Tickets",
+    "sidebar_certificate": "My Certificates",
+    "sidebar_profile": "My Profile"
   }
 }

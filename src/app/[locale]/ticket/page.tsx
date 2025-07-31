@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import minin1 from "@/assets/minin 1.png";
 import minin2 from "@/assets/innoweek 1.png";
 import minin3 from "@/assets/MO123 1.png";
@@ -12,6 +13,7 @@ import html2canvas from "html2canvas";
 import { useRef } from "react";
 
 const Ticket = () => {
+  const t = useTranslations("ticket");
   const searchParams = useSearchParams();
   const value = searchParams.get("num_or_email");
   const [ticketData, setTicketData] = useState<ITicketItem | null>(null);
@@ -118,7 +120,7 @@ const Ticket = () => {
           </div>
           <div className="text-center">
             <h2 className="text-white text-lg font-bold tracking-wider">
-              ELECTRONIC TICKET
+              {t("electronic_ticket")}
             </h2>
             <div className="flex flex-row items-center justify-between">
               <div className="text-white text-xl font-semibold">
@@ -133,40 +135,40 @@ const Ticket = () => {
             </div>
           </div>
           <div className="text-white text-sm text-center">
-            Ticket to enter InnoWeek-2025
+            {t("ticket_to_enter")}
           </div>
           <div className="flex items-center gap-2 text-white text-sm mt-2">
             <span>🕒</span>
             <span>
-              Validity period: <b>11.10.2025</b>
+              {t("validity_period")}: <b>11.10.2025</b>
             </span>
           </div>
           <div className="flex items-center gap-2 text-white text-sm">
             <span>📅</span>
             <span>
-              Date and time of visit: <b>9-11.10.2025 11:00</b>
+              {t("date_and_time_of_visit")}: <b>9-11.10.2025 11:00</b>
             </span>
           </div>
           <div className="flex items-center gap-2 text-white text-sm">
             <span>📍</span>
             <span>
-              {"Toshkent, Mirzo Ulug'bek tumani, Milliy Bog' ko'chasi, 1"}
+              {t("address")}
             </span>
           </div>
           <div className="text-white text-xs mt-2">
-            It is strictly forbidden for another person to use this pass.
+            {t("forbidden_for_others")}
           </div>
           <button
-          onClick={handleDownload}
-          className="mt-4 bg-[#e3a127] text-white rounded p-2"
-        >
-          Download as Image
-        </button>
+            onClick={handleDownload}
+            className="mt-4 bg-[#e3a127] text-white rounded p-2"
+          >
+            {t("download_as_image")}
+          </button>
         </div>
         {/* Google Play Card */}
         <div className="bg-[#0a1c4c] rounded-xl p-6 w-[340px] shadow-lg flex flex-col items-center gap-4">
           <div className="text-white text-center text-sm mb-2">
-            Download this app to access or use our system!
+            {t("download_app_prompt")}
           </div>
           <QRCode
             value="1HB5XMLmzFVj8ALj6mfBsbifRoD4miY36v"

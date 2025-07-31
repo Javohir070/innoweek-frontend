@@ -20,6 +20,12 @@ export interface IResponse<T> {
   pagination: IPagination;
 }
 
+export interface CountryObj {
+  name_uz?: string;
+  name_en?: string;
+  name_ru?: string;
+}
+
 export interface ISpeakerItem {
   full_name: string;
   position: string;

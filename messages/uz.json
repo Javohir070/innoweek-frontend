@@ -1,4 +1,16 @@
 {
+  "ticket": {
+    "electronic_ticket": "ELEKTRON CHIPTA",
+    "ticket_to_enter": "InnoWeek-2025 tadbiriga kirish uchun chipta",
+    "validity_period": "Amal qilish muddati",
+    "date_and_time_of_visit": "Tashrif vaqti",
+    "address": "Toshkent, Mirzo Ulug'bek tumani, Milliy Bog' ko'chasi, 1",
+    "forbidden_for_others": "Ushbu chiptani boshqa shaxs foydalanishi qat'iyan man etiladi.",
+    "download_as_image": "Rasm sifatida yuklab olish",
+    "download_app_prompt": "Tizimdan foydalanish uchun ilovani yuklab oling!"
+  },
+  "male": "Erkak",
+  "female": "Ayol",
   "header": {
     "HOME": "BOSH SAHIFA",
     "NEWS": "YANGILIKLAR",
@@ -7,20 +19,6 @@
     "COVERAGE": "QAMROV",
     "PROGRAM": "DASTUR",
     "SPEAKERS": "SPIKERLAR",
-    "PARTNERS": "HAMKORLAR",
-    "ABOUTUS": "BIZ HAQIMIZDA",
-    "GALLERY": "GALEREYA",
-    "FAQ": "FAQ",
-    "MARKETPLACE": "MARKETPLEYS",
-    "CONTACT": "BOG'LANISH"
-  },
-  "langs": {
-    "uz": "O‘zbek",
-    "en": "Ingliz",
-    "ru": "Rus"
-  },
-  "hero": {
-    "Ideas without borders": "Chegarasiz g'oyalar",
     "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
     "hero btn": "INNOWEEK 2025",
     "REGISTER": "RO'YXATDAN O'TISH",
@@ -70,7 +68,6 @@
     "day_1_program_3_title": "Markaziy Osiyoda startap ekotizimlari",
     "day_1_program_4_title": "Texnoparklar xalqaro forumi",
     "day_1_program_5_title": "Ilm-fan va ishlab chiqarish integratsiyasi: ilmiy-tadqiqot ishlari natijalarini sanoatga joriy etishni qo‘llab-quvvatlash",
-
     "day_2": "10-OKTABR",
     "day_2_program_1_title": "Global innovatsiyalar indeksi 2025: Milliy ishga tushirish",
     "day_2_program_2_title": "Ta'limdagi innovatsiyalar: tanqidiy fikrlash, ijodkorlik va muammolarni hal qilish ko'nikmalarini rivojlantirish ",
@@ -78,7 +75,6 @@
     "day_2_program_4_title": "Xalqaro donorlar bilan DEMO DAY",
     "day_2_program_5_title": "Markaziy Osiyo ilm-fan kuni",
     "day_2_program_6_title": "Venchur fondlar forumi",
-
     "day_3": "11-OKTABR",
     "day_3_program_1_title": "Taqdirlash marosimi",
     "day_3_program_2_title": "Yopilish marosimi",
@@ -160,7 +156,6 @@
       }
     ]
   },
-
   "expert_feedback": {
     "about_us": "BIZ HAQIMIZDA",
     "experts_opinion": "EKSPERTLAR FIKRI",
@@ -184,7 +179,8 @@
     "no_account": "Hisobingiz yo'qmi?",
     "register": "Ro'yxatdan o'tish",
     "logging_in": "Kirilmoqda...",
-    "login_error": "Kirishda xato yuz berdi"
+    "login_error": "Kirishda xato yuz berdi",
+    "login_success": "Muvaffaqiyatli tizimga kirdingiz!"
   },
   "register_modal": {
     "register_modal_title": "Umumiy ma'lumot",
@@ -212,13 +208,11 @@
     "verifying": "Tasdiqlanmoqda...",
     "verify": "Tasdiqlash",
     "position": "Lavozim",
-
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",
     "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting.",
     "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi."
   },
-
   "accept_terms": {
     "accept_terms": "Foydalanish shartlarini qabul qilaman",
     "close": "Yopish",
@@ -230,14 +224,11 @@
     "term_2": "“innoweek.uz” rasmiy sayti – yangi innovatsion gʻoyalar va yangiliklarni ulashuvchi sayt.",
     "term_3": "Shaxsiy maʼlumotlar – muayyan jismoniy yoki yuridik shaxsga (shaxsiy maʼlumot subyekti) bevosita yoki bilvosita aloqador boʻlgan har qanday maʼlumot hisoblanadi.",
     "term_4": "Shaxsiy maʼlumotlarning maxfiyligi – jismoniy yoki yuridik shaxslarning maʼlumotlaridan foydalanish huquqiga ega boʻlgan shaxslarning boshqalarga taalluqli maʼlumotlardan ularning roziligisiz yoki qonuniy asoslarsiz foydalanmasligi va tarqatmasligi uchun majburiy talab hisoblanadi.",
-
     "blog_2": "FOYDALANUVCHINING INNOWEEK.UZ SAYTI TOMONIDAN YIGʻILADIGAN VA QAYTA ISHLANADIGAN SHAXSIY MAʼLUMOTI",
     "term_5": "Ushbu Maxfiylik siyosati foydalanuvchining saytdan roʻyxatdan oʻtish, huquqiy hujjatlardan foydalanish chogʻida sayt tomonidan soʻralgan maʼlumotlar kiritilganda ushbu maʼlumotlarning maxfiyligini muhofaza qilish va oshkor etmaslik tartibini taʼminlashga qaratilgan innoweek.uz sayti maʼmuriyatining (bundan keyin matnda Maʼmuriyat deb yuritiladi) majburiyatlarini belgilaydi.",
     "term_6": "Ushbu Maxfiylik siyosati doirasida qayta ishlashga ruxsat berilgan shaxsiy maʼlumotlar Saytda roʻyxatdan oʻtish chogʻida jadvalni toʻldirish orqali foydalanuvchi tomonidan mustaqil ravishda taqdim etiladi va u quyidagilarni oʻz ichiga oladi: Foydalanuvchining familiyasi, ismi-sharifi, foydalanuvchining telefon raqami, elektron pochta manzili (e-mail). Shuningdek, ishlov beriluvchi maʼlumotlarga Foydalanuvchi tomonidan mustaqil ravishda sayt maʼmuriyatiga yoki maʼmuriyatning iltimosiga koʻra taqdim etilgan har qanday qoʻshimcha maʼlumot kiradi.",
-
     "blog_3": "SHAXSIY MAʼLUMOTLAR XAVFSIZLIGI",
     "term_7": "Shaxsiy maʼlumotlarni noqonuniy xatti-harakatlardan, yoʻqolish, yoʻq qilish va uchinchi shaxslar tomonidan ruxsatsiz kirishdan himoya qilish uchun maʼmuriyat zamonaviy dasturiy taʼminot va apparatni himoya qilish vositalaridan hamda tashkiliy xavfsizlik choralaridan foydalanadi. Maʼmuriyat maʼlumotlarning maxfiyligini taʼminlash uchun barcha imkoniyatlarni ishga solishni oʻz zimmasiga oladi. <br /> Maʼmuriyat foydalanuvchining iltimosi yoki uchinchi shaxslarning daʼvolari boʻyicha sud yoxud huquqni muhofaza qiluvchi organlarning soʻroviga asosan, maʼmuriyatning huquqlari va qonuniy manfaatlarini taʼminlash yuzasidan, shuningdek qonunchilikda belgilangan boshqa hollarda foydalanuvchining shaxsiy maʼlumotlariga kirish huquqiga ega.",
-
     "blog_4": "MAXFIYLIK SIYOSATINI OʻZGARTIRISH",
     "term_8": "Maʼmuriyat ushbu Siyosatga mustaqil ravishda oʻzgartirish kiritish huquqiga ega. Siyosatning oʻzgartirilgan versiyasi Saytda eʼlon qilingan paytdan boshlab darhol kuchga kiradi va foydalanuvchi uchun majburiy hisoblanadi. Foydalanuvchilarga Siyosat oʻzgarishi toʻgʻrisida maxsus xabar berish mumkin, ammo bunday ogohlantirish talab qilinmaydi va Maʼmuriyat barcha manfaatdor tomonlarni Siyosatdagi oʻzgarishlarni kuzatishga undaydi. Siyosatdagi oʻzgarishlarga rozi boʻlmagan taqdirda, foydalanuvchi Saytdan foydalanishni toʻxtatishi shart."
   },
@@ -257,7 +248,6 @@
     "All Rights Reserved © 2025": "Barcha huquqlar himoyalangan © ",
     "follow_us": "Bizni kuzatib boring"
   },
-
   "profile": {
     "profile_title": "Profil",
     "no_profile_found": "Profil topilmadi",
@@ -291,6 +281,13 @@
     "avatar_removed": "Avatar muvaffaqiyatli olib tashlandi",
     "avatar_upload_error": "Avatarni yuklashda xato yuz berdi",
     "avatar_upload_success": "Avatar muvaffaqiyatli yuklandi",
-    "male": "Erkak"
+    "male": "Erkak",
+    "profession": "Kasb",
+    "personal_information": "Shaxsiy ma'lumotlar",
+    "My_ertificate": "Mening Sertifikatim",
+    "My_Ticket": "Mening Chiptam",
+    "sidebar_ticket": "Chiptalarim",
+    "sidebar_certificate": "Sertifikatlarim",
+    "sidebar_profile": "Mening Profilim"
   }
 }

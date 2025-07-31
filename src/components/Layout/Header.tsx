@@ -93,9 +93,8 @@ export default function Header() {
               >
                 <Link
                   href={item.key}
-                  className={`${
-                    activeMenu === item.key ? "active" : ""
-                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className={`${activeMenu === item.key ? "active" : ""
+                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -189,13 +188,14 @@ export default function Header() {
             dropdownMatchSelectWidth={false}
             options={langOptions}
             dropdownRender={(menu) => (
-              <div className="bg-white text-center text-blue-600 font-medium">
+              <div className="!p-0 text-center bg-white text-blue-600 font-medium">
                 {menu}
               </div>
             )}
-            dropdownClassName="!p-0 !text-center"
             className="text-center uppercase font-semibold"
+            popupClassName="!p-0 text-center"
           />
+
         </div>
       </div>
       {/* MOBIL - Hamburger tugmasi */}
@@ -298,7 +298,12 @@ export default function Header() {
                     style={{ width: "100%" }}
                     dropdownMatchSelectWidth={false}
                     options={langOptions}
-                    dropdownClassName="!p-0 !text-center"
+                    // dropdownClassName="!p-0 !text-center"
+                    classNames={{
+                      popup: {
+                        root: "!p-0 !text-center",
+                      },
+                    }}
                     className="w-full text-center uppercase font-semibold mt-2"
                   />
                 </li>
