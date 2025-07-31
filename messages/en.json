@@ -218,7 +218,12 @@
     "otp_label": "Enter the 6-digit code sent to your phone number",
     "verifying": "Verifying...",
     "verify": "Verify",
-    "position": "Position"
+    "position": "Position",
+
+    "sended_sms": "SMS sent",
+    "otp_title": "Enter the 6-digit code sent via SMS",
+    "otp_description": "Enter the 6-digit code sent to your phone number.",
+    "registration_successful": "Registration successful."
   },
   "accept_terms": {
     "accept_terms": "I accept the terms of use",
@@ -254,7 +259,7 @@
     "gallery": "Gallery",
     "faq": "FAQ",
     "contact": "Contact",
-    "map": "Map", 
+    "map": "Map",
     "All Rights Reserved © 2025": "All Rights Reserved © ",
     "follow_us": "Follow us"
   }

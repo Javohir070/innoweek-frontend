@@ -249,7 +249,8 @@
 
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",
-    "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting."
+    "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting.",
+    "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi."
   },
 
   "accept_terms": {

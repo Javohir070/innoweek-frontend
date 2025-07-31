@@ -66,7 +66,7 @@ export default function RegisterRolePage() {
   const isFormValid =
     form.firstName.trim() !== "" &&
     form.lastName.trim() !== "" &&
-    (form.phone.trim().length === 9 || form.email !== "") &&
+    (form.phone.trim() || form.email !== "") &&
     form.profession_id !== "" &&
     form.password.length >= 8 &&
     form.password === form.password_confirmation &&
@@ -88,17 +88,12 @@ export default function RegisterRolePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
-    console.log("Form submitted:", registerType);
-
-    // Password validation
     if (form.password !== form.password_confirmation) {
       setError({ status: "passwords_do_not_match" });
       setLoading(false);
       return;
     }
 
-    // Phone validation for local type
     if (registerType === "local" && !/^\d{9}$/.test(form.phone)) {
       setError({
         phone: "Telefon raqam 901234567 formatida, 9 ta raqam bo'lishi kerak",
@@ -108,7 +103,6 @@ export default function RegisterRolePage() {
     } else {
       setError({});
     }
-
     let mappedForm: Record<string, string | number | boolean | undefined> = {};
 
     if (registerType === "local") {
@@ -152,7 +146,6 @@ export default function RegisterRolePage() {
         toast.success(t("sended_sms"));
       }
     } catch (err) {
-      console.log(err);
       setError({
         status:
           err instanceof Error
@@ -192,7 +185,8 @@ export default function RegisterRolePage() {
       );
 
       if (res?.success) {
-        router.push("/profile");
+        toast.success(t("registration_successful"));
+        router.push("/login");
       }
     } catch (error) {
       setOtpError(
@@ -234,7 +228,7 @@ export default function RegisterRolePage() {
   }, []);
 
   return (
-    <div className="mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28] min-h-[55vh]">
+    <div className="mt-10 pt-20 pb-15 flex items-center justify-center !w-full dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28] min-h-[65vh]">
       <div className="bg-white dark:!bg-transparent rounded-2xl p-8 max-w-9/12 w-full shadow-2xl shadow-[#10374d74] border dark:!border-gray-700 relative">
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-15 h-15 rounded-full bg-[#0085d4] flex items-center justify-center shadow-lg border-4 border-white dark:border-[#151a28]">
           <svg width="30" height="30" fill="#fff" viewBox="0 0 24 24">
