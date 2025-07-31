@@ -19,6 +19,7 @@ const AcceptTerms = () => {
         onCancel={() => setOpen(false)}
         cancelText={t("close")}
         okText={t("accept")}
+        okButtonProps={{style: { display: "none" }}}
         width={"80vw"}
       >
         <div className="p-4">

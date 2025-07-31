@@ -75,7 +75,6 @@ export default function RegisterRolePage() {
     form.password === form.password_confirmation &&
     form.gender !== "" &&
     form.acceptTerms;
-  console.log(isFormValid);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -143,6 +142,8 @@ export default function RegisterRolePage() {
           body: JSON.stringify(mappedForm),
         }
       );
+      console.log(res);
+      
 
       if (res?.success) {
         setRegisterBody(mappedForm);
@@ -152,12 +153,14 @@ export default function RegisterRolePage() {
         toast.success(t("sended_sms"));
       }
     } catch (err) {
-      setError({
-        status:
-          err instanceof Error
-            ? err.message
-            : "Bu raqam yoki email oldin ro'yxatdan o'tgan",
-      });
+      console.log(err);
+      
+      // setError({
+      //   status:
+      //     err instanceof Error
+      //       ? err.message
+      //       : "Bu raqam yoki email oldin ro'yxatdan o'tgan",
+      // });
     } finally {
       setLoading(false);
     }
