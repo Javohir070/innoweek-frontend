@@ -14,6 +14,7 @@ import { FetchInstance } from "@/api/FetchInstance";
 import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/navigation";
 import AcceptTerms from "@/components/ui/AcceptTerms";
+import { useParams } from "next/navigation";
 
 type RegisterError = {
   phone?: string;
@@ -45,6 +46,8 @@ const initialForm: RegisterFormWithPosition = {
 export default function RegisterRolePage() {
   const t = useTranslations("register_modal");
   const router = useRouter();
+  const locale = useParams().locale || "uz";
+  
 
   const [form, setForm] = useState<RegisterFormWithPosition>(initialForm);
   const [error, setError] = useState<RegisterError>({});
@@ -111,6 +114,8 @@ export default function RegisterRolePage() {
         last_name: form.lastName,
         phone: form.phone,
         profession_id: form.profession_id,
+        organization: form.organization,
+        position: form.position,
         gender: form.gender,
         password: form.password,
         password_confirmation: form.password_confirmation,
@@ -123,6 +128,7 @@ export default function RegisterRolePage() {
         country_id: form.country,
         profession_id: form.profession_id,
         organization: form.organization,
+        position: form.position,
         gender: form.gender,
         password: form.password,
       };
@@ -202,7 +208,7 @@ export default function RegisterRolePage() {
   const getPrefessionList = async () => {
     try {
       const res = await FetchInstance<IResponse<IProfessionItem[]>>(
-        "/api/v1.0/profession/list?status=active"
+        `/api/v1.0/profession/list?status=active&lang=${locale}`
       );
       setProfessions(res?.data);
     } catch (error) {
@@ -212,7 +218,7 @@ export default function RegisterRolePage() {
   const getCountries = async () => {
     try {
       const res = await FetchInstance<IResponse<ICountryItem[]>>(
-        "/api/v1.0/json/countries"
+        `/api/v1.0/json/countries?lang=${locale}`
       );
       console.log(res);
 
