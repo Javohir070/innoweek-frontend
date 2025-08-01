@@ -7,8 +7,9 @@ import { useTranslations } from "next-intl";
 
 export default function AboutSection() {
   const t = useTranslations("about");
+  const locale = typeof window !== 'undefined' ? (window.location.pathname.split('/')[1] || 'uz') : 'uz';
 
-  const [currentLang, setCurrentLang] = useState("uz");
+  const [currentLang] = useState("uz");
 
   const features: string[] = [
     t('features_1'),
@@ -21,33 +22,29 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="about section light-background bg-transparent"
+      className="about section bg-gray-50 dark:bg-gray-900 transition-colors duration-300 !pt-10 !pb-6"
     >
       <div className="container section-title" data-aos="fade-up">
-        <h2>INNOWEEK</h2>
-        <div>
-          {currentLang === "uz"
-            ? "INNOWEEK 2025 HAQIDA"
-            : currentLang === "ru"
-            ? "О INNOWEEK 2025"
-            : "ABOUT INNOWEEK 2025"}
+        <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+        <div className="text-black dark:!text-gray-300">
+          {t("about_section_title")}
         </div>
       </div>
 
       <div className="container" data-aos="fade-up" data-aos-delay="100">
         <div className="row gy-4 align-items-center justify-content-between">
           <div className="col-xl-5" data-aos="fade-up" data-aos-delay="200">
-            <span className="about-meta">INNOWEEK 2025</span>
-            <h2 className="about-title">{t("title")}</h2>
-            <p className="about-description">{t("description")}</p>
+            <span className="about-meta !text-black dark:!text-white">INNOWEEK 2025</span>
+            <h2 className="about-title !text-black dark:!text-white">{t("title")}</h2>
+            <p className="about-description text-black dark:!text-gray-300">{t("description")}</p>
 
             <div className="row feature-list-wrapper">
               <div className="col-md-6">
                 <ul className="feature-list">
                   {features.slice(0, 3)
                     .map((feature, index) => (
-                      <li key={index}>
-                        <i className="bi bi-check-circle-fill"></i> {feature}
+                      <li key={index} className="text-gray-700 dark:text-gray-300">
+                        <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i> {feature}
                       </li>
                     ))}
                 </ul>
@@ -56,8 +53,8 @@ export default function AboutSection() {
                 <ul className="feature-list">
                   {features.slice(3)
                     .map((feature, index) => (
-                      <li key={index}>
-                        <i className="bi bi-check-circle-fill"></i> {feature}
+                      <li key={index} className="text-gray-700 dark:text-gray-300">
+                        <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i> {feature}
                       </li>
                     ))}
                 </ul>
@@ -75,12 +72,12 @@ export default function AboutSection() {
                 <Image
                   src={about_10}
                   alt="Business Meeting"
-                  className="img-fluid main-image rounded-4"
+                  className="img-fluid main-image rounded-4 shadow-lg dark:shadow-gray-700/50"
                 />
                 <Image
                   src={about_11}
                   alt="Team Discussion"
-                  className="img-fluid small-image rounded-4"
+                  className="img-fluid small-image rounded-4 shadow-lg dark:shadow-gray-700/50"
                 />
               </div>
             </div>

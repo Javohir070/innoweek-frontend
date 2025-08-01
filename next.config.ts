@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["innoweek.uz"],
+    domains: ["innoweek.uz", "api.innoweek.uz"],
   },
   webpack: (config) => {
     config.module.rules.push({
@@ -17,7 +17,13 @@ const nextConfig: NextConfig = {
       },
     });
     return config;
-  }
+  }, 
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);

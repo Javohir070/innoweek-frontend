@@ -1,11 +1,30 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-roboto: '--font-roboto' ; 
-  --font-nunito-sans: '--font-roboto' ; 
+  --font-nunito-sans: '--font-nunito' ; 
   --font-raleway: '--font-raleway' ; 
 }
 
 .Toastify {
   padding: 0 !important;
+}
+
+.goog-te-gadget-simple{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid #ccc !important;
+  padding: 5px !important;
+  border-radius: 16px !important;
+}
+
+.goog-te-gadget-simple img {
+ display: none !important;
+}
+
+iframe.goog-te-banner-frame {
+  display: none !important;
 }

@@ -3,7 +3,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Globe2Icon,
-  Image,
+  Image as Icon,
   ListChecks,
   Map,
   UserCheckIcon,
@@ -11,49 +11,50 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useRef } from "react";
+import section from "@/assets/img/section_bg_2.jpg";
 
 export default function StatsSection() {
   const t = useTranslations("stats");
 
   const [currentLang] = useState("uz");
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const stats = [
     {
-      value: "4 000 m2",
+      value: "15 000 m2",
       title: t("stats_1_title"),
       description: t("stats_1_description"),
-      icon: <Map className="text-yellow-500" />,
+      icon: <Map className="text-white" />,
     },
     {
       value: "1200+",
       title: t("stats_2_title"),
       description: t("stats_2_description"),
-      icon: <Users className="text-yellow-500" />,
+      icon: <Users className="text-white" />,
     },
     {
-      value: "100+",
+      value: "1000+",
       title: t("stats_3_title"),
       description: t("stats_3_description"),
-      icon: <ListChecks className="text-yellow-500" />,
+      icon: <ListChecks className="text-white" />,
     },
     {
-      value: "200+",
+      value: "15000+",
       title: t("stats_4_title"),
       description: t("stats_4_description"),
-      icon: <UserCheckIcon className="text-yellow-500" />,
+      icon: <UserCheckIcon className="text-white" />,
     },
     {
       value: "20+",
       title: t("stats_5_title"),
       description: t("stats_5_description"),
-      icon: <Globe2Icon className="text-yellow-500" />,
+      icon: <Globe2Icon className="text-white" />,
     },
     {
       value: "50+",
       title: t("stats_6_title"),
       description: t("stats_6_description"),
-      icon: <Image className="text-yellow-500" />,
+      icon: <Icon className="text-white" />,
     },
   ];
 
@@ -76,72 +77,81 @@ export default function StatsSection() {
   };
 
   return (
-    <section className="relative py-12 px-4 md:px-10 bg-transparent">
-      <div
-        className="container section-title absolute z-[20] mt-[-40px]"
-        data-aos="fade-up"
+    <div
+      className="!w-full"
+      style={{
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
+    >
+      <section
+        className="relative !pb-0 !pt-10 px-4 md:px-10 bg-transparent"
+        id="stats"
       >
-        <h2>INNOWEEK</h2>
-        <div>
-          {currentLang === "uz"
-            ? "QAMROV"
-            : currentLang === "ru"
-            ? "ОХВАТ"
-            : "COVERAGE"}
+        <div
+          className="container section-title absolute z-[20] pb-0"
+          data-aos="fade-up"
+        >
+          <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+          <div className="text-black dark:!text-white">{t("COVERAGE")}</div>
         </div>
-      </div>
 
-      <div className="relative">
-        <button
-          onClick={scrollLeft}
-          className="hidden md:flex absolute left-[-23px] top-1/2 -translate-y-1/2 z-10 bg-gray-900 !rounded-full p-2 shadow hover:bg-yellow-500 transition"
-        >
-          <ChevronLeft />
-        </button>
+        <div className="relative">
+          <button
+            onClick={scrollLeft}
+            className=" md:flex absolute sm:left-[-23px] max-[620px]:top-6 max-[620px]:left-[40%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-black transition"
+          >
+            <ChevronLeft />
+          </button>
 
-        <button
-          onClick={scrollRight}
-          className="hidden md:flex absolute right-[-23px] top-1/2 -translate-y-1/2 z-10 bg-gray-900 p-2 shadow hover:bg-yellow-500 transition !rounded-full"
-        >
-          <ChevronRight />
-        </button>
+          <button
+            onClick={scrollRight}
+            className=" md:flex absolute sm:right-[-23px] max-[620px]:top-6 max-[620px]:left-[55%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 p-2 shadow hover:bg-black transition !rounded-full"
+          >
+            <ChevronRight />
+          </button>
 
-        <section className="stats section min-w-full bg-transparent">
-          <div className="container" data-aos="fade-left" data-aos-delay="100">
+          <section className="stats section min-w-full bg-transparent">
             <div
-              ref={scrollContainerRef}
-              id="scrollContainer"
-              className="overflow-x-hidden scroll-smooth flex gap-6 py-2 px-1"
+              className="container"
+              data-aos="fade-left"
+              data-aos-delay="100"
             >
-              <div className="g-4 flex gap-6">
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="col-xl-3 col-lg-6 col-md-6 min-w-[200px] w-[300px]"
-                  >
-                    <div
-                      className="metric-card"
-                      data-aos="fade-left"
-                      data-aos-delay={100 * (index + 1)}
-                    >
-                      <div className="metric-header">
-                        <div className="metric-icon-wrapper">{stat?.icon}</div>
-                        <div className="metric-value">
-                          <span>{stat.value}</span>
+              <div
+                ref={scrollContainerRef}
+                id="scrollContainer"
+                className="overflow-x-hidden scroll-smooth flex gap-6  px-1"
+              >
+                <div className="g-4 flex gap-6">
+                  {stats.map((stat, index) => (
+                    <div key={index} className="min-w-[200px] w-[350px]">
+                      <div
+                        className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
+                        data-aos="fade-left"
+                        data-aos-delay={100 * (index + 1)}
+                      >
+                        <div className="metric-header">
+                          <div className="metric-icon-wrapper ">
+                            {stat?.icon}
+                          </div>
+                          <div className="metric-value">
+                            <span>{stat.value}</span>
+                          </div>
+                        </div>
+                        <div className="metric-info">
+                          <h4>{stat.title}</h4>
+                          <p className="text-white">{stat.description}</p>
                         </div>
                       </div>
-                      <div className="metric-info">
-                        <h4>{stat.title}</h4>
-                        <p>{stat.description}</p>
-                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </div>
-    </section>
+          </section>
+        </div>
+      </section>
+    </div>
   );
 }

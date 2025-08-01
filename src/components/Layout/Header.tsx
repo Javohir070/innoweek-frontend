@@ -1,90 +1,124 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import innoweekLogo from "@/assets/img/services/123.png";
+import { Select } from "antd";
+import innoweekLogo from "@/assets/img/logo_inno.png";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { useRouter, usePathname, useParams, } from "next/navigation";
+import { Link, useRouter as Router } from "@/i18n/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
+import { LoginOutlined } from "@ant-design/icons";
+import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
-  const langSwitch = useTranslations('langs')
-  const router = useRouter();
+  const registerLangs = useTranslations("header");
+  const router = Router();
+  const routerLang = useRouter();
   const pathname = usePathname();
-  const params = useParams() ;
+  const params = useParams();
   const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
+
+  // importlar tepasida kerakli state:
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const changeLang = (lang: string) => {
     setActiveLang(lang);
-    // Agar Next.js routingda [locale] ishlatilgan bo‘lsa:
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
-    router.push(newPath);
+    routerLang.push(newPath);
   };
 
   const menu = [
-    {
-      label: t("HOME"),
-      key: "/",
-    },
-    {
-      label: t("NEWS"),
-      key: "/news",
-    },
+    { label: t("HOME"), key: "/" },
+    { label: t("NEWS"), key: "/news" },
     {
       label: t("INNOWEEK"),
       key: "#about",
       dropdown: [
-        { label: "INNOWEEK HAQIDA", key: "#about" },
-        { label: "QAMROV", key: "#stats" },
-        { label: "DASTUR", key: "#resume" },
-        { label: "SPIKERLAR", key: "#team" },
-        { label: "HAMKORLAR", key: "#clients" },
-        { label: "BIZ HAQIMIZDA", key: "#otziv" },
+        { label: t("INNOWEEK HAQIDA"), key: "#about" },
+        { label: t("QAMROV"), key: "#stats" },
+        { label: t("DASTUR"), key: "#resume" },
+        { label: t("SPIKERLAR"), key: "#team" },
+        { label: t("HAMKORLAR"), key: "#clients" },
       ],
     },
-    {
-      label: t("GALLERY"),
-      key: "/gallery",
-    },
-    {
-      label: t("FAQ"),
-      key: "#faq",
-    },
-    {
-      label: "Spikerlar",
-      key: "#spikers",
-    },
-    {
-      label: t("CONTACT"),
-      key: "#contact",
-    },
+    { label: t("GALLERY"), key: "/gallery" },
+    { label: t("CONTACT"), key: "#contact" },
+  ];
+
+  const sectionAnchors = [
+    "#hero",
+    "#about",
+    "#stats",
+    "#resume",
+    "#team",
+    "#clients",
+    "#otziv",
+    "#faq",
+    "#contact",
+    "#spikers",
   ];
 
   const handleMenuClick = (key: string) => {
     setActiveMenu(key);
   };
 
+  const langOptions = [
+    { value: "uz", label: "O‘zbekcha" },
+    { value: "en", label: "English" },
+    { value: "ru", label: "Русский" },
+  ];
+
+  const shortLabel = {
+    uz: "UZ",
+    en: "EN",
+    ru: "RU",
+  };
+
   return (
-    <header id="header" className="header flex items-center fixed-top">
-      <div className="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    <header className="header flex items-center fixed-top bg-white dark:bg-gray-800 text-gray-900 shadow w-full z-50">
+      <div className="container-fluid container-xl py-2 flex justify-between items-center w-full">
         <Link
           href="/"
-          className="logo d-flex align-items-center me-auto me-xl-0"
+          className="logo d-flex align-items-center me-auto me-xl-0 rounded-lg"
         >
-          <Image src={innoweekLogo} alt="Logo" className="w-[80px] h-[36px]" />
+          <Image src={innoweekLogo} alt="Logo" className="w-[110px]" />
         </Link>
 
         <nav id="navmenu" className="navmenu !uppercase">
           <ul>
             {menu.map((item, index) => (
-              <li key={index} className={item.dropdown ? "dropdown" : ""}>
+              <li
+                key={index}
+                className={item.dropdown ? "dropdown " : "hover:scale-105"}
+              >
                 <Link
                   href={item.key}
                   className={`${
                     activeMenu === item.key ? "active" : ""
-                  } !font-raleway !font-semibold`}
-                  onClick={() => handleMenuClick(item.key)}
+                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  onClick={(e) => {
+                    if (item.key === "/spikers") {
+                      router.push(`/${activeLang}/spikers`);
+                      setActiveMenu(item.key);
+                      return;
+                    }
+                    if (sectionAnchors.includes(item.key)) {
+                      e.preventDefault();
+                      if (
+                        pathname === `/${activeLang}` ||
+                        pathname === `/${activeLang}/`
+                      ) {
+                        const el = document.querySelector(item.key);
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                        setActiveMenu(item.key);
+                      } else {
+                        window.location.href = `/${activeLang}${item.key}`;
+                      }
+                    } else {
+                      handleMenuClick(item.key);
+                    }
+                  }}
                 >
                   {item.dropdown ? <span>{item.label}</span> : item.label}
                 </Link>
@@ -94,7 +128,26 @@ export default function Header() {
                       <li key={subIndex}>
                         <Link
                           href={subItem.key}
-                          onClick={() => handleMenuClick(subItem.key)}
+                          className="!font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50"
+                          onClick={(e) => {
+                            if (sectionAnchors.includes(subItem.key)) {
+                              e.preventDefault();
+                              if (
+                                pathname === `/${activeLang}` ||
+                                pathname === `/${activeLang}/`
+                              ) {
+                                const el = document.querySelector(subItem.key);
+                                if (el)
+                                  el.scrollIntoView({ behavior: "smooth" });
+                                setActiveMenu(subItem.key);
+                              } else {
+                                window.location.href = `/${activeLang}${subItem.key}`;
+                              }
+                            } else {
+                              handleMenuClick(subItem.key);
+                            }
+                          }}
+                          scroll={false}
                         >
                           {subItem.label}
                         </Link>
@@ -105,23 +158,163 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <div className="flex items-center justify-end gap-2">
-          <div>
-            <select
-              value={activeLang}
-              onChange={(e) => changeLang(e.target.value)}
-              className="border rounded px-2 py-1"
+        <div className="flex max-[1200px]:hidden items-start justify-end gap-2">
+          <button
+            className="!outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full whitespace-nowrap"
+            onClick={() => {
+              router.push(`/register`);
+            }}
+          >
+            {registerLangs("REGISTER")}
+          </button>
+          <div className="cta-button rounded-full mt-1">
+            <button
+              className="!bg-transparent"
+              onClick={() => {
+                router.push(`/login`);
+              }}
             >
-              <option value="uz">{langSwitch("uz")}</option>
-              <option value="en">{langSwitch('en')}</option>
-              <option value="ru">{langSwitch("ru")}</option>
-            </select>
+              <span className="text-sm font-medium">
+                <LoginOutlined className="inline-block text-2xl" />
+                {/* {registerLangs("REGISTER")} */}
+              </span>
+            </button>
+          </div>
+          <Select
+            value={shortLabel[activeLang as keyof typeof shortLabel]}
+            onChange={changeLang}
+            style={{ width: 80, textAlign: "center" }}
+            dropdownMatchSelectWidth={false}
+            options={langOptions}
+            dropdownRender={(menu) => (
+              <div className="!p-0 text-center bg-white text-blue-600 font-medium">
+                {menu}
+              </div>
+            )}
+            className="text-center uppercase font-semibold"
+            popupClassName="!p-0 text-center"
+          />
+          <div>
+            <GoogleTranslate />
           </div>
         </div>
       </div>
+      {/* MOBIL - Hamburger tugmasi */}
+      <div className="xl:hidden absolute top-4 right-4 z-50">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="text-gray-800 dark:text-white focus:outline-none"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        >
+          {isMenuOpen ? (
+            <svg
+              className="w-7 h-7 text-white"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* MOBIL menyu ochilganda ko‘rinadigan qism */}
+      {isMenuOpen && (
+        <>
+          {/* Orqa fon qoraroq bo‘lishi uchun overlay */}
+          <div className="fixed inset-0 bg-black/40 bg-opacity-40 !z-30"></div>
+
+          {/* Mobil menyu */}
+          <div className="xl:hidden fixed top-16 left-0 w-11/12 rounded-xl h-[84vh] bg-white dark:bg-gray-800 shadow-md z-40 px-2 py-4  ml-4">
+            {/* menyu ichida content */}
+            <ul className="flex w-full !pl-2 flex-col gap-3">
+              {menu.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    href={item.key}
+                    className="block text-black hover:!text-blue-600 font-semibold"
+                    onClick={(e) => {
+                      if (sectionAnchors.includes(item.key)) {
+                        e.preventDefault();
+                        if (
+                          pathname === `/${activeLang}` ||
+                          pathname === `/${activeLang}/`
+                        ) {
+                          const el = document.querySelector(item.key);
+                          if (el) el.scrollIntoView({ behavior: "smooth" });
+                          setActiveMenu(item.key);
+                        } else {
+                          window.location.href = `/${activeLang}${item.key}`;
+                        }
+                      } else {
+                        setActiveMenu(item.key);
+                      }
+                      setIsMenuOpen(false); // menyuni yopish
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <div className="flex flex-col items-center">
+                <li className="w-full">
+                  <button
+                    className="mt-2 w-full bg-gray-800 text-white py-2 rounded"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push(`/register`);
+                    }}
+                  >
+                    {registerLangs("REGISTER")}
+                  </button>
+                </li>
+
+                <li className="w-full">
+                  <Select
+                    value={shortLabel[activeLang as keyof typeof shortLabel]}
+                    onChange={(lang) => {
+                      changeLang(lang);
+                      setIsMenuOpen(false);
+                    }}
+                    style={{ width: "100%" }}
+                    dropdownMatchSelectWidth={false}
+                    options={langOptions}
+                    // dropdownClassName="!p-0 !text-center"
+                    classNames={{
+                      popup: {
+                        root: "!p-0 !text-center",
+                      },
+                    }}
+                    className="w-full text-center uppercase font-semibold mt-2"
+                  />
+                </li>
+              </div>
+            </ul>
+          </div>
+        </>
+      )}
     </header>
   );
 }

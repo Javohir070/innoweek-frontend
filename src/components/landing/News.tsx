@@ -1,144 +1,160 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
-import userAvatar from "@/assets/img/services/616.jpg";
 import newsImage from "@/assets/img/about/news1.png";
-import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { useParams } from "next/navigation";
 import { INewsListItem, IResponse } from "@/types";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import section from "@/assets/img/section_bg_2.jpg";
 
 export default function NewsSection() {
   const t = useTranslations("news");
   const params = useParams();
   const [data, setData] = useState<INewsListItem[]>([]);
 
-  const getNews = async () => {
-    try {
-      const res = await FetchInstance<IResponse<INewsListItem[]>>(
-        `/api/v1.0/news/all?limit=5&lang=${params?.locale}`
-      );
-      console.log(res?.data[0]?.description);
-      setData(res?.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
+    const getNews = async () => {
+      try {
+        const res = await FetchInstance<IResponse<INewsListItem[]>>(
+          `/api/v1.0/news/all?limit=5&lang=${params?.locale}&archive_id=8`
+        );
+        setData(res?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getNews();
   }, [params?.locale]);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.start();
+    }
+  }, [data]);
 
   return (
-    <section
-      id="portfolio"
-      className="testimonials section-light-background bg-transparent"
+    <div
+      className={`!w-full pt-10 pb-6`}
+      style={{
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
     >
-      <div className="container section-title" data-aos="fade-up">
-        <h2>INNOWEEK</h2>
-        <div>{t("Latest News")}</div>
-      </div>
+      <section
+        id="portfolio"
+        className="testimonials !bg-transparent dark:bg-gray-900 transition-colors duration-300 pt-2 !p-0"
+      >
+        <div className="container section-title pb-4" data-aos="fade-up">
+          <h2 className="text-black dark:!text-white py-1">INNOWEEK</h2>
+          <div className="text-black dark:!text-gray-300">
+            {t("Latest News")}
+          </div>
+        </div>
 
-      <div className="container" data-aos="fade-up" data-aos-delay="100">
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{ delay: 5000 }}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          onInit={(swiper) => {
-            if (
-              typeof swiper.params.navigation === "object" &&
-              swiper.params.navigation
-            ) {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-              swiper.navigation.init();
-              swiper.navigation.update();
-            }
-          }}
-          className="testimonials-slider"
+        <div
+          className="container m-auto !px-0"
+          data-aos="fade-up"
+          data-aos-delay="100"
         >
-          {data.map((item) => (
-            <SwiperSlide key={item.id}>
-              <Link href={`/news/${item?.id}`}>
-                <div className="testimonial-item hover:cursor-pointer">
-                  <div className="row">
-                    <div className="col-lg-8">
-                      <h2>{item?.title}</h2>
-                      <p
-                        className="line-clamp-6 dangerous-html "
-                        dangerouslySetInnerHTML={{
-                          __html: item?.description?.replaceAll(
-                            "black",
-                            "white"
-                          ),
-                        }}
-                      ></p>
-                      {/* <p>{item.details[currentLang]}</p> */}
-                      <div className="profile d-flex align-items-center">
-                        <Image
-                          src={userAvatar}
-                          className="profile-img"
-                          alt={item?.title}
-                        />
-                        <div className="profile-info">
-                          <h3>Innoweek</h3>
-                          <span>{t("INNOWEEK")}</span>
+          <Swiper
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            key={data.length} // <-- yangi key
+            modules={[Navigation, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{
+              delay: 3000, // Changed to 2 seconds (2000ms)
+              disableOnInteraction: false, // Continue autoplay after user interaction
+              pauseOnMouseEnter: true, // Pause on hover
+            }}
+            speed={800} // Smooth transition speed
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onInit={(swiper) => {
+              if (
+                typeof swiper.params.navigation === "object" &&
+                swiper.params.navigation
+              ) {
+                swiper.params.navigation.prevEl = prevRef.current;
+                swiper.params.navigation.nextEl = nextRef.current;
+                swiper.navigation.init();
+                swiper.navigation.update();
+              }
+            }}
+            className="testimonials-slider !pb-5"
+          >
+            {data.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Link href={`/news/${item?.id}`}>
+                  <div
+                    className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[400px]"
+                  >
+                    <div className="flex flex-col  lg:flex-row  gap-5  w-full h-full  lg:h-[400px] overflow-hidden">
+                      <div className="flex flex-col gap-y-3.5 w-full lg:w-[55%] !h-[400px] overflow-hidden">
+                        <h2 className="!text-white dark:!text-white">
+                          {item?.title}
+                        </h2>
+                        <div
+                          className="line-clamp-6 !text-white dark:!text-gray-300 !font-normal not-italic !font-nunito-sans *:!font-nunito-sans"
+                          dangerouslySetInnerHTML={{
+                            __html: item?.description,
+                          }}
+                        ></div>
+                      </div>
+                      <div className="flex items-center w-full lg:w-[45%]">
+                        <div className="featured-img-wrapper rounded-lg overflow-hidden w-full h-full">
+                          <Image
+                            src={
+                              item?.image
+                                ? `${BASE_URL}/upload/news/${item?.image}_big_720.png`
+                                : newsImage
+                            }
+                            className="featured-img !w-full object-cover !h-[400px]"
+                            alt={item?.title}
+                            width={400}
+                            height={400}
+                          />
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-4 d-none d-lg-block">
-                      <div className="featured-img-wrapper">
-                        <Image
-                          src={
-                            item?.image
-                              ? `${BASE_URL}/upload/news/${item?.image}_big_720.png`
-                              : newsImage
-                          }
-                          className="featured-img"
-                          alt={item?.title}
-                          width={300}
-                          height={500}
-                        />
-                      </div>
-                    </div>
                   </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-          ))}
+                </Link>
+              </SwiperSlide>
+            ))}
 
-          {/* Navigatsiya tugmalari */}
-        </Swiper>
-        <div className="w-100 d-flex align-items-center justify-center gap-4">
-          <button
-            ref={prevRef}
-            className="bg-[#23272f] hover:bg-[#fbbf24] text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl"
-          >
-            <ChevronLeft />
-          </button>
-          <button
-            ref={nextRef}
-            className="bg-[#23272f] hover:bg-[#fbbf24] text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl"
-          >
-            <ChevronRight />
-          </button>
+            {/* Navigation buttons */}
+            <div className="w-100 d-flex align-items-center justify-center gap-4">
+              <button
+                ref={prevRef}
+                className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+              >
+                <ChevronLeft />
+              </button>
+              <button
+                ref={nextRef}
+                className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+              >
+                <ChevronRight />
+              </button>
+            </div>
+          </Swiper>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

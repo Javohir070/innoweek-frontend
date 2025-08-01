@@ -1,47 +1,62 @@
 {
+  "ticket": {
+    "electronic_ticket": "ELEKTRON CHIPTA",
+    "ticket_to_enter": "InnoWeek-2025 tadbiriga kirish uchun chipta",
+    "validity_period": "Amal qilish muddati",
+    "date_and_time_of_visit": "Tashrif vaqti",
+    "address": "Toshkent, Mirzo Ulug'bek tumani, Milliy Bog' ko'chasi, 1",
+    "forbidden_for_others": "Ushbu chiptani boshqa shaxs foydalanishi qat'iyan man etiladi.",
+    "download_as_image": "Rasm sifatida yuklab olish",
+    "download_app_prompt": "Tizimdan foydalanish uchun ilovani yuklab oling!"
+  },
+  "male": "Erkak",
+  "female": "Ayol",
   "header": {
     "HOME": "BOSH SAHIFA",
     "NEWS": "YANGILIKLAR",
     "INNOWEEK": "INNOWEEK",
+    "FAQ": "SAVOLLAR VA JAVOBLAR",
+    "MARKETPLACE": "MARKETPLACE",
     "ABOUTINNOWEEK": "INNOWEEK HAQIDA",
     "COVERAGE": "QAMROV",
     "PROGRAM": "DASTUR",
     "SPEAKERS": "SPIKERLAR",
     "PARTNERS": "HAMKORLAR",
-    "ABOUTUS": "BIZ HAQIMIZDA",
-    "GALLERY": "GALEREYA",
-    "FAQ": "FAQ",
-    "MARKETPLACE": "MARKETPLEYS",
-    "CONTACT": "BOG'LANISH"
+    "GALLERY": "GALERIYA",
+    "QAMROV": "QAMROV",
+    "DASTUR": "DASTUR",
+    "SPIKERLAR": "SPIKERLAR",
+    "HAMKORLAR": "HAMKORLAR",
+    "INNOWEEK HAQIDA": "INNOWEEK HAQIDA",
+    "CONTACT": "BOG'LANISH",
+    "REGISTER": "RO'YXATDAN O'TISH"
   },
-  "langs": {
-    "uz": "O‘zbek",
-    "en": "Ingliz",
-    "ru": "Rus"
-  },
+
   "hero": {
-    "Ideas without borders": "Chegarasiz g'oyalar",
+    "Ideas without borders": "CHEGARASIZ G'OYALAR",
     "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
     "hero btn": "INNOWEEK 2025",
-    "REGISTER": "RO'YHATDAN O'TISH",
+    "REGISTER": "RO'YXATDAN O'TISH",
     "day": "Kun",
-    "hour": "soat",
-    "minute": "daqiqa",
-    "second": "soniya"
+    "hour": "Soat",
+    "minute": "Daqiqa",
+    "second": "Soniya"
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
-    "Latest News": "So'ngi Yangiliklar"
+    "Latest News": "So'ngi Yangiliklar",
+    "more": "Batafsil"
   },
   "about": {
     "title": "CHEGARASIZ G'OYALAR",
     "description": "Xalqaro innovatsion g‘oyalar haftaligi — “Innoweek.uz” respublikada innovatsion rivojlanishni jadallashtirish, iqtisodiyotning barcha tarmoqlarida innovatsiyalar va texnologiyalarni keng tatbiq qilish, inson kapitalini, ilm-fan va innovatsiya sohalarini rivojlantirish maqsadida 2018-yildan buyon o‘tkazib kelinmoqda. O‘tgan davr mobaynida Prezident Shavkat Mirziyoyev rahbarligida rivojlanib, Markaziy Osiyoda ilg‘or innovatsiyalarni namoyish qilish va global hamkorlikni rivojlantirish uchun eng yirik maydonga aylandi. Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
-    "features_1": "Deep tech & AI",
-    "features_2": "Health tech & Biotech",
-    "features_3": "EdTech & eLearning",
-    "features_4": "Agri tech & Green tech",
-    "features_5": "Smart Cities",
-    "features_6": "Robotics & Drones"
+    "features_1": "Ilgʻor texnologiyalar va sunʼiy intellekt",
+    "features_2": "Tibbiyot texnologiyalari va biotexnologiyalar",
+    "features_3": "Taʼlim texnologiyalari va elektron oʻqitish",
+    "features_4": "Agrosanoat texnologiyalari",
+    "features_5": "Aqlli shaharlar",
+    "features_6": "Robototexnika va dronlar",
+    "about_section_title": "INNOWEEK HAQIDA"
   },
   "stats": {
     "COVERAGE": "QAMROV",
@@ -62,7 +77,236 @@
     "INNOWEEK": "INNOWEEK",
     "PROGRAM": "DASTUR",
     "day_1": "9-OKTABR",
-    "day_2": "9-OKTABR",
-    "day_3": "9-OKTABR"
+    "day_1_program_1_title": "Chegarasiz innovatsion g'oyalar: dunyoni o'zgartiruvchi texnologiyalar",
+    "day_1_program_2_title": "Laboratoriyadan bozorga: tadqiqotlarni tijoratlashtirish imkoniyatlari",
+    "day_1_program_3_title": "Markaziy Osiyoda startap ekotizimlari",
+    "day_1_program_4_title": "Texnoparklar xalqaro forumi",
+    "day_1_program_5_title": "Ilm-fan va ishlab chiqarish integratsiyasi: ilmiy-tadqiqot ishlari natijalarini sanoatga joriy etishni qo‘llab-quvvatlash",
+    "day_2": "10-OKTABR",
+    "day_2_program_1_title": "Global innovatsiyalar indeksi 2025: Milliy ishga tushirish",
+    "day_2_program_2_title": "Ta'limdagi innovatsiyalar: tanqidiy fikrlash, ijodkorlik va muammolarni hal qilish ko'nikmalarini rivojlantirish ",
+    "day_2_program_3_title": "O‘zbekiston ilmiy kommunikatsiyalari konferensiyasi ",
+    "day_2_program_4_title": "Xalqaro donorlar bilan DEMO DAY",
+    "day_2_program_5_title": "Markaziy Osiyo ilm-fan kuni",
+    "day_2_program_6_title": "Venchur fondlar forumi",
+    "day_3": "11-OKTABR",
+    "day_3_program_1_title": "Taqdirlash marosimi",
+    "day_3_program_2_title": "Yopilish marosimi",
+    "LOAD_MORE": "Ko'proq ko'rish"
+  },
+  "speakers": {
+    "INNOWEEK": "INNOWEEK",
+    "SPEAKERS": "SPIKERLAR"
+  },
+  "partners": {
+    "INNOWEEK": "INNOWEEK",
+    "PARTNERS": "HAMKORLAR"
+  },
+  "gallery": {
+    "INNOWEEK": "INNOWEEK",
+    "GALLERY": "GALEREYA"
+  },
+  "contact": {
+    "INNOWEEK": "INNOWEEK",
+    "CONTACT": "BOG'LANISH",
+    "title": "Biz bilan bog'lanish",
+    "description": "Savollaringiz bormi? Biz bilan bog'laning!",
+    "address_title": "Manzil",
+    "address_value": "Mirzo Ulugʻbek tumani, Milliy Bogʻ ko‘chasi, 1-uy",
+    "email_title": "Pochta",
+    "phone_title": "Telefon",
+    "working_hours": "Ish vaqti",
+    "partnership_title": "Hamkorlik uchun",
+    "partnership_text": "Biz homiylik imkoniyatlarini nafaqat ishtirokchilar uchun, kompaniyalar uchun ham taklif etamiz, bu esa tadbirning tijoriy salohiyatini maksimal darajada oshirishga xizmat qiladi.",
+    "form_name_placeholder": "Ismingiz",
+    "form_email_placeholder": "Mail pochtangiz",
+    "form_subject_placeholder": "Taklif nomi",
+    "form_message_placeholder": "Taklif kiriting",
+    "form_loading": "Yuklanmoqda",
+    "form_sent_message": "Xabaringiz yuborildi. Rahmat!",
+    "form_submit": "Yuborish"
+  },
+  "check_ticket": {
+    "are_you_registered": "Ro'yxatdan o'tganmisiz?",
+    "check_your_ticket": "Chiptangizni tekshiring",
+    "loading": "Yuklanmoqda...",
+    "input_placeholder": "939432111 yoki email@gmail.com",
+    "submit": "Yuborish"
+  },
+  "gallery_page": {
+    "INNOWEEK": "INNOWEEK",
+    "PHOTO_GALLERY": "FOTO LAVHALAR",
+    "prev": "Oldingi",
+    "next": "Keyingi",
+    "per_page": "sahifada"
+  },
+  "faq": {
+    "title": "Savollaringiz bormi? FAQ bo‘limini ko‘ring",
+    "description": "",
+    "items": [
+      {
+        "question": "Tadbirning asosiy maqsadi nima?",
+        "answer": "InnoWeek tadbirining asosiy maqsadi — O‘zbekistonda innovatsion g‘oyalar, ilmiy ishlanmalar va texnologiyalarni ommalashtirish, xalqaro hamkorlikni mustahkamlash hamda yosh innovatorlarni qo‘llab-quvvatlashdir."
+      },
+      {
+        "question": "Ko‘rgazmada qanday innovatsion ishlanmalar yoki loyihalar namoyish etiladi?",
+        "answer": "Tadbirda sun’iy intellekt, raqamli transformatsiya, biotexnologiya, yashil energiya va sanoat muhandisligiga oid innovatsion ishlanmalar namoyish etiladi."
+      },
+      {
+        "question": "Yoshlar va talabalar uchun qanday imkoniyatlar mavjud?",
+        "answer": "Yoshlar va talabalar uchun startap tanlovlari, master-klasslar, treninglar va investorlar bilan uchrashuvlar tashkil etilgan."
+      },
+      {
+        "question": "СAEx ga qanday yetib borsa buladi?",
+        "answer": "2025-yil 9–11-oktabr kunlari boʻlib oʻtadigan “InnoWeek-2025”da ishtirok etish uchun qulaylik yaratish maqsadida Oliy taʼlim, fan va innovatsiyalar vazirligi, “O‘zbekiston” mehmonxonasi hamda “Do‘stlik” metro bekatlaridan \"CAEx Uzbekistan\" koʻrgazmalar majmuasiga bepul avtobuslar qatnovi yoʻlga qoʻyiladi."
+      },
+      {
+        "question": "CAEx hududi yaqinida restoran va qahvaxonalar mavjudmi?",
+        "answer": "Koʻrgazma pavilyonida mahalliy restoranlar va qahvaxonalar tarmogʻi faoliyat yuritadi."
+      },
+      {
+        "question": "“InnoWeek-2025” doirasida belgilangan forumlar qaysi manzillarda oʻtkaziladi.",
+        "answer": "“InnoWeek-2025” doirasida belgilangan tadbirlarning barchasi CAEx hududida oʻtkaziladi. Koʻrgazma dasturi bilan (.......) havola orqali, tadbir davomida esa maxsus tablolar orqali onlayn tanishishingiz mumkin."
+      }
+    ]
+  },
+  "expert_feedback": {
+    "about_us": "BIZ HAQIMIZDA",
+    "experts_opinion": "EKSPERTLAR FIKRI",
+    "feedback_1_desc": "“InnoWeek 2024 chinakam global muloqot maydoniga aylandi. Bu yerda shunchaki gʻoyalar emas, balki butun mintaqaga tadbiq etilishi mumkin boʻlgan amaliy yechimlar yaratilmoqda.”",
+    "feedback_1_expert": "Turaj Amrey",
+    "expert_1_country": "Eron",
+    "feedback_2_desc": "“Oʻzbekistonning innovatsion ekotizimidagi ochiqlik meni hayratga soldi. InnoWeek ilmiy va amaliy ishlanmalar boʻyicha yuqori tashkilotchilik darajasi va strategik fikrlashni namoyon etdi.”",
+    "feedback_2_expert": "Vesselin Halachev",
+    "expert_2_country": "Bolgariya",
+    "feedback_3_desc": "“InnoWeek 2024'dа barqarorlik va yoshlar startaplariga qaratilgan e’tibor haqiqiy ilhom manbai boʻldi. Oʻzbekiston davlat innovatsion biznes uchun qanday ishonchli hamkor boʻla olishini koʻrsatmoqda.”",
+    "feedback_3_expert": "Sasha Wunsch-Vincent",
+    "expert_3_country": "Angliya",
+    "feedback_4_desc": "“Toshkentdagi InnoWeek oddiy koʻrgazma emas — bu Markaziy Osiyo bozoriga kirish uchun strategik eshik. Bu yerda oʻsish energiyasi va xalqaro hamkorlik uchun ulkan salohiyat seziladi.”",
+    "feedback_4_expert": "Yerbol Suleymanov",
+    "expert_4_country": "Qozog'iston"
+  },
+  "login": {
+    "login_title": "Kirish",
+    "phone_or_email": "Telefon yoki Email kiriting",
+    "password": "Parolingizni kiriting",
+    "no_account": "Hisobingiz yo'qmi?",
+    "register": "Ro'yxatdan o'tish",
+    "logging_in": "Kirilmoqda...",
+    "login_error": "Kirishda xato yuz berdi",
+    "login_success": "Muvaffaqiyatli tizimga kirdingiz!"
+  },
+  "register_modal": {
+    "register_modal_title": "Umumiy ma'lumot",
+    "local": "Mahalliy",
+    "international": "Xalqaro",
+    "first_name": "Ism *",
+    "last_name": "Familiya *",
+    "phone": "Telefon raqam (901234567)",
+    "participation_type": "Ishtirok turi *",
+    "password": "Parolingizni kiriting (8 ta belgidan kam bo'lmasligi kerak)",
+    "confirm_password": "Parolni tasdiqlash (parolni takrorlang)",
+    "passwords_do_not_match": "Parollar mos emas",
+    "gender_label": "Jinsi:",
+    "male": "Erkak",
+    "female": "Ayol",
+    "accept_terms": "Foydalanish shartlarini qabul qilaman",
+    "select_country": "Davlatni tanlang *",
+    "organization": "Tashkilot *",
+    "sign_up": "Ro'yxatdan o'tish",
+    "email": "Email *",
+    "country": "Davlat *",
+    "phone_error": "Telefon raqam 901234567 formatida, 9 ta raqam bo‘lishi kerak",
+    "sending": "Yuborilmoqda...",
+    "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
+    "verifying": "Tasdiqlanmoqda...",
+    "verify": "Tasdiqlash",
+    "position": "Lavozim",
+    "sended_sms": "SMS yuborildi",
+    "otp_title": "SMS orqali yuborilgan kodni kiriting",
+    "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting.",
+    "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi.", 
+    "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan."
+  },
+  "accept_terms": {
+    "accept_terms": "Foydalanish shartlarini qabul qilaman",
+    "close": "Yopish",
+    "accept": "Qabul qilish",
+    "terms_conditions": "MAXFIYLIK SIYOSATI",
+    "terms_conditions_description": "Shaxsiy maʼlumotlarning maxfiylik siyosati (keyingi o‘rinlarda - Siyosat) “innoweek.uz” rasmiy sayti (keyingi o‘rinlarda - innoweek.uz sayti) innoweek.uz sayti yoki shu saytga aloqador boshqa mobil ilovalardan foydalanish chogʻida foydalanuvchi haqida olinadigan maʼlumotlarga nisbatan qoʻllaniladi. innoweek.uz sayti Oʻzbekiston Respublikasi qonunlariga binoan rasman roʻyxatdan oʻtgan sayt hisoblanadi. innoweek.uz saytining har qanday resurslaridan foydalanish foydalanuvchi tomonidan mazkur Siyosat va unda koʻrsatilgan shartlarga soʻzsiz rozi ekanligini anglatadi. Agar foydalanuvchi mazkur Siyosat shartlariga rozi boʻlmagan taqdirda u innoweek.uz resurslaridan foydalanmasligi kerak.",
+    "blog_1": "TERMINLAR",
+    "term_1": "innoweek.uz sayti (keyingi o‘rinlarda - Sayt) – bu kontentning serverdagi joylashuv oʻrnidir.",
+    "term_2": "“innoweek.uz” rasmiy sayti – yangi innovatsion gʻoyalar va yangiliklarni ulashuvchi sayt.",
+    "term_3": "Shaxsiy maʼlumotlar – muayyan jismoniy yoki yuridik shaxsga (shaxsiy maʼlumot subyekti) bevosita yoki bilvosita aloqador boʻlgan har qanday maʼlumot hisoblanadi.",
+    "term_4": "Shaxsiy maʼlumotlarning maxfiyligi – jismoniy yoki yuridik shaxslarning maʼlumotlaridan foydalanish huquqiga ega boʻlgan shaxslarning boshqalarga taalluqli maʼlumotlardan ularning roziligisiz yoki qonuniy asoslarsiz foydalanmasligi va tarqatmasligi uchun majburiy talab hisoblanadi.",
+    "blog_2": "FOYDALANUVCHINING INNOWEEK.UZ SAYTI TOMONIDAN YIGʻILADIGAN VA QAYTA ISHLANADIGAN SHAXSIY MAʼLUMOTI",
+    "term_5": "Ushbu Maxfiylik siyosati foydalanuvchining saytdan roʻyxatdan oʻtish, huquqiy hujjatlardan foydalanish chogʻida sayt tomonidan soʻralgan maʼlumotlar kiritilganda ushbu maʼlumotlarning maxfiyligini muhofaza qilish va oshkor etmaslik tartibini taʼminlashga qaratilgan innoweek.uz sayti maʼmuriyatining (bundan keyin matnda Maʼmuriyat deb yuritiladi) majburiyatlarini belgilaydi.",
+    "term_6": "Ushbu Maxfiylik siyosati doirasida qayta ishlashga ruxsat berilgan shaxsiy maʼlumotlar Saytda roʻyxatdan oʻtish chogʻida jadvalni toʻldirish orqali foydalanuvchi tomonidan mustaqil ravishda taqdim etiladi va u quyidagilarni oʻz ichiga oladi: Foydalanuvchining familiyasi, ismi-sharifi, foydalanuvchining telefon raqami, elektron pochta manzili (e-mail). Shuningdek, ishlov beriluvchi maʼlumotlarga Foydalanuvchi tomonidan mustaqil ravishda sayt maʼmuriyatiga yoki maʼmuriyatning iltimosiga koʻra taqdim etilgan har qanday qoʻshimcha maʼlumot kiradi.",
+    "blog_3": "SHAXSIY MAʼLUMOTLAR XAVFSIZLIGI",
+    "term_7": "Shaxsiy maʼlumotlarni noqonuniy xatti-harakatlardan, yoʻqolish, yoʻq qilish va uchinchi shaxslar tomonidan ruxsatsiz kirishdan himoya qilish uchun maʼmuriyat zamonaviy dasturiy taʼminot va apparatni himoya qilish vositalaridan hamda tashkiliy xavfsizlik choralaridan foydalanadi. Maʼmuriyat maʼlumotlarning maxfiyligini taʼminlash uchun barcha imkoniyatlarni ishga solishni oʻz zimmasiga oladi. <br /> Maʼmuriyat foydalanuvchining iltimosi yoki uchinchi shaxslarning daʼvolari boʻyicha sud yoxud huquqni muhofaza qiluvchi organlarning soʻroviga asosan, maʼmuriyatning huquqlari va qonuniy manfaatlarini taʼminlash yuzasidan, shuningdek qonunchilikda belgilangan boshqa hollarda foydalanuvchining shaxsiy maʼlumotlariga kirish huquqiga ega.",
+    "blog_4": "MAXFIYLIK SIYOSATINI OʻZGARTIRISH",
+    "term_8": "Maʼmuriyat ushbu Siyosatga mustaqil ravishda oʻzgartirish kiritish huquqiga ega. Siyosatning oʻzgartirilgan versiyasi Saytda eʼlon qilingan paytdan boshlab darhol kuchga kiradi va foydalanuvchi uchun majburiy hisoblanadi. Foydalanuvchilarga Siyosat oʻzgarishi toʻgʻrisida maxsus xabar berish mumkin, ammo bunday ogohlantirish talab qilinmaydi va Maʼmuriyat barcha manfaatdor tomonlarni Siyosatdagi oʻzgarishlarni kuzatishga undaydi. Siyosatdagi oʻzgarishlarga rozi boʻlmagan taqdirda, foydalanuvchi Saytdan foydalanishni toʻxtatishi shart."
+  },
+  "footer": {
+    "home": "Bosh sahifa",
+    "news": "Yangiliklar",
+    "about_innoweek": "Innoweek haqida",
+    "coverage": "Qamrov",
+    "program": "Dastur",
+    "speakers": "Spikerlar",
+    "partners": "Hamkorlar",
+    "feedback": "Fikr-mulohazalar",
+    "gallery": "Galereya",
+    "faq": "FAQ",
+    "contact": "Bog'lanish",
+    "map": "Xarita",
+    "All Rights Reserved © 2025": "Barcha huquqlar himoyalangan © ",
+    "follow_us": "Bizni kuzatib boring"
+  },
+  "profile": {
+    "profile_title": "Profil",
+    "no_profile_found": "Profil topilmadi",
+    "firstName": "Ism",
+    "lastName": "Familiya",
+    "gender": "Jinsi",
+    "birth_date": "Tug'ilgan sana",
+    "country": "Davlat",
+    "phone": "Telefon",
+    "organization": "Tashkilot",
+    "position": "Lavozim",
+    "email": "Email",
+    "save_changes": "O'zgartirishlarni saqlash",
+    "cancel": "Bekor qilish",
+    "edit_profile": "Profilni tahrirlash",
+    "change_password": "Parolni o'zgartirish",
+    "current_password": "Joriy parol",
+    "new_password": "Yangi parol",
+    "confirm_password": "Parolni tasdiqlash",
+    "passwords_do_not_match": "Parollar mos emas",
+    "update_success": "Profil muvaffaqiyatli yangilandi",
+    "update_error": "Yangilashda xato yuz berdi",
+    "old_password_incorrect": "Eski parol noto'g'ri",
+    "new_password_placeholder": "Yangi parolni kiriting",
+    "confirm_password_placeholder": "Yangi parolni tasdiqlang",
+    "change_avatar": "Avatarni o'zgartirish",
+    "upload_avatar": "Avatarni yuklash",
+    "avatar_size_error": "Avatar hajmi 2MB dan oshmasligi kerak",
+    "avatar_type_error": "Avatar faqat .jpg, .jpeg, .png formatlarida bo'lishi mumkin",
+    "remove_avatar": "Avatarni olib tashlash",
+    "avatar_removed": "Avatar muvaffaqiyatli olib tashlandi",
+    "avatar_upload_error": "Avatarni yuklashda xato yuz berdi",
+    "avatar_upload_success": "Avatar muvaffaqiyatli yuklandi",
+    "male": "Erkak",
+    "profession": "Ishtirok turi",
+    "personal_information": "Shaxsiy ma'lumotlar",
+    "My_ertificate": "Mening Sertifikatim",
+    "My_Ticket": "Mening Chiptam",
+    "sidebar_ticket": "Chiptalarim",
+    "sidebar_certificate": "Sertifikatlarim",
+    "sidebar_profile": "Mening Profilim",
+    "activity": "Faoliyat",
+    "active": "Faol",
+    "inactive": "Nofaol",
+    "no_activity": "Faoliyat topilmadi"
   }
 }

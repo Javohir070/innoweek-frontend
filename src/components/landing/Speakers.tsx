@@ -4,16 +4,23 @@ import userAvatar from "@/assets/img/person/person-m-7.webp";
 import Image from "next/image";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IResponse, ISpeakerItem } from "@/types";
+import { useTranslations } from "next-intl";
+import section from "@/assets/img/section_bg_2.jpg";
+import Aos from "aos";
+import { useParams } from "next/navigation";
 
 const SpeakersSection = () => {
+  const t = useTranslations("speakers");
+  const lang = useParams<{ locale: string }>().locale || "uz";
   const [data, setData] = useState<ISpeakerItem[]>([]);
+  // const [total, setTotal] = useState<number>(0);
+  // const [limit, setLimit] = useState<number>(2);
 
   const getSpeakers = async () => {
     try {
       const res = await FetchInstance<IResponse<ISpeakerItem[]>>(
-        `/api/v1.0/speakers/all?limit=10&archive_id=7`
+        `/api/v1.0/speakers/all?limit=8&archive_id=8&lang=${lang}`
       );
-      console.log(res?.data);
       setData(res?.data);
     } catch (error) {
       console.log(error);
@@ -22,50 +29,75 @@ const SpeakersSection = () => {
 
   useEffect(() => {
     getSpeakers();
-  }, []);
+    Aos.init();
+  }, [lang]);
 
   return (
-    <section id="team" className="team section light-background bg-transparent">
-      <div className="container section-title" data-aos="fade-up">
-        <h2 data-uz="INNOWEEK" data-ru="INNOWEEK" data-en="INNOWEEK">
-          INNOWEEK
-        </h2>
-        <div data-uz="SPIKERLAR" data-ru="СПИКЕРЫ" data-en="SPEAKERS">
-          {"SPIKERLAR"}
+    <div
+      className="!w-full"
+      style={{
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: `url(${section.src})`,
+      }}
+    >
+      <section
+        id="team"
+        className="team section !bg-transparent transition-colors duration-300 py-16"
+      >
+        <div className="container section-title" data-aos="fade-up">
+          <h2 className="!text-black dark:!text-white">{t("INNOWEEK")}</h2>
+          <div className="text-black dark:!text-gray-300">{t("SPEAKERS")}</div>
         </div>
-      </div>
 
-      <div className="container" data-aos="fade-up" data-aos-delay="100">
-        <div className="row gy-4">
-          {data?.map((item) => (
-            <div
-              className="col-lg-6"
-              data-aos="fade-up"
-              data-aos-delay="100"
-              key={item?.full_name}
-            >
-              <div className="team-member  d-flex">
-                <div className="member-img">
-                  <Image
-                    src={item?.image ? `${BASE_URL}${item?.image}` : userAvatar}
-                    className="img-fluid"
-                    alt={item?.full_name}
-                    loading="lazy"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-                <div className="member-info flex-grow-1">
-                  <h4>{item?.full_name}</h4>
-                  <span>{item?.position}</span>
-                  {/* <p>{item?.position}</p> */}
+        <div className="container" data-aos="fade-up" data-aos-delay="100">
+          <div className="row gy-4">
+            {data?.map((item) => (
+              <div
+                className="col-lg-6"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                key={item?.full_name}
+              >
+                <div className="team-member d-flex !bg-[#0085d4]  dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300 ">
+                  <div className="member-img">
+                    <Image
+                      src={
+                        item?.image ? `${BASE_URL}${item?.image}` : userAvatar
+                      }
+                      className="img-fluid rounded-lg !w-full sm:!h-[300px] lg:!h-[200px] !object-cover"
+                      alt={item?.full_name}
+                      loading="lazy"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                  <div className="member-info flex-grow-1">
+                    <h4 className="text-white dark:!text-white mb-1">
+                      {item?.full_name}
+                    </h4>
+                    <span className="text-white dark:!text-gray-400">
+                      {item?.position}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+        {/* {total >= limit && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setLimit(limit + 2)}
+              className="btn btn-primary !bg-[#0085d4] dark:!bg-gray-800 hover:!bg-[#006eb3] dark:hover:!bg-gray-700 transition-colors duration-300 flex items-center justify-center"
+            >
+              <span> {t("LOAD_MORE")}</span>
+              <DownCircleOutlined className="inline-block ml-2 text-lg" />
+            </button>
+          </div>
+        )} */}
+      </section>
+    </div>
   );
 };
 

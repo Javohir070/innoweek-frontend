@@ -20,6 +20,12 @@ export interface IResponse<T> {
   pagination: IPagination;
 }
 
+export interface CountryObj {
+  name_uz?: string;
+  name_en?: string;
+  name_ru?: string;
+}
+
 export interface ISpeakerItem {
   full_name: string;
   position: string;
@@ -40,6 +46,26 @@ export interface IProfessionItem {
   name: string;
   status: string;
   created_at: string;
+}
+
+export interface ICountryItem {
+  id: number;
+  name: string;
+}
+
+export interface IRegisterFormType {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  profession_id: string;
+  birth_date: string;
+  gender: string;
+  email?: string;
+  country?: string;
+  organization?: string;
+  password: string;
+  password_confirmation: string;
+  acceptTerms?: boolean;
 }
 
 export interface IValidateResponce {

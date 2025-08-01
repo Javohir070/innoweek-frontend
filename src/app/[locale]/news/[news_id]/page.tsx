@@ -3,12 +3,12 @@ import { INewsListItem, IResponse } from "@/types";
 import Image from "next/image";
 
 interface INewsById {
-  params: Promise<{news_id: string}>
+  params: Promise<{news_id: string, locale: string}>
 }
 
-const getNewsById = async (id: string)=>{
+const getNewsById = async (id: string, locale: string)=>{
   try {
-    const res = await FetchInstance<IResponse<INewsListItem>>(`/api/v1.0/news/get/${id}`)
+    const res = await FetchInstance<IResponse<INewsListItem>>(`/api/v1.0/news/get/${id}?lang=${locale}`);
     console.log(res);
     
     return res?.data
@@ -20,8 +20,10 @@ const getNewsById = async (id: string)=>{
 }
 
 export default async function NewsDetailPage({ params }: INewsById) {
-  const { news_id } = await params;
-  const data = await getNewsById(news_id);
+  const { news_id , locale } = await params;
+  const data = await getNewsById(news_id , locale);
+  console.log(locale);
+  
 
   if (!data) {
     return (
@@ -32,10 +34,10 @@ export default async function NewsDetailPage({ params }: INewsById) {
   }
 
   return (
-    <div className="container py-10">
+    <div className="container pb-10 pt-20">
       <div className="section-title">
-        <h1 className="text-3xl font-bold pt-4">{data.title}</h1>
-        <div className="text-gray-400 text-sm">
+        <h1 className="!text-3xl text-black dark:!text-white !font-bold pt-4">{data.title}</h1>
+        <div className="text-black  dark:!text-gray-400 !text-lg">
           {data.created_at && (
             <span>
               {new Date(data.created_at).toLocaleDateString("uz-UZ", {
@@ -59,7 +61,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
         </div>
       )}
       {/* <div className="mb-4 text-lg font-semibold">{data.description}</div> */}
-      <div className="prose prose-lg max-w-none !text-white" dangerouslySetInnerHTML={{ __html: data.description }} />
+      <div className="prose prose-lg max-w-none text-black dark:text-white" dangerouslySetInnerHTML={{ __html: data.description }} />
     </div>
   );
 }
