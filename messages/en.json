@@ -192,7 +192,9 @@
     "register": "Register",
     "logging_in": "Logging in...",
     "login_error": "Login error",
-    "login_success": "Successfully logged in!"
+    "login_success": "Successfully logged in!",
+    "forgot_password": "Forgot your password?",
+    "phone_format": "Формат телефона (901234567)"
   },
   "register_modal": {
     "register_modal_title": "General Information",
@@ -223,7 +225,7 @@
     "sended_sms": "SMS sent",
     "otp_title": "Enter the 6-digit code sent via SMS",
     "otp_description": "Enter the 6-digit code sent to your phone number.",
-    "registration_successful": "Registration successful.", 
+    "registration_successful": "Registration successful.",
     "phone_allready_registered": "This phone number is already registered."
   },
   "accept_terms": {
@@ -308,5 +310,21 @@
     "inactive": "Inactive",
     "no_activity": "No activity found",
     "logout": "Logout"
+  },
+   "forgetPassword": {
+    "title": "Password Recovery",
+    "phone_or_email": "Enter phone or email",
+    "send": "Send",
+    "loading": "Checking...",
+    "profile": "Profile",
+    "login": "Login",
+    "success": "Password recovery code sent.",
+    "error": "An error occurred. Please try again.",
+    "otp_label": "Enter the 6-digit code sent to your phone number",
+    "password": "Enter new password",
+    "password_confirmation": "Confirm new password",
+    "verify": "Verify",
+    "verifying": "Verifying...",
+    "phone_format": "Phone number (901234567)"
   }
 }

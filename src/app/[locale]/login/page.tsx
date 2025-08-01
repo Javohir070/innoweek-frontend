@@ -72,7 +72,7 @@ const Login = () => {
           {t("login_title")} {/* Changed to login_title */}
         </h2>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <div>
             <input
               type="text"
@@ -83,6 +83,12 @@ const Login = () => {
               onChange={handleChange}
               required
             />
+            <label
+              htmlFor="phone_or_email"
+              className="!text-gray-400 m-1 text-sm"
+            >
+              {t("phone_format")}
+            </label>
           </div>
           <div className="relative">
             <input
@@ -134,6 +140,14 @@ const Login = () => {
           {t("no_account")} {/* Do you have an account? */}
           <Link href="/register" className="text-[#0085d4] ml-1">
             {t("register")} {/* Register */}
+          </Link>
+        </p>
+        <p className="text-center mt-2">
+          <Link
+            href="/forgot-password"
+            className="text-[#e3a127] hover:underline font-semibold"
+          >
+            {t("forgot_password")}
           </Link>
         </p>
       </div>

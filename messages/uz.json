@@ -194,7 +194,9 @@
     "register": "Ro'yxatdan o'tish",
     "logging_in": "Kirilmoqda...",
     "login_error": "Kirishda xato yuz berdi",
-    "login_success": "Muvaffaqiyatli tizimga kirdingiz!"
+    "login_success": "Muvaffaqiyatli tizimga kirdingiz!",
+    "forgot_password": "Parolni unutdingizmi?",
+    "phone_format": "Telefon raqami (901234567)"
   },
   "register_modal": {
     "register_modal_title": "Umumiy ma'lumot",
@@ -225,7 +227,7 @@
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",
     "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting.",
-    "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi.", 
+    "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi.",
     "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan."
   },
   "accept_terms": {
@@ -309,5 +311,21 @@
     "inactive": "Nofaol",
     "no_activity": "Faoliyat topilmadi",
     "logout": "Chiqish"
+  },
+  "forgetPassword": {
+    "title": "Parolni unutdingizmi?",
+    "phone_or_email": "Telefon yoki Email kiriting",
+    "send": "Yuborish",
+    "loading": "Tekshirilmoqda...",
+    "profile": "Shaxsiy kabinet",
+    "login": " Kirish",
+    "success": "Parolni tiklash kodi yuborildi.",
+    "error": "Xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.", 
+    "otp_label":"Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
+    "password":"Yangi parolni kiriting",
+    "password_confirmation":"Parolni tasdiqlang", 
+    "verify" : "Tasdiqlash",
+    "verifying":"Tasdiqlanmoqda...", 
+    "phone_format":"Telefon raqami (901234567)"
   }
 }
