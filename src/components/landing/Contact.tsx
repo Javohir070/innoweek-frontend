@@ -1,4 +1,5 @@
 "use client";
+import { BASE_URL } from "@/api/FetchInstance";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
@@ -14,39 +15,38 @@ const ContactSection = () => {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     setLoading(true);
     setError("");
     setSent(false);
 
     try {
-      console.log(formData);
+      const response = await fetch(`${BASE_URL}/api/v1.0/offer/store`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          full_name: formData.name,
+          title: formData.subject,
+          description: formData.message,
+          email: formData.email,
+        }),
+      });
 
-      // const response = await ("/api/sendEmail", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     ...formData,
-      //     to: "info@innoweek.uz", // Recipient email
-      //     subject: `INNOWEEK Partnership Inquiry: ${formData.subject}`, // Customize subject
-      //   }),
-      // });
+      const data = await response.json();
 
-      // const data = await response.json();
-
-      // if (response.ok) {
-      //   setSent(true);
-      //   setFormData({ name: "", email: "", subject: "", message: "" }); // Reset form
-      // } else {
-      //   setError(data.error || t("form_error")); // Use translation
-      // }
+      if (response.ok) {
+        setSent(true);
+        setFormData({ name: "", email: "", subject: "", message: "" }); // Reset form
+      } else {
+        setError(data.error || t("form_error")); // Use translation
+      }
     } catch (err) {
       console.error(err);
       setError(t("form_error")); // Use translation

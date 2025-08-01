@@ -99,8 +99,8 @@ export default function Header() {
     routerLang.push(newPath);
   };
 
-  console.log("user data in header",user);
-  
+  console.log("user data in header", user);
+
 
   const menu = [
     { label: t("HOME"), key: "/" },
@@ -168,9 +168,8 @@ export default function Header() {
               >
                 <Link
                   href={item.key}
-                  className={`${
-                    activeMenu === item.key ? "active" : ""
-                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className={`${activeMenu === item.key ? "active" : ""
+                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -369,10 +368,10 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
-              <div className="flex flex-col items-center">
-                <li className="w-full">
+              <div className="flex flex-col items-start ">
+                <li className="">
                   <button
-                    className="mt-2 w-full bg-gray-800 text-white py-2 rounded"
+                    className="mt-2 px-4  bg-gray-800 text-white py-2 rounded"
                     onClick={() => {
                       setIsMenuOpen(false);
                       router.push(`/register`);
@@ -381,8 +380,21 @@ export default function Header() {
                     {registerLangs("REGISTER")}
                   </button>
                 </li>
+                <div className="cta-button rounded-full my-2.5">
+                  <button
+                    className="!bg-transparent"
+                    onClick={() => {
+                      router.push(`/login`);
+                    }}
+                  >
+                    <span className="text-sm font-medium flex items-center gap-2 ">
+                      <h3 className="text-black m-0">{t("login")}</h3>
+                      <LoginOutlined className="inline-block text-2xl" />
+                    </span>
+                  </button>
+                </div>
 
-                <li className="w-full">
+                <li className="">
                   <Select
                     value={shortLabel[activeLang as keyof typeof shortLabel]}
                     onChange={(lang) => {
@@ -398,9 +410,12 @@ export default function Header() {
                         root: "!p-0 !text-center",
                       },
                     }}
-                    className="w-full text-center uppercase font-semibold mt-2"
+                    className=" text-center uppercase font-semibold mt-2"
                   />
                 </li>
+                <div className="">
+                  <GoogleTranslate />
+                </div>
               </div>
             </ul>
           </div>

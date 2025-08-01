@@ -24,7 +24,8 @@
     "SPIKERLAR": "СПИКЕРЫ",
     "HAMKORLAR": "ПАРТНЕРЫ",
     "INNOWEEK HAQIDA": "О INNOWEEK",
-    "REGISTER": "РЕГИСТРАЦИЯ"
+    "REGISTER": "РЕГИСТРАЦИЯ",
+    "login":" Войти"
   },
   "langs": {
     "uz": "Узбекский",
