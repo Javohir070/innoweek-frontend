@@ -11,6 +11,18 @@ export const programData = [
       {
         left: {
           hall: "CAEx ALPHA HALL",
+          time: "10.00-11.00",
+        },
+        right: {
+          hall: "CAEx BETA HALL",
+          title: "Opening Ceremony",
+          // description:
+          //   "Curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus maecenas tempus.",
+        },
+      },
+      {
+        left: {
+          hall: "CAEx ALPHA HALL",
           time: "11.00 – 11.50",
         },
         right: {

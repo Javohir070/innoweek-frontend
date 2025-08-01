@@ -78,6 +78,7 @@
     "INNOWEEK": "INNOWEEK",
     "PROGRAM": "PROGRAM",
     "day_1": "October 9",
+    "Opening Ceremony": "Opening Ceremony",
     "day_1_program_1_title": "Innovative Ideas Without Borders: World-Changing Technologies",
     "day_1_program_2_title": "From Lab to Market: The Power of Research Commercialization",
     "day_1_program_3_title": "Startup ecosystem in Central Asia",
@@ -312,7 +313,7 @@
     "no_activity": "No activity found",
     "logout": "Logout"
   },
-   "forgetPassword": {
+  "forgetPassword": {
     "title": "Password Recovery",
     "phone_or_email": "Enter phone or email",
     "send": "Send",
