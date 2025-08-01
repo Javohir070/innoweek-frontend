@@ -38,10 +38,10 @@
     "hero btn": "INNOWEEK 2025",
     "REGISTER": "SIGN UP",
     "LOGIN": "SIGN IN",
-    "day": "Day",
-    "hour": "Hour",
-    "minute": "Minute",
-    "second": "Second"
+    "day": "Days",
+    "hour": "Hours",
+    "minute": "Minutes",
+    "second": "Seconds"
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
@@ -150,7 +150,7 @@
       },
       {
         "question": "Which innovative developments or projects will be presented?",
-        "answer": "nnovative projects in artificial intelligence, digital transformation, biotechnology, green energy, and industrial engineering will be showcased."
+        "answer": "Innovative projects in artificial intelligence, digital transformation, biotechnology, green energy, and industrial engineering will be showcased."
       },
       {
         "question": "What opportunities are provided for youth and students?",
@@ -158,7 +158,7 @@
       },
       {
         "question": "How to get to CAEx?",
-        "answer": "To ensure convenient access to the “InnoWeek-2025” event, taking place from October 9–11, 2025, the Ministry of Higher Education, Science and Innovation will provide free shuttle buses from the “Uzbekistan” Hotel and “Do‘stlik” metro station to the “CAEx Uzbekistan” exhibition complex."
+        "answer": "To ensure convenient access to the “InnoWeek-2025” event, taking place from October 9–11, 2025, the Ministry of Higher Education, Science and Innovations will provide free shuttle buses from the “Uzbekistan” Hotel and “Do‘stlik” metro station to the “CAEx Uzbekistan” exhibition complex."
       },
       {
         "question": "Are there any restaurants or cafes near CAEx?",
