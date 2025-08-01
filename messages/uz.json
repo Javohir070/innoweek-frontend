@@ -22,7 +22,7 @@
     "PROGRAM": "DASTUR",
     "SPEAKERS": "SPIKERLAR",
     "PARTNERS": "HAMKORLAR",
-    "GALLERY": "GALERIYA",
+    "GALLERY": "GALEREYA",
     "QAMROV": "QAMROV",
     "DASTUR": "DASTUR",
     "SPIKERLAR": "SPIKERLAR",
@@ -45,7 +45,7 @@
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
-    "Latest News": "So'ngi Yangiliklar",
+    "Latest News": "So'nggi Yangiliklar",
     "more": "Batafsil"
   },
   "about": {
@@ -64,7 +64,7 @@
     "stats_1_title": "Ko'rgazma maydoni",
     "stats_1_description": "Tadbirlar uchun alohida 2000m2",
     "stats_2_title": "Tashrif buyuruvchilar",
-    "stats_2_description": "1200 ta xalqaro mehmonlar",
+    "stats_2_description": "1200 nafar xalqaro mehmonlar",
     "stats_3_title": "Loyihalar",
     "stats_3_description": "Go'ya va tayyor ishlanmalar",
     "stats_4_title": "Ishtirokchilar",

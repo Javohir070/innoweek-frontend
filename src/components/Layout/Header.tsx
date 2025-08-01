@@ -17,8 +17,6 @@ import uzFlag from "@/assets/img/uz.avif";
 import ruFlag from "@/assets/img/rus.webp";
 import enFlag from "@/assets/img/eng.webp";
 
-
-
 interface UserProfile {
   id: number;
   user_type: number;
@@ -66,7 +64,9 @@ interface UserProfile {
   profession?: object | null;
 }
 
-const ProfileDropdown = dynamic(() => import("./ProfileDropdown"), { ssr: false });
+const ProfileDropdown = dynamic(() => import("./ProfileDropdown"), {
+  ssr: false,
+});
 
 export default function Header() {
   const [user, setUser] = useState<UserProfile | null>(null);
@@ -74,7 +74,10 @@ export default function Header() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await FetchInstance<IResponse<UserProfile>>("/api/v1.0/user/me", { method: "POST" });
+        const res = await FetchInstance<IResponse<UserProfile>>(
+          "/api/v1.0/user/me",
+          { method: "POST" }
+        );
         if (res?.success && res.data) {
           setUser(res.data);
         } else {
@@ -105,9 +108,7 @@ export default function Header() {
     routerLang.push(newPath);
   };
 
-
   console.log("user data in header", user);
-
 
   const menu = [
     { label: t("HOME"), key: "/" },
@@ -173,7 +174,7 @@ export default function Header() {
   //     </span>
   //   ),
   // };
-  // 
+  //
 
   return (
     <header className="header flex items-center fixed-top bg-white dark:bg-gray-800 text-gray-900 shadow w-full z-50">
@@ -194,8 +195,9 @@ export default function Header() {
               >
                 <Link
                   href={item.key}
-                  className={`${activeMenu === item.key ? "active" : ""
-                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className={`${
+                    activeMenu === item.key ? "active" : ""
+                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -266,7 +268,7 @@ export default function Header() {
                 first_name: user?.first_name,
                 last_name: user?.last_name,
                 avatar: user?.avatar,
-                id: user?.id
+                id: user?.id,
               }}
               onLogout={() => {
                 setUser(null);
@@ -300,15 +302,31 @@ export default function Header() {
           )}
 
           <div className=" bayroq w-full  !-mr-4 ml-2">
-            {
-              activeLang === "uz" ? (
-                <Image className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2" src={uzFlag} alt="UZ" width={20} height={20} />
-              ) : activeLang === "en" ? (
-                <Image className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2" src={enFlag} alt="EN" width={20} height={20} />
-              ) : (
-                <Image className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2" src={ruFlag} alt="RU" width={20} height={20} />
-              )
-            }
+            {activeLang === "uz" ? (
+              <Image
+                className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2"
+                src={uzFlag}
+                alt="UZ"
+                width={20}
+                height={20}
+              />
+            ) : activeLang === "en" ? (
+              <Image
+                className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2"
+                src={enFlag}
+                alt="EN"
+                width={20}
+                height={20}
+              />
+            ) : (
+              <Image
+                className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2"
+                src={ruFlag}
+                alt="RU"
+                width={20}
+                height={20}
+              />
+            )}
           </div>
           <Select
             value={shortLabel[activeLang as keyof typeof shortLabel]}
@@ -322,11 +340,8 @@ export default function Header() {
             //   </div>
             // )}
             className="text-center uppercase font-semibold"
-          // popupClassName="!p-0 text-center"
+            // popupClassName="!p-0 text-center"
           />
-          <div className=" hidden md:block">
-            <GoogleTranslate />
-          </div>
         </div>
       </div>
       {/* MOBIL - Hamburger tugmasi */}
@@ -433,15 +448,31 @@ export default function Header() {
                 </div>
                 <div className="flex items-center mt-2">
                   <div className=" bayroq w-full mt-1   mr-2">
-                    {
-                      activeLang === "uz" ? (
-                        <Image className="!w-[22px] !h-[22px] object-cover rounded-full" src={uzFlag} alt="UZ" width={20} height={14} />
-                      ) : activeLang === "en" ? (
-                        <Image className="!w-[22px] !h-[22px] object-cover rounded-full" src={enFlag} alt="EN" width={20} height={14} />
-                      ) : (
-                        <Image className="!w-[22px] !h-[22px] object-cover rounded-full" src={ruFlag} alt="RU" width={20} height={14} />
-                      )
-                    }
+                    {activeLang === "uz" ? (
+                      <Image
+                        className="!w-[22px] !h-[22px] object-cover rounded-full"
+                        src={uzFlag}
+                        alt="UZ"
+                        width={20}
+                        height={14}
+                      />
+                    ) : activeLang === "en" ? (
+                      <Image
+                        className="!w-[22px] !h-[22px] object-cover rounded-full"
+                        src={enFlag}
+                        alt="EN"
+                        width={20}
+                        height={14}
+                      />
+                    ) : (
+                      <Image
+                        className="!w-[22px] !h-[22px] object-cover rounded-full"
+                        src={ruFlag}
+                        alt="RU"
+                        width={20}
+                        height={14}
+                      />
+                    )}
                   </div>
                   <li className="">
                     <Select
@@ -462,9 +493,6 @@ export default function Header() {
                       className=" text-center uppercase  mt-2"
                     />
                   </li>
-                </div>
-                <div className="">
-                  <GoogleTranslate />
                 </div>
               </div>
             </ul>
