@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Link, useRouter as Router } from "@/i18n/navigation";
 import { usePathname, useParams, useRouter } from "next/navigation";
 import { LoginOutlined } from "@ant-design/icons";
+import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState("#hero");
@@ -93,8 +94,9 @@ export default function Header() {
               >
                 <Link
                   href={item.key}
-                  className={`${activeMenu === item.key ? "active" : ""
-                    } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className={`${
+                    activeMenu === item.key ? "active" : ""
+                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -158,7 +160,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex max-[1200px]:hidden items-start justify-end gap-3">
+        <div className="flex max-[1200px]:hidden items-start justify-end gap-2">
           <button
             className="!outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full whitespace-nowrap"
             onClick={() => {
@@ -180,7 +182,6 @@ export default function Header() {
               </span>
             </button>
           </div>
-
           <Select
             value={shortLabel[activeLang as keyof typeof shortLabel]}
             onChange={changeLang}
@@ -195,7 +196,9 @@ export default function Header() {
             className="text-center uppercase font-semibold"
             popupClassName="!p-0 text-center"
           />
-
+          <div>
+            <GoogleTranslate />
+          </div>
         </div>
       </div>
       {/* MOBIL - Hamburger tugmasi */}
