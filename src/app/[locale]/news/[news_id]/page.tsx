@@ -37,7 +37,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
     <div className="container pb-10 pt-20">
       <div className="section-title">
         <h1 className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold pt-4 ">{data.title}</h1>
-        <div className="text-black  dark:!text-gray-400 !text-lg">
+        {/* <div className="text-black  dark:!text-gray-400 !text-lg">
           {data.created_at && (
             <span>
               {new Date(data.created_at).toLocaleDateString("uz-UZ", {
@@ -47,7 +47,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
               })}
             </span>
           )}
-        </div>
+        </div> */}
       </div>
       {data.image && (
         <div className="mb-6">

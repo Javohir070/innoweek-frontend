@@ -8,6 +8,8 @@ import { IoPersonSharp } from "react-icons/io5";
 import { FetchInstance } from "@/api/FetchInstance";
 import { CountryObj, IResponse } from "@/types";
 import section from "@/assets/img/section_bg_2.jpg";
+import { PiCertificateFill } from "react-icons/pi";
+import { FaTicketAlt } from "react-icons/fa";
 
 interface UserProfile {
   id: number;
@@ -69,9 +71,26 @@ interface ProfessionObj {
 
 const SIDEBAR_ITEMS = [
   { key: "profile", labelKey: "sidebar_profile", icon: <IoPersonSharp /> },
-  // { key: "certificate", labelKey: "sidebar_certificate", icon: <PiCertificateFill /> },
-  // { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
+  {
+    key: "certificate",
+    labelKey: "sidebar_certificate",
+    icon: <PiCertificateFill />,
+  },
+  { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
 ];
+
+const tez_kunda = () => (
+  <div
+    className="min-h-32 flex justify-center items-center  rounded-2xl !shadow-lg overflow-hidden border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500 h-full"
+    style={{
+      backgroundImage: `url(${section.src})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <h3 className="!text-gray-800 !font-bold">TEZ KUNDA !</h3>
+  </div>
+);
 
 export default function ProfilePage() {
   const t = useTranslations("profile");
@@ -148,7 +167,6 @@ export default function ProfilePage() {
     );
   }
 
-
   return (
     <div className="pt-16 pb-8 px-2 container md:px-4 mt-16">
       <div className="max-w-full mx-auto flex flex-col md:flex-row gap-6 min-h-[75vh]">
@@ -172,25 +190,10 @@ export default function ProfilePage() {
                     ) {
                       const locale = params?.locale || "uz";
                       if (locale === "en")
-                        return (
-                          profile.profession.name_en ||
-                          profile.profession.name_uz ||
-                          profile.profession.name_ru ||
-                          "-"
-                        );
+                        return profile.profession.name_en || "-";
                       if (locale === "ru")
-                        return (
-                          profile.profession.name_ru ||
-                          profile.profession.name_uz ||
-                          profile.profession.name_en ||
-                          "-"
-                        );
-                      return (
-                        profile.profession.name_uz ||
-                        profile.profession.name_en ||
-                        profile.profession.name_ru ||
-                        "-"
-                      );
+                        return profile.profession.name_ru || "-";
+                      return profile.profession.name_uz || "-";
                     }
                     return "-";
                   })()}
@@ -249,16 +252,10 @@ export default function ProfilePage() {
                     ) {
                       const locale = params?.locale || "uz";
                       if (locale === "en")
-                        return (
-                          profile.profession.name_en || "-"
-                        );
+                        return profile.profession.name_en || "-";
                       if (locale === "ru")
-                        return (
-                          profile.profession.name_ru || "-"
-                        );
-                      return (
-                        profile.profession.name_uz || "-"
-                      );
+                        return profile.profession.name_ru || "-";
+                      return profile.profession.name_uz || "-";
                     }
                     return "-";
                   })()}
@@ -267,7 +264,7 @@ export default function ProfilePage() {
 
               {/* Profile Details */}
               <div className="p-6">
-                <h3 className="!font-semibold !text-gray-600 dark:!text-gray-400 uppercase !text-[20px] tracking-wider mb-4 pb-2 border-b border-gray-200 dark:!border-gray-700">
+                <h3 className="!font-semibold !text-center !text-gray-600 dark:!text-gray-400 uppercase !text-[20px] tracking-wider mb-4 pb-2 border-b border-gray-200 dark:!border-gray-700">
                   {t("personal_information")}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -387,7 +384,7 @@ export default function ProfilePage() {
             </div>
           )}
 
-          {activeTab === "certificate" && (
+          {/* {activeTab === "certificate" && (
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg shadow-gray-300 dark:shadow-blue-500 border border-gray-200 dark:!border-gray-700 overflow-hidden h-full">
               <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-semibold !text-gray-800 !text-2xl dark:text-white">
@@ -402,9 +399,10 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
-          )}
+          )} */}
+          {activeTab === "certificate" && tez_kunda()}
 
-          {activeTab === "ticket" && (
+          {/* {activeTab === "ticket" && (
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 overflow-hidden shadow-gray-300 dark:shadow-blue-500 h-full">
               <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-semibold !text-gray-800 dark:text-white">
@@ -415,7 +413,8 @@ export default function ProfilePage() {
                 <Ticket />
               </div>
             </div>
-          )}
+          )} */}
+          {activeTab == "ticket" && tez_kunda()}
         </div>
       </div>
     </div>

@@ -66,7 +66,7 @@
     "stats_2_title": "Tashrif buyuruvchilar",
     "stats_2_description": "1200 nafar xalqaro mehmonlar",
     "stats_3_title": "Loyihalar",
-    "stats_3_description": "Go'ya va tayyor ishlanmalar",
+    "stats_3_description": "G'oya va tayyor ishlanmalar",
     "stats_4_title": "Ishtirokchilar",
     "stats_4_description": "Mahalliy va xorijiy kompaniyalar",
     "stats_5_title": "Davlatlar",
@@ -328,6 +328,10 @@
     "password_confirmation":"Parolni tasdiqlang", 
     "verify" : "Tasdiqlash",
     "verifying":"Tasdiqlanmoqda...", 
-    "phone_format":"Telefon raqami (901234567)"
+    "phone_format":"Telefon raqami (901234567)", 
+    "successful":"Muvaffaqiyatli"
+  },
+  "cooming_soon": {
+    "cooming_soon":"TEZ KUNDA !"
   }
 }

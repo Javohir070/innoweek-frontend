@@ -25,7 +25,7 @@
     "HAMKORLAR": "ПАРТНЕРЫ",
     "INNOWEEK HAQIDA": "О INNOWEEK",
     "REGISTER": "РЕГИСТРАЦИЯ",
-    "login":" Войти"
+    "login": " Войти"
   },
   "langs": {
     "uz": "Узбекский",
@@ -328,6 +328,10 @@
     "password_confirmation": "Подтвердите новый пароль",
     "verify": "Подтвердить",
     "verifying": "Подтверждение...",
-    "phone_format": "Формат телефона (901234567)"
+    "phone_format": "Формат телефона (901234567)",
+    "successful": "Успешный"
+  },
+  "cooming_soon": {
+    "cooming_soon": "СКОРО!"
   }
 }

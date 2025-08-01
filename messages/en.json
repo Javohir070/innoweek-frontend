@@ -327,6 +327,10 @@
     "password_confirmation": "Confirm new password",
     "verify": "Verify",
     "verifying": "Verifying...",
-    "phone_format": "Phone number (901234567)"
+    "phone_format": "Phone number (901234567)",
+    "successful": "Successfully"
+  },
+  "cooming_soon": {
+    "cooming_soon": "COOMING SOON !"
   }
 }

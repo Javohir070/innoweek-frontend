@@ -99,7 +99,7 @@ const ForgetPassword = () => {
       );
 
       if (res?.success) {
-        toast.success(t("registration_successful"));
+        toast.success(t("successful"));
         router.push("/login");
       }
     } catch (error) {
