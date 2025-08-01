@@ -12,12 +12,21 @@ import {
 import { useTranslations } from "next-intl";
 import { useState, useRef } from "react";
 import section from "@/assets/img/section_bg_2.jpg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import Image from "next/image";
+import { BASE_URL } from "@/api/FetchInstance";
 
 export default function StatsSection() {
   const t = useTranslations("stats");
 
   const [currentLang] = useState("uz");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const swiperRef = useRef<any>(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   const stats = [
     {
@@ -58,37 +67,37 @@ export default function StatsSection() {
     },
   ];
 
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      if (window.innerWidth < 768) {
-        scrollContainerRef.current.scrollBy({
-          left: -window.innerWidth * 0.86,
-          behavior: "smooth",
-        });
-      } else {
-        scrollContainerRef.current.scrollBy({
-          left: -500,
-          behavior: "smooth",
-        });
-      }
-    }
-  };
+  // const scrollLeft = () => {
+  //   if (scrollContainerRef.current) {
+  //     if (window.innerWidth < 768) {
+  //       scrollContainerRef.current.scrollBy({
+  //         left: -window.innerWidth * 0.86,
+  //         behavior: "smooth",
+  //       });
+  //     } else {
+  //       scrollContainerRef.current.scrollBy({
+  //         left: -500,
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //   }
+  // };
 
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      if (window.innerWidth < 768) {
-        scrollContainerRef.current.scrollBy({
-          left: window.innerWidth * 0.86,
-          behavior: "smooth",
-        });
-      } else {
-        scrollContainerRef.current.scrollBy({
-          left: 500,
-          behavior: "smooth",
-        });
-      }
-    }
-  };
+  // const scrollRight = () => {
+  //   if (scrollContainerRef.current) {
+  //     if (window.innerWidth < 768) {
+  //       scrollContainerRef.current.scrollBy({
+  //         left: window.innerWidth * 0.86,
+  //         behavior: "smooth",
+  //       });
+  //     } else {
+  //       scrollContainerRef.current.scrollBy({
+  //         left: 500,
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //   }
+  // };
 
   return (
     <div
@@ -111,8 +120,8 @@ export default function StatsSection() {
           <div className="text-black dark:!text-white">{t("COVERAGE")}</div>
         </div>
 
-        <div className="relative">
-          <button
+        <div>
+          {/* <button
             onClick={scrollLeft}
             className=" md:flex absolute sm:left-[-23px] max-[620px]:top-6 max-[620px]:left-[40%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-black transition"
           >
@@ -124,9 +133,92 @@ export default function StatsSection() {
             className=" md:flex absolute sm:right-[-23px] max-[620px]:top-6 max-[620px]:left-[55%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 p-2 shadow hover:bg-black transition !rounded-full"
           >
             <ChevronRight />
-          </button>
+          </button> */}
 
-          <section className="stats section min-w-full bg-transparent">
+          <div className="container " data-aos="fade-left" data-aos-delay="100">
+            <Swiper
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              key={stats.length}
+              modules={[Navigation, Autoplay]}
+              spaceBetween={30}
+              slidesPerView={3}
+              loop={true}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              speed={800}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onInit={(swiper) => {
+                if (
+                  typeof swiper.params.navigation === "object" &&
+                  swiper.params.navigation
+                ) {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                  swiper.navigation.init();
+                  swiper.navigation.update();
+                }
+              }}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                },
+                768: {
+                  slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+              className="testimonials-slider !pb-5 stats section bg-transparent"
+            >
+              {stats.map((stat, index) => (
+                <SwiperSlide key={stat.title}>
+                  <div className="min-w-[300px]">
+                    <div
+                      className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
+                      data-aos="fade-left"
+                      data-aos-delay={100 * (index + 1)}
+                    >
+                      <div className="metric-header">
+                        <div className="metric-icon-wrapper ">{stat?.icon}</div>
+                        <div className="metric-value">
+                          <span className="text-4xl">{stat.value}</span>
+                        </div>
+                      </div>
+                      <div className="metric-info">
+                        <h4 className="text-sm !sm:text-2xl">{stat.title}</h4>
+                        <p className="text-white">{stat.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+
+              {/* Navigation buttons */}
+              <div className="w-100 d-flex align-items-center justify-center gap-4 mt-10">
+                <button
+                  ref={prevRef}
+                  className="bg-[#0085d4] hover:bg-black text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
+                >
+                  <ChevronLeft />
+                </button>
+                <button
+                  ref={nextRef}
+                  className="bg-[#0085d4] hover:bg-black text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300 "
+                >
+                  <ChevronRight />
+                </button>
+              </div>
+            </Swiper>
+          </div>
+
+          {/* <section className="stats section min-w-full bg-transparent">
             <div
               className="container"
               data-aos="fade-left"
@@ -139,7 +231,10 @@ export default function StatsSection() {
               >
                 <div className="g-4 flex gap-6">
                   {stats.map((stat, index) => (
-                    <div key={index} className="min-w-[300px] w-[80vw] sm:w-[26vw] sm:max-w-[500px]">
+                    <div
+                      key={index}
+                      className="min-w-[300px] w-[80vw] sm:w-[26vw] sm:max-w-[500px]"
+                    >
                       <div
                         className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
                         data-aos="fade-left"
@@ -163,7 +258,7 @@ export default function StatsSection() {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </section>
     </div>

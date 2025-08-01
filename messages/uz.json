@@ -30,7 +30,7 @@
     "INNOWEEK HAQIDA": "INNOWEEK HAQIDA",
     "CONTACT": "BOG'LANISH",
     "REGISTER": "RO'YXATDAN O'TISH",
-    "login":" Kirish"
+    "login": " Kirish"
   },
 
   "hero": {
@@ -78,7 +78,7 @@
     "INNOWEEK": "INNOWEEK",
     "PROGRAM": "DASTUR",
     "day_1": "9-OKTABR",
-    "Opening Ceremony":"Ochilish marosimi",
+    "Opening Ceremony": "Ochilish marosimi",
     "day_1_program_1_title": "Chegarasiz innovatsion g'oyalar: dunyoni o'zgartiruvchi texnologiyalar",
     "day_1_program_2_title": "Laboratoriyadan bozorga: tadqiqotlarni tijoratlashtirish imkoniyatlari",
     "day_1_program_3_title": "Markaziy Osiyoda startap ekotizimlari",
@@ -98,7 +98,8 @@
   },
   "speakers": {
     "INNOWEEK": "INNOWEEK",
-    "SPEAKERS": "SPIKERLAR"
+    "SPEAKERS": "SPIKERLAR",
+    "LOAD_MORE": "Ko'proq ko'rish"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",
@@ -308,7 +309,7 @@
     "sidebar_ticket": "Chiptalarim",
     "sidebar_certificate": "Sertifikatlarim",
     "sidebar_profile": "Shaxsiy kabinet",
-    "sidebar_program":"Mening tadbirlarim" ,
+    "sidebar_program": "Mening tadbirlarim",
     "activity": "Faoliyat",
     "active": "Faol",
     "inactive": "Nofaol",
@@ -323,16 +324,16 @@
     "profile": "Shaxsiy kabinet",
     "login": " Kirish",
     "success": "Parolni tiklash kodi yuborildi.",
-    "error": "Xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.", 
-    "otp_label":"Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
-    "password":"Yangi parolni kiriting",
-    "password_confirmation":"Parolni tasdiqlang", 
-    "verify" : "Tasdiqlash",
-    "verifying":"Tasdiqlanmoqda...", 
-    "phone_format":"Telefon raqami (901234567)", 
-    "successful":"Muvaffaqiyatli"
+    "error": "Xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.",
+    "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
+    "password": "Yangi parolni kiriting",
+    "password_confirmation": "Parolni tasdiqlang",
+    "verify": "Tasdiqlash",
+    "verifying": "Tasdiqlanmoqda...",
+    "phone_format": "Telefon raqami (901234567)",
+    "successful": "Muvaffaqiyatli"
   },
   "cooming_soon": {
-    "cooming_soon":"TEZ KUNDA !"
+    "cooming_soon": "TEZ KUNDA !"
   }
 }

@@ -98,7 +98,8 @@
   },
   "speakers": {
     "INNOWEEK": "INNOWEEK",
-    "SPEAKERS": "SPEAKERS"
+    "SPEAKERS": "SPEAKERS", 
+     "LOAD_MORE": "Load More"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",

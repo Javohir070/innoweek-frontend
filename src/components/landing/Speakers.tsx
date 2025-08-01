@@ -8,20 +8,22 @@ import { useTranslations } from "next-intl";
 import section from "@/assets/img/section_bg_2.jpg";
 import Aos from "aos";
 import { useParams } from "next/navigation";
+import { DownCircleOutlined } from "@ant-design/icons";
 
 const SpeakersSection = () => {
   const t = useTranslations("speakers");
   const lang = useParams<{ locale: string }>().locale || "uz";
   const [data, setData] = useState<ISpeakerItem[]>([]);
-  // const [total, setTotal] = useState<number>(0);
-  // const [limit, setLimit] = useState<number>(2);
+  const [total, setTotal] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(4);
 
   const getSpeakers = async () => {
     try {
       const res = await FetchInstance<IResponse<ISpeakerItem[]>>(
-        `/api/v1.0/speakers/all?limit=8&archive_id=8&lang=${lang}`
+        `/api/v1.0/speakers/all?&limit=${limit}&archive_id=8&lang=${lang}`
       );
       setData(res?.data);
+      setTotal(res?.pagination?.total);
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +32,7 @@ const SpeakersSection = () => {
   useEffect(() => {
     getSpeakers();
     Aos.init();
-  }, [lang]);
+  }, [lang, limit]);
 
   return (
     <div
@@ -54,7 +56,7 @@ const SpeakersSection = () => {
           <div className="row gy-4">
             {data?.map((item) => (
               <div
-                className="col-lg-6 col-sm-6" 
+                className="col-lg-6 col-sm-6"
                 data-aos="fade-up"
                 data-aos-delay="100"
                 key={item?.full_name}
@@ -85,20 +87,32 @@ const SpeakersSection = () => {
             ))}
           </div>
         </div>
-        {/* {total >= limit && (
-          <div className="text-center mt-8">
-            <button
-              onClick={() => setLimit(limit + 2)}
-              className="btn btn-primary !bg-[#0085d4] dark:!bg-gray-800 hover:!bg-[#006eb3] dark:hover:!bg-gray-700 transition-colors duration-300 flex items-center justify-center"
-            >
-              <span> {t("LOAD_MORE")}</span>
-              <DownCircleOutlined className="inline-block ml-2 text-lg" />
-            </button>
+        {total >= limit && (
+          <div
+            className="text-center mt-8 cursor-pointer"
+            onClick={() => setLimit(limit + 2)}
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <span className="text-lg text-gray-800 font-bold">
+              {t("LOAD_MORE")}
+            </span>
+            <DownCircleOutlined className="inline-block ml-2 text-lg !text-gray-800" />
           </div>
-        )} */}
+        )}
       </section>
     </div>
   );
 };
 
 export default SpeakersSection;
+
+//  <div className="text-center mt-8">
+//   <button
+//     onClick={() => setLimit(limit + 2)}
+//     className="btn btn-primary !bg-[#0085d4] dark:!bg-gray-800 hover:!bg-[#006eb3] dark:hover:!bg-gray-700 transition-colors duration-300 flex items-center justify-center"
+//   >
+//     <span> {t("LOAD_MORE")}</span>
+//     <DownCircleOutlined className="inline-block ml-2 text-lg" />
+//   </button>
+// </div>
