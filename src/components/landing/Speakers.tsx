@@ -81,6 +81,11 @@ const SpeakersSection = () => {
                     <span className="text-white dark:!text-gray-400 max-[767px]:!m-0">
                       {item?.position}
                     </span>
+                    <span className="text-white dark:!text-gray-400 max-[767px]:!m-0">
+                      {lang == "uz" && item?.country?.name_uz}
+                      {lang == "en" && item?.country?.name_en}
+                      {lang == "ru" && item?.country?.name_ru}
+                    </span>
                   </div>
                 </div>
               </div>

@@ -31,6 +31,19 @@ export interface ISpeakerItem {
   position: string;
   image: string;
   created_at: string;
+  country: {
+    id: 1;
+    user_id: 1;
+    name_uz: "O'zbekiston";
+    name_en: "Uzbekistan";
+    name_ru: "\u0423\u0437\u0431\u0435\u043a\u0438\u0441\u0442\u0430\u043d";
+    state_code: null;
+    phone_code: null;
+    flag: null;
+    status: "active";
+    created_at: null;
+    updated_at: null;
+  };
 }
 
 export interface IGalleryItem {
