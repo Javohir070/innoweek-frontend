@@ -77,6 +77,7 @@ const SIDEBAR_ITEMS = [
     icon: <PiCertificateFill />,
   },
   { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
+  { key: "programm", labelKey: "sidebar_program", icon: <FaTicketAlt /> },
 ];
 
 const tez_kunda = () => (
@@ -415,6 +416,7 @@ export default function ProfilePage() {
             </div>
           )} */}
           {activeTab == "ticket" && tez_kunda()}
+           {activeTab == "programm" && tez_kunda()}
         </div>
       </div>
     </div>
