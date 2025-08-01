@@ -264,7 +264,7 @@
     "follow_us": "Bizni kuzatib boring"
   },
   "profile": {
-    "profile_title": "Profil",
+    "profile_title": "Shaxsiy kabinet",
     "no_profile_found": "Profil topilmadi",
     "firstName": "Ism",
     "lastName": "Familiya",
@@ -303,10 +303,11 @@
     "My_Ticket": "Mening Chiptam",
     "sidebar_ticket": "Chiptalarim",
     "sidebar_certificate": "Sertifikatlarim",
-    "sidebar_profile": "Mening Profilim",
+    "sidebar_profile": "Shaxsiy kabinet",
     "activity": "Faoliyat",
     "active": "Faol",
     "inactive": "Nofaol",
-    "no_activity": "Faoliyat topilmadi"
+    "no_activity": "Faoliyat topilmadi",
+    "logout": "Chiqish"
   }
 }

@@ -1,15 +1,86 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FetchInstance } from "@/api/FetchInstance";
+import { IResponse } from "@/types";
+
+interface UserProfile {
+  id: number;
+  user_type: number;
+  first_name: string;
+  last_name: string;
+  middle_name: string | null;
+  company_name: string | null;
+  company_inn: string | null;
+  company_logo: string | null;
+  pinfl: string | null;
+  passport_serial: string | null;
+  passport_number: string | null;
+  address: string | null;
+  position: string | null;
+  phone: string | null;
+  avatar: string | null;
+  username: string | null;
+  email: string | null;
+  email_verified_at: string | null;
+  confirmed: boolean;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  country_id: number;
+  country_name: string | null;
+  region_id: number | null;
+  district_id: number | null;
+  p_type_id: number | null;
+  department_id: number | null;
+  birth_date: string | null;
+  profession_id: number | null;
+  organization: string | null;
+  gender: string | number | null;
+  ticket: {
+    id: number;
+    user_id: number;
+    archive_id: number;
+    ticket_id: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  };
+  role?: string;
+  country?: string | object | null;
+  profession?: object | null;
+}
+
 import { Select } from "antd";
 import innoweekLogo from "@/assets/img/logo_inno.png";
 import { useTranslations } from "next-intl";
 import { Link, useRouter as Router } from "@/i18n/navigation";
 import { usePathname, useParams, useRouter } from "next/navigation";
 import { LoginOutlined } from "@ant-design/icons";
+import { IoMdPerson } from "react-icons/io";
+import dynamic from "next/dynamic";
 import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
+const ProfileDropdown = dynamic(() => import("./ProfileDropdown"), { ssr: false });
 
 export default function Header() {
+  const [user, setUser] = useState<UserProfile | null>(null);
+  // Fetch user info on mount
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await FetchInstance<IResponse<UserProfile>>("/api/v1.0/user/me", { method: "POST" });
+        if (res?.success && res.data) {
+          setUser(res.data);
+        } else {
+          setUser(null);
+        }
+      } catch (err: any) {
+        // If unauthorized (401), treat as logged out
+        setUser(null);
+      }
+    };
+    fetchUser();
+  }, []);
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
   const registerLangs = useTranslations("header");
@@ -27,6 +98,9 @@ export default function Header() {
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
     routerLang.push(newPath);
   };
+
+  console.log("user data in header",user);
+  
 
   const menu = [
     { label: t("HOME"), key: "/" },
@@ -160,28 +234,45 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex max-[1200px]:hidden items-start justify-end gap-2">
-          <button
-            className="!outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full whitespace-nowrap"
-            onClick={() => {
-              router.push(`/register`);
-            }}
-          >
-            {registerLangs("REGISTER")}
-          </button>
-          <div className="cta-button rounded-full mt-1">
-            <button
-              className="!bg-transparent"
-              onClick={() => {
-                router.push(`/login`);
+        <div className="flex max-[1200px]:hidden items-start justify-end gap-3">
+          {user ? (
+            <ProfileDropdown
+              user={{
+                first_name: user?.first_name,
+                last_name: user?.last_name,
+                avatar: user?.avatar,
+                id: user?.id
               }}
-            >
-              <span className="text-sm font-medium">
-                <LoginOutlined className="inline-block text-2xl" />
-                {/* {registerLangs("REGISTER")} */}
-              </span>
-            </button>
-          </div>
+              onLogout={() => {
+                setUser(null);
+                localStorage.removeItem("auth_token");
+                window.location.href = "/";
+              }}
+            />
+          ) : (
+            <>
+              <button
+                className="!outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full whitespace-nowrap"
+                onClick={() => {
+                  router.push(`/register`);
+                }}
+              >
+                {registerLangs("REGISTER")}
+              </button>
+              <div className="cta-button rounded-full mt-1">
+                <button
+                  className="!bg-transparent"
+                  onClick={() => {
+                    router.push(`/login`);
+                  }}
+                >
+                  <span className="text-sm font-medium">
+                    <LoginOutlined className="inline-block text-2xl" />
+                  </span>
+                </button>
+              </div>
+            </>
+          )}
           <Select
             value={shortLabel[activeLang as keyof typeof shortLabel]}
             onChange={changeLang}
