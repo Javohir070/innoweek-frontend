@@ -59,24 +59,24 @@ const SpeakersSection = () => {
                 data-aos-delay="100"
                 key={item?.full_name}
               >
-                <div className="team-member d-flex !bg-[#0085d4]  dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300 ">
+                <div className="team-member d-flex grid grid-cols-3 !bg-[#0085d4]  dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300 ">
                   <div className="member-img">
                     <Image
                       src={
                         item?.image ? `${BASE_URL}${item?.image}` : userAvatar
                       }
-                      className="img-fluid rounded-lg !w-full sm:!h-[300px] lg:!h-[200px] !object-cover"
+                      className="img-fluid rounded-lg !w-full !h-[450px] sm:!h-[300px] lg:!h-[200px] !object-cover"
                       alt={item?.full_name}
                       loading="lazy"
                       width={200}
                       height={200}
                     />
                   </div>
-                  <div className="member-info flex-grow-1">
+                  <div className="member-info flex-grow-1 max-[767px]:!py-3">
                     <h4 className="text-white dark:!text-white mb-1">
                       {item?.full_name}
                     </h4>
-                    <span className="text-white dark:!text-gray-400">
+                    <span className="text-white dark:!text-gray-400 max-[767px]:!m-0">
                       {item?.position}
                     </span>
                   </div>

@@ -60,19 +60,33 @@ export default function StatsSection() {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: -400,
-        behavior: "smooth",
-      });
+      if (window.innerWidth < 768) {
+        scrollContainerRef.current.scrollBy({
+          left: -window.innerWidth * 0.86,
+          behavior: "smooth",
+        });
+      } else {
+        scrollContainerRef.current.scrollBy({
+          left: -500,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: 400,
-        behavior: "smooth",
-      });
+      if (window.innerWidth < 768) {
+        scrollContainerRef.current.scrollBy({
+          left: window.innerWidth * 0.86,
+          behavior: "smooth",
+        });
+      } else {
+        scrollContainerRef.current.scrollBy({
+          left: 500,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
@@ -121,11 +135,11 @@ export default function StatsSection() {
               <div
                 ref={scrollContainerRef}
                 id="scrollContainer"
-                className="overflow-x-hidden scroll-smooth flex gap-6  px-1"
+                className="overflow-x-hidden scroll-smooth flex gap-4"
               >
                 <div className="g-4 flex gap-6">
                   {stats.map((stat, index) => (
-                    <div key={index} className="min-w-[200px] w-[350px]">
+                    <div key={index} className="min-w-[300px] w-[80vw] sm:w-[26vw] sm:max-w-[500px]">
                       <div
                         className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
                         data-aos="fade-left"
@@ -136,11 +150,11 @@ export default function StatsSection() {
                             {stat?.icon}
                           </div>
                           <div className="metric-value">
-                            <span>{stat.value}</span>
+                            <span className="text-4xl">{stat.value}</span>
                           </div>
                         </div>
                         <div className="metric-info">
-                          <h4>{stat.title}</h4>
+                          <h4 className="text-sm !sm:text-2xl">{stat.title}</h4>
                           <p className="text-white">{stat.description}</p>
                         </div>
                       </div>

@@ -102,10 +102,10 @@ export default function NewsSection() {
               <SwiperSlide key={item.id}>
                 <Link href={`/news/${item?.id}`}>
                   <div
-                    className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[400px]"
+                    className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[100px]"
                   >
                     <div className="flex flex-col  lg:flex-row  gap-5  w-full h-full  lg:h-[400px] overflow-hidden">
-                      <div className="flex flex-col gap-y-3.5 w-full lg:w-[55%] !h-[400px] overflow-hidden">
+                      <div className="flex flex-col gap-y-3.5 w-full lg:w-[55%] !h-[306px] overflow-hidden">
                         <h2 className="!text-white dark:!text-white">
                           {item?.title}
                         </h2>
@@ -116,7 +116,7 @@ export default function NewsSection() {
                           }}
                         ></div>
                       </div>
-                      <div className="flex items-center w-full lg:w-[45%]">
+                      <div className="flex -mt-5 items-center w-full lg:w-[45%]">
                         <div className="featured-img-wrapper rounded-lg overflow-hidden w-full h-full">
                           <Image
                             src={

@@ -2321,7 +2321,7 @@ section,
     background: color-mix(in srgb, var(--accent-color), transparent 95%);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 967px) {
     .team .team-member {
         flex-direction: column;
     }
