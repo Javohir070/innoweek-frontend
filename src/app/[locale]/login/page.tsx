@@ -5,6 +5,7 @@ import { FetchInstance } from "@/api/FetchInstance";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { useParams } from "next/navigation";
 
 const initialForm = {
   phone_or_email: "",
@@ -14,6 +15,7 @@ const initialForm = {
 const Login = () => {
   const t = useTranslations("login");
   const router = useRouter();
+  const locale = useParams().locale || "uz";
 
   const [form, setForm] = useState(initialForm);
   const [error, setError] = useState({});
@@ -45,7 +47,8 @@ const Login = () => {
       if (res?.success) {
         localStorage.setItem("token", res.data.access_token);
         toast.success(t("login_success"));
-        router.push("/profile");
+        // router.push("/profile");
+        window.location.pathname = `/${locale}/profile`;
       } else {
         setError({ status: t("login_failed") });
       }
