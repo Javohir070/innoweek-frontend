@@ -3,6 +3,21 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FetchInstance } from "@/api/FetchInstance";
 import { IResponse } from "@/types";
+import { Select } from "antd";
+import innoweekLogo from "@/assets/img/logo_inno.png";
+import { useTranslations } from "next-intl";
+import { Link, useRouter as Router } from "@/i18n/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
+import { LoginOutlined } from "@ant-design/icons";
+import { IoMdPerson } from "react-icons/io";
+import dynamic from "next/dynamic";
+import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
+
+import uzFlag from "@/assets/img/uz.avif";
+import ruFlag from "@/assets/img/rus.webp";
+import enFlag from "@/assets/img/eng.webp";
+
+
 
 interface UserProfile {
   id: number;
@@ -51,15 +66,6 @@ interface UserProfile {
   profession?: object | null;
 }
 
-import { Select } from "antd";
-import innoweekLogo from "@/assets/img/logo_inno.png";
-import { useTranslations } from "next-intl";
-import { Link, useRouter as Router } from "@/i18n/navigation";
-import { usePathname, useParams, useRouter } from "next/navigation";
-import { LoginOutlined } from "@ant-design/icons";
-import { IoMdPerson } from "react-icons/io";
-import dynamic from "next/dynamic";
-import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
 const ProfileDropdown = dynamic(() => import("./ProfileDropdown"), { ssr: false });
 
 export default function Header() {
@@ -98,6 +104,7 @@ export default function Header() {
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
     routerLang.push(newPath);
   };
+
 
   console.log("user data in header", user);
 
@@ -144,10 +151,29 @@ export default function Header() {
   ];
 
   const shortLabel = {
-    uz: "UZ",
+    uz: `UZ`,
     en: "EN",
     ru: "RU",
   };
+
+  // const shortLabel = {
+  //   uz: (
+  //     <span className="flex items-center gap-1">
+  //       <Image src={uzFlag} alt="UZ" width={20} height={14} /> UZ
+  //     </span>
+  //   ),
+  //   en: (
+  //     <span className="flex items-center gap-1">
+  //       <Image src={enFlag} alt="EN" width={20} height={14} /> EN
+  //     </span>
+  //   ),
+  //   ru: (
+  //     <span className="flex items-center gap-1">
+  //       <Image src={ruFlag} alt="RU" width={20} height={14} /> RU
+  //     </span>
+  //   ),
+  // };
+  // 
 
   return (
     <header className="header flex items-center fixed-top bg-white dark:bg-gray-800 text-gray-900 shadow w-full z-50">
@@ -233,7 +259,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex max-[1200px]:hidden items-start justify-end gap-3">
+        <div className="flex max-[1200px]:hidden items-center justify-end gap-3">
           {user ? (
             <ProfileDropdown
               user={{
@@ -272,21 +298,33 @@ export default function Header() {
               </div>
             </>
           )}
+
+          <div className=" bayroq w-full  !-mr-4 ml-2">
+            {
+              activeLang === "uz" ? (
+                <Image className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2" src={uzFlag} alt="UZ" width={20} height={20} />
+              ) : activeLang === "en" ? (
+                <Image className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2" src={enFlag} alt="EN" width={20} height={20} />
+              ) : (
+                <Image className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2" src={ruFlag} alt="RU" width={20} height={20} />
+              )
+            }
+          </div>
           <Select
             value={shortLabel[activeLang as keyof typeof shortLabel]}
             onChange={changeLang}
             style={{ width: 80, textAlign: "center" }}
             dropdownMatchSelectWidth={false}
             options={langOptions}
-            dropdownRender={(menu) => (
-              <div className="!p-0 text-center bg-white text-blue-600 font-medium">
-                {menu}
-              </div>
-            )}
+            // dropdownRender={(menu) => (
+            //   <div className="!p-0 text-center bg-white text-blue-600 font-medium">
+            //     {menu}
+            //   </div>
+            // )}
             className="text-center uppercase font-semibold"
-            popupClassName="!p-0 text-center"
+          // popupClassName="!p-0 text-center"
           />
-          <div>
+          <div className=" hidden md:block">
             <GoogleTranslate />
           </div>
         </div>
@@ -393,26 +431,38 @@ export default function Header() {
                     </span>
                   </button>
                 </div>
-
-                <li className="">
-                  <Select
-                    value={shortLabel[activeLang as keyof typeof shortLabel]}
-                    onChange={(lang) => {
-                      changeLang(lang);
-                      setIsMenuOpen(false);
-                    }}
-                    style={{ width: "100%" }}
-                    dropdownMatchSelectWidth={false}
-                    options={langOptions}
-                    // dropdownClassName="!p-0 !text-center"
-                    classNames={{
-                      popup: {
-                        root: "!p-0 !text-center",
-                      },
-                    }}
-                    className=" text-center uppercase font-semibold mt-2"
-                  />
-                </li>
+                <div className="flex items-center mt-2">
+                  <div className=" bayroq w-full mt-1   mr-2">
+                    {
+                      activeLang === "uz" ? (
+                        <Image className="!w-[22px] !h-[22px] object-cover rounded-full" src={uzFlag} alt="UZ" width={20} height={14} />
+                      ) : activeLang === "en" ? (
+                        <Image className="!w-[22px] !h-[22px] object-cover rounded-full" src={enFlag} alt="EN" width={20} height={14} />
+                      ) : (
+                        <Image className="!w-[22px] !h-[22px] object-cover rounded-full" src={ruFlag} alt="RU" width={20} height={14} />
+                      )
+                    }
+                  </div>
+                  <li className="">
+                    <Select
+                      value={shortLabel[activeLang as keyof typeof shortLabel]}
+                      onChange={(lang) => {
+                        changeLang(lang);
+                        setIsMenuOpen(false);
+                      }}
+                      style={{ width: "100%" }}
+                      dropdownMatchSelectWidth={false}
+                      options={langOptions}
+                      // dropdownClassName="!p-0 !text-center"
+                      classNames={{
+                        popup: {
+                          root: "!p-0 !text-center",
+                        },
+                      }}
+                      className=" text-center uppercase  mt-2"
+                    />
+                  </li>
+                </div>
                 <div className="">
                   <GoogleTranslate />
                 </div>

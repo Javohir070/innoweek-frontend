@@ -5206,6 +5206,7 @@ row
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+    padding: 0 !important;
 }
 
 .ant-select-open .ant-select-selector,

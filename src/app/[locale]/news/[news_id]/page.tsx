@@ -36,7 +36,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
   return (
     <div className="container pb-10 pt-20">
       <div className="section-title">
-        <h1 className="!text-3xl text-black dark:!text-white !font-bold pt-4">{data.title}</h1>
+        <h1 className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold pt-4 ">{data.title}</h1>
         <div className="text-black  dark:!text-gray-400 !text-lg">
           {data.created_at && (
             <span>
