@@ -83,7 +83,7 @@ export default function ProfileDropdown({ user, onLogout }: ProfileDropdownProps
                         className="w-full h-full object-cover bg-white"
                     />
                 </div>
-                <p className="m-0 !mt-1  font-semibold text-gray-800">
+                <p className="m-0   font-semibold text-gray-800">
                     {user.first_name}
                 </p>
             </div>
