@@ -148,15 +148,6 @@ export default function ProfilePage() {
     );
   }
 
-  console.log("profile", profile);
-
-  const role = params.role
-    ? typeof params.role === "string"
-      ? params.role
-      : Array.isArray(params.role)
-      ? params.role[0]
-      : profile.role || "participant"
-    : profile.role || "participant";
 
   return (
     <div className="pt-16 pb-8 px-2 container md:px-4 mt-16">
@@ -165,10 +156,10 @@ export default function ProfilePage() {
         <aside className="w-full md:w-64 bg-white dark:!bg-transparent rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500">
           <div className="py-4 px-3 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between gap-2.5 space-x-3">
-              <div className="!w-12 !h-12 m-0 rounded-full bg-gradient-to-r from-[#0085d4] to-[#e3a127] flex items-center justify-center px-3 py-3 text-white font-bold text-lg">
+              {/* <div className="!w-12 !h-12 m-0 rounded-full bg-gradient-to-r  flex items-center justify-center px-3 py-3 font-bold text-lg">
                 {profile.first_name?.charAt(0)}
                 {profile.last_name?.charAt(0)}
-              </div>
+              </div> */}
               <div>
                 <h3 className="font-medium !text-gray-900 dark:!text-white !mb-0">
                   {profile.first_name} {profile.last_name}
@@ -237,20 +228,20 @@ export default function ProfilePage() {
               }}
             >
               {/* Profile Header */}
-              <div className="bg-gradient-to-r from-[#0085d4]/30 to-white p-6 text-center relative">
+              <div className="bg-gradient-to-r from-[#0085d4]/20 to-white/30 p-6 text-center relative">
                 <div className="absolute top-4 right-4 border-gray-800 border backdrop-blur-md px-3 py-1 rounded-full text-xs">
                   <span className="font-semibold">
                     {profile?.status === "active" ? t("active") : t("inactive")}
                   </span>
                 </div>
-                <div className="w-20 h-20 mx-auto rounded-full bg-white/20 backdrop-blur-md border-4 border-white/30 flex items-center justify-center text-3xl font-bold mb-3">
+                <div className="w-20 h-20 mx-auto rounded-full bg-white/20 backdrop-blur-md border-4 border-white flex items-center justify-center text-3xl font-bold mb-3 text-[#0085d4] uppercase">
                   {profile.first_name?.charAt(0)}
                   {profile.last_name?.charAt(0)}
                 </div>
-                <h1 className="text-2xl mt-0 font-bold text-white">
+                <h1 className="text-2xl mt-0 font-bold !text-[#0085d4] capitalize !text-shadow-2xs">
                   {profile.first_name} {profile.last_name}
                 </h1>
-                <p className="m-0 text-white bottom-3">
+                <p className="m-0 text-[#0085d4] bottom-3">
                   {(() => {
                     if (
                       profile.profession &&
@@ -259,23 +250,14 @@ export default function ProfilePage() {
                       const locale = params?.locale || "uz";
                       if (locale === "en")
                         return (
-                          profile.profession.name_en ||
-                          profile.profession.name_uz ||
-                          profile.profession.name_ru ||
-                          "-"
+                          profile.profession.name_en || "-"
                         );
                       if (locale === "ru")
                         return (
-                          profile.profession.name_ru ||
-                          profile.profession.name_uz ||
-                          profile.profession.name_en ||
-                          "-"
+                          profile.profession.name_ru || "-"
                         );
                       return (
-                        profile.profession.name_uz ||
-                        profile.profession.name_en ||
-                        profile.profession.name_ru ||
-                        "-"
+                        profile.profession.name_uz || "-"
                       );
                     }
                     return "-";
