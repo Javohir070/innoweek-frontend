@@ -2321,6 +2321,12 @@ section,
     background: color-mix(in srgb, var(--accent-color), transparent 95%);
 }
 
+@media (max-width: 991px) {
+    .team .team-member {
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 967px) {
     .team .team-member {
         flex-direction: column;
@@ -5232,9 +5238,6 @@ row
     color: #0085d4 !important;
 }
 
-.ant-image-mask-info {
-    /* visibility: hidden !important; */
-}
 
 .ant-image-mask-info>span {
     /* display: none !important; */

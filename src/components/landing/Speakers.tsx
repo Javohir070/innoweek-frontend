@@ -54,7 +54,7 @@ const SpeakersSection = () => {
           <div className="row gy-4">
             {data?.map((item) => (
               <div
-                className="col-lg-6"
+                className="col-lg-6 col-sm-6" 
                 data-aos="fade-up"
                 data-aos-delay="100"
                 key={item?.full_name}
