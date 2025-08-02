@@ -129,6 +129,7 @@ export default function RegisterRolePage() {
         position: form.position,
         gender: form.gender,
         password: form.password,
+        password_confirmation: form.password_confirmation,
       };
     }
 
