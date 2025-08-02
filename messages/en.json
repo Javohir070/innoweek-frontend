@@ -334,7 +334,8 @@
     "verify": "Verify",
     "verifying": "Verifying...",
     "phone_format": "Phone number (901234567)",
-    "successful": "Successfully"
+    "successful": "Successfully",
+    "login_error":"Login error"
   },
   "cooming_soon": {
     "cooming_soon": "COOMING SOON !"

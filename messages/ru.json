@@ -334,7 +334,8 @@
     "verify": "Подтвердить",
     "verifying": "Подтверждение...",
     "phone_format": "Формат телефона (901234567)",
-    "successful": "Успешный"
+    "successful": "Успешный",
+    "login_error":" Ошибка входа"
   },
   "cooming_soon": {
     "cooming_soon": "СКОРО!"

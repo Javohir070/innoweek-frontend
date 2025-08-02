@@ -44,14 +44,14 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt, id }) => {
           </div>
         </div>
 
-        <div className="relative p-3 space-y-4">
-          <div className="min-h-[150px]">
+        <div className="relative p-3 space-y-2">
+          <div className="min-h-[80px] md:min-h-[100px] lg:min-h-[120px]">
             {/* <div className="flex items-center dark:text-slate-400 text-sm">
               <Calendar className="w-4 h-4 mr-2" />
               {formatDate(createdAt)}
             </div> */}
 
-            <h3 className="!text-[17px]  font-bold dark:!text-white !text-gray-800 leading-tight group-hover:text-blue-400 transition-colors duration-300 mt-2">
+            <h3 className="!text-[17px]  font-bold dark:!text-white !text-gray-800 leading-tight group-hover:text-blue-400 transition-colors duration-300 mt-2 mb-0">
               {title}
             </h3>
           </div>

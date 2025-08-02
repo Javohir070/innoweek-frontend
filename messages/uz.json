@@ -334,7 +334,8 @@
     "verify": "Tasdiqlash",
     "verifying": "Tasdiqlanmoqda...",
     "phone_format": "Telefon raqami (901234567)",
-    "successful": "Muvaffaqiyatli"
+    "successful": "Muvaffaqiyatli",
+    "login_error":" Kirish xatosi"
   },
   "cooming_soon": {
     "cooming_soon": "TEZ KUNDA !"
