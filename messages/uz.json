@@ -32,7 +32,6 @@
     "REGISTER": "RO'YXATDAN O'TISH",
     "login": " Kirish"
   },
-
   "hero": {
     "Ideas without borders": "CHEGARASIZ G'OYALAR",
     "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
@@ -224,12 +223,15 @@
     "phone_error": "Telefon raqam 901234567 formatida, 9 ta raqam bo‘lishi kerak",
     "sending": "Yuborilmoqda...",
     "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
+    "otp_email_label": "Elektron pochtangizga yuborilgan 6 xonali kodni kiriting",
     "verifying": "Tasdiqlanmoqda...",
     "verify": "Tasdiqlash",
     "position": "Lavozim",
     "sended_sms": "SMS yuborildi",
     "otp_title": "SMS orqali yuborilgan kodni kiriting",
     "otp_description": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting.",
+    "otp_title_email": "Email orqali yuborilgan 6 xonali kodni kiriting",
+    "otp_description_email": "Elektron pochtangizga yuborilgan 6 xonali kodni kiriting.",
     "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi.",
     "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan."
   },
@@ -326,6 +328,7 @@
     "success": "Parolni tiklash kodi yuborildi.",
     "error": "Xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.",
     "otp_label": "Telefon raqamingizga yuborilgan 6 xonali kodni kiriting",
+    "otp_label_email": "Elektron pochtangizga yuborilgan 6 xonali kodni kiriting",
     "password": "Yangi parolni kiriting",
     "password_confirmation": "Parolni tasdiqlang",
     "verify": "Tasdiqlash",

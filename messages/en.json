@@ -98,8 +98,8 @@
   },
   "speakers": {
     "INNOWEEK": "INNOWEEK",
-    "SPEAKERS": "SPEAKERS", 
-     "LOAD_MORE": "Load More"
+    "SPEAKERS": "SPEAKERS",
+    "LOAD_MORE": "Load More"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",
@@ -222,12 +222,15 @@
     "phone_error": "Phone number must be in 901234567 format, 9 digits required",
     "sending": "Sending...",
     "otp_label": "Enter the 6-digit code sent to your phone number",
+    "otp_email_label": "Enter the 6-digit code sent to your email address",
     "verifying": "Verifying...",
     "verify": "Verify",
     "position": "Position",
     "sended_sms": "SMS sent",
     "otp_title": "Enter the 6-digit code sent via SMS",
     "otp_description": "Enter the 6-digit code sent to your phone number.",
+    "otp_title_email": "Enter the 6-digit code sent via Email",
+    "otp_description_email": "Enter the 6-digit code sent to your email address.",
     "registration_successful": "Registration successful.",
     "phone_allready_registered": "This phone number is already registered."
   },
@@ -325,6 +328,7 @@
     "success": "Password recovery code sent.",
     "error": "An error occurred. Please try again.",
     "otp_label": "Enter the 6-digit code sent to your phone number",
+    "otp_label_email": "Enter the 6-digit code sent to your email address",
     "password": "Enter new password",
     "password_confirmation": "Confirm new password",
     "verify": "Verify",

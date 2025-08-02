@@ -20,9 +20,10 @@ const AcceptTerms = () => {
         cancelText={t("close")}
         okText={t("accept")}
         okButtonProps={{style: { display: "none" }}}
-        width={"80vw"}
+        className="!w-[94%] md:!w-2/3 lg:!w-2/3 xl:w-1/3 2xl:w-1/4"
+        // width={"100vw"}
       >
-        <div className="p-4">
+        <div className="p-2 md:!p-4">
           <h2 className="!text-xl !font-semibold mb-2 !text-[#0085d4] text-center">
             {t("terms_conditions")}
           </h2>

@@ -672,10 +672,10 @@ export default function RegisterRolePage() {
           <form className="flex flex-col gap-6" onSubmit={handleOtpSubmit}>
             <div className="text-center">
               <h3 className="text-xl font-bold !text-[#0085d4]">
-                {t("otp_title")}
+                {registerType === "international" ? t("otp_title_email") : t("otp_title")}
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                {t("otp_description")}
+                {registerType === "international" ? t("otp_description_email") : t("otp_description")}
               </p>
             </div>
 

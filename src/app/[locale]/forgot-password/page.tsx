@@ -28,6 +28,8 @@ const ForgetPassword = () => {
     useState(false);
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
+  // Determine if user is using phone or email for reset
+  const isEmail = form.phone_or_email.includes("@") && form.phone_or_email.includes(".");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -114,8 +116,8 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="mt-10 pt-20 pb-15 flex items-center justify-center !w-1/2 mx-auto dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28] min-h-[65vh]">
-      <div className="bg-white dark:!bg-transparent rounded-2xl p-8 max-w-9/12 w-full shadow-2xl shadow-[#10374d74] border dark:!border-gray-700 relative ">
+    <div className="mt-10 pt-20 pb-15 flex items-center justify-center w-[95%] sm:!w-9/12 md:!w-6/12 lg:!w-5/12 xl:!w-4/12 mx-auto dark:bg-[radial-gradient(circle,#0085d4_0%,#031119_40%)] dark:bg-[#151a28] min-h-[65vh]">
+      <div className="bg-white dark:!bg-transparent rounded-2xl p-8 max-w-11/12 w-full shadow-2xl shadow-[#10374d74] border dark:!border-gray-700 relative ">
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-15 h-15 rounded-full bg-[#0085d4] flex items-center justify-center shadow-lg border-4 border-white dark:border-[#151a28]">
           <svg width="30" height="30" fill="#fff" viewBox="0 0 24 24">
             <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-13h2v6h-2zm0 8h2v2h-2z" />
@@ -129,7 +131,7 @@ const ForgetPassword = () => {
           <form className="flex flex-col gap-3" onSubmit={handleOtpSubmit}>
             <div className="w-full">
               <label htmlFor="otp" className="!text-gray-700">
-                {t("otp_label")}
+                {isEmail ? t("otp_label_email") : t("otp_label")}
               </label>
               <input
                 type="text"
@@ -155,7 +157,7 @@ const ForgetPassword = () => {
                 required
               />
               <span
-                className="absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 top-2/4 transform -translate-y-1/2 cursor-pointer"
                 onClick={togglePasswordVisibility}
               >
                 {!passwordVisible ? (
@@ -179,7 +181,7 @@ const ForgetPassword = () => {
                 required
               />
               <span
-                className="absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 top-2/4 transform -translate-y-1/2 cursor-pointer"
                 onClick={togglePasswordConfirmationVisibility}
               >
                 {!passwordConfirmationVisible ? (
