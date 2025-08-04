@@ -111,7 +111,7 @@ const ContactSection = () => {
                 </div>
                 <div className="contact-text">
                   <h4>{t("phone_title")}</h4>
-                  <p className="text-white">+998 71 203 32 23</p>
+                  <p className="text-white">+998 71 203 32 31</p>
                 </div>
               </div>
               <div className="contact-card !bg-[#0085d4] dark:!bg-gray-800 dark:text-white rounded-lg shadow p-4">
