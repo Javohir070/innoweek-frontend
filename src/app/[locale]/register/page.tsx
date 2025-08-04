@@ -64,17 +64,16 @@ export default function RegisterRolePage() {
     "local" | "international" | null
   >("local");
 
-  // Strict form validation: all required fields must be filled and valid
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+
   const isFormValid =
     form.firstName.trim() !== "" &&
     form.lastName.trim() !== "" &&
     (form.phone.trim() || form.email !== "") &&
     form.profession_id !== "" &&
-    form.password.length >= 8 &&
     form.password === form.password_confirmation &&
     form.gender !== "" &&
     form.acceptTerms;
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -89,6 +88,21 @@ export default function RegisterRolePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+
+    if (!passwordPattern.test(form.password)) {
+      setError({
+        status:
+          "Parol kamida 8 ta belgi, 1 ta katta harf, 1 ta kichik harf va 1 ta maxsus belgidan iborat bo‘lishi kerak",
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (form.password !== form.password_confirmation) {
+      setError({ status: "passwords_do_not_match" });
+      setLoading(false);
+      return;
+    }
     if (form.password !== form.password_confirmation) {
       setError({ status: "passwords_do_not_match" });
       setLoading(false);
@@ -390,6 +404,8 @@ export default function RegisterRolePage() {
                       required
                       value={form.password}
                       onChange={handleChange}
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$"
+                      title="Kamida 8 ta belgi, 1 ta katta harf, 1 ta kichik harf va 1 ta maxsus belgi bo‘lishi kerak"
                     />
                   </div>
                   <div>
@@ -579,6 +595,8 @@ export default function RegisterRolePage() {
                       required
                       value={form.password}
                       onChange={handleChange}
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$"
+                      title="Kamida 8 ta belgi, 1 ta katta harf, 1 ta kichik harf va 1 ta maxsus belgi bo‘lishi kerak"
                     />
                   </div>
                   <div>
