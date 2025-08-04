@@ -233,7 +233,9 @@
     "otp_title_email": "Email orqali yuborilgan 6 xonali kodni kiriting",
     "otp_description_email": "Elektron pochtangizga yuborilgan 6 xonali kodni kiriting.",
     "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi.",
-    "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan."
+    "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan.",
+    "email_allready_registered": "Ushbu email manzili allaqachon ro'yxatdan o'tgan.",
+    "pattern_err": "Kamida 8 ta belgi, 1 ta katta harf, 1 ta kichik harf va 1 ta maxsus belgi bo‘lishi kerak"
   },
   "accept_terms": {
     "accept_terms": "Foydalanish shartlarini qabul qilaman",
@@ -335,7 +337,7 @@
     "verifying": "Tasdiqlanmoqda...",
     "phone_format": "Telefon raqami (901234567)",
     "successful": "Muvaffaqiyatli",
-    "login_error":"Telefon raqamni tog'ri kiriting yoki qayta ro'yxatdan o'ting"
+    "login_error": "Telefon raqamni tog'ri kiriting yoki qayta ro'yxatdan o'ting"
   },
   "cooming_soon": {
     "cooming_soon": "TEZ KUNDA !"

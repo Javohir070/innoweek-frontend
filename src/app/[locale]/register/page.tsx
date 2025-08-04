@@ -171,10 +171,12 @@ export default function RegisterRolePage() {
             if (key === "phone") {
               setError({ status: t("phone_allready_registered") });
             }
-
-            // const errorMessage = res.error.errors[key];
-            // console.log(errorMessage);
-            // setError({ status: errorMessage });
+            if (key === "email") {
+              setError({ status: t("email_allready_registered") });
+            } 
+            // else {
+            //   setError({ status: res.error.errors[key] });
+            // }
           }
         }
       }
@@ -405,7 +407,7 @@ export default function RegisterRolePage() {
                       value={form.password}
                       onChange={handleChange}
                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$"
-                      title="Kamida 8 ta belgi, 1 ta katta harf, 1 ta kichik harf va 1 ta maxsus belgi bo‘lishi kerak"
+                      title={t("pattern_err")}
                     />
                   </div>
                   <div>
@@ -466,6 +468,12 @@ export default function RegisterRolePage() {
 
                 {/* Password inputs */}
 
+                {error.phone && (
+                  <span className="text-red-500 text-xs">{error.phone}</span>
+                )}
+                {error.email && (
+                  <span className="text-red-500 text-xs">{error.email}</span>
+                )}
                 {error.status && (
                   <span className="text-red-500 text-xs">{error.status}</span>
                 )}
@@ -653,10 +661,13 @@ export default function RegisterRolePage() {
                     <AcceptTerms />
                   </div>
                 </div>
-                {/* Foydalanish shartlari */}
 
-                {/* Password inputs */}
-
+                {error.phone && (
+                  <span className="text-red-500 text-xs">{error.phone}</span>
+                )}
+                {error.email && (
+                  <span className="text-red-500 text-xs">{error.email}</span>
+                )}
                 {error.status && (
                   <span className="text-red-500 text-xs">{error.status}</span>
                 )}
@@ -690,10 +701,14 @@ export default function RegisterRolePage() {
           <form className="flex flex-col gap-6" onSubmit={handleOtpSubmit}>
             <div className="text-center">
               <h3 className="text-xl font-bold !text-[#0085d4]">
-                {registerType === "international" ? t("otp_title_email") : t("otp_title")}
+                {registerType === "international"
+                  ? t("otp_title_email")
+                  : t("otp_title")}
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                {registerType === "international" ? t("otp_description_email") : t("otp_description")}
+                {registerType === "international"
+                  ? t("otp_description_email")
+                  : t("otp_description")}
               </p>
             </div>
 

@@ -232,7 +232,9 @@
     "otp_title_email": "Enter the 6-digit code sent via Email",
     "otp_description_email": "Enter the 6-digit code sent to your email address.",
     "registration_successful": "Registration successful.",
-    "phone_allready_registered": "This phone number is already registered."
+    "phone_allready_registered": "This phone number is already registered." , 
+    "email_allready_registered": "This email address is already registered.",
+    "pattern_err":"Must be at least 8 characters, 1 uppercase letter, 1 lowercase letter, and 1 special character"
   },
   "accept_terms": {
     "accept_terms": "I accept the terms of use",
