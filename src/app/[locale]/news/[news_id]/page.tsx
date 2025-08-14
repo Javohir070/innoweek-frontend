@@ -1,3 +1,4 @@
+
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { INewsListItem, IResponse } from "@/types";
 import Image from "next/image";
