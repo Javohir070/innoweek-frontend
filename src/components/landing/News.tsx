@@ -121,7 +121,7 @@ export default function NewsSection() {
                           <Image
                             src={
                               item?.image
-                                ? `${BASE_URL}/upload/news/${item?.image}_big_720.png`
+                                ? `http://testinno.innoweek.uz/upload/news/${item?.image}_big_720.png`
                                 : newsImage
                             }
                             className="featured-img !w-full object-cover !h-[400px]"
