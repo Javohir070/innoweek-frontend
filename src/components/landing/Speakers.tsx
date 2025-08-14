@@ -65,7 +65,7 @@ const SpeakersSection = () => {
                   <div className="member-img">
                     <Image
                       src={
-                        item?.image ? `http://testinno.innoweek.uz${item?.image}` : userAvatar
+                        item?.image ? `${BASE_URL}${item?.image}` : userAvatar
                       }
                       className="img-fluid rounded-lg !w-full !h-[450px] sm:!h-[300px] lg:!h-[200px] !object-cover"
                       alt={item?.full_name}

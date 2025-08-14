@@ -1,5 +1,5 @@
-import React, { use } from "react";
-import { Calendar, ArrowRight } from "lucide-react";
+import React from "react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
