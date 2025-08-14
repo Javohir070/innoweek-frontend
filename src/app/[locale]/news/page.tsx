@@ -46,7 +46,7 @@ const NewsList = () => {
             createdAt={item?.created_at}
             description={item?.description}
             id={item?.id}
-            image={`${BASE_URL}/upload/news/${item?.image}_big_720.png`}
+            image={`http://testinno.innoweek.uz/upload/news/${item?.image}_big_720.png`}
             title={item?.title}
             key={item?.id}
           />

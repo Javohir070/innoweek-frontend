@@ -12,15 +12,8 @@ interface NewsCardProps {
   createdAt: string;
 }
 
-const NewsCard: React.FC<NewsCardProps> = ({ title, image, createdAt, id }) => {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("uz-UZ", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-  };
+const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
+  
 
   const t = useTranslations("news");
 
