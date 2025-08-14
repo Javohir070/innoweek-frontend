@@ -1,4 +1,4 @@
-export const BASE_URL = "https://testinno.innoweek.uz";
+export const BASE_URL = "http://testinno.innoweek.uz";
 
 export const FetchInstance = async <T>(
   endpoint: string,
