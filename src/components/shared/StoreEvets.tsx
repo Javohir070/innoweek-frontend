@@ -179,9 +179,8 @@ const StoreEvets = ({ btn_text, event_data }: IProps) => {
                 <b>Tavsif:</b> {event_data.description}
               </p>
             )}
-            {registerError && error && (
-              <p style={{ color: "red" }}>{registerError || error}</p>
-            )}
+            {registerError && <p style={{ color: "red" }}>{registerError}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
           </>
         )}
       </Modal>

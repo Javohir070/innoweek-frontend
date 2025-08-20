@@ -115,7 +115,7 @@ export default function ProgramSection() {
                               <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
                                 {event.title}
                               </h3>
-                              <StoreEvets btn_text="" event_data={event} />
+                              <StoreEvets btn_text="Ishtirok etish" event_data={event} />
                             </div>
                             {event.description && (
                               <p className="description m-0 text-gray-700 dark:text-gray-300">

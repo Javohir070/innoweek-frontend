@@ -11,6 +11,7 @@ import section from "@/assets/img/section_bg_2.jpg";
 import { PiCertificateFill } from "react-icons/pi";
 import { FaTicketAlt } from "react-icons/fa";
 import MyEvents from "@/components/shared/MyEvents";
+import MyTicket from "@/components/shared/MyTicket";
 
 export interface UserProfile {
   id: number;
@@ -405,7 +406,7 @@ export default function ProfilePage() {
           )} */}
           {activeTab === "certificate" && tez_kunda()}
 
-          {/* {activeTab === "ticket" && (
+          {activeTab === "ticket" && (
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 overflow-hidden shadow-gray-300 dark:shadow-blue-500 h-full">
               <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-semibold !text-gray-800 dark:text-white">
@@ -413,10 +414,10 @@ export default function ProfilePage() {
                 </h3>
               </div>
               <div className="p-0 md:p-8 min-h-[400px]">
-                <Ticket />
+                <MyTicket ticket_id={profile?.ticket?.ticket_id} />
               </div>
             </div>
-          )} */}
+          )}
           {activeTab == "ticket" && tez_kunda()}
           {activeTab == "programm" && <MyEvents />}
         </div>
