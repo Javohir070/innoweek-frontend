@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import minin1 from "@/assets/minin 1.png";
-import minin2 from "@/assets/innoweek 1.png";
+import minin2 from "@/assets/img/logo_inno.png";
 import QRCode from "react-qr-code";
 import Image from "next/image";
 import { IResponse, ITicketDetail } from "@/types";
@@ -16,7 +16,6 @@ interface Props {
 }
 
 const MyTicket: React.FC<Props> = ({ ticket_id }) => {
-
   const t = useTranslations("ticket");
   const [ticketData, setTicketData] = useState<ITicketDetail | null>(null);
 
@@ -33,10 +32,12 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
           ignoreElements: (element) => {
             // oklch ranglarini o'z ichiga olgan elementlarni e'tiborsiz qoldirish
             const computedStyle = window.getComputedStyle(element);
-            return computedStyle.color.includes('oklch') || 
-                   computedStyle.backgroundColor.includes('oklch') ||
-                   computedStyle.borderColor.includes('oklch');
-          }
+            return (
+              computedStyle.color.includes("oklch") ||
+              computedStyle.backgroundColor.includes("oklch") ||
+              computedStyle.borderColor.includes("oklch")
+            );
+          },
         });
         const link = document.createElement("a");
         link.download = `ticket-${ticket_id}.png`;
@@ -50,14 +51,16 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
             useCORS: true,
             allowTaint: true,
             scale: 1,
-            backgroundColor: '#ffffff'
+            backgroundColor: "#ffffff",
           });
           const link = document.createElement("a");
           link.download = `ticket-${ticket_id}.png`;
           link.href = canvas.toDataURL("image/png");
           link.click();
         } catch (fallbackError) {
-          alert("Ticketni yuklab olishda xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.");
+          alert(
+            "Ticketni yuklab olishda xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring."
+          );
           console.error("Fallback ham ishlamadi:", fallbackError);
         }
       }
@@ -98,36 +101,31 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
             className="rounded-xl p-6 min-w-[340px] shadow-lg flex flex-col gap-1"
           >
             <div className="flex justify-between items-center mb-2">
+              <div className="w-10"></div>
+              <Image
+                src={minin2}
+                alt="Logo"
+                className="h-12 w-[150px] object-fit-contain"
+              />
               <Image
                 src={minin1}
                 alt="Logo"
                 className="h-12 object-fit-contain"
               />
-              <Image
-                src={minin2}
-                alt="Logo"
-                className="h-12 object-fit-contain"
-              />
             </div>
             <div className="text-center">
-              <h2 className=" text-lg font-bold tracking-wider !text-gray-900">
+              <div className="text-2xl font-semibold">
+                {ticketData?.user?.first_name?.toUpperCase() ?? ""}
+                {ticketData?.user?.last_name?.toUpperCase() ?? ""}
+              </div>
+              <div className="text-lg font-bold tracking-wider !text-gray-900">
                 {t("electronic_ticket")}
-              </h2>
-              <div className="flex flex-row items-center justify-between">
-                <div className=" text-xl font-semibold">
-                  {ticketData?.user?.first_name?.toUpperCase() ?? ""}
-                  <br />
-                  {ticketData?.user?.last_name?.toUpperCase() ?? ""}
-                </div>
-                <QRCode
-                  value={ticket_id}
-                  className="w-[50%]"
-                />
+              </div>
+              <div className="flex flex-row items-center justify-center">
+                <QRCode value={ticket_id} className="w-[50%]" />
               </div>
             </div>
-            <div className=" text-sm text-center">
-              {t("ticket_to_enter")}
-            </div>
+            <div className=" text-sm text-center">{t("ticket_to_enter")}</div>
             <div className="flex items-center gap-2  text-sm mt-2">
               <span>🕒</span>
               <span>
@@ -137,7 +135,7 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
             <div className="flex items-center gap-2  text-sm">
               <span>📅</span>
               <span>
-                {t("date_and_time_of_visit")}:2025-10-09 dan 2025-10-11 gacha{" "}
+                {t("date_and_time_of_visit")}: 09-11.10.2025
                 <b></b>
               </span>
             </div>
@@ -145,9 +143,7 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
               <span>📍</span>
               <span>{t("address")}</span>
             </div>
-            <div className=" text-xs mt-2">
-              {t("forbidden_for_others")}
-            </div>
+            <div className=" text-xs mt-2">{t("forbidden_for_others")}</div>
           </div>
           <button
             onClick={handleDownload}
