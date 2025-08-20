@@ -418,7 +418,6 @@ export default function ProfilePage() {
               </div>
             </div>
           )}
-          {activeTab == "ticket" && tez_kunda()}
           {activeTab == "programm" && <MyEvents />}
         </div>
       </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import minin1 from "@/assets/minin 1.png";
 import minin2 from "@/assets/img/logo_inno.png";
+import minin3 from "@/assets/img/vazirlik_logo.jpg";
 import QRCode from "react-qr-code";
 import Image from "next/image";
 import { IResponse, ITicketDetail } from "@/types";
@@ -101,28 +102,32 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
             className="rounded-xl p-6 min-w-[340px] shadow-lg flex flex-col gap-1"
           >
             <div className="flex justify-between items-center mb-2">
-              <div className="w-10"></div>
+                <Image
+                src={minin3}
+                alt="Logo"
+                className="h-12 w-[70px] object-fit-contain"
+              />
               <Image
                 src={minin2}
                 alt="Logo"
-                className="h-12 w-[150px] object-fit-contain"
+                className="h-12 w-[130px] object-fit-contain"
               />
               <Image
                 src={minin1}
                 alt="Logo"
-                className="h-12 object-fit-contain"
+                className="h-12 w-[70px] object-fit-contain"
               />
             </div>
             <div className="text-center">
               <div className="text-2xl font-semibold">
-                {ticketData?.user?.first_name?.toUpperCase() ?? ""}
+                {ticketData?.user?.first_name?.toUpperCase() ?? ""} {" "}
                 {ticketData?.user?.last_name?.toUpperCase() ?? ""}
               </div>
-              <div className="text-lg font-bold tracking-wider !text-gray-900">
+              {/* <div className="text-lg font-bold tracking-wider !text-gray-900">
                 {t("electronic_ticket")}
-              </div>
+              </div> */}
               <div className="flex flex-row items-center justify-center">
-                <QRCode value={ticket_id} className="w-[50%]" />
+                <QRCode value={ticket_id} className="w-[180px] h-[180px] py-3" />
               </div>
             </div>
             <div className=" text-sm text-center">{t("ticket_to_enter")}</div>
