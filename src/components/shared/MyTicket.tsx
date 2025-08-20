@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import minin1 from "@/assets/minin 1.png";
 import minin2 from "@/assets/innoweek 1.png";
@@ -16,7 +16,6 @@ interface Props {
 }
 
 const MyTicket: React.FC<Props> = ({ ticket_id }) => {
-  console.log(ticket_id);
 
   const t = useTranslations("ticket");
   const [ticketData, setTicketData] = useState<ITicketDetail | null>(null);
@@ -25,18 +24,47 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
 
   const handleDownload = async () => {
     if (ticketRef.current) {
-      const canvas = await html2canvas(ticketRef.current, {
-        useCORS: true,
-        backgroundColor: null,
-      });
-      const link = document.createElement("a");
-      link.download = "ticket.png";
-      link.href = canvas.toDataURL("image/png");
-      link.click();
+      try {
+        const canvas = await html2canvas(ticketRef.current, {
+          useCORS: true,
+          allowTaint: false,
+          scale: 2,
+          backgroundColor: null,
+          ignoreElements: (element) => {
+            // oklch ranglarini o'z ichiga olgan elementlarni e'tiborsiz qoldirish
+            const computedStyle = window.getComputedStyle(element);
+            return computedStyle.color.includes('oklch') || 
+                   computedStyle.backgroundColor.includes('oklch') ||
+                   computedStyle.borderColor.includes('oklch');
+          }
+        });
+        const link = document.createElement("a");
+        link.download = `ticket-${ticket_id}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      } catch (error) {
+        console.error("Ticket yuklab olishda xatolik:", error);
+        // Fallback: simple screenshot
+        try {
+          const canvas = await html2canvas(ticketRef.current, {
+            useCORS: true,
+            allowTaint: true,
+            scale: 1,
+            backgroundColor: '#ffffff'
+          });
+          const link = document.createElement("a");
+          link.download = `ticket-${ticket_id}.png`;
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        } catch (fallbackError) {
+          alert("Ticketni yuklab olishda xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.");
+          console.error("Fallback ham ishlamadi:", fallbackError);
+        }
+      }
     }
   };
 
-  const getTicket = async () => {
+  const getTicket = useCallback(async () => {
     try {
       const response = await FetchInstance<IResponse<ITicketDetail>>(
         `/api/members/get/ticket?data_id=${ticket_id}`
@@ -47,11 +75,11 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [ticket_id]);
 
   useEffect(() => {
     getTicket();
-  }, []);
+  }, [getTicket]);
 
   return (
     <section
