@@ -121,3 +121,33 @@ export interface IProgramEvent {
   started_at: string;
   stopped_at: string;
 }
+
+export interface IEventDetail {
+  id: number;
+  event_id: number;
+  user_id: number;
+  created_at: string;
+  updated_at: string;
+  event: {
+    id: number;
+    user_id: number;
+    archive_id: number;
+    date: string;
+    started_at: string;
+    stopped_at: string;
+    title_uz: string;
+    title_ru: string;
+    title_en: string;
+    live_url: string | null;
+    innoweek_video: string | null;
+    description_uz: string | null;
+    description_ru: string | null;
+    description_en: string | null;
+    address_uz: string | null;
+    address_ru: string | null;
+    address_en: string | null;
+    status: string | null;
+    created_at: string | null;
+    updated_at: string | null;
+  };
+}

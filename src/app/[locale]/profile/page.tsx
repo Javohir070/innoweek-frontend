@@ -10,6 +10,7 @@ import { CountryObj, IResponse } from "@/types";
 import section from "@/assets/img/section_bg_2.jpg";
 import { PiCertificateFill } from "react-icons/pi";
 import { FaTicketAlt } from "react-icons/fa";
+import MyEvents from "@/components/shared/MyEvents";
 
 export interface UserProfile {
   id: number;
@@ -417,7 +418,7 @@ export default function ProfilePage() {
             </div>
           )} */}
           {activeTab == "ticket" && tez_kunda()}
-          {activeTab == "programm" && tez_kunda()}
+          {activeTab == "programm" && <MyEvents />}
         </div>
       </div>
     </div>
