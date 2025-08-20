@@ -112,6 +112,50 @@ export interface ITicketItem {
   };
 }
 
+export interface ITicketDetail {
+  id: 10518;
+  user_id: 10893;
+  archive_id: 7;
+  ticket_id: "1010893";
+  status: "active";
+  created_at: "2025-07-31";
+  updated_at: "2025-07-31";
+  user: {
+    id: 10893;
+    user_type: 5;
+    first_name: "sheroz";
+    last_name: "turdiyev";
+    middle_name: null;
+    company_name: null;
+    company_inn: null;
+    company_logo: "/config/sample-company.png";
+    pinfl: null;
+    passport_serial: null;
+    passport_number: null;
+    address: null;
+    position: "Developer";
+    phone: "939542111";
+    avatar: "/config/sample-user.png";
+    username: null;
+    email: null;
+    email_verified_at: null;
+    confirmed: true;
+    status: "active";
+    created_at: "2025-07-31";
+    updated_at: "2025-08-20";
+    country_id: 1;
+    country_name: null;
+    region_id: null;
+    district_id: null;
+    p_type_id: null;
+    department_id: null;
+    birth_date: null;
+    profession_id: 14;
+    organization: "OPEN SOURCE";
+    gender: 1;
+  };
+}
+
 export interface IProgramEvent {
   id: number;
   title: string;
