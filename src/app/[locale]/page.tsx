@@ -9,6 +9,7 @@ import PartnersSection from "@/components/landing/Partners";
 import ProgramSection from "@/components/landing/Program";
 import SpeakersSection from "@/components/landing/Speakers";
 import StatsSection from "@/components/landing/Stats";
+import '@ant-design/v5-patch-for-react-19';
 
 export default function RootPage() {
   return (

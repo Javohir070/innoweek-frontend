@@ -11,7 +11,7 @@ import section from "@/assets/img/section_bg_2.jpg";
 import { PiCertificateFill } from "react-icons/pi";
 import { FaTicketAlt } from "react-icons/fa";
 
-interface UserProfile {
+export interface UserProfile {
   id: number;
   user_type: number;
   first_name: string;
@@ -71,15 +71,14 @@ interface ProfessionObj {
 
 const SIDEBAR_ITEMS = [
   { key: "profile", labelKey: "sidebar_profile", icon: <IoPersonSharp /> },
+  { key: "programm", labelKey: "sidebar_program", icon: <FaTicketAlt /> },
   {
     key: "certificate",
     labelKey: "sidebar_certificate",
     icon: <PiCertificateFill />,
   },
   { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
-  { key: "programm", labelKey: "sidebar_program", icon: <FaTicketAlt /> },
 ];
-
 
 export default function ProfilePage() {
   const t = useTranslations("profile");
@@ -91,18 +90,17 @@ export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState<string>("profile");
 
   const tez_kunda = () => (
-  <div
-    className="min-h-32 flex justify-center items-center  rounded-2xl !shadow-lg overflow-hidden border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500 h-full"
-    style={{
-      backgroundImage: `url(${section.src})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    <h3 className="!text-gray-800 !font-bold">{coming("cooming_soon")}</h3>
-  </div>
-);
-
+    <div
+      className="min-h-32 flex justify-center items-center  rounded-2xl !shadow-lg overflow-hidden border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500 h-full"
+      style={{
+        backgroundImage: `url(${section.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <h3 className="!text-gray-800 !font-bold">{coming("cooming_soon")}</h3>
+    </div>
+  );
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -419,7 +417,7 @@ export default function ProfilePage() {
             </div>
           )} */}
           {activeTab == "ticket" && tez_kunda()}
-           {activeTab == "programm" && tez_kunda()}
+          {activeTab == "programm" && tez_kunda()}
         </div>
       </div>
     </div>

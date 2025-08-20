@@ -111,3 +111,13 @@ export interface ITicketItem {
     updated_at: string;
   };
 }
+
+export interface IProgramEvent {
+  id: number;
+  title: string;
+  description: string | null;
+  date: string;
+  address: string;
+  started_at: string;
+  stopped_at: string;
+}
