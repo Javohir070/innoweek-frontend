@@ -6,9 +6,10 @@ import { IEventDetail, IResponse } from "@/types";
 import { Card, Empty, Spin, Tag, Divider } from "antd";
 import { CalendarIcon, MapPinIcon, ClockIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const MyEvents = () => {
+  const t = useTranslations("my_events");
   const [events, setEvents] = useState<IEventDetail[]>([]);
   const [loading, setLoading] = useState(true);
   const locale = useLocale();
@@ -60,10 +61,10 @@ const MyEvents = () => {
         backgroundPosition: "center",
       }}
     >
-      <h2 className="text-2xl font-bold mb-6 text-black">Mening tadbirlarim</h2>
+      <h2 className="text-2xl font-bold mb-6 text-black">{t('title')}</h2>
 
       {events.length === 0 ? (
-        <Empty description="Hech qanday tadbir topilmadi" className="my-8" />
+        <Empty description={t('no_events_found')} className="my-8" />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((eventDetail) => {

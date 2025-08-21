@@ -5,14 +5,15 @@ import { useRouter } from "@/i18n/navigation";
 import { IProgramEvent, IResponse } from "@/types";
 import { Button, Modal } from "antd";
 import { PlusCircleIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 interface IProps {
-  btn_text: string;
   event_data: IProgramEvent;
 }
 
-const StoreEvets = ({ btn_text, event_data }: IProps) => {
+const StoreEvets = ({ event_data }: IProps) => {
+  const t = useTranslations('store_events');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -85,14 +86,14 @@ const StoreEvets = ({ btn_text, event_data }: IProps) => {
           fetchProfile();
         }}
       >
-        {btn_text}
+        {t('register_event')}
       </Button>
 
       <Modal
         title={
           registerSuccess
-            ? "Muvaffaqiyatli!"
-            : event_data.title || "Tadbir tafsilotlari"
+            ? t('success')
+            : event_data.title || t('detail')
         }
         open={isModalVisible}
         onOk={() => setIsModalVisible(false)}
@@ -105,7 +106,7 @@ const StoreEvets = ({ btn_text, event_data }: IProps) => {
                   type="primary"
                   onClick={() => setIsModalVisible(false)}
                 >
-                  OK
+                  {t('close')}
                 </Button>,
               ]
             : [
@@ -113,7 +114,7 @@ const StoreEvets = ({ btn_text, event_data }: IProps) => {
                   {!profile && !loading ? (
                     <span style={{ marginTop: 16 }}>
                       <p style={{ color: "orange", marginBottom: 8 }}>
-                        Tadbirga yozilish uchun profilingizga kirish kerak
+                        {t('login_required')}
                       </p>
                       <Button
                         type="default"
@@ -122,7 +123,7 @@ const StoreEvets = ({ btn_text, event_data }: IProps) => {
                         }}
                         style={{ marginRight: 8 }}
                       >
-                        Kirish
+                        {t('enter')}
                       </Button>
                       <Button
                         type="link"
@@ -130,7 +131,7 @@ const StoreEvets = ({ btn_text, event_data }: IProps) => {
                           push("/register");
                         }}
                       >
-                        {"Ro'yxatdan o'tish"}
+                       {t('register')}
                       </Button>
                     </span>
                   ) : (
@@ -140,43 +141,43 @@ const StoreEvets = ({ btn_text, event_data }: IProps) => {
                       loading={registerLoading}
                       onClick={handleRegister}
                     >
-                      Tadbirga yozilish
+                      {t('register_event')}
                     </Button>
                   )}
                 </>,
                 <Button key="cancel" onClick={() => setIsModalVisible(false)}>
-                  Bekor qilish
+                  {t('cancel')}
                 </Button>,
               ]
         }
       >
         {registerSuccess ? (
-          <p>Tadbirga muvaffaqiyatli yozildingiz!</p>
+          <p>{t('registration_successful')}</p>
         ) : (
           <>
             {event_data.date && (
               <p>
-                <b>Sana:</b> {event_data.date}
+                <b>{t('date_and_time_of_visit')}:</b> {event_data.date}
               </p>
             )}
             {event_data.address && (
               <p>
-                <b>Manzil:</b> {event_data.address}
+                <b>{t('address')}:</b> {event_data.address}
               </p>
             )}
             {event_data?.started_at && (
               <p>
-                <b>Boshlanish vaqti:</b> {event_data.started_at}
+                <b>{t('start_time')}:</b> {event_data.started_at}
               </p>
             )}
             {event_data?.stopped_at && (
               <p>
-                <b>Tugash vaqti:</b> {event_data.stopped_at}
+                <b>{t('end_time')}:</b> {event_data.stopped_at}
               </p>
             )}
             {event_data.description && (
               <p>
-                <b>Tavsif:</b> {event_data.description}
+                <b>{t('description')}:</b> {event_data.description}
               </p>
             )}
             {registerError && <p style={{ color: "red" }}>{registerError}</p>}

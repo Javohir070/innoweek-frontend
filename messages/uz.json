@@ -341,5 +341,31 @@
   },
   "cooming_soon": {
     "cooming_soon": "TEZ KUNDA !"
+  },
+  "store_events": {
+    "success": "Muvaffaqiyatli!",
+    "detail": "Tadbir tafsilotlari",
+    "close": "Yopish",
+    "login_required": "Tadbirga yozilish uchun profilingizga kirish kerak",
+    "enter": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "register_event": "Tadbirga yozilish",
+    "cancel": "Bekor qilish",
+    "registration_successful": "Tadbirga muvaffaqiyatli yozildingiz!",
+    "date_and_time_of_visit": "Sana va vaqt",
+    "address": "Manzil",
+    "start_time": "Boshlanish vaqti",
+    "end_time": "Tugash vaqti",
+    "description": "Tavsif"
+  }, 
+  "my_events":{
+    "title": "Mening tadbirlarim",
+    "no_events_found": "Hech qanday tadbir topilmadi",
+    "event": {
+      "date": "Sana",
+      "time": "Vaqt",
+      "location": "Manzil",
+      "description": "Tavsif"
+    }
   }
 }

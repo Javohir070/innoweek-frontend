@@ -232,9 +232,9 @@
     "otp_title_email": "Enter the 6-digit code sent via Email",
     "otp_description_email": "Enter the 6-digit code sent to your email address.",
     "registration_successful": "Registration successful.",
-    "phone_allready_registered": "This phone number is already registered." , 
+    "phone_allready_registered": "This phone number is already registered.",
     "email_allready_registered": "This email address is already registered.",
-    "pattern_err":"Must be at least 8 characters, 1 uppercase letter, 1 lowercase letter, and 1 special character"
+    "pattern_err": "Must be at least 8 characters, 1 uppercase letter, 1 lowercase letter, and 1 special character"
   },
   "accept_terms": {
     "accept_terms": "I accept the terms of use",
@@ -337,9 +337,35 @@
     "verifying": "Verifying...",
     "phone_format": "Phone number (901234567)",
     "successful": "Successfully",
-    "login_error":"Enter the correct phone number or register again"
+    "login_error": "Enter the correct phone number or register again"
   },
   "cooming_soon": {
     "cooming_soon": "COOMING SOON !"
+  },
+  "store_events": {
+    "success": "Success!",
+    "detail": "Event Details",
+    "close": "Close",
+    "login_required": "You need to log in to register for the event",
+    "enter": "Log In",
+    "register": "Register",
+    "register_event": "Register for event",
+    "cancel": "Cancel",
+    "registration_successful": "Successfully registered for the event!",
+    "date_and_time_of_visit": "Date and time of visit",
+    "address": "Address",
+    "start_time": "Start time",
+    "end_time": "End time",
+    "description": "Description"
+  },
+  "my_events": {
+    "title": "My Events",
+    "no_events_found": "No events found",
+    "event": {
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "description": "Description"
+    }
   }
 }
