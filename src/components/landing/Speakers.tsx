@@ -92,7 +92,7 @@ const SpeakersSection = () => {
             ))}
           </div>
         </div>
-        {total >= limit && (
+        {total > limit && (
           <div
             className="text-center mt-8 cursor-pointer"
             onClick={() => setLimit(total)}
