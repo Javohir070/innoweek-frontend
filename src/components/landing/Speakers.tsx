@@ -95,7 +95,7 @@ const SpeakersSection = () => {
         {total >= limit && (
           <div
             className="text-center mt-8 cursor-pointer"
-            onClick={() => setLimit(limit + 2)}
+            onClick={() => setLimit(total)}
             data-aos="fade-up"
             data-aos-delay="100"
           >
