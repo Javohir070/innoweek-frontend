@@ -10,12 +10,14 @@ import {
   Typography,
   Divider,
   Select,
+  notification,
 } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
 import { InboxOutlined } from "@ant-design/icons";
 import { FetchInstance } from "@/api/FetchInstance";
 import { IResponse } from "@/types";
+import { useRouter } from "@/i18n/navigation";
 const { Title, Paragraph } = Typography;
 const { Dragger } = Upload;
 const { TextArea } = Input;
@@ -85,11 +87,15 @@ const EcoEdiethonForm = () => {
   const [regions, setRegions] = useState<Region[]>([]);
   const [regionsLoading, setRegionsLoading] = useState(false);
 
+  const {push} = useRouter()
+
   // Regionlarni yuklash
   const fetchRegions = useCallback(async () => {
     try {
       setRegionsLoading(true);
-      const response = await FetchInstance<IResponse<Region[]>>("/api/regions/all");
+      const response = await FetchInstance<IResponse<Region[]>>(
+        "/api/regions/all"
+      );
       if (response?.data) {
         setRegions(response.data);
       }
@@ -168,18 +174,25 @@ const EcoEdiethonForm = () => {
           formData.append("presentation", fileList[0].originFileObj);
         }
 
-        // TODO: haqiqiy endpointga yuborish  
-        const response = await FetchInstance<IResponse<{message: string}>>(
+        // TODO: haqiqiy endpointga yuborish
+        const response = await FetchInstance<IResponse<{ message: string }>>(
           "/api/eco-ideathon",
           {
-            method: "POST", 
+            method: "POST",
             body: formData,
           }
         );
-        console.log(response);
-        message.success("Arizangiz muvaffaqiyatli yuborildi!");
-        form.resetFields();
-        setFileList([]);
+        if (response?.status == 201) {
+          console.log(response);
+          notification.success({
+            message: "Muvaffaqiyatli",
+            description: "Arizangiz muvaffaqiyatli yuborildi!",
+          });
+          form.resetFields();
+          setFileList([]);
+          setIsAutoFilled(false);
+          push("/profile")
+        }
       } catch (e) {
         message.error("Ariza yuborishda xatolik yuz berdi");
         console.error(e);
@@ -234,7 +247,14 @@ const EcoEdiethonForm = () => {
   };
 
   const resetAutoFill = () => {
-    form.resetFields(["full_name", "age", "region", "region_id", "phone", "email"]);
+    form.resetFields([
+      "full_name",
+      "age",
+      "region",
+      "region_id",
+      "phone",
+      "email",
+    ]);
     setIsAutoFilled(false);
     message.info("Ma'lumotlar tozalandi. Qaytadan kiritishingiz mumkin.");
   };
@@ -346,11 +366,13 @@ const EcoEdiethonForm = () => {
                 loading={regionsLoading}
                 showSearch
                 filterOption={(input, option) =>
-                  (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
                 }
-                options={regions.map(region => ({
+                options={regions.map((region) => ({
                   value: region.id,
-                  label: region.name_uz
+                  label: region.name_uz,
                 }))}
                 className="border"
               />
