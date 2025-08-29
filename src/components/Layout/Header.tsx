@@ -9,9 +9,9 @@ import { useTranslations } from "next-intl";
 import { Link, useRouter as Router } from "@/i18n/navigation";
 import { usePathname, useParams, useRouter } from "next/navigation";
 import { LoginOutlined } from "@ant-design/icons";
-import { IoMdPerson } from "react-icons/io";
 import dynamic from "next/dynamic";
-import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
+// import { IoMdPerson } from "react-icons/io";
+// import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
 
 import uzFlag from "@/assets/img/uz.avif";
 import ruFlag from "@/assets/img/rus.webp";
@@ -83,8 +83,8 @@ export default function Header() {
         } else {
           setUser(null);
         }
-      } catch (err: any) {
-        // If unauthorized (401), treat as logged out
+      } catch (err) {
+        console.log(err);
         setUser(null);
       }
     };
@@ -125,6 +125,7 @@ export default function Header() {
       ],
     },
     { label: t("GALLERY"), key: "/gallery" },
+    { label: t("ECO-EDIETHON"), key: "/eco-ediethon" },
     { label: t("CONTACT"), key: "#contact" },
   ];
 

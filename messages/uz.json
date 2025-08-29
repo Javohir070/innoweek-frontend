@@ -30,7 +30,8 @@
     "INNOWEEK HAQIDA": "INNOWEEK HAQIDA",
     "CONTACT": "BOG'LANISH",
     "REGISTER": "RO'YXATDAN O'TISH",
-    "login": " Kirish"
+    "login": " Kirish",
+    "ECO-EDIETHON": "ECO-EDIETHON"
   },
   "hero": {
     "Ideas without borders": "CHEGARASIZ G'OYALAR",
@@ -357,8 +358,8 @@
     "start_time": "Boshlanish vaqti",
     "end_time": "Tugash vaqti",
     "description": "Tavsif"
-  }, 
-  "my_events":{
+  },
+  "my_events": {
     "title": "Mening tadbirlarim",
     "no_events_found": "Hech qanday tadbir topilmadi",
     "event": {
@@ -367,5 +368,13 @@
       "location": "Manzil",
       "description": "Tavsif"
     }
+  },
+  "eco-ediethon": {
+    "title": "ECO-EDIETHON",
+    "description": "ECO-EDIETHON haqida ma'lumot",
+    "date": "Sana",
+    "location": "Manzil",
+    "participants": "Ishtirokchilar",
+    "apply-button": "Ariza berish"
   }
 }
