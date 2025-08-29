@@ -4,9 +4,7 @@ export const FetchInstance = async <T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> => {
-  const headers: HeadersInit = {
-    "Content-Type": "application/json",
-  };
+  const headers: HeadersInit = {};
   if (typeof window !== "undefined" && window.localStorage) {
     const token = localStorage.getItem("token");
     if (token) {
