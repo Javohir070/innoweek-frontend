@@ -24,7 +24,7 @@ const MobileDirection = () => {
               <QRCode value="https://2025.innoweek.uz/app" icon={innoLogo.src} />
               {/* App Store Button */}
               <a
-                href="#"
+                href="https://apps.apple.com/uz/app/innoweek/id6737167311"
                 className="inline-flex items-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 <div className="flex items-center gap-3">
@@ -44,7 +44,7 @@ const MobileDirection = () => {
 
               {/* Google Play Button */}
               <a
-                href="#"
+                href="https://play.google.com/store/apps/details?id=uz.innoweek.app"
                 className="inline-flex items-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 <div className="flex items-center gap-3">
