@@ -16,7 +16,7 @@ const MyApplications = () => {
   const getApplications = async () => {
     try {
       setLoading(true);
-      const res: IResponse<IApplication[]> = await FetchInstance("/api/get/eco-ideathon/all");
+      const res: IResponse<IApplication[]> = await FetchInstance("/api/eco-ideathon");
       setApplications(res.data);
     } catch (error) {
       console.log(error);
