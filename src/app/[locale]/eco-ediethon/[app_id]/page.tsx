@@ -1,5 +1,5 @@
 "use client";
-import { FetchInstance } from "@/api/FetchInstance";
+import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IApplication, IResponse } from "@/types";
 import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
@@ -209,7 +209,7 @@ const ApplicationDetailPage = () => {
               {application.presentation && (
                 <div className="mt-4 sm:mt-0 m-0">
                   <a
-                    href={`/public/${application.presentation}`}
+                    href={`${BASE_URL}/storage/${application.presentation}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
