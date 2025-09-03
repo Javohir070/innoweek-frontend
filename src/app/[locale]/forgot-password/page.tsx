@@ -17,7 +17,6 @@ const initialForm = {
 const ForgetPassword = () => {
   const t = useTranslations("forgetPassword");
   const router = useRouter();
-  const locale = useParams().locale || "uz";
 
   const [form, setForm] = useState(initialForm);
   const [authKey, setAuthKey] = useState("");

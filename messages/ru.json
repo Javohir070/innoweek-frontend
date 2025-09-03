@@ -1,11 +1,14 @@
 {
+  "common": {
+    "loading": "Загружается..."
+  },
   "ticket": {
     "electronic_ticket": "ЭЛЕКТРОННЫЙ БИЛЕТ",
     "ticket_to_enter": "Билет для входа на InnoWeek-2025",
     "validity_period": "Срок действия",
     "date_and_time_of_visit": "Дата и время посещения",
     "address": "Ташкент, Мирзо-Улугбекский район, улица Миллий Бог, 1",
-    "forbidden_for_others": "Строго запрещено использовать этот пропуск другому лицу.",
+    "forbidden_for_others": "Строго запрещено использовать этот пропуск другим лицам.",
     "download_as_image": "Скачать как изображение",
     "download_app_prompt": "Скачайте приложение для доступа к системе!"
   },
@@ -25,7 +28,8 @@
     "HAMKORLAR": "ПАРТНЕРЫ",
     "INNOWEEK HAQIDA": "О INNOWEEK",
     "REGISTER": "РЕГИСТРАЦИЯ",
-    "login": " Войти"
+    "login": " Войти", 
+    "ECO-EDIETHON": "ECO-EDIETHON"
   },
   "langs": {
     "uz": "Узбекский",
@@ -314,11 +318,14 @@
     "sidebar_certificate": "Мои сертификаты",
     "sidebar_profile": "Профиль",
     "sidebar_program": "Мои события",
+    "sidebar_eco_ediethon":"Мой ECO-EDIETHON",
     "activity": "Активность",
     "active": "Активный",
     "inactive": "Неактивный",
     "no_activity": "Активность не найдена",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "error_fetch_profile": "Ошибка загрузки данных профиля",
+    "error_unknown": "Произошла неизвестная ошибка"
   },
   "forgetPassword": {
     "title": "Пароль забыт?",
@@ -361,11 +368,136 @@
   "my_events": {
     "title": "Мои события",
     "no_events_found": "События не найдены",
+    "pending": "Ожидается",
     "event": {
       "date": "Дата",
       "time": "Время",
       "location": "Место",
       "description": "Описание"
     }
+  },
+  "my_applications": {
+    "title": "Мои заявки",
+    "loading": "Загружается...",
+    "no_applications": "Пока нет заявок",
+    "years_old": "лет",
+    "status": {
+      "pending": "Ожидает",
+      "approved": "Одобрено",
+      "rejected": "Отклонено"
+    },
+    "phone": "Телефон:",
+    "email": "Email:",
+    "region": "Регион:",
+    "submitted_date": "Дата подачи:",
+    "project_brief": "Краткое описание проекта:",
+    "view_details": "Подробнее",
+    "application_id": "ID:"
+  },
+  "application_detail": {
+    "loading": "Загружается...",
+    "error_loading": "Ошибка при загрузке данных",
+    "not_found": "Заявка не найдена",
+    "back": "Назад",
+    "years_old": "лет",
+    "contact_info": "Контактная информация",
+    "phone_number": "Номер телефона",
+    "email_address": "Email адрес",
+    "project_brief": "Краткое описание проекта",
+    "project_goal": "Цель проекта",
+    "project_problem": "Решаемая проблема",
+    "implementation_plan": "План реализации",
+    "team_info": "Информация о команде",
+    "why_chosen": "Почему должен быть выбран",
+    "application_number": "Номер заявки:",
+    "submitted_date": "Дата подачи:",
+    "last_update": "Последнее обновление:",
+    "download_presentation": "Скачать презентацию",
+    "status": {
+      "pending": "Ожидает",
+      "approved": "Одобрено",
+      "rejected": "Отклонено"
+    }
+  },
+  "eco_form": {
+    "title": "Форма заявки Eco-Edithon",
+    "description": "Пожалуйста, заполните следующие поля. Поля, отмеченные звездочкой (*), обязательны.",
+    "science_id_search": "Поиск по Science ID (в формате BNV-0924-0000)",
+    "science_id_placeholder": "AAA-0000-0000",
+    "search_button": "Добавить",
+    "clear_data": "Очистить данные",
+    "continue_without_id": "Продолжить без Science ID",
+    "success_message": "данные загружены!",
+    "not_found_message": "Данные не найдены или произошла ошибка",
+    "clear_success": "Данные очищены. Вы можете ввести их заново.",
+    "submit_success": "Ваша заявка успешно отправлена!",
+    "submit_success_title": "Успешно!",
+    "submit_error": "Ошибка при отправке заявки",
+    "file_required": "Загрузка файла обязательна",
+    "file_type_error": "Принимаются только PDF или PPT/PPTX файлы",
+    "file_size_error": "Размер файла должен быть менее 10MB",
+    "regions_error": "Ошибка при загрузке списка регионов",
+    "labels": {
+      "full_name": "1. Фамилия, имя, отчество",
+      "age": "2. Ваш возраст",
+      "region": "3. Регион / город",
+      "phone": "4. Номер телефона (+998)",
+      "email": "5. Адрес электронной почты",
+      "project_name": "6. Название проекта",
+      "project_brief": "7. Описание проекта (основная идея)",
+      "project_goal": "8. Цель проекта",
+      "project_problem": "9. Актуальность и решаемая проблема",
+      "implementation_plan": "10. План реализации",
+      "team_info": "11. Состав команды и опыт (если есть команда)",
+      "why_chosen": "12. Почему именно ваш проект должен быть выбран?",
+      "cv_file": "13. Резюме (CV)",
+      "presentation_file": "13. Файл презентации (только PDF или PPT, на английском языке)"
+    },
+    "placeholders": {
+      "full_name": "Иванов Иван Иванович / Иванов Иван",
+      "age": "18",
+      "region": "Выберите область...",
+      "phone": "90 123 45 67",
+      "email": "example@mail.com",
+      "project_name": "Eco-Waste Management",
+      "project_brief": "Кратко об идее проекта...",
+      "project_goal": "Конкретная цель проекта...",
+      "project_problem": "Какую проблему решает?",
+      "implementation_plan": "Пошаговый план...",
+      "team_info": "Участники команды и опыт...",
+      "why_chosen": "Краткий и обоснованный ответ..."
+    },
+    "validation": {
+      "full_name_required": "ФИО обязательно",
+      "age_required": "Возраст обязателен",
+      "region_required": "Регион / область обязательны",
+      "phone_required": "Номер телефона обязателен",
+      "phone_format": "Формат номера: 90 123 45 67",
+      "email_required": "Неверный email",
+      "project_name_required": "Название проекта обязательно",
+      "project_brief_required": "Краткое описание обязательно",
+      "project_goal_required": "Цель обязательна",
+      "project_problem_required": "Описание проблемы обязательно",
+      "implementation_plan_required": "План обязателен",
+      "why_chosen_required": "Это поле обязательно",
+      "science_id_format": "Формат: AAA-0000-0000",
+      "cv_file_required": "Загрузка CV обязательна",
+      "file_type_invalid": "Загружайте только PDF, Word или изображения",
+      "file_size_invalid": "Размер файла не должен превышать 10MB",
+      "presentation_type_invalid": "Загружайте только PDF или PowerPoint файлы"
+    },
+    "upload": {
+      "drag_text": "Перетащите PDF или PPT/PPTX файл сюда или выберите",
+      "hint": "Макс. 10MB. Без авто-загрузки, отправляется вместе с формой.",
+      "cv_text": "Нажмите для загрузки CV или перетащите файл",
+      "cv_hint": "Форматы PDF, DOC, DOCX или изображения (макс. 10MB)",
+      "presentation_text": "Перетащите PDF или PPT/PPTX файл сюда или выберите",
+      "presentation_hint": "Макс. 10MB. Без авто-загрузки, отправляется вместе с формой."
+    },
+    "buttons": {
+      "submit": "Отправить заявку",
+      "submitting": "Отправляется..."
+    },
+    "submit_button": "Отправить"
   }
 }

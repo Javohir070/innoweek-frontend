@@ -1,4 +1,7 @@
 {
+  "common": {
+    "loading": "Loading..."
+  },
   "ticket": {
     "electronic_ticket": "ELECTRONIC TICKET",
     "ticket_to_enter": "Ticket to enter InnoWeek-2025",
@@ -25,7 +28,8 @@
     "HAMKORLAR": "PARTNERS",
     "INNOWEEK HAQIDA": "ABOUT INNOWEEK",
     "REGISTER": "SIGN UP",
-    "login": "LOGIN"
+    "login": "LOGIN", 
+    "ECO-EDIETHON": "ECO-EDIETHON"
   },
   "langs": {
     "uz": "Uzbek",
@@ -314,11 +318,14 @@
     "sidebar_certificate": "My Certificates",
     "sidebar_profile": "My Profile",
     "sidebar_program": "My events",
+    "sidebar_eco_ediethon": "My ECO-EDIETHON",
     "activity": "Activity",
     "active": "Active",
     "inactive": "Inactive",
     "no_activity": "No activity found",
-    "logout": "Logout"
+    "logout": "Logout",
+    "error_fetch_profile": "Failed to fetch profile data",
+    "error_unknown": "An unknown error occurred"
   },
   "forgetPassword": {
     "title": "Password Recovery",
@@ -361,11 +368,136 @@
   "my_events": {
     "title": "My Events",
     "no_events_found": "No events found",
+    "pending": "Pending",
     "event": {
       "date": "Date",
       "time": "Time",
       "location": "Location",
       "description": "Description"
     }
+  },
+  "my_applications": {
+    "title": "My Applications",
+    "loading": "Loading...",
+    "no_applications": "No applications yet",
+    "years_old": "years old",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "phone": "Phone:",
+    "email": "Email:",
+    "region": "Region:",
+    "submitted_date": "Submitted date:",
+    "project_brief": "Project brief:",
+    "view_details": "View details",
+    "application_id": "ID:"
+  },
+  "application_detail": {
+    "loading": "Loading...",
+    "error_loading": "Error loading data",
+    "not_found": "Application not found",
+    "back": "Back",
+    "years_old": "years old",
+    "contact_info": "Contact Information",
+    "phone_number": "Phone number",
+    "email_address": "Email address",
+    "project_brief": "Project Brief",
+    "project_goal": "Project Goal",
+    "project_problem": "Problem Being Solved",
+    "implementation_plan": "Implementation Plan",
+    "team_info": "Team Information",
+    "why_chosen": "Why Should Be Chosen",
+    "application_number": "Application number:",
+    "submitted_date": "Submitted date:",
+    "last_update": "Last update:",
+    "download_presentation": "Download Presentation",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "eco_form": {
+    "title": "Eco-Edithon Application Form",
+    "description": "Please fill in the following fields. Fields marked with an asterisk (*) are required.",
+    "science_id_search": "Search by Science ID (in BNV-0924-0000 format)",
+    "science_id_placeholder": "AAA-0000-0000",
+    "search_button": "Add",
+    "clear_data": "Clear data",
+    "continue_without_id": "Continue without Science ID",
+    "success_message": "data loaded!",
+    "not_found_message": "Data not found or an error occurred",
+    "clear_success": "Data cleared. You can enter it again.",
+    "submit_success": "Your application has been successfully submitted!",
+    "submit_success_title": "Success!",
+    "submit_error": "Error submitting application",
+    "file_required": "File upload is required",
+    "file_type_error": "Only PDF or PPT/PPTX files are accepted",
+    "file_size_error": "File size should be less than 10MB",
+    "regions_error": "Error loading regions list",
+    "labels": {
+      "full_name": "1. Full name",
+      "age": "2. Your age",
+      "region": "3. Region / city",
+      "phone": "4. Phone number (+998)",
+      "email": "5. Email address",
+      "project_name": "6. Project name",
+      "project_brief": "7. Project description (main idea)",
+      "project_goal": "8. Project goal",
+      "project_problem": "9. Relevance and problem being solved",
+      "implementation_plan": "10. Implementation plan",
+      "team_info": "11. Team composition and experience (if team exists)",
+      "why_chosen": "12. Why should your project be chosen?",
+      "cv_file": "13. Resume (CV)",
+      "presentation_file": "13. Presentation file (PDF or PPT only, in English)"
+    },
+    "placeholders": {
+      "full_name": "John Smith / John Smith Jr.",
+      "age": "18",
+      "region": "Select region...",
+      "phone": "90 123 45 67",
+      "email": "example@mail.com",
+      "project_name": "Eco-Waste Management",
+      "project_brief": "Brief about project idea...",
+      "project_goal": "Specific project goal...",
+      "project_problem": "What problem does it solve?",
+      "implementation_plan": "Step-by-step plan...",
+      "team_info": "Team members and experience...",
+      "why_chosen": "Brief and justified answer..."
+    },
+    "validation": {
+      "full_name_required": "Full name is required",
+      "age_required": "Age is required",
+      "region_required": "Region / area is required",
+      "phone_required": "Phone number is required",
+      "phone_format": "Number format: 90 123 45 67",
+      "email_required": "Invalid email",
+      "project_name_required": "Project name is required",
+      "project_brief_required": "Brief description is required",
+      "project_goal_required": "Goal is required",
+      "project_problem_required": "Problem description is required",
+      "implementation_plan_required": "Plan is required",
+      "why_chosen_required": "This field is required",
+      "science_id_format": "Format: AAA-0000-0000",
+      "cv_file_required": "CV upload is required",
+      "file_type_invalid": "Only upload PDF, Word or image files",
+      "file_size_invalid": "File size must not exceed 10MB",
+      "presentation_type_invalid": "Only upload PDF or PowerPoint files"
+    },
+    "upload": {
+      "drag_text": "Drag PDF or PPT/PPTX file here or select",
+      "hint": "Max. 10MB. No auto-upload, sent together with form.",
+      "cv_text": "Click to upload CV or drag and drop",
+      "cv_hint": "PDF, DOC, DOCX or image formats (max 10MB)",
+      "presentation_text": "Drag PDF or PPT/PPTX file here or select",
+      "presentation_hint": "Max. 10MB. No auto-upload, sent together with form."
+    },
+    "buttons": {
+      "submit": "Submit Application",
+      "submitting": "Submitting..."
+    },
+    "submit_button": "Submit"
   }
 }

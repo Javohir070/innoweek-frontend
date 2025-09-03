@@ -195,3 +195,37 @@ export interface IEventDetail {
     updated_at: string | null;
   };
 }
+
+export interface IRegion {
+  id: number;
+  country_id: number;
+  name_uz: string;
+  name_ru: string;
+  name_en: string | null;
+  status: string;
+  deleted_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IApplication {
+  id: number;
+  user_id: number | null;
+  region_id: number;
+  full_name: string;
+  age: number;
+  phone: string;
+  email: string;
+  project_name: string;
+  project_brief: string;
+  project_goal: string;
+  project_problem: string;
+  implementation_plan: string;
+  team_info: string;
+  why_chosen: string;
+  presentation: string;
+  status: "pending" | "approved" | "rejected";
+  created_at: string;
+  updated_at: string;
+  region: IRegion;
+}

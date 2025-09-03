@@ -64,7 +64,7 @@ export default function RegisterRolePage() {
     "local" | "international" | null
   >("local");
 
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
   const isFormValid =
     form.firstName.trim() !== "" &&
@@ -92,7 +92,7 @@ export default function RegisterRolePage() {
     if (!passwordPattern.test(form.password)) {
       setError({
         status:
-          "Parol kamida 8 ta belgi, 1 ta katta harf, 1 ta kichik harf va 1 ta maxsus belgidan iborat bo‘lishi kerak",
+          "Parol kamida 6 ta belgi, 1 ta katta harf, 1 ta kichik harfdan iborat bo‘lishi kerak",
       });
       setLoading(false);
       return;
@@ -406,7 +406,7 @@ export default function RegisterRolePage() {
                       required
                       value={form.password}
                       onChange={handleChange}
-                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$"
+                      pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
                       title={t("pattern_err")}
                     />
                   </div>

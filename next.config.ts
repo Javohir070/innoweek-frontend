@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["innoweek.uz", "api.innoweek.uz" , "testinno.innoweek.uz"],
+    domains: ["innoweek.uz", "api.innoweek.uz", "2025.innoweek.uz" , "testinno.innoweek.uz"],
   },
   webpack: (config) => {
     config.module.rules.push({

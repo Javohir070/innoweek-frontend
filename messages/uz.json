@@ -1,4 +1,7 @@
 {
+  "common": {
+    "loading": "Yuklanmoqda..."
+  },
   "ticket": {
     "electronic_ticket": "ELEKTRON CHIPTA",
     "ticket_to_enter": "InnoWeek-2025 tadbiriga kirish uchun chipta",
@@ -315,11 +318,14 @@
     "sidebar_certificate": "Sertifikatlarim",
     "sidebar_profile": "Shaxsiy kabinet",
     "sidebar_program": "Mening tadbirlarim",
+    "sidebar_eco_ediethon": "Mening ECO-EDIETHON",
     "activity": "Faoliyat",
     "active": "Faol",
     "inactive": "Nofaol",
     "no_activity": "Faoliyat topilmadi",
-    "logout": "Chiqish"
+    "logout": "Chiqish",
+    "error_fetch_profile": "Profil ma'lumotlarini yuklashda xatolik",
+    "error_unknown": "Noma'lum xatolik yuz berdi"
   },
   "forgetPassword": {
     "title": "Parolni unutdingizmi?",
@@ -362,6 +368,7 @@
   "my_events": {
     "title": "Mening tadbirlarim",
     "no_events_found": "Hech qanday tadbir topilmadi",
+    "pending": "Kutilmoqda",
     "event": {
       "date": "Sana",
       "time": "Vaqt",
@@ -376,5 +383,129 @@
     "location": "Manzil",
     "participants": "Ishtirokchilar",
     "apply-button": "Ariza berish"
+  },
+  "my_applications": {
+    "title": "Mening arizalarim",
+    "loading": "Yuklanmoqda...",
+    "no_applications": "Hozircha arizalar mavjud emas",
+    "years_old": "yosh",
+    "status": {
+      "pending": "Kutilmoqda",
+      "approved": "Tasdiqlangan",
+      "rejected": "Rad etilgan"
+    },
+    "phone": "Telefon:",
+    "email": "Email:",
+    "region": "Hudud:",
+    "submitted_date": "Yuborilgan sana:",
+    "project_brief": "Loyiha haqida qisqacha:",
+    "view_details": "Batafsil ko'rish",
+    "application_id": "ID:"
+  },
+  "application_detail": {
+    "loading": "Yuklanmoqda...",
+    "error_loading": "Ma'lumotlarni yuklashda xatolik yuz berdi",
+    "not_found": "Ariza topilmadi",
+    "back": "Orqaga qaytish",
+    "years_old": "yosh",
+    "contact_info": "Aloqa ma'lumotlari",
+    "phone_number": "Telefon raqami",
+    "email_address": "Email manzili",
+    "project_brief": "Loyiha haqida qisqacha",
+    "project_goal": "Loyiha maqsadi",
+    "project_problem": "Hal qilinayotgan muammo",
+    "implementation_plan": "Amalga oshirish rejasi",
+    "team_info": "Jamoa haqida ma'lumot",
+    "why_chosen": "Nima uchun tanlanishi kerak",
+    "application_number": "Ariza raqami:",
+    "submitted_date": "Yuborilgan sana:",
+    "last_update": "Oxirgi yangilanish:",
+    "download_presentation": "Taqdimotni yuklab olish",
+    "status": {
+      "pending": "Kutilmoqda",
+      "approved": "Tasdiqlangan",
+      "rejected": "Rad etilgan"
+    }
+  },
+  "eco_form": {
+    "title": "Eco-Edithon ariza formasi",
+    "description": "Iltimos, quyidagi maydonlarni to'ldiring. Yulduzcha (*) bilan belgilangan maydonlar majburiy.",
+    "science_id_search": "Science ID orqali qidirish (BNV-0924-0000 formatida)",
+    "science_id_placeholder": "AAA-0000-0000",
+    "search_button": "Qo'shish",
+    "clear_data": "Ma'lumotlarni tozalash",
+    "continue_without_id": "Science ID'siz davom etish",
+    "success_message": "ma'lumotlari yuklandi!",
+    "not_found_message": "Ma'lumotlar topilmadi yoki xatolik yuz berdi",
+    "clear_success": "Ma'lumotlar tozalandi. Qaytadan kiritishingiz mumkin.",
+    "submit_success": "Arizangiz muvaffaqiyatli yuborildi!",
+    "submit_success_title": "Muvaffaqiyatli!",
+    "submit_error": "Ariza yuborishda xatolik yuz berdi",
+    "file_required": "Fayl yuklash majburiy",
+    "file_type_error": "Faqat PDF yoki PPT/PPTX fayllar qabul qilinadi",
+    "file_size_error": "Fayl hajmi 10MB dan kichik bo'lishi kerak",
+    "regions_error": "Regionlar ro'yxatini yuklashda xatolik",
+    "labels": {
+      "full_name": "1. Familiya, ism, sharifingiz",
+      "age": "2. Yoshingiz",
+      "region": "3. Hudud / shahar",
+      "phone": "4. Telefon raqamingiz (+998)",
+      "email": "5. Email manzilingiz",
+      "project_name": "6. Loyihangiz nomi",
+      "project_brief": "7. Loyiha tavsifi (asosiy g'oya)",
+      "project_goal": "8. Loyihaning maqsadi",
+      "project_problem": "9. Dolzarblik va echadigan muammo",
+      "implementation_plan": "10. Amalga oshirish rejasi",
+      "team_info": "11. Jamoa tarkibi va tajribasi (agar jamoa bo'lsa)",
+      "why_chosen": "12. Nega aynan sizning loyihangiz tanlanishi kerak?",
+      "cv_file": "13. Резюме (CV) / Тарджимаи ҳол",
+      "presentation_file": "13. Taqdimot fayli (faqat PDF yoki PPT, ingliz tilida)"
+    },
+    "placeholders": {
+      "full_name": "Ivanov Ivan Ivanovich / Ivanov Ivan",
+      "age": "18",
+      "region": "Viloyatni tanlang...",
+      "phone": "90 123 45 67",
+      "email": "example@mail.com",
+      "project_name": "Eco-Waste Management",
+      "project_brief": "Loyiha g'oyasi haqida qisqacha...",
+      "project_goal": "Loyihaning aniq maqsadi...",
+      "project_problem": "Qaysi muammoni hal qiladi?",
+      "implementation_plan": "Bosqichma-bosqich reja...",
+      "team_info": "Jamoa a'zolari va tajribasi...",
+      "why_chosen": "Qisqa va asosli javob..."
+    },
+    "validation": {
+      "full_name_required": "FIO majburiy",
+      "age_required": "Yosh majburiy",
+      "region_required": "Hudud / viloyat majburiy",
+      "phone_required": "Telefon raqam majburiy",
+      "phone_format": "Raqam formati: 90 123 45 67",
+      "email_required": "Email noto'g'ri",
+      "project_name_required": "Loyiha nomi majburiy",
+      "project_brief_required": "Qisqa tavsif majburiy",
+      "project_goal_required": "Maqsad majburiy",
+      "project_problem_required": "Muammo tavsifi majburiy",
+      "implementation_plan_required": "Reja majburiy",
+      "why_chosen_required": "Ushbu maydon majburiy",
+      "science_id_format": "Format: AAA-0000-0000",
+      "cv_file_required": "CV yuklash majburiy",
+      "file_type_invalid": "Faqat PDF, Word yoki rasm fayllarini yuklang",
+      "file_size_invalid": "Fayl hajmi 10MB dan oshmasligi kerak",
+      "presentation_type_invalid": "Faqat PDF yoki PowerPoint fayllarini yuklang"
+    },
+    "upload": {
+      "drag_text": "PDF yoki PPT/PPTX faylini bu yerga tashlang yoki tanlang",
+      "hint": "Maks. 10MB. Auto-upload yo'q, yuborishda birga jo'natiladi.",
+      "cv_text": "CV yuklash uchun bosing yoki sudrab olib keling",
+      "cv_hint": "PDF, DOC, DOCX yoki rasm formatida (max 10MB)",
+      "presentation_text": "PDF yoki PPT/PPTX faylini bu yerga tashlang yoki tanlang",
+      "presentation_hint": "Maks. 10MB. Auto-upload yo'q, yuborishda birga jo'natiladi."
+    },
+    "buttons": {
+      "submit": "Ariza yuborish",
+      "submitting": "Yuborilmoqda..."
+    },
+    "submit_button": "Yuborish"
   }
 }

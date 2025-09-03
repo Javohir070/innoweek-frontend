@@ -12,6 +12,7 @@ import { PiCertificateFill } from "react-icons/pi";
 import { FaTicketAlt } from "react-icons/fa";
 import MyEvents from "@/components/shared/MyEvents";
 import MyTicket from "@/components/shared/MyTicket";
+import MyApplications from "@/components/shared/MyApplications";
 
 export interface UserProfile {
   id: number;
@@ -80,6 +81,7 @@ const SIDEBAR_ITEMS = [
     icon: <PiCertificateFill />,
   },
   { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
+  { key: "applications", labelKey: "sidebar_eco_ediethon", icon: <FaTicketAlt /> },
 ];
 
 export default function ProfilePage() {
@@ -114,16 +116,14 @@ export default function ProfilePage() {
             method: "POST",
           }
         );
-        console.log(response);
-
         if (response) {
           setProfile(response?.data);
         } else {
-          setError("Failed to fetch profile data");
+          setError(t("error_fetch_profile"));
         }
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
+          err instanceof Error ? err.message : t("error_unknown")
         );
       } finally {
         setLoading(false);
@@ -131,7 +131,7 @@ export default function ProfilePage() {
     };
 
     fetchProfile();
-  }, []);
+  }, [t]);
 
   if (loading) {
     return (
@@ -387,23 +387,7 @@ export default function ProfilePage() {
               </div>
             </div>
           )}
-
-          {/* {activeTab === "certificate" && (
-            <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg shadow-gray-300 dark:shadow-blue-500 border border-gray-200 dark:!border-gray-700 overflow-hidden h-full">
-              <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-                <h3 className="font-semibold !text-gray-800 !text-2xl dark:text-white">
-                  {t("My_ertificate")}
-                </h3>
-              </div>
-              <div className="p-4 md:p-8 flex items-center justify-center !min-h-[400px]">
-                <iframe
-                  src="/pdf/Certificate%20(2).pdf"
-                  className="w-full h-[600px] rounded-lg border dark:!border-gray-700"
-                  title="Certificate"
-                />
-              </div>
-            </div>
-          )} */}
+       
           {activeTab === "certificate" && tez_kunda()}
 
           {activeTab === "ticket" && (
@@ -419,6 +403,7 @@ export default function ProfilePage() {
             </div>
           )}
           {activeTab == "programm" && <MyEvents />}
+          {activeTab === "applications" && <MyApplications />}
         </div>
       </div>
     </div>

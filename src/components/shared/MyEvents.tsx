@@ -140,7 +140,7 @@ const MyEvents = () => {
                       }
                       className="capitalize"
                     >
-                      {event.status || "Kutilmoqda"}
+                      {event.status || t("pending")}
                     </Tag>
                   </div>
 

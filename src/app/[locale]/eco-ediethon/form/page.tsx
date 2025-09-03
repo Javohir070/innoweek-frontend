@@ -18,6 +18,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { FetchInstance } from "@/api/FetchInstance";
 import { IResponse } from "@/types";
 import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 const { Title, Paragraph } = Typography;
 const { Dragger } = Upload;
 const { TextArea } = Input;
@@ -84,8 +85,11 @@ const EcoEdiethonForm = () => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [isAutoFilled, setIsAutoFilled] = useState(false);
+  const [showMainForm, setShowMainForm] = useState(false);
   const [regions, setRegions] = useState<Region[]>([]);
   const [regionsLoading, setRegionsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const t = useTranslations("eco_form");
 
   const {push} = useRouter()
 
@@ -101,11 +105,11 @@ const EcoEdiethonForm = () => {
       }
     } catch (error) {
       console.error("Regionlarni yuklashda xatolik:", error);
-      message.error("Regionlar ro'yxatini yuklashda xatolik");
+      message.error(t("regions_error"));
     } finally {
       setRegionsLoading(false);
     }
-  }, []);
+  }, [t]);
 
   // Komponent yuklanganda regionlarni olish
   useEffect(() => {
@@ -126,12 +130,12 @@ const EcoEdiethonForm = () => {
           "application/vnd.openxmlformats-officedocument.presentationml.presentation",
         ].includes(file.type);
         if (!isAllowed) {
-          message.error("Faqat PDF yoki PPT/PPTX fayllar qabul qilinadi");
+          message.error(t("file_type_error"));
           return Upload.LIST_IGNORE;
         }
         const isLt10M = file.size / 1024 / 1024 < 10;
         if (!isLt10M) {
-          message.error("Fayl hajmi 10MB dan kichik bo'lishi kerak");
+          message.error(t("file_size_error"));
           return Upload.LIST_IGNORE;
         }
         return false; // auto upload emas
@@ -143,12 +147,16 @@ const EcoEdiethonForm = () => {
         setFileList([]);
       },
     }),
-    [fileList]
+    [fileList, t]
   );
 
   const onFinish = useCallback(
     async (values: EcoFormValues) => {
+      if (isSubmitting) return; // Prevent multiple submissions
+      
       try {
+        setIsSubmitting(true);
+        
         // Telefonni +998 prefiks bilan birga jamlaymiz
         const phone = `+998 ${values.phone}`.trim();
 
@@ -167,7 +175,7 @@ const EcoEdiethonForm = () => {
         formData.append("team_info", values.team_info || "");
         formData.append("why_chosen", values.why_chosen);
         if (!fileList.length || !fileList[0]?.originFileObj) {
-          message.error("Fayl yuklash majburiy");
+          message.error(t("file_required"));
           return;
         }
         if (fileList[0]?.originFileObj) {
@@ -185,8 +193,8 @@ const EcoEdiethonForm = () => {
         if (response?.status == 201) {
           console.log(response);
           notification.success({
-            message: "Muvaffaqiyatli",
-            description: "Arizangiz muvaffaqiyatli yuborildi!",
+            message: t("submit_success_title"),
+            description: t("submit_success"),
           });
           form.resetFields();
           setFileList([]);
@@ -194,11 +202,13 @@ const EcoEdiethonForm = () => {
           push("/profile")
         }
       } catch (e) {
-        message.error("Ariza yuborishda xatolik yuz berdi");
+        message.error(t("submit_error"));
         console.error(e);
+      } finally {
+        setIsSubmitting(false);
       }
     },
-    [fileList, form]
+    [fileList, form, push, t, isSubmitting]
   );
 
   const searchByScienceId = async (scienceId: { science_id: string }) => {
@@ -237,12 +247,13 @@ const EcoEdiethonForm = () => {
           email: data.email,
         });
 
-        message.success(`${data.full_name} ma'lumotlari yuklandi!`);
+        message.success(`${data.full_name} ${t("success_message")}`);
         setIsAutoFilled(true); // Ma'lumotlar yuklangani belgilash
+        setShowMainForm(true); // Asosiy formani ko'rsatish
       }
     } catch (error) {
       console.log("Error fetching data:", error);
-      message.error("Ma'lumotlar topilmadi yoki xatolik yuz berdi");
+      message.error(t("not_found_message"));
     }
   };
 
@@ -256,19 +267,19 @@ const EcoEdiethonForm = () => {
       "email",
     ]);
     setIsAutoFilled(false);
-    message.info("Ma'lumotlar tozalandi. Qaytadan kiritishingiz mumkin.");
+    setShowMainForm(false);
+    message.info(t("clear_success"));
   };
 
   return (
-    <section id="eco-ediethon" className="section bg-transparent mt-8">
+    <section id="eco-ediethon" className="section bg-transparent mt-8 min-h-[80vh]">
       <div className="container max-w-4xl">
         <div className="rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8 shadow-lg bg-white dark:bg-[#0b1220]">
           <Title level={3} className="!mb-1 !text-gray-900 dark:!text-white">
-            Eco-Edithon ariza formasi
+            {t("title")}
           </Title>
           <Paragraph className="!text-gray-600 dark:!text-gray-300 !mb-6">
-            Iltimos, quyidagi maydonlarni to&apos;ldiring. Yulduzcha (*) bilan
-            belgilangan maydonlar majburiy.
+            {t("description")}
           </Paragraph>
           <Form
             layout="vertical"
@@ -277,19 +288,19 @@ const EcoEdiethonForm = () => {
             size="large"
           >
             <Form.Item
-              label="Science ID orqali qidirish (BNV-0924-0000 formatida)"
+              label={t("science_id_search")}
               className="mb-6"
               layout="vertical"
               name="science_id"
               rules={[
                 {
                   pattern: /^[A-Z]{3}-\d{4}-\d{4}$/,
-                  message: "Format: AAA-0000-0000",
+                  message: t("validation.science_id_format"),
                 },
               ]}
             >
               <Input.Search
-                placeholder="AAA-0000-0000"
+                placeholder={t("science_id_placeholder")}
                 allowClear
                 className="!w-[calc(100%-80px)]"
                 style={{ textTransform: "uppercase" }}
@@ -298,7 +309,7 @@ const EcoEdiethonForm = () => {
                 }}
                 enterButton={
                   <Button type="primary" htmlType="submit">
-                    {"Qo'shish"}
+                    {t("search_button")}
                   </Button>
                 }
               />
@@ -311,29 +322,45 @@ const EcoEdiethonForm = () => {
                   onClick={resetAutoFill}
                   size="small"
                 >
-                  Ma&apos;lumotlarni tozalash
+                  {t("clear_data")}
                 </Button>
               </div>
             )}
           </Form>
 
-          <Divider className="!my-4" />
+          {/* Manual form tugmasi - agar Science ID ishlatilmasa */}
+            {/* {!showMainForm && (
+              <div className="text-center mb-6">
+                <Button 
+                  type="default" 
+                  onClick={() => setShowMainForm(true)} 
+                  size="large"
+                >
+                  Science ID&apos;siz davom etish
+                </Button>
+              </div>
+            )} */}
 
-          <Form
-            form={form}
-            layout="vertical"
-            onFinish={onFinish}
-            requiredMark
-            size="large"
-          >
+          {/* Asosiy forma - faqat showMainForm true bo'lganda */}
+          {showMainForm && (
+            <>
+              <Divider className="!my-4" />
+
+              <Form
+                form={form}
+                layout="vertical"
+                onFinish={onFinish}
+                requiredMark
+                size="large"
+              >
             {/* 1. FIO */}
             <Form.Item
-              label={"1. Фамилия, исм, шарифингиз / Фамилия, имя, отчество"}
+              label={t("labels.full_name")}
               name="full_name"
-              rules={[{ required: true, message: "FIO majburiy" }]}
+              rules={[{ required: true, message: t("validation.full_name_required") }]}
             >
               <Input
-                placeholder="Ivanov Ivan Ivanovich / Ivanov Ivan"
+                placeholder={t("placeholders.full_name")}
                 allowClear
                 disabled={isAutoFilled}
               />
@@ -341,27 +368,27 @@ const EcoEdiethonForm = () => {
 
             {/* 2. Age */}
             <Form.Item
-              label={"2. Ёшингиз / Ваш возраст"}
+              label={t("labels.age")}
               name="age"
-              rules={[{ required: true, message: "Yosh majburiy" }]}
+              rules={[{ required: true, message: t("validation.age_required") }]}
             >
               <InputNumber
                 min={14}
                 max={100}
                 className="w-full"
-                placeholder="18"
+                placeholder={t("placeholders.age")}
                 disabled={isAutoFilled}
               />
             </Form.Item>
 
             {/* 3. Region / City */}
             <Form.Item
-              label={"3. Худуд / шахар / Регион / город"}
+              label={t("labels.region")}
               name="region_id"
-              rules={[{ required: true, message: "Hudud / viloyat majburiy" }]}
+              rules={[{ required: true, message: t("validation.region_required") }]}
             >
               <Select
-                placeholder="Viloyatni tanlang..."
+                placeholder={t("placeholders.region")}
                 allowClear
                 loading={regionsLoading}
                 showSearch
@@ -380,7 +407,7 @@ const EcoEdiethonForm = () => {
 
             {/* 4. Phone */}
             <Form.Item
-              label={"4. Телефон ракамингиз (+998) / Номер телефона (+998)"}
+              label={t("labels.phone")}
               required
             >
               <Input.Group compact>
@@ -391,17 +418,13 @@ const EcoEdiethonForm = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Telefon raqam majburiy",
+                      message: t("validation.phone_required"),
                     },
-                    // {
-                    //   pattern: /^\d{2}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-                    //   message: "Raqam formati: 90 123 45 67",
-                    // },
                   ]}
                 >
                   <Input
                     className="!w-[calc(100%-6rem)]"
-                    placeholder="90 123 45 67"
+                    placeholder={t("placeholders.phone")}
                     allowClear
                     disabled={isAutoFilled}
                   />
@@ -411,18 +434,18 @@ const EcoEdiethonForm = () => {
 
             {/* 5. Email */}
             <Form.Item
-              label={"5. Эмаил манзилингиз / Адрес электронной почты"}
+              label={t("labels.email")}
               name="email"
               rules={[
                 {
                   required: true,
                   type: "email",
-                  message: "Email noto&apos;g&apos;ri",
+                  message: t("validation.email_required"),
                 },
               ]}
             >
               <Input
-                placeholder="example@mail.com"
+                placeholder={t("placeholders.email")}
                 allowClear
                 disabled={isAutoFilled}
               />
@@ -430,101 +453,93 @@ const EcoEdiethonForm = () => {
 
             {/* 6. Project name */}
             <Form.Item
-              label={"6. Лойихангиз номи / Название проекта"}
+              label={t("labels.project_name")}
               name="project_name"
-              rules={[{ required: true, message: "Loyiha nomi majburiy" }]}
+              rules={[{ required: true, message: t("validation.project_name_required") }]}
             >
-              <Input placeholder="Eco-Waste Management" allowClear />
+              <Input placeholder={t("placeholders.project_name")} allowClear />
             </Form.Item>
 
             {/* 7. Brief idea */}
             <Form.Item
-              label={
-                "7. Лойиха тавсифи (асосий гоя) / Краткое описание проекта (основная идея)"
-              }
+              label={t("labels.project_brief")}
               name="project_brief"
-              rules={[{ required: true, message: "Qisqa tavsif majburiy" }]}
+              rules={[{ required: true, message: t("validation.project_brief_required") }]}
             >
               <TextArea
                 rows={4}
                 maxLength={2000}
                 showCount
-                placeholder="Loyiha g'oyasi haqida qisqacha..."
+                placeholder={t("placeholders.project_brief")}
               />
             </Form.Item>
 
             {/* 8. Goal */}
             <Form.Item
-              label={"8. Лойиханинг максади / Цель проекта"}
+              label={t("labels.project_goal")}
               name="project_goal"
-              rules={[{ required: true, message: "Maqsad majburiy" }]}
+              rules={[{ required: true, message: t("validation.project_goal_required") }]}
             >
               <TextArea
                 rows={3}
                 maxLength={2000}
                 showCount
-                placeholder="Loyihaning aniq maqsadi..."
+                placeholder={t("placeholders.project_goal")}
               />
             </Form.Item>
 
             {/* 9. Problem */}
             <Form.Item
-              label={
-                "9. Долзарблик ва ечадиган муаммо / Актуальность и проблема, которую решает проект"
-              }
+              label={t("labels.project_problem")}
               name="project_problem"
-              rules={[{ required: true, message: "Muammo tavsifi majburiy" }]}
+              rules={[{ required: true, message: t("validation.project_problem_required") }]}
             >
               <TextArea
                 rows={4}
                 maxLength={3000}
                 showCount
-                placeholder="Qaysi muammoni hal qiladi?"
+                placeholder={t("placeholders.project_problem")}
               />
             </Form.Item>
 
             {/* 10. Plan */}
             <Form.Item
-              label={"10. Амалга ошириш режаси / План реализации"}
+              label={t("labels.implementation_plan")}
               name="implementation_plan"
-              rules={[{ required: true, message: "Reja majburiy" }]}
+              rules={[{ required: true, message: t("validation.implementation_plan_required") }]}
             >
               <TextArea
                 rows={4}
                 maxLength={3000}
                 showCount
-                placeholder="Bosqichma-bosqich reja..."
+                placeholder={t("placeholders.implementation_plan")}
               />
             </Form.Item>
 
             {/* 11. Team */}
             <Form.Item
-              label={
-                "11. Жамоа таркиби ва тажрибаси (агар жамоа булса) / Состав команды и опыт (если есть команда)"
-              }
+              label={t("labels.team_info")}
               name="team_info"
             >
               <TextArea
                 rows={3}
                 maxLength={3000}
                 showCount
-                placeholder="Jamoa a'zolari va tajribasi..."
+                placeholder={t("placeholders.team_info")}
               />
             </Form.Item>
 
             {/* 12. Why chosen */}
             <Form.Item
-              label={
-                "12. Нега айнан сизнинг лойихангиз танланиши керак? / Почему именно ваш проект должен быть выбран?"
-              }
+              label={t("labels.why_chosen")}
               name="why_chosen"
-              rules={[{ required: true, message: "Ushbu maydon majburiy" }]}
+              rules={[{ required: true, message: t("validation.why_chosen_required") }]}
             >
               <TextArea
                 rows={3}
                 maxLength={2000}
                 showCount
-                placeholder="Qisqa va asosli javob..."
+                placeholder={t("placeholders.why_chosen")}
               />
             </Form.Item>
 
@@ -532,9 +547,7 @@ const EcoEdiethonForm = () => {
 
             {/* 13. Presentation file */}
             <Form.Item
-              label={
-                "13. Такдимот файли (факат ПДФ ёки ППТ, инглиз тилида) / Файл презентации (только ПДФ или ППТ, на английском языке)"
-              }
+              label={t("labels.presentation_file")}
               required
             >
               <Dragger {...uploadProps} className="!p-4">
@@ -542,21 +555,28 @@ const EcoEdiethonForm = () => {
                   <InboxOutlined />
                 </p>
                 <p className="ant-upload-text">
-                  PDF yoki PPT/PPTX faylini bu yerga tashlang yoki tanlang
+                  {t("upload.presentation_text")}
                 </p>
                 <p className="ant-upload-hint">
-                  Maks. 10MB. Auto-upload yo&apos;q, yuborishda birga
-                  jo&apos;natiladi.
+                  {t("upload.presentation_hint")}
                 </p>
               </Dragger>
             </Form.Item>
 
             <Form.Item className="!mt-6">
-              <Button type="primary" htmlType="submit" size="large">
-                Yuborish
+              <Button 
+                type="primary" 
+                htmlType="submit" 
+                size="large"
+                loading={isSubmitting}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? t("buttons.submitting") : t("buttons.submit")}
               </Button>
             </Form.Item>
           </Form>
+            </>
+          )}
         </div>
       </div>
     </section>
