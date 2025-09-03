@@ -28,7 +28,7 @@
     "HAMKORLAR": "ПАРТНЕРЫ",
     "INNOWEEK HAQIDA": "О INNOWEEK",
     "REGISTER": "РЕГИСТРАЦИЯ",
-    "login": " Войти", 
+    "login": " Войти",
     "ECO-EDIETHON": "ECO-EDIETHON"
   },
   "langs": {
@@ -318,7 +318,7 @@
     "sidebar_certificate": "Мои сертификаты",
     "sidebar_profile": "Профиль",
     "sidebar_program": "Мои события",
-    "sidebar_eco_ediethon":"Мой ECO-EDIETHON",
+    "sidebar_eco_ediethon": "Мой ECO-EDIETHON",
     "activity": "Активность",
     "active": "Активный",
     "inactive": "Неактивный",
@@ -375,6 +375,17 @@
       "location": "Место",
       "description": "Описание"
     }
+  },
+  "eco-ediethon": {
+    "title": "ECO-EDIETHON",
+    "description": "Информация об ЭКО-ЭДИЭТОНЕ",
+    "date": "Дата",
+    "location": "Место",
+    "participants": "Участники",
+    "apply-button": "Подать заявку",
+    "login-button": "Войти",
+    "published": "Опубликовано:",
+    "deadline": "Срок подачи:"
   },
   "my_applications": {
     "title": "Мои заявки",

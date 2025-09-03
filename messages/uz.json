@@ -382,7 +382,10 @@
     "date": "Sana",
     "location": "Manzil",
     "participants": "Ishtirokchilar",
-    "apply-button": "Ariza berish"
+    "apply-button": "Ariza berish",
+    "login-button": "Kirish",
+    "published": "E'lon qilindi:",
+    "deadline": "Muddat:"
   },
   "my_applications": {
     "title": "Mening arizalarim",

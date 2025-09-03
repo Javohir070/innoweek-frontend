@@ -1,5 +1,5 @@
 "use client";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { FetchInstance } from "@/api/FetchInstance";
 import { toast } from "react-toastify";
@@ -14,7 +14,6 @@ const initialForm = {
 
 const Login = () => {
   const t = useTranslations("login");
-  const router = useRouter();
   const locale = useParams().locale || "uz";
 
   const [form, setForm] = useState(initialForm);
@@ -30,7 +29,7 @@ const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     setError({});

@@ -11,7 +11,7 @@ import { Link } from "@/i18n/navigation";
 
 const EcoEdiethon = () => {
   const t = useTranslations("eco-ediethon");
-
+  const token = window?.localStorage?.getItem("token");
   // Demo ma'lumotlar (kerak bo'lsa API dan bog'lab berish mumkin)
   const publishedAt = "3-sentabr, 2025";
   const deadline = "20-sentabr, 2025";
@@ -43,12 +43,12 @@ const EcoEdiethon = () => {
         <div className="flex flex-wrap items-center gap-3 mt-4">
           <Tag color="blue" className="px-3 py-1 text-[13px] rounded-full">
             <span className="inline-flex items-center gap-2 font-medium">
-              <ClockIcon size={16} /> {"E'lon qilindi:"} {publishedAt}
+              <ClockIcon size={16} /> {t("published")} {publishedAt}
             </span>
           </Tag>
           <Tag color="green" className="px-3 py-1 text-[13px] rounded-full">
             <span className="inline-flex items-center gap-2 font-medium">
-              <CalendarIcon size={16} /> {"Muddat:"} <b>{deadline}</b>
+              <CalendarIcon size={16} /> {t("deadline")} <b>{deadline}</b>
             </span>
           </Tag>
           {/* <Tag color="default" className="px-3 py-2 text-[13px] rounded-full">
@@ -69,17 +69,17 @@ const EcoEdiethon = () => {
           {/* Qo'shimcha paragraf(lar) — ixtiyoriy */}
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the <b>{"industry's"}</b> standard dummy
-            text ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make a type specimen book. It has survived
-            not only five centuries, but also the leap into electronic
+            industry. Lorem Ipsum has been the <b>{"industry's"}</b> standard
+            dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book. It has
+            survived not only five centuries, but also the leap into electronic
             typesetting, remaining essentially unchanged. It was popularised in
             the 1960s with the release of Letraset sheets containing Lorem Ipsum
             passages, and more recently with desktop publishing software like
             Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is
             simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has been the <b>{"industry's"}</b> standard dummy text ever since
-            the 1500s, when an unknown printer took a galley of type and
+            Ipsum has been the <b>{"industry's"}</b> standard dummy text ever
+            since the 1500s, when an unknown printer took a galley of type and
             scrambled it to make a type specimen book. It has survived not only
             five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged. It was popularised in the 1960s
@@ -87,21 +87,29 @@ const EcoEdiethon = () => {
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply
             dummy text of the printing and typesetting industry. Lorem Ipsum has
-            been the <b>{"industry's"}</b> standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to
-            make a type specimen book. It has survived not only five centuries,
-            but also the leap into electronic typesetting, remaining essentially
-            unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently
-            with desktop publishing software like Aldus PageMaker including
-            versions of Lorem Ipsum. {"industry's"}
+            been the <b>{"industry's"}</b> standard dummy text ever since the
+            1500s, when an unknown printer took a galley of type and scrambled
+            it to make a type specimen book. It has survived not only five
+            centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more
+            recently with desktop publishing software like Aldus PageMaker
+            including versions of Lorem Ipsum. {"industry's"}
           </p>
           <div className="mt-8 flex justify-center">
-            <Link href={"/eco-ediethon/form"}>
-              <Button type="primary" size="large">
-                {t("apply-button")}
-              </Button>
-            </Link>
+            {token ? (
+              <Link href={"/eco-ediethon/form"}>
+                <Button type="primary" size="large">
+                  {t("apply-button")}
+                </Button>
+              </Link>
+            ) : (
+              <Link href={"/login"}>
+                <Button type="default" size="large">
+                  {t("login-button")}
+                </Button>
+              </Link>
+            )}
           </div>
         </article>
       </div>

@@ -22,9 +22,13 @@ export const FetchInstance = async <T>(
     ...options,
     headers: {
       ...headers,
-      ...options.headers, // options.headers bilan birlashtirish
+      ...options.headers,
     },
   });
+  // if (res?.type == "cors" || res?.status == 401) {
+    // window.localStorage.clear();
+    // window.location.href = "/";
+  // }
 
   if (!res.ok) {
     const errorBody = await res.json().catch(() => ({}));

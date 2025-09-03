@@ -158,25 +158,6 @@ export default function Header() {
     ru: "RU",
   };
 
-  // const shortLabel = {
-  //   uz: (
-  //     <span className="flex items-center gap-1">
-  //       <Image src={uzFlag} alt="UZ" width={20} height={14} /> UZ
-  //     </span>
-  //   ),
-  //   en: (
-  //     <span className="flex items-center gap-1">
-  //       <Image src={enFlag} alt="EN" width={20} height={14} /> EN
-  //     </span>
-  //   ),
-  //   ru: (
-  //     <span className="flex items-center gap-1">
-  //       <Image src={ruFlag} alt="RU" width={20} height={14} /> RU
-  //     </span>
-  //   ),
-  // };
-  //
-
   return (
     <header className="header flex items-center fixed-top bg-white dark:bg-gray-800 text-gray-900 shadow w-full z-50">
       <div className="container-fluid container-xl py-2 flex justify-between items-center w-full">

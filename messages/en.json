@@ -376,6 +376,17 @@
       "description": "Description"
     }
   },
+    "eco-ediethon": {
+    "title": "ECO-EDIETHON",
+    "description": "Information about ECO-EDIETHON",
+    "date": "Date",
+    "location": "Location",
+    "participants": "Participants",
+    "apply-button": "Apply",
+    "login-button": "Login",
+    "published": "Published:",
+    "deadline": "Deadline:"
+  },
   "my_applications": {
     "title": "My Applications",
     "loading": "Loading...",
