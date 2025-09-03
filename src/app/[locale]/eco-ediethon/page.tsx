@@ -5,8 +5,6 @@ import { Button, Carousel, Tag } from "antd";
 import Image from "next/image";
 import { CalendarIcon, ClockIcon } from "lucide-react";
 import hero1 from "@/assets/img/ecoIdethon.png";
-// import hero2 from "@/assets/img/service-6.jpg";
-// import hero3 from "@/assets/img/service-2.jpg";
 import { Link } from "@/i18n/navigation";
 
 const EcoEdiethon = () => {
@@ -28,7 +26,7 @@ const EcoEdiethon = () => {
                 className="relative h-[260px] md:h-[380px] lg:h-[460px]"
               >
                 <Image
-                  src={img}
+                  src={img.src}
                   alt={`slide-${idx + 1}`}
                   fill
                   priority={idx === 0}
