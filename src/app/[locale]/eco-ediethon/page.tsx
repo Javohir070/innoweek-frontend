@@ -14,7 +14,7 @@ const EcoEdiethon = () => {
   const token = window?.localStorage?.getItem("token");
   // Demo ma'lumotlar (kerak bo'lsa API dan bog'lab berish mumkin)
   const publishedAt = "3-sentabr, 2025";
-  const deadline = "20-sentabr, 2025";
+  const deadline = "28-sentabr, 2025";
 
   return (
     <section id="eco-ediethon" className="section bg-transparent mt-8">
@@ -65,37 +65,56 @@ const EcoEdiethon = () => {
 
         {/* Body content */}
         <article className="prose dark:prose-invert max-w-none mt-4 text-gray-800 dark:text-gray-200">
-          <p className="!mb-4">{t("description")}</p>
-          {/* Qo'shimcha paragraf(lar) — ixtiyoriy */}
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the <b>{"industry's"}</b> standard
-            dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book. It has
-            survived not only five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is
-            simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has been the <b>{"industry's"}</b> standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply
-            dummy text of the printing and typesetting industry. Lorem Ipsum has
-            been the <b>{"industry's"}</b> standard dummy text ever since the
-            1500s, when an unknown printer took a galley of type and scrambled
-            it to make a type specimen book. It has survived not only five
-            centuries, but also the leap into electronic typesetting, remaining
-            essentially unchanged. It was popularised in the 1960s with the
-            release of Letraset sheets containing Lorem Ipsum passages, and more
-            recently with desktop publishing software like Aldus PageMaker
-            including versions of Lorem Ipsum. {"industry's"}
-          </p>
+          <p className="!mb-6">{t("description")}</p>
+          
+          {/* Goal Section */}
+          <div className="mb-6">
+            <h3 className="text-xl font-bold mb-3 text-black">{t("goal")}</h3>
+            <p>{t("goal_description")}</p>
+          </div>
+
+          {/* Directions Section */}
+          <div className="mb-6">
+            <h3 className="text-xl font-bold mb-3 text-black">{t("directions")}</h3>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("direction_1")}</li>
+              <li>{t("direction_2")}</li>
+              <li>{t("direction_3")}</li>
+              <li>{t("direction_4")}</li>
+              <li>{t("direction_5")}</li>
+            </ul>
+          </div>
+
+          {/* Requirements Section */}
+          <div className="mb-6">
+            <h3 className="text-xl font-bold mb-3 text-black">{t("requirements")}</h3>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("age_requirement")}</li>
+              <li>{t("presentation_requirement")}</li>
+              <li>{t("project_requirement")}</li>
+            </ul>
+          </div>
+
+          {/* Main Prize Section */}
+          <div className="mb-6">
+            <h3 className="text-xl font-bold mb-3 text-black">{t("main_prize")}</h3>
+            <p>{t("prize_description")}</p>
+          </div>
+
+          {/* Event Details Section */}
+          <div className="mb-6">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-black">{t("event_time")}</h4>
+                <p className="text-blue-600 dark:text-blue-400 font-medium">{t("event_date")}</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2 text-black">{t("application_deadline")}</h4>
+                <p className="text-red-600 dark:text-red-400 font-medium">{t("deadline_date")}</p>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-8 flex justify-center">
             {token ? (
               <Link href={"/eco-ediethon/form"}>
