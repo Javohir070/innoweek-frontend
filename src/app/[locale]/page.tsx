@@ -4,6 +4,7 @@ import ExpertFeedback from "@/components/landing/ExpertFeedback";
 import FAQSection from "@/components/landing/FAQSection";
 import GalerySection from "@/components/landing/Galery";
 import HeroSection from "@/components/landing/Hero";
+import MobileDirection from "@/components/landing/MobileDirection";
 import NewsSection from "@/components/landing/News";
 import PartnersSection from "@/components/landing/Partners";
 import ProgramSection from "@/components/landing/Program";
@@ -26,6 +27,7 @@ export default function RootPage() {
           <ExpertFeedback />
           <GalerySection />
           <FAQSection />
+          <MobileDirection />
           <ContactSection />
         </main>
       </section>
