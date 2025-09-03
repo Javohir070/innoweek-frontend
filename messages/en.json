@@ -318,7 +318,7 @@
     "sidebar_certificate": "My Certificates",
     "sidebar_profile": "My Profile",
     "sidebar_program": "My events",
-    "sidebar_eco_ediethon": "My ECO-EDIETHON",
+    "sidebar_eco_ediethon": "My ECO-IDEATHON",
     "activity": "Activity",
     "active": "Active",
     "inactive": "Inactive",
@@ -449,7 +449,7 @@
     }
   },
   "eco_form": {
-    "title": "Eco-Edithon Application Form",
+    "title": "Eco-Ideathon Application Form",
     "description": "Please fill in the following fields. Fields marked with an asterisk (*) are required.",
     "science_id_search": "Search by Science ID (in BNV-0924-0000 format)",
     "science_id_placeholder": "AAA-0000-0000",

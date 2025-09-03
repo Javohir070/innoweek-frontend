@@ -318,7 +318,7 @@
     "sidebar_certificate": "Sertifikatlarim",
     "sidebar_profile": "Shaxsiy kabinet",
     "sidebar_program": "Mening tadbirlarim",
-    "sidebar_eco_ediethon": "Mening ECO-EDIETHON",
+    "sidebar_eco_ediethon": "Mening ECO-IDEATHON",
     "activity": "Faoliyat",
     "active": "Faol",
     "inactive": "Nofaol",
@@ -449,7 +449,7 @@
     }
   },
   "eco_form": {
-    "title": "Eco-Edithon ariza formasi",
+    "title": "Eco-Ideathon ariza formasi",
     "description": "Iltimos, quyidagi maydonlarni to'ldiring. Yulduzcha (*) bilan belgilangan maydonlar majburiy.",
     "science_id_search": "Science ID orqali qidirish (BNV-0924-0000 formatida)",
     "science_id_placeholder": "AAA-0000-0000",

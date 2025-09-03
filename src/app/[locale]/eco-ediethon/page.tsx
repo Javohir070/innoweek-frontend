@@ -23,7 +23,7 @@ const EcoEdiethon = () => {
             {[hero1].map((img, idx) => (
               <div
                 key={idx}
-                className="relative h-[260px] md:h-[380px] lg:h-[460px]"
+                className="relative h-[290px] md:h-[420px] lg:h-[460px]"
               >
                 <Image
                   src={img.src}

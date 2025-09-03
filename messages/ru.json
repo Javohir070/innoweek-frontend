@@ -318,7 +318,7 @@
     "sidebar_certificate": "Мои сертификаты",
     "sidebar_profile": "Профиль",
     "sidebar_program": "Мои события",
-    "sidebar_eco_ediethon": "Мой ECO-EDIETHON",
+    "sidebar_eco_ediethon": "Мой ECO-IDEATHON",
     "activity": "Активность",
     "active": "Активный",
     "inactive": "Неактивный",
@@ -449,7 +449,7 @@
     }
   },
   "eco_form": {
-    "title": "Форма заявки Eco-Edithon",
+    "title": "Форма заявки Eco-Ideathon",
     "description": "Пожалуйста, заполните следующие поля. Поля, отмеченные звездочкой (*), обязательны.",
     "science_id_search": "Поиск по Science ID (в формате BNV-0924-0000)",
     "science_id_placeholder": "AAA-0000-0000",
