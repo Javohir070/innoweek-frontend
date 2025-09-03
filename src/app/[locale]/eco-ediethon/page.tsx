@@ -4,9 +4,9 @@ import React from "react";
 import { Button, Carousel, Tag } from "antd";
 import Image from "next/image";
 import { CalendarIcon, ClockIcon } from "lucide-react";
-import hero1 from "@/assets/img/ITweek1.jpg";
-import hero2 from "@/assets/img/service-6.jpg";
-import hero3 from "@/assets/img/service-2.jpg";
+import hero1 from "@/assets/img/ChatGPT Image 3 сент. 2025 г., 17_39_50.png";
+// import hero2 from "@/assets/img/service-6.jpg";
+// import hero3 from "@/assets/img/service-2.jpg";
 import { Link } from "@/i18n/navigation";
 
 const EcoEdiethon = () => {
@@ -22,7 +22,7 @@ const EcoEdiethon = () => {
         {/* Hero slider */}
         <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
           <Carousel arrows dots autoplay className="bg-black/5">
-            {[hero1, hero2, hero3].map((img, idx) => (
+            {[hero1].map((img, idx) => (
               <div
                 key={idx}
                 className="relative h-[260px] md:h-[380px] lg:h-[460px]"
@@ -124,7 +124,7 @@ const EcoEdiethon = () => {
               </Link>
             ) : (
               <Link href={"/login"}>
-                <Button type="default" size="large">
+                <Button type="primary" size="large">
                   {t("login-button")}
                 </Button>
               </Link>
