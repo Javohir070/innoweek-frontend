@@ -453,6 +453,7 @@
     "description": "Пожалуйста, заполните следующие поля. Поля, отмеченные звездочкой (*), обязательны.",
     "science_id_search": "Поиск по Science ID (в формате BNV-0924-0000)",
     "science_id_placeholder": "AAA-0000-0000",
+    "science_id_info": "Если у вас нет номера Science ID, сначала зарегистрируйтесь на сайте https://id.ilmiy.uz/",
     "search_button": "Добавить",
     "clear_data": "Очистить данные",
     "continue_without_id": "Продолжить без Science ID",

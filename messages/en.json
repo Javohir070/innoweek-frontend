@@ -453,6 +453,7 @@
     "description": "Please fill in the following fields. Fields marked with an asterisk (*) are required.",
     "science_id_search": "Search by Science ID (in BNV-0924-0000 format)",
     "science_id_placeholder": "AAA-0000-0000",
+    "science_id_info": "If you don't have a Science ID number, please register first at https://id.ilmiy.uz/",
     "search_button": "Add",
     "clear_data": "Clear data",
     "continue_without_id": "Continue without Science ID",

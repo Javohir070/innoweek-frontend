@@ -313,6 +313,11 @@ const EcoEdiethonForm = () => {
                   </Button>
                 }
               />
+              <div className="mt-2 text-sm text-blue-600 dark:text-blue-400">
+                <span className="inline-flex items-center">
+                  ℹ️ {t("science_id_info")}
+                </span>
+              </div>
             </Form.Item>
             {isAutoFilled && (
               <div className="mb-4">

@@ -453,6 +453,7 @@
     "description": "Iltimos, quyidagi maydonlarni to'ldiring. Yulduzcha (*) bilan belgilangan maydonlar majburiy.",
     "science_id_search": "Science ID orqali qidirish (BNV-0924-0000 formatida)",
     "science_id_placeholder": "AAA-0000-0000",
+    "science_id_info": "Agar sizda Science ID raqami bo'lmasa, avval https://id.ilmiy.uz/ saytidan ro'yxatdan o'ting",
     "search_button": "Qo'shish",
     "clear_data": "Ma'lumotlarni tozalash",
     "continue_without_id": "Science ID'siz davom etish",
