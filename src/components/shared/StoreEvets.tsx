@@ -10,9 +10,10 @@ import { useState } from "react";
 
 interface IProps {
   event_data: IProgramEvent;
+  size?: "large" | "small" | "middle"
 }
 
-const StoreEvets = ({ event_data }: IProps) => {
+const StoreEvets = ({ event_data , size = "middle" }: IProps) => {
   const t = useTranslations('store_events');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -85,6 +86,7 @@ const StoreEvets = ({ event_data }: IProps) => {
           setIsModalVisible(true);
           fetchProfile();
         }}
+        size={size}
       >
         {t('register_event')}
       </Button>

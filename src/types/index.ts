@@ -229,3 +229,41 @@ export interface IApplication {
   updated_at: string;
   region: IRegion;
 }
+
+export interface ICountry {
+  id: number;
+  name: string;
+}
+
+export interface ISpeakerPivot {
+  schedule_id: number;
+  speaker_id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IProgramSpeaker {
+  id: number;
+  full_name: string;
+  job: string;
+  image: string;
+  country_id: number;
+  pivot: ISpeakerPivot;
+  country: ICountry;
+}
+
+export interface IProgramDetail {
+  id: number;
+  title: string;
+  description: string | null;
+  date: string;
+  address: string;
+  started_at: string;
+  stopped_at: string;
+  speakers: IProgramSpeaker[];
+}
+
+export interface IProgramDetailResponse {
+  message: string;
+  data: IProgramDetail;
+}

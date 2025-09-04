@@ -36,6 +36,11 @@
     "en": "English",
     "ru": "Russian"
   },
+  "about_timeline": {
+    "about_us": "About Us",
+    "our_address": "Our Address",
+    "start_time": "Start Time"
+  },
   "hero": {
     "Ideas without borders": "Ideas without borders",
     "hero description": "The event brings together leading local and international companies, investors, diplomats, entrepreneurs, scientists, startups, technology experts, and representatives of government agencies in one place every year. It is also an ideal platform for communication with leaders of the innovation sector and stakeholders in collaboration and investment.",
@@ -529,5 +534,14 @@
       "submitting": "Submitting..."
     },
     "submit_button": "Submit"
+  },
+  "program-detail": {
+    "INNOWEEK": "INNOWEEK",
+    "SPEAKERS": "SPEAKERS",
+    "no_data_found": "No data found",
+    "no_program_info": "No information available about this program.",
+    "specialists_participating": "Specialists participating in this program",
+    "no_speaker_data": "No speaker data found",
+    "no_speakers_added": "No speaker information has been added for this program yet."
   }
 }

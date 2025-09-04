@@ -6,6 +6,7 @@ import { FetchInstance } from "@/api/FetchInstance";
 import { IProgramEvent, IResponse } from "@/types";
 import { useParams } from "next/navigation";
 import StoreEvets from "../shared/StoreEvets";
+import { Link } from "@/i18n/navigation";
 
 // Program sahifadagi ma'lumotlar massiv ko'rinishida:
 
@@ -112,9 +113,14 @@ export default function ProgramSection() {
                           <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                           <div className="timeline-right">
                             <div className="flex gap-5 items-center">
-                              <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
-                                {event.title}
-                              </h3>
+                              <Link
+                                href={`/program-detail/${event.id}`}
+                                className="no-underline !mb-4"
+                              >
+                                <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
+                                  {event.title}
+                                </h3>
+                              </Link>
                               <StoreEvets event_data={event} />
                             </div>
                             {event.description && (

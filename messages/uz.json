@@ -36,6 +36,11 @@
     "login": " Kirish",
     "ECO-EDIETHON": "ECO-IDEATHON"
   },
+  "about_timeline": {
+    "about_us": "Biz haqimizda",
+    "our_address": "Bizning Manzil",
+    "start_time": "Boshlanish Vaqti"
+  },
   "hero": {
     "Ideas without borders": "CHEGARASIZ G'OYALAR",
     "hero description": "Tadbir har yili yetakchi mahalliy va xalqaro kompaniyalar, investorlar, diplomatlar, tadbirkorlar, olimlar, startaplar, texnologiya ekspertlari va davlat idoralari vakillarini bir davrada birlashtiradi. Shuningdek, innovatsion sektor yetakchilari, hamkorlik va investitsiyalarga oid soha egalari bilan muloqot qilish uchun ideal platforma.",
@@ -529,5 +534,14 @@
       "submitting": "Yuborilmoqda..."
     },
     "submit_button": "Yuborish"
+  },
+  "program-detail": {
+    "INNOWEEK": "INNOWEEK",
+    "SPEAKERS": "SPIKERLAR",
+    "no_data_found": "Ma'lumot topilmadi",
+    "no_program_info": "Ushbu dastur haqida ma'lumot mavjud emas.",
+    "specialists_participating": "Ushbu dasturda ishtirok etuvchi mutaxassislar",
+    "no_speaker_data": "Spiker ma'lumotlari topilmadi",
+    "no_speakers_added": "Ushbu dastur uchun hali spiker ma'lumotlari qo'shilmagan."
   }
 }
