@@ -112,10 +112,10 @@ export default function ProgramSection() {
                           </div>
                           <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                           <div className="timeline-right">
-                            <div className="flex gap-5 items-start">
+                            <div className="flex flex-col lg:flex-row gap-5 items-start">
                               <Link
                                 href={`/program-detail/${event.id}`}
-                                className="no-underline !mb-4"
+                                className="no-underline !mb-4 w-10/12"
                               >
                                 <h3 className="position mb-0 mt-1 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
                                   {event.title}
