@@ -75,15 +75,14 @@ export default function ProgramDetailPage() {
         }}
       >
         {/* Moderators Section */}
-        {data?.moderators?.length > 0 && (
-          <div className="container mb-12">
-            <div className="container section-title">
-              <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
-              <div className="text-black dark:!text-gray-300">
-                {t("moderator")}
-              </div>
+        <div className="container mb-12">
+          <div className="container section-title">
+            <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
+            <div className="text-black dark:!text-gray-300">
+              {t("moderator")}
             </div>
-
+          </div>
+          {data?.moderators?.length > 0 && (
             <div className="row gy-4">
               {data?.moderators?.map((moderator) => (
                 <div
@@ -127,19 +126,18 @@ export default function ProgramDetailPage() {
                 </div>
               ))}
             </div>
-          </div>
-        )}
-
-        {data?.moderators?.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-gray-500 dark:text-gray-400">
-              <h4 className="text-xl font-semibold mb-2 text-black">
-                {t("no_moderator_data")}
-              </h4>
-              <p>{t("no_moderators_added")}</p>
+          )}
+          {data?.moderators?.length === 0 && (
+            <div className="text-center py-12">
+              <div className="text-gray-500 dark:text-gray-400">
+                <h4 className="text-xl font-semibold mb-2 text-black">
+                  {t("no_moderator_data")}
+                </h4>
+                <p>{t("no_moderators_added")}</p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Speakers Section */}
         <div className="container">
