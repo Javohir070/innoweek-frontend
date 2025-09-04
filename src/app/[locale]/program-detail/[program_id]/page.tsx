@@ -59,25 +59,27 @@ export default function ProgramDetailPage() {
   }
 
   return (
-    <div
-      className="!w-full mt-10 min-h-[75vh]"
-      style={{
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundImage: `url(${section.src})`,
-      }}
+    <section
+      id="program-detail"
+      className="team section !bg-transparent transition-colors duration-300 py-16"
     >
-      <section
-        id="program-detail"
-        className="team section !bg-transparent transition-colors duration-300 py-16"
-      >
-        <AboutTimeline data={data} />
+      <AboutTimeline data={data} />
 
+      <div
+        className="!w-full mt-10 min-h-[75vh]"
+        style={{
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundImage: `url(${section.src})`,
+        }}
+      >
         {/* Speakers Section */}
         <div className="container">
           <div className="container section-title" data-aos="fade-up">
             <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
-            <div className="text-black dark:!text-gray-300">{t("SPEAKERS")}</div>
+            <div className="text-black dark:!text-gray-300">
+              {t("SPEAKERS")}
+            </div>
           </div>
 
           {data?.speakers?.length > 0 && (
@@ -136,7 +138,7 @@ export default function ProgramDetailPage() {
             </div>
           )}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
