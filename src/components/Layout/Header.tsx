@@ -283,7 +283,7 @@ export default function Header() {
             </>
           )}
 
-          <div className=" bayroq w-full  !-mr-4 ml-2">
+          {/* <div className=" bayroq w-full  !-mr-4 ml-2">
             {activeLang === "uz" ? (
               <Image
                 className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2"
@@ -309,7 +309,7 @@ export default function Header() {
                 height={20}
               />
             )}
-          </div>
+          </div> */}
           <Select
             value={shortLabel[activeLang as keyof typeof shortLabel]}
             onChange={changeLang}
