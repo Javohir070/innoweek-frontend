@@ -239,7 +239,7 @@ export default function RegisterRolePage() {
       const res = await FetchInstance<IResponse<IProfessionItem[]>>(
         `/api/v1.0/profession/list?status=active&lang=${locale}`
       );
-      setProfessions(res?.data);
+      setProfessions(res?.data?.reverse());
     } catch (error) {
       console.log(error);
     }
@@ -547,7 +547,7 @@ export default function RegisterRolePage() {
                       <option value="" disabled>
                         {t("select_country")}
                       </option>
-                      {countries?.map((item) => (
+                      {countries?.reverse()?.map((item) => (
                         <option value={item?.id} key={item?.id}>
                           {item?.name}
                         </option>
@@ -565,7 +565,7 @@ export default function RegisterRolePage() {
                       <option value="" disabled>
                         {t("participation_type")}
                       </option>
-                      {professions?.map((item) => (
+                      {professions?.reverse()?.map((item) => (
                         <option value={item?.id} key={item?.id}>
                           {item?.name}
                         </option>
