@@ -60,7 +60,7 @@ export default function ProgramDetailPage() {
 
   return (
     <div
-      className="!w-full mt-20 min-h-[75vh]"
+      className="!w-full mt-10 min-h-[75vh]"
       style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
