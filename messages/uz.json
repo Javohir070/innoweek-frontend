@@ -39,8 +39,8 @@
   "about_timeline": {
     "about_us": "Biz haqimizda",
     "our_address": "Bizning Manzil",
-    "start_time": "Tadbir vaqti", 
-     "tashkent":"Toshkent shahar , CAEx"
+    "start_time": "Tadbir vaqti",
+    "tashkent": "Toshkent shahar , CAEx"
   },
   "hero": {
     "Ideas without borders": "CHEGARASIZ G'OYALAR",
@@ -543,6 +543,10 @@
     "no_program_info": "Ushbu dastur haqida ma'lumot mavjud emas.",
     "specialists_participating": "Ushbu dasturda ishtirok etuvchi mutaxassislar",
     "no_speaker_data": "Spiker ma'lumotlari topilmadi",
-    "no_speakers_added": "Ushbu dastur uchun hali spiker ma'lumotlari qo'shilmagan."
+    "no_speakers_added": "Ushbu dastur uchun hali spiker ma'lumotlari qo'shilmagan.", 
+    "moderator": "Moderator",
+    "MODERATORS": "MODERATORLAR",
+    "no_moderator_data": "Moderator ma'lumotlari topilmadi",
+    "no_moderators_added": "Ushbu dastur uchun hali moderator ma'lumotlari qo'shilmagan."
   }
 }

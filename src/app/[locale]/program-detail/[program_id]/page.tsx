@@ -12,6 +12,7 @@ import StoreEvets from "@/components/shared/StoreEvets";
 
 export default function ProgramDetailPage() {
   const params = useParams();
+  const lang = params?.locale;
   const t = useTranslations("program-detail");
   console.log(params?.program_id);
 
@@ -24,7 +25,7 @@ export default function ProgramDetailPage() {
       const res: IProgramDetailResponse = await FetchInstance(
         `/api/v1.0/schedules/${params?.program_id}/list?lang=${params?.locale}`
       );
-      console.log(res?.data);
+      console.log(res?.data?.moderators);
       setData(res?.data);
     } catch (error) {
       console.log(error);
@@ -73,9 +74,76 @@ export default function ProgramDetailPage() {
           backgroundImage: `url(${section.src})`,
         }}
       >
+        {/* Moderators Section */}
+        {data?.moderators?.length > 0 && (
+          <div className="container mb-12">
+            <div className="container section-title">
+              <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
+              <div className="text-black dark:!text-gray-300">
+                {t("moderator")}
+              </div>
+            </div>
+
+            <div className="row gy-4">
+              {data?.moderators?.map((moderator) => (
+                <div
+                  className="col-lg-6 col-sm-6"
+                  data-aos-delay="100"
+                  key={moderator.id}
+                >
+                  <div className="team-member d-flex grid grid-cols-3 !bg-[#0085d4] dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300">
+                    <div className="member-img">
+                      <Image
+                        src={
+                          moderator.image
+                            ? `${BASE_URL}${moderator.image}`
+                            : userAvatar
+                        }
+                        className="img-fluid rounded-lg !w-full !h-[450px] sm:!h-[300px] lg:!h-[200px] !object-cover"
+                        alt={moderator.full_name_uz}
+                        loading="lazy"
+                        width={200}
+                        height={200}
+                      />
+                    </div>
+                    <div className="member-info flex-grow-1 max-[767px]:!py-3">
+                      <h4 className="text-white dark:!text-white mb-1">
+                        {lang == "uz" && moderator.full_name_uz}
+                        {lang == "ru" && moderator.full_name_ru}
+                        {lang == "en" && moderator.full_name_en}
+                      </h4>
+                      <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
+                        {lang == "uz" && moderator.job_uz}
+                        {lang == "ru" && moderator.job_ru}
+                        {lang == "en" && moderator.job_en}
+                      </span>
+                      <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
+                        {lang == "uz" && moderator?.description_uz}
+                        {lang == "ru" && moderator?.description_ru}
+                        {lang == "en" && moderator?.description_en}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {data?.moderators?.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-500 dark:text-gray-400">
+              <h4 className="text-xl font-semibold mb-2 text-black">
+                {t("no_moderator_data")}
+              </h4>
+              <p>{t("no_moderators_added")}</p>
+            </div>
+          </div>
+        )}
+
         {/* Speakers Section */}
         <div className="container">
-          <div className="container section-title" data-aos="fade-up">
+          <div className="container section-title">
             <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
             <div className="text-black dark:!text-gray-300">
               {t("SPEAKERS")}
@@ -85,7 +153,7 @@ export default function ProgramDetailPage() {
           {data?.speakers?.length > 0 && (
             <div>
               <div className="row gy-4">
-                {data.speakers.map((speaker) => (
+                {data?.speakers?.map((speaker) => (
                   <div
                     className="col-lg-6 col-sm-6"
                     data-aos-delay="100"
@@ -96,11 +164,11 @@ export default function ProgramDetailPage() {
                         <Image
                           src={
                             speaker.image
-                              ? `${BASE_URL}${speaker.image}`
+                              ? `${BASE_URL}${speaker?.image}`
                               : userAvatar
                           }
                           className="img-fluid rounded-lg !w-full !h-[450px] sm:!h-[300px] lg:!h-[200px] !object-cover"
-                          alt={speaker.full_name}
+                          alt={speaker?.full_name_uz}
                           loading="lazy"
                           width={200}
                           height={200}
@@ -108,26 +176,32 @@ export default function ProgramDetailPage() {
                       </div>
                       <div className="member-info flex-grow-1 max-[767px]:!py-3">
                         <h4 className="text-white dark:!text-white mb-1">
-                          {speaker.full_name}
+                          {lang == "uz" && speaker.full_name_uz}
+                          {lang == "ru" && speaker.full_name_ru}
+                          {lang == "en" && speaker.full_name_en}
                         </h4>
                         <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
-                          {speaker.job}
+                          <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
+                            {lang == "uz" && speaker.job_uz}
+                            {lang == "ru" && speaker.job_ru}
+                            {lang == "en" && speaker.job_en}
+                          </span>
                         </span>
-                        <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
+                        {/* <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
                           🌍 {speaker.country.name}
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="flex py-6 justify-center">
-                <StoreEvets event_data={data} size="large" />
+                <StoreEvets event_data={data?.schedule} size="large" />
               </div>
             </div>
           )}
 
-          {data.speakers.length === 0 && (
+          {data?.speakers?.length === 0 && (
             <div className="text-center py-12">
               <div className="text-gray-500 dark:text-gray-400">
                 <h4 className="text-xl font-semibold mb-2">

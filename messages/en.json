@@ -28,7 +28,7 @@
     "HAMKORLAR": "PARTNERS",
     "INNOWEEK HAQIDA": "ABOUT INNOWEEK",
     "REGISTER": "SIGN UP",
-    "login": "LOGIN", 
+    "login": "LOGIN",
     "ECO-EDIETHON": "ECO-IDEATHON"
   },
   "langs": {
@@ -39,8 +39,8 @@
   "about_timeline": {
     "about_us": "About Us",
     "our_address": "Our Address",
-    "start_time": "Event time", 
-    "tashkent":"Tashkent city, CAEx,"
+    "start_time": "Event time",
+    "tashkent": "Tashkent city, CAEx,"
   },
   "hero": {
     "Ideas without borders": "Ideas without borders",
@@ -382,7 +382,7 @@
       "description": "Description"
     }
   },
-    "eco-ediethon": {
+  "eco-ediethon": {
     "title": "Eco Ideathon – Ecological Technologies Competition",
     "description": "The Agency for Innovative Development, the Embassy of Israel in Uzbekistan, and MASHAV – Israel's Agency for International Development Cooperation announce the \"Eco Ideathon\" competition in the field of ecology and green technologies within the framework of \"INNOWEEK 2025\" – Week of Innovative Ideas!",
     "goal": "Participants",
@@ -543,6 +543,10 @@
     "no_program_info": "No information available about this program.",
     "specialists_participating": "Specialists participating in this program",
     "no_speaker_data": "No speaker data found",
-    "no_speakers_added": "No speaker information has been added for this program yet."
+    "no_speakers_added": "No speaker information has been added for this program yet.",
+    "moderator": "Moderator",
+    "MODERATORS": "MODERATORS",
+    "no_moderator_data": "No moderator data found",
+    "no_moderators_added": "No moderator information has been added for this program yet."
   }
 }

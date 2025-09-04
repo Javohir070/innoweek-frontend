@@ -244,23 +244,49 @@ export interface ISpeakerPivot {
 
 export interface IProgramSpeaker {
   id: number;
-  full_name: string;
-  job: string;
+  user_id: number;
+  archive_id: number;
+  type: "speakers" | "moderator";
+  full_name_uz: string;
+  full_name_ru: string;
+  full_name_en: string;
+  job_uz: string;
+  job_ru: string;
+  job_en: string;
   image: string;
+  facebook_url: string | null;
+  twitter_url: string | null;
+  linkedin_url: string | null;
+  youtube_url: string | null;
+  description_en: string | null;
+  description_ru: string | null;
+  description_uz: string | null;
+  status: "active" | "inactive";
+  order: number;
   country_id: number;
+  created_at: string;
+  updated_at: string;
   pivot: ISpeakerPivot;
   country: ICountry;
+  // Dynamic fields based on locale
+  full_name: string;
+  job: string;
 }
 
-export interface IProgramDetail {
+export interface ISchedule {
   id: number;
   title: string;
-  description: string | null;
+  description: string;
   date: string;
   address: string;
   started_at: string;
   stopped_at: string;
+}
+
+export interface IProgramDetail {
+  schedule: ISchedule;
   speakers: IProgramSpeaker[];
+  moderators: IProgramSpeaker[];
 }
 
 export interface IProgramDetailResponse {
