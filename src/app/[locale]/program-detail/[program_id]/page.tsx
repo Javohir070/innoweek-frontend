@@ -62,9 +62,12 @@ export default function ProgramDetailPage() {
   return (
     <section
       id="program-detail"
-      className="team section !bg-transparent transition-colors duration-300 py-16"
+      className="team section !bg-transparent transition-colors duration-300"
     >
       <AboutTimeline data={data} />
+      <div className="flex justify-center">
+        <StoreEvets event_data={data?.schedule} size="large" />
+      </div>
 
       <div
         className="!w-full mt-10 py-5"
@@ -192,9 +195,6 @@ export default function ProgramDetailPage() {
                     </div>
                   </div>
                 ))}
-              </div>
-              <div className="flex py-6 justify-center">
-                <StoreEvets event_data={data?.schedule} size="large" />
               </div>
             </div>
           )}

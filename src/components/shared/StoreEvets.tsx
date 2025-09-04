@@ -10,10 +10,11 @@ import { useState } from "react";
 
 interface IProps {
   event_data: IProgramEvent;
-  size?: "large" | "small" | "middle"
+  size?: "large" | "small" | "middle";
+  type?: "primary" | "default" | "dashed" | "text" | "link";
 }
 
-const StoreEvets = ({ event_data , size = "middle" }: IProps) => {
+const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps) => {
   const t = useTranslations('store_events');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -80,13 +81,16 @@ const StoreEvets = ({ event_data , size = "middle" }: IProps) => {
   return (
     <>
       <Button
-        type="primary"
+        type={type}
         icon={<PlusCircleIcon className="pt-1" />}
         onClick={() => {
           setIsModalVisible(true);
           fetchProfile();
         }}
         size={size}
+        color="primary"
+        variant="outlined"
+        className="!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
       >
         {t('register')}
       </Button>

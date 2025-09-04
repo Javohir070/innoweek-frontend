@@ -112,16 +112,16 @@ export default function ProgramSection() {
                           </div>
                           <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
                           <div className="timeline-right">
-                            <div className="flex gap-5 items-center">
+                            <div className="flex gap-5 items-start">
                               <Link
                                 href={`/program-detail/${event.id}`}
                                 className="no-underline !mb-4"
                               >
-                                <h3 className="position mb-0 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
+                                <h3 className="position mb-0 mt-1 !text-[#0085d4] dark:!text-blue-500 cursor-pointer hover:!text-black dark:hover:text-blue-400">
                                   {event.title}
                                 </h3>
                               </Link>
-                              {/* <StoreEvets event_data={event} /> */}
+                              <StoreEvets event_data={event} type="default" />
                             </div>
                             {event.description && (
                               <p className="description m-0 text-gray-700 dark:text-gray-300">
