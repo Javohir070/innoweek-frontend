@@ -35,7 +35,7 @@ export default function AboutTimeline({ data }: { data: IProgramDetail }) {
                           <div className="timeline-item border-gray-200 dark:border-gray-700">
                             <div className="timeline-left">
                                 <h4 className="company  mb-0   !text-blue-700 border-l-4 pl-3 !text-2xl !font-bold cursor-pointer hover:!text-blue-500 dark:hover:text-blue-400">
-                                  {t("our_address")}
+                                   {t("our_address")}
                                 </h4>
                             </div>
                             <div className="timeline-dot bg-blue-500 dark:bg-blue-600"></div>
@@ -47,7 +47,7 @@ export default function AboutTimeline({ data }: { data: IProgramDetail }) {
                                       "0 5px 15px -3px #0085d4, 0 4px 6px -4px #0085d4",
                                   }}
                                 >
-                                  {data?.address}
+                                  {t("tashkent")} {data?.address}
                                 </h3>
                             </div>
                           </div>

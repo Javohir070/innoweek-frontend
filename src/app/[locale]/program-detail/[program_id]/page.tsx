@@ -66,7 +66,7 @@ export default function ProgramDetailPage() {
       <AboutTimeline data={data} />
 
       <div
-        className="!w-full mt-10 min-h-[75vh]"
+        className="!w-full mt-10 py-5"
         style={{
           backgroundSize: "cover",
           backgroundPosition: "center",

@@ -88,7 +88,7 @@ const StoreEvets = ({ event_data , size = "middle" }: IProps) => {
         }}
         size={size}
       >
-        {t('register_event')}
+        {t('register')}
       </Button>
 
       <Modal

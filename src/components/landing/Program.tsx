@@ -121,7 +121,7 @@ export default function ProgramSection() {
                                   {event.title}
                                 </h3>
                               </Link>
-                              <StoreEvets event_data={event} />
+                              {/* <StoreEvets event_data={event} /> */}
                             </div>
                             {event.description && (
                               <p className="description m-0 text-gray-700 dark:text-gray-300">

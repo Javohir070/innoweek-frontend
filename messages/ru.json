@@ -39,7 +39,8 @@
   "about_timeline": {
     "about_us": "О нас",
     "our_address": "Наш адрес",
-    "start_time": "Время начала"
+    "start_time": "Время события", 
+    "tashkent":"город Ташкент, CAEx,"
   },
   "hero": {
     "Ideas without borders": "Идеи без границ",
