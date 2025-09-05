@@ -19,6 +19,8 @@ import { FetchInstance } from "@/api/FetchInstance";
 import { IResponse } from "@/types";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { withMask } from "use-mask-input";
+
 const { Title, Paragraph } = Typography;
 const { Dragger } = Upload;
 const { TextArea } = Input;
@@ -89,9 +91,10 @@ const EcoEdiethonForm = () => {
   const [regions, setRegions] = useState<Region[]>([]);
   const [regionsLoading, setRegionsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const t = useTranslations("eco_form");
 
-  const {push} = useRouter()
+  const { push } = useRouter();
 
   // Regionlarni yuklash
   const fetchRegions = useCallback(async () => {
@@ -153,10 +156,10 @@ const EcoEdiethonForm = () => {
   const onFinish = useCallback(
     async (values: EcoFormValues) => {
       if (isSubmitting) return; // Prevent multiple submissions
-      
+
       try {
         setIsSubmitting(true);
-        
+
         // Telefonni +998 prefiks bilan birga jamlaymiz
         const phone = `+998 ${values.phone}`.trim();
 
@@ -199,7 +202,7 @@ const EcoEdiethonForm = () => {
           form.resetFields();
           setFileList([]);
           setIsAutoFilled(false);
-          push("/profile")
+          push("/profile");
         }
       } catch (e) {
         message.error(t("submit_error"));
@@ -212,12 +215,14 @@ const EcoEdiethonForm = () => {
   );
 
   const searchByScienceId = async (scienceId: { science_id: string }) => {
+    if (isSearching) return; // Prevent multiple searches
+    
     try {
+      setIsSearching(true);
       const response = await FetchInstance<IResponse<ScienceIdResponse>>(
         `/api/scienceid/${scienceId.science_id}`
       );
-
-      if (response?.data) {
+      if (response?.status !== 404) {
         const data = response.data;
         // Yoshni birth_date dan hisoblash
         const calculateAge = (birthDate: string) => {
@@ -250,10 +255,24 @@ const EcoEdiethonForm = () => {
         message.success(`${data.full_name} ${t("success_message")}`);
         setIsAutoFilled(true); // Ma'lumotlar yuklangani belgilash
         setShowMainForm(true); // Asosiy formani ko'rsatish
+      } else {
+        form.resetFields([
+          "full_name",
+          "age",
+          "region",
+          "region_id",
+          "phone",
+          "email",
+        ]);
+        setIsAutoFilled(false);
+        setShowMainForm(false);
+        alert(t("not_found_message"));
       }
     } catch (error) {
       console.log("Error fetching data:", error);
-      message.error(t("not_found_message"));
+      alert(t("not_found_message"));
+    } finally {
+      setIsSearching(false);
     }
   };
 
@@ -272,7 +291,10 @@ const EcoEdiethonForm = () => {
   };
 
   return (
-    <section id="eco-ediethon" className="section bg-transparent mt-8 min-h-[80vh]">
+    <section
+      id="eco-ediethon"
+      className="section bg-transparent mt-8 min-h-[80vh]"
+    >
       <div className="container max-w-4xl">
         <div className="rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8 shadow-lg bg-white dark:bg-[#0b1220]">
           <Title level={3} className="!mb-1 !text-gray-900 dark:!text-white">
@@ -287,38 +309,63 @@ const EcoEdiethonForm = () => {
             onFinish={searchByScienceId}
             size="large"
           >
-            <Form.Item
-              label={t("science_id_search")}
-              className="mb-6"
-              layout="vertical"
-              name="science_id"
-              rules={[
-                {
-                  pattern: /^[A-Z]{3}-\d{4}-\d{4}$/,
-                  message: t("validation.science_id_format"),
-                },
-              ]}
-            >
-              <Input.Search
-                placeholder={t("science_id_placeholder")}
-                allowClear
-                className="!w-[calc(100%-80px)]"
-                style={{ textTransform: "uppercase" }}
-                onChange={(e) => {
-                  e.target.value = e.target.value.toUpperCase();
-                }}
-                enterButton={
-                  <Button type="primary" htmlType="submit">
-                    {t("search_button")}
-                  </Button>
-                }
-              />
-            </Form.Item>
-              <div className="mt-2 text-sm text-blue-600 dark:text-blue-400">
-                <span className="inline-flex items-center">
-                  ℹ️ {t("science_id_info")}
-                </span>
-              </div>
+            <div className="flex flex-col lg:flex-row items-end !w-full">
+              <Form.Item
+                label={t("science_id_search")}
+                className="!mb-0 !w-full lg:!w-1/2 "
+                layout="vertical"
+                name="science_id"
+                rules={[
+                  {
+                    pattern: /^[A-Z]{3}-\d{4}-\d{4}$/,
+                    message: t("validation.science_id_format"),
+                  },
+                ]}
+              >
+                <input
+                  ref={withMask("AAA-9999-9999")}
+                  placeholder={t("science_id_placeholder")}
+                  style={{
+                    textTransform: "uppercase",
+                    width: "100%",
+                    padding: "4px 11px",
+                    fontSize: "14px",
+                    lineHeight: "1.5715",
+                    color: "rgba(0, 0, 0, 0.88)",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #d9d9d9",
+                    borderRadius: "6px",
+                    transition: "all 0.2s",
+                    outline: "none",
+                  }}
+                  className="ant-input"
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#1677ff";
+                    e.target.style.boxShadow =
+                      "0 0 0 2px rgba(5, 145, 255, 0.1)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#d9d9d9";
+                    e.target.style.boxShadow = "none";
+                  }}
+                />
+              </Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                size="middle"
+                className="mb-1"
+                loading={isSearching}
+                disabled={isSearching}
+              >
+                {isSearching ? t("searching") : t("search_button")}
+              </Button>
+            </div>
+            <div className="mt-2 text-sm text-blue-600 dark:text-blue-400">
+              <span className="inline-flex items-center">
+                ℹ️ {t("science_id_info")}
+              </span>
+            </div>
             {isAutoFilled && (
               <div className="mb-4">
                 <Button
@@ -334,7 +381,7 @@ const EcoEdiethonForm = () => {
           </Form>
 
           {/* Manual form tugmasi - agar Science ID ishlatilmasa */}
-            {/* {!showMainForm && (
+          {/* {!showMainForm && (
               <div className="text-center mb-6">
                 <Button 
                   type="default" 
@@ -358,228 +405,266 @@ const EcoEdiethonForm = () => {
                 requiredMark
                 size="large"
               >
-            {/* 1. FIO */}
-            <Form.Item
-              label={t("labels.full_name")}
-              name="full_name"
-              rules={[{ required: true, message: t("validation.full_name_required") }]}
-            >
-              <Input
-                placeholder={t("placeholders.full_name")}
-                allowClear
-                disabled={isAutoFilled}
-              />
-            </Form.Item>
-
-            {/* 2. Age */}
-            <Form.Item
-              label={t("labels.age")}
-              name="age"
-              rules={[{ required: true, message: t("validation.age_required") }]}
-            >
-              <InputNumber
-                min={14}
-                max={100}
-                className="w-full"
-                placeholder={t("placeholders.age")}
-                disabled={isAutoFilled}
-              />
-            </Form.Item>
-
-            {/* 3. Region / City */}
-            <Form.Item
-              label={t("labels.region")}
-              name="region_id"
-              rules={[{ required: true, message: t("validation.region_required") }]}
-            >
-              <Select
-                placeholder={t("placeholders.region")}
-                allowClear
-                loading={regionsLoading}
-                showSearch
-                filterOption={(input, option) =>
-                  (option?.label ?? "")
-                    .toLowerCase()
-                    .includes(input.toLowerCase())
-                }
-                options={regions.map((region) => ({
-                  value: region.id,
-                  label: region.name_uz,
-                }))}
-                className="border"
-              />
-            </Form.Item>
-
-            {/* 4. Phone */}
-            <Form.Item
-              label={t("labels.phone")}
-              required
-            >
-              <Input.Group compact>
-                <Input disabled value={"+998"} className="!w-24" />
+                {/* 1. FIO */}
                 <Form.Item
-                  name="phone"
-                  noStyle
+                  label={t("labels.full_name")}
+                  name="full_name"
                   rules={[
                     {
                       required: true,
-                      message: t("validation.phone_required"),
+                      message: t("validation.full_name_required"),
                     },
                   ]}
                 >
                   <Input
-                    className="!w-[calc(100%-6rem)]"
-                    placeholder={t("placeholders.phone")}
+                    placeholder={t("placeholders.full_name")}
                     allowClear
                     disabled={isAutoFilled}
                   />
                 </Form.Item>
-              </Input.Group>
-            </Form.Item>
 
-            {/* 5. Email */}
-            <Form.Item
-              label={t("labels.email")}
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  type: "email",
-                  message: t("validation.email_required"),
-                },
-              ]}
-            >
-              <Input
-                placeholder={t("placeholders.email")}
-                allowClear
-                disabled={isAutoFilled}
-              />
-            </Form.Item>
+                {/* 2. Age */}
+                <Form.Item
+                  label={t("labels.age")}
+                  name="age"
+                  rules={[
+                    { required: true, message: t("validation.age_required") },
+                  ]}
+                >
+                  <InputNumber
+                    min={14}
+                    max={100}
+                    className="w-full"
+                    placeholder={t("placeholders.age")}
+                    disabled={isAutoFilled}
+                  />
+                </Form.Item>
 
-            {/* 6. Project name */}
-            <Form.Item
-              label={t("labels.project_name")}
-              name="project_name"
-              rules={[{ required: true, message: t("validation.project_name_required") }]}
-            >
-              <Input placeholder={t("placeholders.project_name")} allowClear />
-            </Form.Item>
+                {/* 3. Region / City */}
+                <Form.Item
+                  label={t("labels.region")}
+                  name="region_id"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("validation.region_required"),
+                    },
+                  ]}
+                >
+                  <Select
+                    placeholder={t("placeholders.region")}
+                    allowClear
+                    loading={regionsLoading}
+                    showSearch
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    options={regions.map((region) => ({
+                      value: region.id,
+                      label: region.name_uz,
+                    }))}
+                    className="border"
+                  />
+                </Form.Item>
 
-            {/* 7. Brief idea */}
-            <Form.Item
-              label={t("labels.project_brief")}
-              name="project_brief"
-              rules={[{ required: true, message: t("validation.project_brief_required") }]}
-            >
-              <TextArea
-                rows={4}
-                maxLength={2000}
-                showCount
-                placeholder={t("placeholders.project_brief")}
-              />
-            </Form.Item>
+                {/* 4. Phone */}
+                <Form.Item label={t("labels.phone")} required>
+                  <Input.Group compact>
+                    <Input disabled value={"+998"} className="!w-24" />
+                    <Form.Item
+                      name="phone"
+                      noStyle
+                      rules={[
+                        {
+                          required: true,
+                          message: t("validation.phone_required"),
+                        },
+                      ]}
+                    >
+                      <Input
+                        className="!w-[calc(100%-6rem)]"
+                        placeholder={t("placeholders.phone")}
+                        allowClear
+                        disabled={isAutoFilled}
+                      />
+                    </Form.Item>
+                  </Input.Group>
+                </Form.Item>
 
-            {/* 8. Goal */}
-            <Form.Item
-              label={t("labels.project_goal")}
-              name="project_goal"
-              rules={[{ required: true, message: t("validation.project_goal_required") }]}
-            >
-              <TextArea
-                rows={3}
-                maxLength={2000}
-                showCount
-                placeholder={t("placeholders.project_goal")}
-              />
-            </Form.Item>
+                {/* 5. Email */}
+                <Form.Item
+                  label={t("labels.email")}
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      type: "email",
+                      message: t("validation.email_required"),
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={t("placeholders.email")}
+                    allowClear
+                    disabled={isAutoFilled}
+                  />
+                </Form.Item>
 
-            {/* 9. Problem */}
-            <Form.Item
-              label={t("labels.project_problem")}
-              name="project_problem"
-              rules={[{ required: true, message: t("validation.project_problem_required") }]}
-            >
-              <TextArea
-                rows={4}
-                maxLength={3000}
-                showCount
-                placeholder={t("placeholders.project_problem")}
-              />
-            </Form.Item>
+                {/* 6. Project name */}
+                <Form.Item
+                  label={t("labels.project_name")}
+                  name="project_name"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("validation.project_name_required"),
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={t("placeholders.project_name")}
+                    allowClear
+                  />
+                </Form.Item>
 
-            {/* 10. Plan */}
-            <Form.Item
-              label={t("labels.implementation_plan")}
-              name="implementation_plan"
-              rules={[{ required: true, message: t("validation.implementation_plan_required") }]}
-            >
-              <TextArea
-                rows={4}
-                maxLength={3000}
-                showCount
-                placeholder={t("placeholders.implementation_plan")}
-              />
-            </Form.Item>
+                {/* 7. Brief idea */}
+                <Form.Item
+                  label={t("labels.project_brief")}
+                  name="project_brief"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("validation.project_brief_required"),
+                    },
+                  ]}
+                >
+                  <TextArea
+                    rows={4}
+                    maxLength={2000}
+                    showCount
+                    placeholder={t("placeholders.project_brief")}
+                  />
+                </Form.Item>
 
-            {/* 11. Team */}
-            <Form.Item
-              label={t("labels.team_info")}
-              name="team_info"
-            >
-              <TextArea
-                rows={3}
-                maxLength={3000}
-                showCount
-                placeholder={t("placeholders.team_info")}
-              />
-            </Form.Item>
+                {/* 8. Goal */}
+                <Form.Item
+                  label={t("labels.project_goal")}
+                  name="project_goal"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("validation.project_goal_required"),
+                    },
+                  ]}
+                >
+                  <TextArea
+                    rows={3}
+                    maxLength={2000}
+                    showCount
+                    placeholder={t("placeholders.project_goal")}
+                  />
+                </Form.Item>
 
-            {/* 12. Why chosen */}
-            <Form.Item
-              label={t("labels.why_chosen")}
-              name="why_chosen"
-              rules={[{ required: true, message: t("validation.why_chosen_required") }]}
-            >
-              <TextArea
-                rows={3}
-                maxLength={2000}
-                showCount
-                placeholder={t("placeholders.why_chosen")}
-              />
-            </Form.Item>
+                {/* 9. Problem */}
+                <Form.Item
+                  label={t("labels.project_problem")}
+                  name="project_problem"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("validation.project_problem_required"),
+                    },
+                  ]}
+                >
+                  <TextArea
+                    rows={4}
+                    maxLength={3000}
+                    showCount
+                    placeholder={t("placeholders.project_problem")}
+                  />
+                </Form.Item>
 
-            <Divider className="!my-4" />
+                {/* 10. Plan */}
+                <Form.Item
+                  label={t("labels.implementation_plan")}
+                  name="implementation_plan"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("validation.implementation_plan_required"),
+                    },
+                  ]}
+                >
+                  <TextArea
+                    rows={4}
+                    maxLength={3000}
+                    showCount
+                    placeholder={t("placeholders.implementation_plan")}
+                  />
+                </Form.Item>
 
-            {/* 13. Presentation file */}
-            <Form.Item
-              label={t("labels.presentation_file")}
-              required
-            >
-              <Dragger {...uploadProps} className="!p-4">
-                <p className="ant-upload-drag-icon">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">
-                  {t("upload.presentation_text")}
-                </p>
-                <p className="ant-upload-hint">
-                  {t("upload.presentation_hint")}
-                </p>
-              </Dragger>
-            </Form.Item>
+                {/* 11. Team */}
+                <Form.Item label={t("labels.team_info")} name="team_info">
+                  <TextArea
+                    rows={3}
+                    maxLength={3000}
+                    showCount
+                    placeholder={t("placeholders.team_info")}
+                  />
+                </Form.Item>
 
-            <Form.Item className="!mt-6">
-              <Button 
-                type="primary" 
-                htmlType="submit" 
-                size="large"
-                loading={isSubmitting}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? t("buttons.submitting") : t("buttons.submit")}
-              </Button>
-            </Form.Item>
-          </Form>
+                {/* 12. Why chosen */}
+                <Form.Item
+                  label={t("labels.why_chosen")}
+                  name="why_chosen"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("validation.why_chosen_required"),
+                    },
+                  ]}
+                >
+                  <TextArea
+                    rows={3}
+                    maxLength={2000}
+                    showCount
+                    placeholder={t("placeholders.why_chosen")}
+                  />
+                </Form.Item>
+
+                <Divider className="!my-4" />
+
+                {/* 13. Presentation file */}
+                <Form.Item label={t("labels.presentation_file")} required>
+                  <Dragger {...uploadProps} className="!p-4">
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined />
+                    </p>
+                    <p className="ant-upload-text">
+                      {t("upload.presentation_text")}
+                    </p>
+                    <p className="ant-upload-hint">
+                      {t("upload.presentation_hint")}
+                    </p>
+                  </Dragger>
+                </Form.Item>
+
+                <Form.Item className="!mt-6">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    size="large"
+                    loading={isSubmitting}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting
+                      ? t("buttons.submitting")
+                      : t("buttons.submit")}
+                  </Button>
+                </Form.Item>
+              </Form>
             </>
           )}
         </div>

@@ -71,17 +71,16 @@ export default function AboutTimeline({ data }: { data: IProgramDetail }) {
                               </h3>
                             </div>
                           </div>
-
-                          {/* <div className="timeline-item border-gray-200 dark:border-gray-700">
+                          <div className="timeline-item border-gray-200 dark:border-gray-700">
                             <div className="timeline-left">
                               <h4 className="company  mb-0   !text-[#0085d4] border-l-4 pl-3 !text-2xl !font-bold cursor-pointer hover:!text-[#0085D4] dark:hover:text-blue-400">
-                                {t("description")}
+                                {t("about_event")}
                               </h4>
                             </div>
                             <div className="timeline-dot bg-[#0085D4] dark:bg-blue-600"></div>
                             <div className="timeline-right">
                               <h3
-                                className="position mb-0 border bg-gray-100 p-4 !text-black dark:!text-[#0085D4] dark:bg-gray-800 dark:!border-gray-400/70 cursor-pointer hover:!text-[#0085D4] rounded-md dark:hover:text-blue-400"
+                                className="position mb-0 border bg-gray-100 p-4 !text-black dark:!text-[#0085D4] dark:bg-gray-800 dark:!border-gray-400/70 cursor-pointer hover:!text-[#0085D4] rounded-md dark:hover:text-blue-400 !font-normal !text-md"
                                 style={{
                                   boxShadow:
                                     "0 5px 15px -3px #0085d4, 0 4px 6px -4px #0085d4",
@@ -90,7 +89,7 @@ export default function AboutTimeline({ data }: { data: IProgramDetail }) {
                                 {data?.schedule?.description}
                               </h3>
                             </div>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                     </div>
