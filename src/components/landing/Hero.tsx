@@ -20,6 +20,9 @@ export default function HeroSection() {
     seconds: 0,
   });
 
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -85,11 +88,13 @@ export default function HeroSection() {
                       <span className="text-white">{t("hero btn")}</span>
                     </Link>
                   </div> */}
-                  <div className="cta-button hover:bg-[#e3a127] hover:border-[#e3a127] rounded-full">
-                    <Link href="/register" className="btn border">
-                      <span className="text-white">{t("REGISTER")}</span>
-                    </Link>
-                  </div>
+                  {!token && (
+                    <div className="cta-button hover:bg-[#e3a127] hover:border-[#e3a127] rounded-full">
+                      <Link href="/register" className="btn border">
+                        <span className="text-white">{t("REGISTER")}</span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -127,7 +132,9 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-        <RegisterModal2 open={open} onClose={() => setOpen(false)} />
+        {!token && (
+          <RegisterModal2 open={open} onClose={() => setOpen(false)} />
+        )}
       </section>
     </>
   );

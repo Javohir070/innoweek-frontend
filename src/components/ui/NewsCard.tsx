@@ -21,7 +21,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
     <Link href={`/news/${id}`}>
       <div className="group relative bg-white text-black dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer">
         <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-[250px] overflow-hidden">
           <Image
             src={image}
             alt={title}
@@ -38,13 +38,8 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
         </div>
 
         <div className="relative p-3 space-y-2">
-          <div className="min-h-[80px] md:min-h-[100px] lg:min-h-[120px]">
-            {/* <div className="flex items-center dark:text-slate-400 text-sm">
-              <Calendar className="w-4 h-4 mr-2" />
-              {formatDate(createdAt)}
-            </div> */}
-
-            <h3 className="!text-[17px]  font-bold dark:!text-white !text-gray-800 leading-tight group-hover:text-blue-400 transition-colors duration-300 mt-2 mb-0">
+          <div className="min-h-[80px]">
+            <h3 className="!text-[17px]   font-bold dark:!text-white !text-gray-800 leading-tight group-hover:text-blue-400 transition-colors duration-300 mt-2 mb-0 line-clamp-4">
               {title}
             </h3>
           </div>
