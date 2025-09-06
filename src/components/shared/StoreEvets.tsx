@@ -14,8 +14,12 @@ interface IProps {
   type?: "primary" | "default" | "dashed" | "text" | "link";
 }
 
-const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps) => {
-  const t = useTranslations('store_events');
+const StoreEvets = ({
+  event_data,
+  size = "middle",
+  type = "primary",
+}: IProps) => {
+  const t = useTranslations("store_events");
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -33,13 +37,9 @@ const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps)
       );
       if (response) {
         setProfile(response?.data);
-      } else {
-        setError("Failed to fetch profile data");
       }
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An unknown error occurred"
-      );
+      console.log(err);
     } finally {
       setLoading(false);
     }
@@ -92,15 +92,11 @@ const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps)
         variant="outlined"
         className="!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
       >
-        {t('register')}
+        {t("register")}
       </Button>
 
       <Modal
-        title={
-          registerSuccess
-            ? t('success')
-            : event_data.title || t('detail')
-        }
+        title={registerSuccess ? t("success") : event_data.title || t("detail")}
         open={isModalVisible}
         onOk={() => setIsModalVisible(false)}
         onCancel={() => setIsModalVisible(false)}
@@ -112,7 +108,7 @@ const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps)
                   type="primary"
                   onClick={() => setIsModalVisible(false)}
                 >
-                  {t('close')}
+                  {t("close")}
                 </Button>,
               ]
             : [
@@ -120,7 +116,7 @@ const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps)
                   {!profile && !loading ? (
                     <span style={{ marginTop: 16 }}>
                       <p style={{ color: "orange", marginBottom: 8 }}>
-                        {t('login_required')}
+                        {t("login_required")}
                       </p>
                       <Button
                         type="default"
@@ -129,7 +125,7 @@ const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps)
                         }}
                         style={{ marginRight: 8 }}
                       >
-                        {t('enter')}
+                        {t("enter")}
                       </Button>
                       <Button
                         type="link"
@@ -137,7 +133,7 @@ const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps)
                           push("/register");
                         }}
                       >
-                       {t('register')}
+                        {t("register")}
                       </Button>
                     </span>
                   ) : (
@@ -147,43 +143,43 @@ const StoreEvets = ({ event_data , size = "middle" , type = "primary" }: IProps)
                       loading={registerLoading}
                       onClick={handleRegister}
                     >
-                      {t('register_event')}
+                      {t("register_event")}
                     </Button>
                   )}
                 </>,
                 <Button key="cancel" onClick={() => setIsModalVisible(false)}>
-                  {t('cancel')}
+                  {t("cancel")}
                 </Button>,
               ]
         }
       >
         {registerSuccess ? (
-          <p>{t('registration_successful')}</p>
+          <p>{t("registration_successful")}</p>
         ) : (
           <>
             {event_data.date && (
               <p>
-                <b>{t('date_and_time_of_visit')}:</b> {event_data.date}
+                <b>{t("date_and_time_of_visit")}:</b> {event_data.date}
               </p>
             )}
             {event_data.address && (
               <p>
-                <b>{t('address')}:</b> {event_data.address}
+                <b>{t("address")}:</b> {event_data.address}
               </p>
             )}
             {event_data?.started_at && (
               <p>
-                <b>{t('start_time')}:</b> {event_data.started_at}
+                <b>{t("start_time")}:</b> {event_data.started_at}
               </p>
             )}
             {event_data?.stopped_at && (
               <p>
-                <b>{t('end_time')}:</b> {event_data.stopped_at}
+                <b>{t("end_time")}:</b> {event_data.stopped_at}
               </p>
             )}
             {event_data.description && (
               <p>
-                <b>{t('description')}:</b> {event_data.description}
+                <b>{t("description")}:</b> {event_data.description}
               </p>
             )}
             {registerError && <p style={{ color: "red" }}>{registerError}</p>}
