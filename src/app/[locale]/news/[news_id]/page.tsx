@@ -30,7 +30,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
 
   return (
     <div className="container pb-10 pt-20">
-      <div className="section-title">
+      <div className="section-title pb-2">
         <h1 className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold pt-4 ">
           {data.title}
         </h1>
@@ -40,7 +40,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
           <Image
             src={`${BASE_URL}/upload/news/${data?.image}_big_720.png`}
             alt={data.title}
-            className="w-full h- min-h-[400px] max-h-[600px] object-cover rounded-lg"
+            className="w-full min-h-[400px] max-h-[600px] object-cover rounded-lg"
             width={720}
             height={500}
           />
