@@ -105,12 +105,12 @@ export default function NewsSection() {
                     className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[100px]"
                   >
                     <div className="flex flex-col  lg:flex-row  gap-5  w-full h-full  lg:h-[400px] overflow-hidden">
-                      <div className="flex flex-col gap-y-3.5 w-full lg:w-[55%] !h-[306px] overflow-hidden">
+                      <div className="flex flex-col gap-y-3.5 w-full lg:w-[55%] overflow-hidden">
                         <h2 className="!text-white dark:!text-white">
                           {item?.title}
                         </h2>
                         <div
-                          className="line-clamp-6 !text-white dark:!text-gray-300 !font-normal not-italic !font-nunito-sans *:!font-nunito-sans"
+                          className="line-clamp-9 !text-white dark:!text-gray-300 !font-normal not-italic !font-nunito-sans *:!font-nunito-sans"
                           dangerouslySetInnerHTML={{
                             __html: item?.description,
                           }}
