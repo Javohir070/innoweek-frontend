@@ -11,6 +11,7 @@ export interface INewsListItem {
   title: string;
   description: string;
   image: string;
+  poster: string | null;
   created_at: string;
 }
 export interface IResponse<T> {

@@ -5,7 +5,6 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
-import newsImage from "@/assets/img/about/news1.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { useParams } from "next/navigation";
@@ -101,9 +100,7 @@ export default function NewsSection() {
             {data.map((item) => (
               <SwiperSlide key={item.id}>
                 <Link href={`/news/${item?.id}`}>
-                  <div
-                    className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[100px]"
-                  >
+                  <div className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[100px]">
                     <div className="flex flex-col  lg:flex-row  gap-5  w-full h-full  lg:h-[400px] overflow-hidden">
                       <div className="flex flex-col gap-y-3.5 w-full lg:w-[55%] overflow-hidden">
                         <h2 className="!text-white dark:!text-white">
@@ -120,9 +117,9 @@ export default function NewsSection() {
                         <div className="featured-img-wrapper rounded-lg overflow-hidden w-full h-full">
                           <Image
                             src={
-                              item?.image
-                                ? `${BASE_URL}/upload/news/${item?.image}_big_720.png`
-                                : newsImage
+                              item?.poster
+                                ? `${BASE_URL}/upload/news/${item?.poster}_big_720.png`
+                                : `${BASE_URL}/upload/news/${item?.image}_big_720.png`
                             }
                             className="featured-img !w-full object-cover !h-[400px]"
                             alt={item?.title}
