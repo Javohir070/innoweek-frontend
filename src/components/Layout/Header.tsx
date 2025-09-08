@@ -125,7 +125,7 @@ export default function Header() {
       ],
     },
     { label: t("GALLERY"), key: "/gallery" },
-    { label: t("ECO-EDIETHON"), key: "/eco-ediethon" },
+    { label: t("InnoMarket"), key: "https://innomarket.uz" },
     { label: t("CONTACT"), key: "#contact" },
   ];
 
