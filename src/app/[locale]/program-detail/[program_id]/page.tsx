@@ -25,7 +25,7 @@ export default function ProgramDetailPage() {
       const res: IProgramDetailResponse = await FetchInstance(
         `/api/v1.0/schedules/${params?.program_id}/list?lang=${params?.locale}`
       );
-      console.log(res?.data?.moderators);
+      console.log(res);
       setData(res?.data);
     } catch (error) {
       console.log(error);

@@ -123,11 +123,11 @@ export default function ProgramSection() {
                               </Link>
                               <StoreEvets event_data={event} type="default" />
                             </div>
-                            {event.description && (
+                            {/* {event.description && (
                               <p className="description m-0 text-gray-700 dark:text-gray-300">
                                 {event.description || t("NO_DESCRIPTION")}
                               </p>
-                            )}
+                            )} */}
                           </div>
                         </div>
                       ))}

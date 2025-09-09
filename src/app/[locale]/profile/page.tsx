@@ -390,7 +390,7 @@ export default function ProfilePage() {
        
           {activeTab === "certificate" && tez_kunda()}
 
-          {activeTab === "ticket" && (
+          {(activeTab === "ticket" && profile?.ticket) && (
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 overflow-hidden shadow-gray-300 dark:shadow-blue-500 h-full">
               <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-semibold !text-gray-800 dark:text-white">

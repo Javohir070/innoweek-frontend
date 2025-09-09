@@ -127,7 +127,7 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
                 {t("electronic_ticket")}
               </div> */}
               <div className="flex flex-row items-center justify-center">
-                <QRCode value={ticket_id} className="w-[180px] h-[180px] py-3" />
+                <QRCode value={ticket_id} className="w-[180px] py-3" />
               </div>
             </div>
             <div className=" text-sm text-center">{t("ticket_to_enter")}</div>
