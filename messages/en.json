@@ -317,6 +317,7 @@
     "avatar_upload_error": "Error uploading avatar",
     "avatar_upload_success": "Avatar uploaded successfully",
     "male": "Male",
+    "female": "Female",
     "profession": "Profession",
     "updating": "Updating...",
     "personal_information": "Personal Information",

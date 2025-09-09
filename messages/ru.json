@@ -317,6 +317,7 @@
     "avatar_upload_error": "Ошибка при загрузке аватара",
     "avatar_upload_success": "Аватар успешно загружен",
     "male": "Мужчина",
+    "female": "Женщина",
     "profession": "Тип участия",
     "updating": "Обновление...",
     "personal_information": "Личная информация",
