@@ -82,7 +82,7 @@ const SIDEBAR_ITEMS = [
     icon: <PiCertificateFill />,
   },
   { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
-  { key: "applications", labelKey: "sidebar_eco_ediethon", icon: <FaTicketAlt /> },
+  // { key: "applications", labelKey: "sidebar_eco_ediethon", icon: <FaTicketAlt /> },
 ];
 
 export default function ProfilePage() {
