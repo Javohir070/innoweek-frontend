@@ -13,6 +13,7 @@ import { FaTicketAlt } from "react-icons/fa";
 import MyEvents from "@/components/shared/MyEvents";
 import MyTicket from "@/components/shared/MyTicket";
 import MyApplications from "@/components/shared/MyApplications";
+import MyCertificates from "@/components/shared/MyCertificates";
 
 export interface UserProfile {
   id: number;
@@ -388,7 +389,7 @@ export default function ProfilePage() {
             </div>
           )}
        
-          {activeTab === "certificate" && tez_kunda()}
+          {activeTab === "certificate" && <MyCertificates />}
 
           {(activeTab === "ticket" && profile?.ticket) && (
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 overflow-hidden shadow-gray-300 dark:shadow-blue-500 h-full">
