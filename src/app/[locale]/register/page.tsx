@@ -191,7 +191,7 @@ export default function RegisterRolePage() {
     const getProfessions = async () => {
       try {
         const res = await FetchInstance<IResponse<IProfessionItem[]>>(
-          "/api/v1.0/profession/list"
+          "/api/v1.0/profession/list?lang=" + params?.locale
         );
         if (res?.success) {
           setProfessions(res.data.reverse());
