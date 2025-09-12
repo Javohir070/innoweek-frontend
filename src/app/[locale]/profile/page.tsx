@@ -87,25 +87,11 @@ const SIDEBAR_ITEMS = [
 
 export default function ProfilePage() {
   const t = useTranslations("profile");
-  const coming = useTranslations("cooming_soon");
   const params = useParams();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<string>("profile");
-
-  const tez_kunda = () => (
-    <div
-      className="min-h-32 flex justify-center items-center  rounded-2xl !shadow-lg overflow-hidden border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500 h-full"
-      style={{
-        backgroundImage: `url(${section.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <h3 className="!text-gray-800 !font-bold">{coming("cooming_soon")}</h3>
-    </div>
-  );
 
   useEffect(() => {
     const fetchProfile = async () => {
