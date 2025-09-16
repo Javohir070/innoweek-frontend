@@ -29,7 +29,7 @@ export default async function NewsDetailPage({ params }: INewsById) {
   }
 
   return (
-    <div className="container pb-10 pt-20 mt-4 prose">
+    <div className="container pb-10 pt-20 mt-4 prose min-h-[65vh]">
       {data.image && (
         <Image
           src={`${BASE_URL}/upload/news/${data?.image}_big_720.png`}
