@@ -1,9 +1,7 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
-// import Ticket from "../ticket/page";
 import { IoPersonSharp } from "react-icons/io5";
 import { FetchInstance } from "@/api/FetchInstance";
 import { CountryObj, IResponse } from "@/types";

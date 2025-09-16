@@ -29,24 +29,20 @@ export default async function NewsDetailPage({ params }: INewsById) {
   }
 
   return (
-    <div className="container pb-10 pt-20">
-      <div className="section-title pb-2">
-        <h1 className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold pt-4 ">
-          {data.title}
-        </h1>
-      </div>
+    <div className="container pb-10 pt-20 mt-4 prose">
       {data.image && (
-        <div className="mb-6">
-          <Image
-            src={`${BASE_URL}/upload/news/${data?.image}_big_720.png`}
-            alt={data.title}
-            className="w-full min-h-[400px] max-h-[600px] object-cover rounded-lg"
-            width={720}
-            height={500}
-          />
-        </div>
+        <Image
+          src={`${BASE_URL}/upload/news/${data?.image}_big_720.png`}
+          alt={data.title}
+          className="float-left w-full object-cover rounded-lg lg:w-1/4 mr-4"
+          width={320}
+          height={180}
+        />
       )}
-      <div
+        <span className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold pt-4 ">
+          {data.title}
+        </span>
+      <span
         className="prose prose-lg max-w-none text-black dark:text-white"
         dangerouslySetInnerHTML={{ __html: data.description }}
       />
