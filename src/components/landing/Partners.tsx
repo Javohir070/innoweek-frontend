@@ -53,9 +53,9 @@ const PartnersSection = () => {
     getPartners();
   }, []);
 
-  const slideCount = partners.length + 10;
+  const slideCount = partners.length + 16;
   const slideWidth = 200; // px
-  const duration = slideCount * 2; // sekund
+  const duration = slideCount; // sekund
 
   return (
     <section className="clients section py-[200px] bg-transparent">
