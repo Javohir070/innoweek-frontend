@@ -38,7 +38,7 @@ const PartnersSection = () => {
     try {
       const res = await FetchInstance<PartnersResponse>("/api/partners/list");
       console.log(res?.data);
-      
+
       if (res?.success && res?.data) {
         setPartners(res.data);
       }
@@ -77,19 +77,6 @@ const PartnersSection = () => {
             data-aos="fade-right"
             data-aos-delay="200"
           >
-            {/* API dan kelgan partnerlar */}
-            {partners.map((partner) => (
-              <div key={`track1-${partner.id}`} className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-                <Image 
-                  src={`${BASE_URL}/${partner.logo}`} 
-                  className="img-fluid" 
-                  alt={partner.name}
-                  width={120}
-                  height={80}
-                />
-              </div>
-            ))}
-            
             {/* Static partnerlar (agar API dan kam kelsa) */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage1} className="img-fluid" alt="Client 1" />
@@ -115,10 +102,13 @@ const PartnersSection = () => {
 
             {/* Ikkinchi qator uchun takrorlash */}
             {partners.map((partner) => (
-              <div key={`track1-repeat-${partner.id}`} className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-                <Image 
-                  src={`${BASE_URL}/storage/${partner.logo}`} 
-                  className="img-fluid" 
+              <div
+                key={`track1-repeat-${partner.id}`}
+                className="clients-slide !bg-[#0085d4] dark:!bg-gray-800"
+              >
+                <Image
+                  src={`${BASE_URL}/storage/${partner.logo}`}
+                  className="img-fluid"
                   alt={partner.name}
                   width={120}
                   height={80}
@@ -134,19 +124,6 @@ const PartnersSection = () => {
             data-aos="fade-left"
             data-aos-delay="200"
           >
-            {/* API dan kelgan partnerlar */}
-            {partners.map((partner) => (
-              <div key={`track2-${partner.id}`} className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-                <Image 
-                  src={`${BASE_URL}/storage/${partner.logo}`} 
-                  className="img-fluid" 
-                  alt={partner.name}
-                  width={120}
-                  height={80}
-                />
-              </div>
-            ))}
-            
             {/* Static partnerlar */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage8} className="img-fluid" alt="Client 8" />
@@ -169,10 +146,13 @@ const PartnersSection = () => {
 
             {/* Ikkinchi qator uchun takrorlash */}
             {partners.map((partner) => (
-              <div key={`track2-repeat-${partner.id}`} className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-                <Image 
-                  src={`${BASE_URL}/${partner.logo}`} 
-                  className="img-fluid" 
+              <div
+                key={`track2-repeat-${partner.id}`}
+                className="clients-slide !bg-[#0085d4] dark:!bg-gray-800"
+              >
+                <Image
+                  src={`${BASE_URL}/storage/${partner.logo}`}
+                  className="img-fluid"
                   alt={partner.name}
                   width={120}
                   height={80}
