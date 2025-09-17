@@ -53,6 +53,10 @@ const PartnersSection = () => {
     getPartners();
   }, []);
 
+  const slideCount = partners.length + 10;
+  const slideWidth = 200; // px
+  const duration = slideCount * 2; // sekund
+
   return (
     <section className="clients section py-[200px] bg-transparent">
       <div id="clients" className="">
@@ -76,6 +80,10 @@ const PartnersSection = () => {
             className="clients-track track-1"
             data-aos="fade-right"
             data-aos-delay="200"
+            style={{
+              width: `${slideCount * slideWidth}px`,
+              animationDuration: `${duration}s`,
+            }}
           >
             {/* Static partnerlar (agar API dan kam kelsa) */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
@@ -123,6 +131,10 @@ const PartnersSection = () => {
             className="clients-track track-2"
             data-aos="fade-left"
             data-aos-delay="200"
+            style={{
+              width: `${slideCount * slideWidth}px`,
+              animationDuration: `${duration}s`,
+            }}
           >
             {/* Static partnerlar */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
