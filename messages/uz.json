@@ -42,6 +42,8 @@
     "our_address": "Bizning Manzil",
     "start_time": "Tadbir vaqti",
     "about_event": "Tadbir Haqida",
+    "about_event_image": "Tadbir dasturi",
+    "no_image_available": "Dastur yo'q",
     "tashkent": "Toshkent shahar , CAEx"
   },
   "hero": {

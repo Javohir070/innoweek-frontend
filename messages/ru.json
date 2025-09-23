@@ -42,6 +42,8 @@
     "our_address": "Наш адрес",
     "start_time": "Время события",
     "about_event": "О событии",
+    "about_event_image": "Программа мероприятия",
+    "no_image_available": "Программа недоступна",
     "tashkent": "город Ташкент, CAEx,"
   },
   "hero": {

@@ -282,6 +282,7 @@ export interface ISchedule {
   address: string;
   started_at: string;
   stopped_at: string;
+  image: string | null;
 }
 
 export interface IProgramDetail {

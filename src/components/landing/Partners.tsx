@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import partnerImage1 from "@/assets/img/clients/clients-1.webp";
 import partnerImage2 from "@/assets/img/clients/clients-2.webp";
 import partnerImage3 from "@/assets/img/clients/clients-3.webp";
-import partnerImage4 from "@/assets/img/clients/clients-4.webp";
+// import partnerImage4 from "@/assets/img/clients/clients-4.webp";
 import partnerImage5 from "@/assets/img/clients/clients-5.webp";
 import partnerImage6 from "@/assets/img/clients/clients-6.webp";
 import partnerImage7 from "@/assets/img/clients/clients-7.webp";
@@ -95,9 +95,9 @@ const PartnersSection = () => {
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage3} className="img-fluid" alt="Client 3" />
             </div>
-            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
+            {/* <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage4} className="img-fluid" alt="Client 4" />
-            </div>
+            </div> */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage5} className="img-fluid" alt="Client 5" />
             </div>
@@ -152,9 +152,9 @@ const PartnersSection = () => {
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage3} className="img-fluid" alt="Client 3" />
             </div>
-            <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
+            {/* <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
               <Image src={partnerImage4} className="img-fluid" alt="Client 4" />
-            </div>
+            </div> */}
 
             {/* Ikkinchi qator uchun takrorlash */}
             {partners.map((partner) => (

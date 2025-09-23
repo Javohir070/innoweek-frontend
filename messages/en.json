@@ -42,6 +42,8 @@
     "our_address": "Our Address",
     "start_time": "Event time",
     "about_event": "About Event",
+    "about_event_image": "Event Program",
+    "no_image_available": "No Program Available",
     "tashkent": "Tashkent city, CAEx,"
   },
   "hero": {
