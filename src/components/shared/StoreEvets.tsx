@@ -80,20 +80,22 @@ const StoreEvets = ({
 
   return (
     <>
-      <Button
-        type={type}
-        icon={<PlusCircleIcon className="pt-1" />}
-        onClick={() => {
-          setIsModalVisible(true);
-          fetchProfile();
-        }}
-        size={size}
-        color="primary"
-        variant="outlined"
-        className="!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
-      >
-        {t("register")}
-      </Button>
+      {[40, 60].includes(event_data?.id) && (
+        <Button
+          type={type}
+          icon={<PlusCircleIcon className="pt-1" />}
+          onClick={() => {
+            setIsModalVisible(true);
+            fetchProfile();
+          }}
+          size={size}
+          color="primary"
+          variant="outlined"
+          className="!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
+        >
+          {t("register")}
+        </Button>
+      )}
 
       <Modal
         title={registerSuccess ? t("success") : event_data.title || t("detail")}

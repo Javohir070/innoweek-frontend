@@ -66,7 +66,9 @@ export default function ProgramDetailPage() {
     >
       <AboutTimeline data={data} />
       <div className="flex justify-center">
-        <StoreEvets event_data={data?.schedule} size="large" />
+        {!([40, 60].includes(data?.id)) && (
+          <StoreEvets event_data={data?.schedule} size="large" />
+        )}
       </div>
 
       <div
