@@ -121,7 +121,10 @@ export default function ProgramSection() {
                                   {event.title}
                                 </h3>
                               </Link>
-                              <StoreEvets event_data={event} type="default" />
+
+                              {!([40, 60].includes(event.id)) && (
+                                <StoreEvets event_data={event} type="default" />
+                              )}
                             </div>
                             {/* {event.description && (
                               <p className="description m-0 text-gray-700 dark:text-gray-300">
