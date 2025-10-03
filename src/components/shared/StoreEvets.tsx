@@ -80,7 +80,7 @@ const StoreEvets = ({
 
   return (
     <>
-      {[40, 60].includes(event_data?.id) && (
+      {!([40, 60].includes(event_data?.id)) && (
         <Button
           type={type}
           icon={<PlusCircleIcon className="pt-1" />}
