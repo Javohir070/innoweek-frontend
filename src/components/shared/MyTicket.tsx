@@ -14,9 +14,10 @@ import section from "@/assets/img/section_bg_2.jpg";
 
 interface Props {
   ticket_id: string;
+  full_number: string;
 }
 
-const MyTicket: React.FC<Props> = ({ ticket_id }) => {
+const MyTicket: React.FC<Props> = ({ ticket_id, full_number }) => {
   const t = useTranslations("ticket");
   const [ticketData, setTicketData] = useState<ITicketDetail | null>(null);
 
@@ -127,7 +128,7 @@ const MyTicket: React.FC<Props> = ({ ticket_id }) => {
                 {t("electronic_ticket")}
               </div> */}
               <div className="flex flex-row items-center justify-center">
-                <QRCode value={ticket_id} className="w-[180px] py-3" />
+                <QRCode value={full_number} className="w-[180px] py-3" />
               </div>
             </div>
             <div className=" text-sm text-center">{t("ticket_to_enter")}</div>

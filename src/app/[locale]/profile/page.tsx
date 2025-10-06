@@ -58,6 +58,13 @@ export interface UserProfile {
   role?: string;
   country?: string | CountryObj | null;
   profession?: ProfessionObj | null;
+  number: {
+    id: number;
+    full_number: string;
+    user_id: number;
+    created_at: string | null;
+    updated_at: string;
+  };
 }
 
 interface ProfessionObj {
@@ -107,9 +114,7 @@ export default function ProfilePage() {
           setError(t("error_fetch_profile"));
         }
       } catch (err) {
-        setError(
-          err instanceof Error ? err.message : t("error_unknown")
-        );
+        setError(err instanceof Error ? err.message : t("error_unknown"));
       } finally {
         setLoading(false);
       }
@@ -372,10 +377,10 @@ export default function ProfilePage() {
               </div>
             </div>
           )}
-       
+
           {activeTab === "certificate" && <MyCertificates />}
 
-          {(activeTab === "ticket" && profile?.ticket) && (
+          {activeTab === "ticket" && profile?.ticket && (
             <div className="bg-white dark:!bg-[#151a28] rounded-2xl !shadow-lg border border-gray-200 dark:!border-gray-700 overflow-hidden shadow-gray-300 dark:shadow-blue-500 h-full">
               <div className="px-4 pt-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                 <h3 className="font-semibold !text-gray-800 dark:text-white">
@@ -383,7 +388,10 @@ export default function ProfilePage() {
                 </h3>
               </div>
               <div className="p-0 md:p-8 min-h-[400px]">
-                <MyTicket ticket_id={profile?.ticket?.ticket_id} />
+                <MyTicket
+                  ticket_id={profile?.ticket?.ticket_id}
+                  full_number={profile?.number?.full_number}
+                />
               </div>
             </div>
           )}
