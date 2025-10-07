@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { FiX, FiMic, FiSend, FiUser, FiMessageCircle } from "react-icons/fi";
 import axios from "axios";
-import img from "@/assets/img/avatarsvg.png"
+import img from "@/assets/img/png-clipart-virtual-assistant.png"
 
 interface Message {
     role: "user" | "bot";
