@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { FiX, FiMic, FiSend, FiUser, FiMessageCircle } from "react-icons/fi";
 import axios from "axios";
-import img from "@/assets/img/chatbot.avif"
+import img from "@/assets/img/avatarsvg.png"
 
 interface Message {
     role: "user" | "bot";
@@ -11,7 +11,17 @@ interface Message {
     audio_url?: string | null;
 }
 
-const chatbotUrl = "https://chat_innoweek.ilmiy1.uz";
+interface ChatRecord {
+    id: number;
+    chat_id: string;
+    user_text: string;
+    reply_text: string;
+    user_audio_path: string | null;
+    reply_audio_path: string | null;
+    created_at: string;
+}
+
+const chatbotUrl = "https://chat_innoweek2.ilmiy1.uz";
 
 const ChatBot = () => {
     const [open, setOpen] = useState(false);
@@ -26,6 +36,8 @@ const ChatBot = () => {
     const [loading, setLoading] = useState(false);
     const [recording, setRecording] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
+    const [chatId] = useState(() => Date.now().toString()); // Yangi chat ID yaratish
+    const [token, setToken] = useState<string | null>(null);
 
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
     const audioChunksRef = useRef<Blob[]>([]);
@@ -40,6 +52,80 @@ const ChatBot = () => {
     useEffect(() => {
         scrollToBottom();
     }, [messages, isTyping]);
+
+    // Login function
+    const login = async () => {
+        try {
+            const formData = new URLSearchParams();
+            formData.append('username', 'jamshid'); // O'z username ingizni qo'ying
+            formData.append('password', '123@devops'); // O'z password ingizni qo'ying
+            formData.append('grant_type', 'password');
+
+            const response = await axios.post(`${chatbotUrl}/auth/login`, formData, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            });
+
+            if (response.data.access_token) {
+                setToken(response.data.access_token);
+                localStorage.setItem('chat_token', response.data.access_token);
+                return response.data.access_token;
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+        }
+        return null;
+    };
+
+    // Get token from localStorage or login
+    const getToken = async () => {
+        let authToken = token || localStorage.getItem('chat_token');
+        if (!authToken) {
+            authToken = await login();
+        }
+        return authToken;
+    };
+
+    // Load chat history
+    const loadChatHistory = async () => {
+        try {
+            const authToken = await getToken();
+            if (!authToken) return;
+
+            const response = await axios.get(`${chatbotUrl}/chats/${chatId}`, {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+            });
+
+            if (response.data && Array.isArray(response.data)) {
+                const historyMessages: Message[] = response.data.map((record: ChatRecord) => [
+                    { role: "user" as const, text: record.user_text },
+                    {
+                        role: "bot" as const,
+                        text: record.reply_text,
+                        audio_url: record.reply_audio_path
+                            ? `${chatbotUrl}/audio/${record.reply_audio_path.split('/').pop()}`
+                            : null
+                    }
+                ]).flat();
+
+                setMessages(prev => [
+                    prev[0], // Keep welcome message
+                    ...historyMessages
+                ]);
+            }
+        } catch (error) {
+            console.error('Error loading chat history:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (open) {
+            loadChatHistory();
+        }
+    }, [open]);
 
     // Cleanup function for recording
     useEffect(() => {
@@ -61,37 +147,100 @@ const ChatBot = () => {
         setIsTyping(true);
 
         try {
+            const authToken = await getToken();
+            if (!authToken) {
+                throw new Error('Authentication failed');
+            }
+
+            const formData = new URLSearchParams();
+            formData.append('chat_id', chatId);
+            formData.append('text', userText);
+
             const res = await axios.post(
                 `${chatbotUrl}/chat/text`,
-                new URLSearchParams({ text: userText }),
+                formData,
                 {
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "Authorization": `Bearer ${authToken}`
+                    },
                     timeout: 30000,
                 }
             );
 
             const responseData = res.data;
+            console.log("Text chat response:", responseData);
 
-            // Simulate typing delay for better UX
-            setTimeout(() => {
-                setMessages(prev => [
-                    ...prev,
+            // Javobni darhol ko'rsatish (audio kutmasdan)
+            setMessages(prev => [
+                ...prev,
+                {
+                    role: "bot",
+                    text: responseData.reply_text,
+                    audio_url: null // Hozircha audio yo'q
+                },
+            ]);
+            setIsTyping(false);
+            setLoading(false);
+
+            // Generate TTS for the response (background da)
+            try {
+                const ttsFormData = new URLSearchParams();
+                ttsFormData.append('chat_id', chatId);
+                ttsFormData.append('chat_record_id', responseData.chat_record_id.toString());
+                ttsFormData.append('reply_text', responseData.reply_text);
+                ttsFormData.append('lang', 'uz'); // Uzbek language
+
+                const ttsResponse = await axios.post(
+                    `${chatbotUrl}/tts`,
+                    ttsFormData,
                     {
-                        role: "bot",
-                        text: responseData.reply_text,
-                        audio_url: responseData.audio_url
-                    },
-                ]);
-                setIsTyping(false);
-                setLoading(false);
-            }, 1000);
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "Authorization": `Bearer ${authToken}`
+                        },
+                    }
+                );
+
+                console.log("TTS response (text):", ttsResponse.data);
+
+                // Audio URL ni to'g'ri olish
+                let audioUrl = null;
+                if (ttsResponse.data?.reply_audio_url) {
+                    audioUrl = ttsResponse.data.reply_audio_url;
+                } else if (typeof ttsResponse.data === 'string') {
+                    audioUrl = `${chatbotUrl}/audio/${ttsResponse.data}`;
+                }
+
+                console.log("TTS audio URL (text):", audioUrl);
+
+                if (audioUrl) {
+                    // Oxirgi xabarni audio bilan yangilash
+                    setMessages(prev => {
+                        const newMessages = [...prev];
+                        if (newMessages.length > 0 && newMessages[newMessages.length - 1].role === 'bot') {
+                            newMessages[newMessages.length - 1].audio_url = audioUrl;
+                        }
+                        return newMessages;
+                    });
+                }
+            } catch (ttsError) {
+                console.warn('TTS generation failed:', ttsError);
+            }
 
         } catch (error: any) {
             console.error("Error sending message:", error);
             let errorMessage = "❌ Xatolik yuz berdi. Qayta urinib ko'ring.";
 
             if (error.response) {
-                errorMessage += ` (${error.response.status})`;
+                if (error.response.status === 401) {
+                    // Token expired, try to login again
+                    localStorage.removeItem('chat_token');
+                    setToken(null);
+                    errorMessage = "❌ Avtorizatsiya amal muddati tugagan. Qayta urinib ko'ring.";
+                } else {
+                    errorMessage += ` (${error.response.status})`;
+                }
             } else if (error.request) {
                 errorMessage = "❌ Serverga ulanib bo'lmadi. Internet aloqasini tekshiring.";
             }
@@ -112,19 +261,86 @@ const ChatBot = () => {
     // WebM ni WAV formatiga o'girish funksiyasi
     const webmToWav = async (webmBlob: Blob): Promise<Blob> => {
         return new Promise((resolve, reject) => {
-            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)({
+                sampleRate: 16000 // STT uchun 16kHz
+            });
             const fileReader = new FileReader();
 
             fileReader.onload = async function () {
                 try {
                     const arrayBuffer = this.result as ArrayBuffer;
+
+                    // AudioContext ni resume qilish
+                    if (audioContext.state === 'suspended') {
+                        await audioContext.resume();
+                    }
+
                     const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                    
+                    console.log("Audio decoded successfully:", {
+                        duration: audioBuffer.duration,
+                        sampleRate: audioBuffer.sampleRate,
+                        numberOfChannels: audioBuffer.numberOfChannels,
+                        length: audioBuffer.length
+                    });
 
-                    const wavBuffer = encodeWAV(audioBuffer);
-                    const wavBlob = new Blob([wavBuffer], { type: 'audio/wav' });
+                    // WAV encoding
+                    const numberOfChannels = Math.min(audioBuffer.numberOfChannels, 1); // Mono uchun
+                    const sampleRate = audioBuffer.sampleRate;
+                    const length = audioBuffer.length * numberOfChannels * 2 + 44;
+                    const buffer = new ArrayBuffer(length);
+                    const view = new DataView(buffer);
 
+                    // WAV header yozish
+                    const writeString = (offset: number, string: string) => {
+                        for (let i = 0; i < string.length; i++) {
+                            view.setUint8(offset + i, string.charCodeAt(i));
+                        }
+                    };
+
+                    let offset = 0;
+
+                    // RIFF header
+                    writeString(offset, 'RIFF'); offset += 4;
+                    view.setUint32(offset, length - 8, true); offset += 4;
+                    writeString(offset, 'WAVE'); offset += 4;
+
+                    // fmt chunk
+                    writeString(offset, 'fmt '); offset += 4;
+                    view.setUint32(offset, 16, true); offset += 4; // chunk size
+                    view.setUint16(offset, 1, true); offset += 2; // PCM format
+                    view.setUint16(offset, numberOfChannels, true); offset += 2;
+                    view.setUint32(offset, sampleRate, true); offset += 4;
+                    view.setUint32(offset, sampleRate * numberOfChannels * 2, true); offset += 4; // byte rate
+                    view.setUint16(offset, numberOfChannels * 2, true); offset += 2; // block align
+                    view.setUint16(offset, 16, true); offset += 2; // bits per sample
+
+                    // data chunk
+                    writeString(offset, 'data'); offset += 4;
+                    view.setUint32(offset, length - offset - 4, true); offset += 4;
+
+                    // Audio data yozish (mono)
+                    const channelData = audioBuffer.getChannelData(0); // Faqat birinchi kanalni olamiz
+                    for (let i = 0; i < audioBuffer.length; i++) {
+                        const sample = channelData[i];
+                        const int16Sample = Math.max(-32768, Math.min(32767, Math.floor(sample * 32767)));
+                        view.setInt16(offset, int16Sample, true);
+                        offset += 2;
+                    }
+
+                    const wavBlob = new Blob([buffer], { type: 'audio/wav' });
+                    
+                    console.log("WAV created successfully:", {
+                        size: wavBlob.size,
+                        duration: audioBuffer.duration,
+                        estimatedBitrate: Math.round(wavBlob.size * 8 / audioBuffer.duration / 1000) + ' kbps'
+                    });
+                    
+                    audioContext.close();
                     resolve(wavBlob);
+
                 } catch (error) {
+                    console.error('Error converting WebM to WAV:', error);
                     reject(error);
                 }
             };
@@ -196,7 +412,7 @@ const ChatBot = () => {
         }
     }, []);
 
-    // WAV formatida audio yozish
+    // STT (Speech-to-Text) orqali audio yuborish
     const handleRecord = useCallback(async () => {
         if (recording) {
             // Stop recording
@@ -210,15 +426,30 @@ const ChatBot = () => {
                 audio: {
                     echoCancellation: true,
                     noiseSuppression: true,
+                    autoGainControl: true,
                     sampleRate: 16000,
                     channelCount: 1,
+                    sampleSize: 16
                 }
+            });
+
+            console.log("Audio stream started:", {
+                tracks: stream.getTracks().length,
+                audioTrack: stream.getAudioTracks()[0]?.getSettings()
             });
 
             streamRef.current = stream;
 
+            // MediaRecorder options
+            const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+                ? 'audio/webm;codecs=opus'
+                : 'audio/webm';
+            
+            console.log("Using mimeType:", mimeType);
+            
             const mediaRecorder = new MediaRecorder(stream, {
-                mimeType: 'audio/webm;codecs=opus'
+                mimeType: mimeType,
+                audioBitsPerSecond: 128000
             });
 
             mediaRecorderRef.current = mediaRecorder;
@@ -245,48 +476,175 @@ const ChatBot = () => {
                     setLoading(true);
                     setIsTyping(true);
 
+                    const authToken = await getToken();
+                    if (!authToken) {
+                        throw new Error('Authentication failed');
+                    }
+
+                    console.log("Original WebM blob:", {
+                        size: webmBlob.size,
+                        type: webmBlob.type
+                    });
+
+                    // WebM ni WAV ga o'girish
                     const wavBlob = await webmToWav(webmBlob);
+                    console.log("Converted WAV blob:", {
+                        size: wavBlob.size,
+                        type: wavBlob.type,
+                        sizeInKB: Math.round(wavBlob.size / 1024)
+                    });
+
+                    // Fayl nomini yaratish
+                    const fileName = `voice_${Date.now()}.wav`;
 
                     const formData = new FormData();
-                    formData.append("audio", wavBlob, "voice.wav");
+                    formData.append("chat_id", chatId);
+                    formData.append("lang", "uz");
+                    formData.append("audio", wavBlob, fileName);
+                    
+                    // FormData ni debug qilish
+                    console.log("FormData prepared:", {
+                        chat_id: chatId,
+                        lang: "uz",
+                        fileName: fileName,
+                        audioSize: wavBlob.size
+                    });
 
-                    const res = await axios.post(
-                        `${chatbotUrl}/chat/audio`,
+                    console.log("Sending audio to STT...");
+
+                    // STT endpointiga audio yuborish
+                    const sttResponse = await axios.post(
+                        `${chatbotUrl}/stt`,
                         formData,
                         {
                             headers: {
                                 "Content-Type": "multipart/form-data",
+                                "Authorization": `Bearer ${authToken}`
+                            },
+                            timeout: 45000, // Timeoutni oshiramiz
+                        }
+                    );
+
+                    console.log("STT Response:", sttResponse.data);
+
+                    // STT API'dan user_text maydonini olish
+                    const userText = sttResponse.data.user_text || sttResponse.data.userText || sttResponse.data.text || '';
+                    console.log("Extracted userText:", userText);
+
+                    if (!userText || userText.trim() === '') {
+                        console.error("STT response full data:", sttResponse.data);
+                        throw new Error('STT hech narsa qaytarmadi yoki text bo\'sh');
+                    }
+
+                    // User xabarini UI ga qo'shish
+                    setMessages(prev => [...prev, { role: "user", text: userText.trim() }]);
+
+                    // Endi text chat orqali javob olish
+                    const chatFormData = new URLSearchParams();
+                    chatFormData.append('chat_id', chatId);
+                    chatFormData.append('text', userText.trim());
+
+                    console.log("Sending text to chat:", userText.trim());
+
+                    const chatResponse = await axios.post(
+                        `${chatbotUrl}/chat/text`,
+                        chatFormData,
+                        {
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded",
+                                "Authorization": `Bearer ${authToken}`
                             },
                             timeout: 30000,
                         }
                     );
 
-                    const { user_text, reply_text, audio_url } = res.data;
+                    const responseData = chatResponse.data;
+                    console.log("Chat response:", responseData);
 
-                    setTimeout(() => {
-                        setMessages(prev => [
-                            ...prev,
-                            { role: "user", text: user_text },
-                            { role: "bot", text: reply_text, audio_url: audio_url },
-                        ]);
-                        setIsTyping(false);
-                        setLoading(false);
-                    }, 1000);
+                    // Javobni darhol ko'rsatish (audio kutmasdan)
+                    setMessages(prev => [
+                        ...prev,
+                        {
+                            role: "bot",
+                            text: responseData.reply_text,
+                            audio_url: null // Hozircha audio yo'q
+                        },
+                    ]);
+                    setIsTyping(false);
+                    setLoading(false);
+
+                    // TTS generatsiya qilish (background da)
+                    try {
+                        const ttsFormData = new URLSearchParams();
+                        ttsFormData.append('chat_id', chatId);
+                        ttsFormData.append('chat_record_id', responseData.chat_record_id.toString());
+                        ttsFormData.append('reply_text', responseData.reply_text);
+                        ttsFormData.append('lang', 'uz');
+
+                        const ttsResponse = await axios.post(
+                            `${chatbotUrl}/tts`,
+                            ttsFormData,
+                            {
+                                headers: {
+                                    "Content-Type": "application/x-www-form-urlencoded",
+                                    "Authorization": `Bearer ${authToken}`
+                                },
+                                timeout: 30000,
+                            }
+                        );
+
+                        console.log("TTS response:", ttsResponse.data);
+
+                        // Audio URL ni to'g'ri olish
+                        let audioUrl = null;
+                        if (ttsResponse.data?.reply_audio_url) {
+                            audioUrl = ttsResponse.data.reply_audio_url;
+                        } else if (typeof ttsResponse.data === 'string') {
+                            audioUrl = `${chatbotUrl}/audio/${ttsResponse.data}`;
+                        }
+
+                        console.log("TTS audio URL:", audioUrl);
+
+                        if (audioUrl) {
+                            // Oxirgi xabarni audio bilan yangilash
+                            setMessages(prev => {
+                                const newMessages = [...prev];
+                                if (newMessages.length > 0 && newMessages[newMessages.length - 1].role === 'bot') {
+                                    newMessages[newMessages.length - 1].audio_url = audioUrl;
+                                }
+                                return newMessages;
+                            });
+                        }
+                    } catch (ttsError) {
+                        console.warn('TTS generation failed:', ttsError);
+                    }
 
                 } catch (error: any) {
-                    console.error("Error sending audio:", error);
-                    let errorMessage = "❌ Audio yuborishda xatolik";
+                    console.error("Error processing audio:", error);
+                    let errorMessage = "❌ Ovozli xabar yuborishda xatolik";
 
                     if (error.response) {
-                        errorMessage += `: ${error.response.data?.message || error.response.status}`;
+                        console.error("Error response:", error.response);
+                        if (error.response.status === 401) {
+                            localStorage.removeItem('chat_token');
+                            setToken(null);
+                            errorMessage = "❌ Avtorizatsiya amal muddati tugagan. Qayta urinib ko'ring.";
+                        } else if (error.response.data?.detail) {
+                            errorMessage += `: ${error.response.data.detail}`;
+                        } else {
+                            errorMessage += `: Server xatosi (${error.response.status})`;
+                        }
                     } else if (error.request) {
+                        console.error("Error request:", error.request);
                         errorMessage += ": Serverga ulanib bo'lmadi";
                     } else {
+                        console.error("Error details:", error);
                         errorMessage += `: ${error.message}`;
                     }
 
                     setMessages(prev => [
                         ...prev,
+                        { role: "user", text: "🎤 Ovozli xabar" },
                         { role: "bot", text: errorMessage },
                     ]);
                     setIsTyping(false);
@@ -299,8 +657,9 @@ const ChatBot = () => {
             };
 
             // Start recording with timeslice to ensure data is available
-            mediaRecorder.start(1000); // 1 second timeslice
+            mediaRecorder.start(100); // 100ms timeslice for smoother chunks
             setRecording(true);
+            console.log("Recording started");
 
         } catch (error) {
             console.error("Error starting recording:", error);
@@ -312,7 +671,7 @@ const ChatBot = () => {
                 },
             ]);
         }
-    }, [recording, stopRecording]);
+    }, [recording, stopRecording, chatId]);
 
     // Auto-stop recording when component unmounts or chat closes
     useEffect(() => {
@@ -329,7 +688,7 @@ const ChatBot = () => {
                 {!open && (
                     <button
                         onClick={() => setOpen(true)}
-                        className="cursor-pointer absolute right-2 bottom-2 !rounded-full shadow-lg border border-gray-200 p-2 hover:scale-105 transition bg-white"
+                        className="cursor-pointer absolute right-2 bottom-2 !rounded-full shadow-lg p-2 hover:scale-105 transition"
                         aria-label="Open chat"
                     >
                         <Image
@@ -337,7 +696,7 @@ const ChatBot = () => {
                             alt="Chat"
                             className="w-12 h-12 !rounded-full"
                             width={48}
-                            height={48}
+                            // height={48}
                         />
                     </button>
                 )}
@@ -349,7 +708,7 @@ const ChatBot = () => {
                             <div className="flex items-center gap-3">
                                 <div className="relative">
                                     <Image
-                                        className="w-10 h-10 !rounded-full border-2 border-white"
+                                        className="w-10 h-10 bg-white/90 !rounded-full border-2 border-white"
                                         src={img}
                                         alt="Chatbot"
                                         width={40}
@@ -358,10 +717,10 @@ const ChatBot = () => {
                                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 !rounded-full border-2 border-white"></div>
                                 </div>
                                 <div>
-                                    <span className="font-semibold block">Virtual Assistant</span>
-                                    <span className="text-blue-100 text-xs">
+                                    <div className="font-semibold block ">Virtual Assistant</div>
+                                    <div className="text-blue-100 text-xs -">
                                         {isTyping ? "Javob yozmoqda..." : "Online"}
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
                             <button
@@ -394,16 +753,6 @@ const ChatBot = () => {
                                     <div
                                         className={`max-w-[80%] ${msg.role === "bot" ? "order-2" : "order-1"}`}
                                     >
-                                        {msg.audio_url && (
-                                            <div className="mb-1">
-                                                <audio
-                                                    controls
-                                                    src={msg.audio_url}
-                                                    className="w-48 h-8"
-                                                    preload="none"
-                                                />
-                                            </div>
-                                        )}
                                         <div
                                             className={`px-4 py-2.5 rounded-2xl ${msg.role === "bot"
                                                 ? "bg-white border border-gray-200 rounded-tl-none text-gray-800 shadow-sm"
@@ -414,9 +763,16 @@ const ChatBot = () => {
                                                 {msg.text}
                                             </div>
                                         </div>
-                                        {/* <div className={`text-xs mt-1 px-2 ${msg.role === "bot" ? "text-gray-500" : "text-blue-500 text-right"}`}>
-                                            {msg.role === "user" ? "Siz" : "Assistant"}
-                                        </div> */}
+                                        {msg.audio_url && (
+                                            <div className="mb-1">
+                                                <audio
+                                                    controls
+                                                    src={msg.audio_url}
+                                                    className="w-48 h-8"
+                                                    preload="none"
+                                                />
+                                            </div>
+                                        )}
                                     </div>
 
                                     {msg.role === "user" && (
@@ -430,7 +786,7 @@ const ChatBot = () => {
                             {/* Typing Indicator */}
                             {isTyping && (
                                 <div className="flex justify-start items-start gap-2">
-                                    <div className="flex-shrink-0 w-8 h-6    !rounded-full bg-blue-100 flex items-center justify-center">
+                                    <div className="flex-shrink-0 w-8 h-6 !rounded-full bg-blue-100 flex items-center justify-center">
                                         <FiMessageCircle className="text-blue-600" size={16} />
                                     </div>
                                     <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm">
@@ -515,16 +871,6 @@ const ChatBot = () => {
                                     </div>
                                 </div>
                             )}
-
-                            {/* Helper text */}
-                            {/* <div className="text-center mt-2">
-                                <span className="text-xs text-gray-500">
-                                    {recording
-                                        ? "Ovozli xabar yozishni to'xtatish uchun mikfon tugmasini yoki 'To'xtatish' tugmasini bosing"
-                                        : "Enter tugmasini bosing yoki ovozli xabar uchun mikrofondan foydalaning"
-                                    }
-                                </span>
-                            </div> */}
                         </div>
                     </div>
                 )}
