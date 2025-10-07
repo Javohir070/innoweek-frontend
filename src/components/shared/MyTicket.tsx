@@ -103,7 +103,7 @@ const MyTicket: React.FC<Props> = ({ ticket_id, full_number }) => {
             className="rounded-xl p-6 min-w-[340px] shadow-lg flex flex-col gap-1"
           >
             <div className="flex justify-between items-center mb-2">
-                <Image
+              <Image
                 src={minin3}
                 alt="Logo"
                 className="h-12 w-[70px] object-fit-contain"
@@ -121,7 +121,7 @@ const MyTicket: React.FC<Props> = ({ ticket_id, full_number }) => {
             </div>
             <div className="text-center">
               <div className="text-2xl font-semibold">
-                {ticketData?.user?.first_name?.toUpperCase() ?? ""} {" "}
+                {ticketData?.user?.first_name?.toUpperCase() ?? ""}{" "}
                 {ticketData?.user?.last_name?.toUpperCase() ?? ""}
               </div>
               {/* <div className="text-lg font-bold tracking-wider !text-gray-900">
