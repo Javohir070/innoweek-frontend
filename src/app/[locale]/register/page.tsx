@@ -358,22 +358,21 @@ export default function RegisterRolePage() {
                       className="border-2 border-[#0085d4] rounded-lg"
                     />
                   </Form.Item>
-                  <Form.Item
+                    <Form.Item
                     name="password"
                     rules={[
                       { required: true, message: "Parol kiritish majburiy!" },
                       {
-                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
-                        message:
-                          "Parol kamida 6 ta belgi, 1 ta katta harf, 1 ta kichik harfdan iborat bo'lishi kerak!",
+                      min: 4,
+                      message: "Parol kamida 4 ta belgidan iborat bo'lishi kerak!",
                       },
                     ]}
-                  >
+                    >
                     <Input.Password
                       placeholder={t("password")}
                       className="border-2 border-[#0085d4] rounded-lg"
                     />
-                  </Form.Item>
+                    </Form.Item>
                   <Form.Item
                     name="password_confirmation"
                     dependencies={["password"]}
