@@ -222,7 +222,7 @@
     "last_name": "Familiya *",
     "phone": "Telefon raqam (901234567)",
     "participation_type": "Ishtirok turi *",
-    "password": "Parolingizni kiriting (6 ta belgidan kam bo'lmasligi kerak)",
+    "password": "Parolingizni kiriting (4 ta belgidan kam bo'lmasligi kerak)",
     "confirm_password": "Parolni tasdiqlash (parolni takrorlang)",
     "passwords_do_not_match": "Parollar mos emas",
     "gender_label": "Jinsi:",
