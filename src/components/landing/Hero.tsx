@@ -107,7 +107,7 @@ export default function HeroSection() {
                     alt="Abstract Fluid Shape"
                     className="fluid-img"
                   />
-                  <div className="timer-container">
+                  {/* <div className="timer-container">
                     <div className="countdown" id="countdown">
                       <div className="time-box dark:bg-[#1b262c] bg-blue-500 text-white dark:!text-[#aaa] flex flex-col items-start">
                         <span>{countdown.days}</span>
@@ -126,7 +126,7 @@ export default function HeroSection() {
                         <div className="time-label">{t("second")}</div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
