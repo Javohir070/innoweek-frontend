@@ -419,6 +419,7 @@ export default function Header() {
                   <button
                     className="!bg-transparent"
                     onClick={() => {
+                      setIsMenuOpen(false);
                       router.push(`/login`);
                     }}
                   >
