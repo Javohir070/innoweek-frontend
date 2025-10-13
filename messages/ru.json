@@ -337,6 +337,8 @@
     "issue_date": "Дата выдачи",
     "not_available": "Недоступно",
     "download": "Скачать",
+    "error_loading_main_certificate": "Ошибка загрузки основного сертификата",
+    "please_try_again_later": "Пожалуйста, попробуйте позже",
     "My_Ticket": "Мой билет",
     "sidebar_ticket": "Мои билет",
     "sidebar_certificate": "Мои сертификаты",

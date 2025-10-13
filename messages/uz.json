@@ -337,6 +337,8 @@
     "issue_date": "Berilgan sana",
     "not_available": "Mavjud emas",
     "download": "Yuklab olish",
+    "error_loading_main_certificate": "Asosiy sertifikatni yuklashda xatolik",
+    "please_try_again_later": "Iltimos, keyinroq qayta urinib ko'ring",
     "My_Ticket": "Mening Chiptam",
     "sidebar_ticket": "Chiptam",
     "sidebar_certificate": "Sertifikatlarim",

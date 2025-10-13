@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import section from "@/assets/img/section_bg_2.jpg";
 import { useParams } from "next/navigation";
+import { notification } from "antd";
 
-// Certificate type definition
 interface Certificate {
   id: number;
   file_path: string;
@@ -23,6 +23,13 @@ interface CertificateResponse {
   status: number;
   success: boolean;
   data: Certificate[];
+}
+
+interface MainCertificateResponse {
+  status: number;
+  success: boolean;
+  message: string;
+  data: Certificate;
 }
 
 const MyCertificates = () => {
@@ -44,7 +51,7 @@ const MyCertificates = () => {
       console.log(res);
 
       if (res?.success && res?.data) {
-        setCertificates(res.data);
+        setCertificates([...certificates , ...res?.data]);
       } else {
         setCertificates([]);
         setError(t("certificates_not_found"));
@@ -55,6 +62,29 @@ const MyCertificates = () => {
       setError(t("error_loading_certificates"));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const getMainCertificate = async () => {
+    try {
+      const res = await FetchInstance<MainCertificateResponse>("/api/certificate/main/user");
+      console.log(res);
+      if (res?.success && res?.data) {
+        // Handle successful response - res.data.file_path contains the PDF URL
+        console.log("Main certificate file path:", res.data.file_path);
+        // You can use res.data.file_path to display or download the main certificate
+      } else {
+        notification.error({
+          message: t("error_loading_main_certificate"),
+          description: t("please_try_again_later"),
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      notification.error({
+        message: t("error_loading_main_certificate"),
+        description: t("please_try_again_later"),
+      });
     }
   };
 
@@ -85,6 +115,7 @@ const MyCertificates = () => {
   };
 
   useEffect(() => {
+    getMainCertificate();
     getMyCertificatesList();
   }, []);
 

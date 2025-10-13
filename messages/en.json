@@ -337,6 +337,8 @@
     "issue_date": "Issue date",
     "not_available": "Not available",
     "download": "Download",
+    "error_loading_main_certificate": "Error loading main certificate",
+    "please_try_again_later": "Please try again later",
     "My_Ticket": "My Ticket",
     "sidebar_ticket": "My Ticket",
     "sidebar_certificate": "My Certificates",
