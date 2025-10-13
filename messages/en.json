@@ -324,7 +324,7 @@
     "updating": "Updating...",
     "personal_information": "Personal Information",
     "My_ertificate": "My Certificate",
-    "certificates_not_found": "Certificates not found",
+    "certificates_not_found": "No certificates found for event participation",
     "error_loading_certificates": "Error loading certificates",
     "loading_certificates": "Loading certificates...",
     "retry": "Try again",

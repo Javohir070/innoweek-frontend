@@ -41,11 +41,10 @@ const MyCertificates = () => {
     null
   );
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+  // const [error, setError] = useState<string>("");
 
   const getMyCertificatesList = async () => {
     setLoading(true);
-    setError("");
 
     try {
       const res = await FetchInstance<CertificateResponse>(
@@ -55,12 +54,12 @@ const MyCertificates = () => {
         setCertificates([...certificates, ...res?.data]);
       } else {
         setCertificates([]);
-        setError(t("certificates_not_found"));
+        // setError(t("certificates_not_found"));
       }
     } catch (error) {
       console.error("Error fetching certificates:", error);
       setCertificates([]);
-      setError(t("error_loading_certificates"));
+      // setError(t("error_loading_certificates"));
     } finally {
       setLoading(false);
     }
@@ -71,7 +70,6 @@ const MyCertificates = () => {
       const res = await FetchInstance<MainCertificateResponse>(
         "/api/certificate/main/user"
       );
-      console.log(res);
       if (res?.success) {
         // Check if file_path is full URL or relative path
         const filePath = res.data.file_path.startsWith("http")
@@ -146,19 +144,19 @@ const MyCertificates = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="text-center p-8">
-        <div className="text-red-500 text-lg mb-4">{error}</div>
-        <button
-          onClick={getMyCertificatesList}
-          className="px-4 py-2 bg-[#0085d4] text-white rounded-lg hover:bg-[#006bb3] transition-colors"
-        >
-          {t("retry")}
-        </button>
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className="text-center p-8">
+  //       <div className="text-red-500 text-lg mb-4">{error}</div>
+  //       <button
+  //         onClick={getMyCertificatesList}
+  //         className="px-4 py-2 bg-[#0085d4] text-white rounded-lg hover:bg-[#006bb3] transition-colors"
+  //       >
+  //         {t("retry")}
+  //       </button>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div
@@ -177,44 +175,45 @@ const MyCertificates = () => {
           {t("all_your_certificates")}
         </p>
       </div>
-      {mainCertificate ? (
-        <div
-          key={mainCertificate.id}
-          className="bg-white rounded-xl shadow-lg overflow-hidden mb-4"
-        >
-          <div className="flex items-center p-6">
-            {/* Left side - Certificate Preview */}
-            <div className="flex-shrink-0 mr-8">
-              <div className="w-64 h-40 bg-gray-300 rounded-lg flex items-center justify-center">
-                <object
-                  data={
-                    mainCertificate.file_path.startsWith("http")
-                      ? mainCertificate.file_path
-                      : `${BASE_URL}${mainCertificate.file_path}`
-                  }
-                  type="application/pdf"
-                  className="w-full h-full"
-                >
-                  <p className="text-center text-gray-600">
-                    {t("pdf_support_required")}
-                  </p>
-                </object>
-              </div>
-            </div>
-
-            {/* Right side - Information */}
-            <div className="flex-1 text-black">
-              <div className="mb-3">
-                <div className="text-sm opacity-80 mb-1">
-                  {t("event_name")}:
-                </div>
-                <div className="text-2xl font-bold">
-                  {mainCertificate.schedule?.title}
+      <div>
+        {!!mainCertificate ? (
+          <div
+            key={mainCertificate.id}
+            className="bg-white rounded-xl shadow-lg overflow-hidden mb-4"
+          >
+            <div className="flex items-center p-6">
+              {/* Left side - Certificate Preview */}
+              <div className="flex-shrink-0 mr-8">
+                <div className="w-64 h-40 bg-gray-300 rounded-lg flex items-center justify-center">
+                  <object
+                    data={
+                      mainCertificate.file_path.startsWith("http")
+                        ? mainCertificate.file_path
+                        : `${BASE_URL}${mainCertificate.file_path}`
+                    }
+                    type="application/pdf"
+                    className="w-full h-full"
+                  >
+                    <p className="text-center text-gray-600">
+                      {t("pdf_support_required")}
+                    </p>
+                  </object>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-8">
-                {/* <div>
+              {/* Right side - Information */}
+              <div className="flex-1 text-black">
+                <div className="mb-3">
+                  <div className="text-sm opacity-80 mb-1">
+                    {t("event_name")}:
+                  </div>
+                  <div className="text-2xl font-bold">
+                    {mainCertificate.schedule?.title}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-8">
+                  {/* <div>
                       <div className="text-sm opacity-80 mb-1">
                         {t("certificate_id")}:
                       </div>
@@ -222,114 +221,116 @@ const MyCertificates = () => {
                         #{certificate.id}
                       </div>
                     </div> */}
-                <div>
-                  <div className="text-sm opacity-80 mb-1">
-                    {t("event_date")}:
+                  <div>
+                    <div className="text-sm opacity-80 mb-1">
+                      {t("event_date")}:
+                    </div>
+                    <div className="text-lg font-semibold">
+                      {mainCertificate.schedule?.date
+                        ? formatDate(mainCertificate.schedule.date)
+                        : t("not_available")}
+                    </div>
                   </div>
-                  <div className="text-lg font-semibold">
-                    {mainCertificate.schedule?.date
-                      ? formatDate(mainCertificate.schedule.date)
-                      : t("not_available")}
+                  <div>
+                    <div className="text-sm opacity-80 mb-1">
+                      {t("issue_date")}:
+                    </div>
+                    <div className="text-lg font-semibold">
+                      {formatDate(mainCertificate.created_at)}
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <div className="text-sm opacity-80 mb-1">
-                    {t("issue_date")}:
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {formatDate(mainCertificate.created_at)}
-                  </div>
-                </div>
-              </div>
 
-              <div className="mt-2">
-                <button
-                  onClick={() =>
-                    handleDownloadCertificate(
-                      mainCertificate.file_path,
-                      mainCertificate.id
-                    )
-                  }
-                  className="bg-[#0085d4] text-white px-6 py-2 font-semibold !rounded-lg transition-colors flex items-center gap-2"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <div className="mt-2">
+                  <button
+                    onClick={() =>
+                      handleDownloadCertificate(
+                        mainCertificate.file_path,
+                        mainCertificate.id
+                      )
+                    }
+                    className="bg-[#0085d4] text-white px-6 py-2 font-semibold !rounded-lg transition-colors flex items-center gap-2"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"
-                    />
-                  </svg>
-                  {t("download")}
-                </button>
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+                      />
+                    </svg>
+                    {t("download")}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="flex justify-center items-center p-8">
-          <div className="w-8 h-8 border-4 border-[#0085d4] border-t-transparent rounded-full animate-spin"></div>
-          <span className="ml-3 text-gray-600">
-            {t("loading_certificates")}
-          </span>
-        </div>
-      )}
+        ) : (
+          <div className="flex justify-center items-center p-8">
+            <div className="w-8 h-8 border-4 border-[#0085d4] border-t-transparent rounded-full animate-spin"></div>
+            <span className="ml-3 text-gray-600">
+              {t("loading_certificates")}
+            </span>
+          </div>
+        )}
+      </div>
 
-      {certificates.length === 0 ? (
-        <div className="text-center p-8 bg-gray-50 dark:bg-gray-800 rounded-lg">
-          <div className="text-6xl mb-4">📜</div>
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-            {t("certificates_not_found")}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            {t("no_certificates_available")}
-          </p>
-        </div>
-      ) : (
-        <div className="space-y-6">
-          {certificates.map((certificate) => (
-            <div
-              key={certificate.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden"
-            >
-              <div className="flex items-center p-6">
-                {/* Left side - Certificate Preview */}
-                <div className="flex-shrink-0 mr-8">
-                  <div className="w-64 h-40 bg-gray-300 rounded-lg flex items-center justify-center">
-                    <object
-                      data={
-                        certificate.file_path.startsWith("http")
-                          ? certificate.file_path
-                          : `${BASE_URL}${certificate.file_path}`
-                      }
-                      type="application/pdf"
-                      className="w-full h-full"
-                    >
-                      <p className="text-center text-gray-600">
-                        {t("pdf_support_required")}
-                      </p>
-                    </object>
-                  </div>
-                </div>
-
-                {/* Right side - Information */}
-                <div className="flex-1 text-black">
-                  <div className="mb-3">
-                    <div className="text-sm opacity-80 mb-1">
-                      {t("event_name")}:
-                    </div>
-                    <div className="text-2xl font-bold">
-                      {certificate.schedule?.title}
+      <div>
+        {certificates.length === 0 ? (
+          <div className="text-center p-8 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div className="text-6xl mb-4">📜</div>
+            <h3 className="text-xl font-semibold text-black dark:text-white mb-2">
+              {t("certificates_not_found")}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              {t("no_certificates_available")}
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-6">
+            {certificates.map((certificate) => (
+              <div
+                key={certificate.id}
+                className="bg-white rounded-xl shadow-lg overflow-hidden"
+              >
+                <div className="flex items-center p-6">
+                  {/* Left side - Certificate Preview */}
+                  <div className="flex-shrink-0 mr-8">
+                    <div className="w-64 h-40 bg-gray-300 rounded-lg flex items-center justify-center">
+                      <object
+                        data={
+                          certificate.file_path.startsWith("http")
+                            ? certificate.file_path
+                            : `${BASE_URL}${certificate.file_path}`
+                        }
+                        type="application/pdf"
+                        className="w-full h-full"
+                      >
+                        <p className="text-center text-gray-600">
+                          {t("pdf_support_required")}
+                        </p>
+                      </object>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-8">
-                    {/* <div>
+                  {/* Right side - Information */}
+                  <div className="flex-1 text-black">
+                    <div className="mb-3">
+                      <div className="text-sm opacity-80 mb-1">
+                        {t("event_name")}:
+                      </div>
+                      <div className="text-2xl font-bold">
+                        {certificate.schedule?.title}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-8">
+                      {/* <div>
                       <div className="text-sm opacity-80 mb-1">
                         {t("certificate_id")}:
                       </div>
@@ -337,58 +338,59 @@ const MyCertificates = () => {
                         #{certificate.id}
                       </div>
                     </div> */}
-                    <div>
-                      <div className="text-sm opacity-80 mb-1">
-                        {t("event_date")}:
+                      <div>
+                        <div className="text-sm opacity-80 mb-1">
+                          {t("event_date")}:
+                        </div>
+                        <div className="text-lg font-semibold">
+                          {certificate.schedule?.date
+                            ? formatDate(certificate.schedule.date)
+                            : t("not_available")}
+                        </div>
                       </div>
-                      <div className="text-lg font-semibold">
-                        {certificate.schedule?.date
-                          ? formatDate(certificate.schedule.date)
-                          : t("not_available")}
+                      <div>
+                        <div className="text-sm opacity-80 mb-1">
+                          {t("issue_date")}:
+                        </div>
+                        <div className="text-lg font-semibold">
+                          {formatDate(certificate.created_at)}
+                        </div>
                       </div>
                     </div>
-                    <div>
-                      <div className="text-sm opacity-80 mb-1">
-                        {t("issue_date")}:
-                      </div>
-                      <div className="text-lg font-semibold">
-                        {formatDate(certificate.created_at)}
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="mt-2">
-                    <button
-                      onClick={() =>
-                        handleDownloadCertificate(
-                          certificate.file_path,
-                          certificate.id
-                        )
-                      }
-                      className="bg-[#0085d4] text-white px-6 py-2 font-semibold !rounded-lg transition-colors flex items-center gap-2"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    <div className="mt-2">
+                      <button
+                        onClick={() =>
+                          handleDownloadCertificate(
+                            certificate.file_path,
+                            certificate.id
+                          )
+                        }
+                        className="bg-[#0085d4] text-white px-6 py-2 font-semibold !rounded-lg transition-colors flex items-center gap-2"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"
-                        />
-                      </svg>
-                      {t("download")}
-                    </button>
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+                          />
+                        </svg>
+                        {t("download")}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

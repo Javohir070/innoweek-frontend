@@ -324,7 +324,7 @@
     "updating": "Обновление...",
     "personal_information": "Личная информация",
     "My_ertificate": "Мой сертификат",
-    "certificates_not_found": "Сертификаты не найдены",
+    "certificates_not_found": "Сертификаты на участие в мероприятии не найдены.",
     "error_loading_certificates": "Ошибка при загрузке сертификатов",
     "loading_certificates": "Загрузка сертификатов...",
     "retry": "Попробовать снова",
