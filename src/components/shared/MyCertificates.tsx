@@ -90,12 +90,13 @@ const MyCertificates = () => {
             id: 1,
           },
         });
-      } else {
-        notification.error({
-          message: t("error_loading_main_certificate"),
-          description: t("please_try_again_later"),
-        });
       }
+      //  else {
+      //   notification.error({
+      //     message: t("error_loading_main_certificate"),
+      //     description: t("please_try_again_later"),
+      //   });
+      // }
     } catch (error) {
       console.log(error);
       notification.error({
