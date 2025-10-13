@@ -325,6 +325,7 @@
     "personal_information": "Shaxsiy ma'lumotlar",
     "My_ertificate": "Mening Sertifikatim",
     "certificates_not_found": "Tadbir ishtiroki uchun sertifikatlar topilmadi",
+    "main_certificates_not_found": "Innoweek 2025 sertifikati topilmadi",
     "error_loading_certificates": "Sertifikatlarni yuklashda xatolik yuz berdi",
     "loading_certificates": "Sertifikatlar yuklanmoqda...",
     "retry": "Qayta urinib ko'rish",

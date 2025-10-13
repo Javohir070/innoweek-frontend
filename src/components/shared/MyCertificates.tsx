@@ -67,6 +67,7 @@ const MyCertificates = () => {
 
   const getMainCertificate = async () => {
     try {
+      setLoading(true);
       const res = await FetchInstance<MainCertificateResponse>(
         "/api/certificate/main/user"
       );
@@ -99,6 +100,8 @@ const MyCertificates = () => {
         message: t("error_loading_main_certificate"),
         description: t("please_try_again_later"),
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -143,20 +146,6 @@ const MyCertificates = () => {
       </div>
     );
   }
-
-  // if (error) {
-  //   return (
-  //     <div className="text-center p-8">
-  //       <div className="text-red-500 text-lg mb-4">{error}</div>
-  //       <button
-  //         onClick={getMyCertificatesList}
-  //         className="px-4 py-2 bg-[#0085d4] text-white rounded-lg hover:bg-[#006bb3] transition-colors"
-  //       >
-  //         {t("retry")}
-  //       </button>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div
@@ -213,14 +202,6 @@ const MyCertificates = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-8">
-                  {/* <div>
-                      <div className="text-sm opacity-80 mb-1">
-                        {t("certificate_id")}:
-                      </div>
-                      <div className="text-lg font-semibold">
-                        #{certificate.id}
-                      </div>
-                    </div> */}
                   <div>
                     <div className="text-sm opacity-80 mb-1">
                       {t("event_date")}:
@@ -271,11 +252,14 @@ const MyCertificates = () => {
             </div>
           </div>
         ) : (
-          <div className="flex justify-center items-center p-8">
-            <div className="w-8 h-8 border-4 border-[#0085d4] border-t-transparent rounded-full animate-spin"></div>
-            <span className="ml-3 text-gray-600">
-              {t("loading_certificates")}
-            </span>
+          <div className="text-center p-8 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div className="text-6xl mb-4">📜</div>
+            <h3 className="text-xl font-semibold text-black dark:text-white mb-2">
+              {t("main_certificates_not_found")}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              {t("no_certificates_available")}
+            </p>
           </div>
         )}
       </div>
@@ -330,14 +314,6 @@ const MyCertificates = () => {
                     </div>
 
                     <div className="grid grid-cols-2 gap-8">
-                      {/* <div>
-                      <div className="text-sm opacity-80 mb-1">
-                        {t("certificate_id")}:
-                      </div>
-                      <div className="text-lg font-semibold">
-                        #{certificate.id}
-                      </div>
-                    </div> */}
                       <div>
                         <div className="text-sm opacity-80 mb-1">
                           {t("event_date")}:
