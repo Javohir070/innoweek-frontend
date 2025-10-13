@@ -166,7 +166,14 @@ const MyCertificates = () => {
           {t("all_your_certificates")}
         </p>
       </div>
-      {mainCertificateLoading && (
+      {mainCertificateLoading ? (
+        <div className="flex justify-center items-center p-8">
+          <div className="w-8 h-8 border-4 border-[#0085d4] border-t-transparent rounded-full animate-spin"></div>
+          <span className="ml-3 text-gray-600">
+            {t("loading_certificates")}
+          </span>
+        </div>
+      ) : (
         <div>
           {!!mainCertificate ? (
             <div
