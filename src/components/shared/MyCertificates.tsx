@@ -81,7 +81,7 @@ const MyCertificates = () => {
         setMainCertificate({
           id: res.data.id,
           file_path: filePath,
-          created_at: res.data.created_at,
+          created_at: "2025-10-11",
           schedule_id: 1,
           schedule: {
             title: "Innoweek 2025 sertifikat",
