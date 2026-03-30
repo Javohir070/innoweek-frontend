@@ -18,6 +18,8 @@ export const FetchInstance = async <T>(
     }
   }
 
+  console.log(`${BASE_URL}${endpoint}`);
+
   const res = await fetch(`${BASE_URL}${endpoint}`, {
     ...options,
     headers: {
@@ -25,10 +27,6 @@ export const FetchInstance = async <T>(
       ...options.headers,
     },
   });
-  // if (res?.type == "cors" || res?.status == 401) {
-    // window.localStorage.clear();
-    // window.location.href = "/";
-  // }
 
   if (!res.ok) {
     const errorBody = await res.json().catch(() => ({}));

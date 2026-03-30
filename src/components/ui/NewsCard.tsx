@@ -1,8 +1,8 @@
-import React from "react";
+"use client";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { Image as AntdImage } from "antd";
 
 interface NewsCardProps {
   id: number;
@@ -13,8 +13,6 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
-  
-
   const t = useTranslations("news");
 
   return (
@@ -22,7 +20,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
       <div className="group relative bg-white text-black dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer">
         <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div className="relative h-[250px] overflow-hidden">
-          <Image
+          <AntdImage
             src={image}
             alt={title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

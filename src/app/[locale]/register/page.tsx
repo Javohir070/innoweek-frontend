@@ -15,6 +15,10 @@ import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/navigation";
 import AcceptTerms from "@/components/ui/AcceptTerms";
 import { useParams } from "next/navigation";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 
 type RegisterError = {
   phone?: string;
@@ -37,7 +41,13 @@ interface FormValues {
   acceptTerms: boolean;
 }
 
-export default function RegisterRolePage() {
+function RegisterRolePageInner({
+  getRecaptchaToken,
+  showRecaptchaHint = false,
+}: {
+  getRecaptchaToken?: () => Promise<string | null>;
+  showRecaptchaHint?: boolean;
+}) {
   const t = useTranslations("register_modal");
   const router = useRouter();
   const [form] = Form.useForm<FormValues>();
@@ -59,6 +69,16 @@ export default function RegisterRolePage() {
   const params = useParams()
 
   const handleSubmit = async (values: FormValues) => {
+    if (getRecaptchaToken) {
+      const token = await getRecaptchaToken();
+      if (!token) {
+        setError({
+          status:
+            "Captcha tekshiruvi muvaffaqiyatsiz. Sahifani yangilab qayta urinib ko'ring.",
+        });
+        return;
+      }
+    }
     setLoading(true);
     setError({});
 
@@ -259,6 +279,15 @@ export default function RegisterRolePage() {
                 {t("international")}
               </button>
             </div>
+
+            {showRecaptchaHint && (
+              <p className="text-center text-[11px] text-gray-500 dark:text-gray-400 mb-6 leading-relaxed px-2">
+                Himoya: Google reCAPTCHA (v3). Katakcha ko&apos;rinmaydi —
+                &quot;Ro&apos;yxatdan o&apos;tish&quot; tugmasini bosganingizda
+                tekshiruv fon rejimida ishlaydi. O&apos;ng pastda reCAPTCHA
+                belgisi paydo bo&apos;lishi mumkin.
+              </p>
+            )}
 
             {/* Local registration form */}
             {registerType === "local" && (
@@ -710,5 +739,33 @@ export default function RegisterRolePage() {
         )}
       </div>
     </div>
+  );
+}
+
+function RegisterWithRecaptcha() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  return (
+    <RegisterRolePageInner
+      showRecaptchaHint
+      getRecaptchaToken={async () => {
+        const token = await executeRecaptcha?.("register");
+        return token ?? null;
+      }}
+    />
+  );
+}
+
+export default function RegisterRolePage() {
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
+  if (!siteKey) {
+    return <RegisterRolePageInner />;
+  }
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={siteKey}
+      scriptProps={{ async: true, defer: true, appendTo: "body" }}
+    >
+      <RegisterWithRecaptcha />
+    </GoogleReCaptchaProvider>
   );
 }

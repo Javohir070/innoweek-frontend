@@ -4,6 +4,13 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const nextConfig: NextConfig = {
   images: {
     domains: ["innoweek.uz", "api.innoweek.uz", "2025.innoweek.uz" , "testinno.innoweek.uz"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "2025.innoweek.uz",
+        pathname: "/upload/**",
+      },
+    ]
   },
   webpack: (config) => {
     config.module.rules.push({

@@ -1,4 +1,5 @@
 "use client";
+
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { FetchInstance } from "@/api/FetchInstance";
@@ -6,22 +7,29 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { useParams } from "next/navigation";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 
 const initialForm = {
   phone_or_email: "",
   password: "",
 };
 
-const Login = () => {
+type LoginFormProps = {
+  getRecaptchaToken?: () => Promise<string | null>;
+};
+
+function LoginForm({ getRecaptchaToken }: LoginFormProps) {
   const t = useTranslations("login");
   const locale = useParams().locale || "uz";
-
   const [form, setForm] = useState(initialForm);
-  const [error, setError] = useState({});
+  const [error, setError] = useState<{ status?: string }>({});
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -29,24 +37,35 @@ const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (getRecaptchaToken) {
+      const token = await getRecaptchaToken();
+      if (!token) {
+        setError({
+          status:
+            "Captcha tekshiruvi muvaffaqiyatsiz. Sahifani yangilab qayta urinib ko'ring.",
+        });
+        return;
+      }
+    }
+
     setLoading(true);
     setError({});
 
     try {
-      const res = await FetchInstance("/api/v1.0/user/login", {
+      const res = (await FetchInstance("/api/v1.0/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
-      });
+      })) as { success?: boolean; data?: { access_token: string } };
 
-      if (res?.success) {
+      if (res?.success && res.data?.access_token) {
         localStorage.setItem("token", res.data.access_token);
         toast.success(t("login_success"));
-        // router.push("/profile");
         window.location.pathname = `/${locale}/profile`;
       } else {
         setError({ status: t("login_failed") });
@@ -68,7 +87,7 @@ const Login = () => {
           </svg>
         </div>
         <h2 className="!text-2xl !mt-2 font-extrabold !mb-4 !text-[#0085d4] text-center tracking-wide">
-          {t("login_title")} {/* Changed to login_title */}
+          {t("login_title")}
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -136,9 +155,9 @@ const Login = () => {
         </form>
 
         <p className="text-center mt-4">
-          {t("no_account")} {/* Do you have an account? */}
+          {t("no_account")}
           <Link href="/register" className="text-[#0085d4] ml-1">
-            {t("register")} {/* Register */}
+            {t("register")}
           </Link>
         </p>
         <p className="text-center mt-2">
@@ -149,9 +168,41 @@ const Login = () => {
             {t("forgot_password")}
           </Link>
         </p>
+        {getRecaptchaToken && (
+          <p className="text-center text-[11px] text-gray-500 dark:text-gray-400 mt-4 leading-relaxed px-2">
+            Himoya: Google reCAPTCHA (v3). Checkbox ko&apos;rinmaydi — tugmani
+            bosganingizda tekshiruv fon rejimida bajariladi. O&apos;ng pastdagi
+            reCAPTCHA belgisini ko&apos;rishingiz mumkin.
+          </p>
+        )}
       </div>
     </div>
   );
-};
+}
 
-export default Login;
+function LoginWithRecaptcha() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  return (
+    <LoginForm
+      getRecaptchaToken={async () => {
+        const token = await executeRecaptcha?.("login");
+        return token ?? null;
+      }}
+    />
+  );
+}
+
+export default function Login() {
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
+  if (!siteKey) {
+    return <LoginForm />;
+  }
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={siteKey}
+      scriptProps={{ async: true, defer: true, appendTo: "body" }}
+    >
+      <LoginWithRecaptcha />
+    </GoogleReCaptchaProvider>
+  );
+}
