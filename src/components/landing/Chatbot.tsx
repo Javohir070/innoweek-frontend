@@ -1,5 +1,4 @@
-"use client";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { FiX, FiMic, FiSend, FiUser, FiMessageCircle } from "react-icons/fi";
 import axios from "axios";
@@ -691,7 +690,7 @@ const ChatBot = () => {
                         className="cursor-pointer absolute right-2 bottom-2 !rounded-full shadow-lg p-2 hover:scale-105 transition"
                         aria-label="Open chat"
                     >
-                        <Image
+                        <AppImage
                             src={img}
                             alt="Chat"
                             className="w-12 h-12 !rounded-full"
@@ -707,7 +706,7 @@ const ChatBot = () => {
                         <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white !px-2 !py-2 rounded-t-xl flex justify-between items-center">
                             <div className="flex items-center gap-3">
                                 <div className="relative">
-                                    <Image
+                                    <AppImage
                                         className="w-10 h-10 bg-white/90 !rounded-full border-2 border-white"
                                         src={img}
                                         alt="Chatbot"

@@ -1,8 +1,7 @@
-"use client";
 import { FetchInstance } from "@/api/FetchInstance";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter } from "@/lib/navigation";
 import { IComplateResponce } from "@/types";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import React, { useState } from "react";
 
 

@@ -1,10 +1,10 @@
-"use client";
 
+import { assetUrl } from "@/lib/assetUrl";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import section from "@/assets/img/section_bg_2.jpg";
-import { useParams } from "next/navigation";
+import { useParams } from "react-router-dom";
 import { notification } from "antd";
 
 interface Certificate {
@@ -154,7 +154,7 @@ const MyCertificates = () => {
     <div
       className="min-h-32 p-4 lg:p-6 rounded-2xl !shadow-lg overflow-hidden border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500 h-full"
       style={{
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

@@ -1,6 +1,5 @@
-"use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import partnerImage1 from "@/assets/img/clients/clients-1.webp";
 import partnerImage2 from "@/assets/img/clients/clients-2.webp";
 import partnerImage3 from "@/assets/img/clients/clients-3.webp";
@@ -10,7 +9,7 @@ import partnerImage6 from "@/assets/img/clients/clients-6.webp";
 import partnerImage7 from "@/assets/img/clients/clients-7.webp";
 import partnerImage8 from "@/assets/img/clients/clients-8.webp";
 import partnerImage9 from "@/assets/img/clients/clients-9.webp";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { useEffect, useState } from "react";
 
@@ -87,25 +86,25 @@ const PartnersSection = () => {
           >
             {/* Static partnerlar (agar API dan kam kelsa) */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage1} className="img-fluid" alt="Client 1" />
+              <AppImage src={partnerImage1} className="img-fluid" alt="Client 1" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage2} className="img-fluid" alt="Client 2" />
+              <AppImage src={partnerImage2} className="img-fluid" alt="Client 2" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage3} className="img-fluid" alt="Client 3" />
+              <AppImage src={partnerImage3} className="img-fluid" alt="Client 3" />
             </div>
             {/* <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage4} className="img-fluid" alt="Client 4" />
+              <AppImage src={partnerImage4} className="img-fluid" alt="Client 4" />
             </div> */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage5} className="img-fluid" alt="Client 5" />
+              <AppImage src={partnerImage5} className="img-fluid" alt="Client 5" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage6} className="img-fluid" alt="Client 6" />
+              <AppImage src={partnerImage6} className="img-fluid" alt="Client 6" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage7} className="img-fluid" alt="Client 7" />
+              <AppImage src={partnerImage7} className="img-fluid" alt="Client 7" />
             </div>
 
             {/* Ikkinchi qator uchun takrorlash */}
@@ -114,7 +113,7 @@ const PartnersSection = () => {
                 key={`track1-repeat-${partner.id}`}
                 className="clients-slide !bg-[#0085d4] dark:!bg-gray-800"
               >
-                <Image
+                <AppImage
                   src={`${BASE_URL}/storage/${partner.logo}`}
                   className="img-fluid"
                   alt={partner.name}
@@ -138,22 +137,22 @@ const PartnersSection = () => {
           >
             {/* Static partnerlar */}
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage8} className="img-fluid" alt="Client 8" />
+              <AppImage src={partnerImage8} className="img-fluid" alt="Client 8" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage9} className="img-fluid" alt="Client 9" />
+              <AppImage src={partnerImage9} className="img-fluid" alt="Client 9" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage1} className="img-fluid" alt="Client 1" />
+              <AppImage src={partnerImage1} className="img-fluid" alt="Client 1" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage2} className="img-fluid" alt="Client 2" />
+              <AppImage src={partnerImage2} className="img-fluid" alt="Client 2" />
             </div>
             <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage3} className="img-fluid" alt="Client 3" />
+              <AppImage src={partnerImage3} className="img-fluid" alt="Client 3" />
             </div>
             {/* <div className="clients-slide !bg-[#0085d4] dark:!bg-gray-800">
-              <Image src={partnerImage4} className="img-fluid" alt="Client 4" />
+              <AppImage src={partnerImage4} className="img-fluid" alt="Client 4" />
             </div> */}
 
             {/* Ikkinchi qator uchun takrorlash */}
@@ -162,7 +161,7 @@ const PartnersSection = () => {
                 key={`track2-repeat-${partner.id}`}
                 className="clients-slide !bg-[#0085d4] dark:!bg-gray-800"
               >
-                <Image
+                <AppImage
                   src={`${BASE_URL}/storage/${partner.logo}`}
                   className="img-fluid"
                   alt={partner.name}

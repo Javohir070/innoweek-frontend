@@ -1,7 +1,7 @@
 import React from "react";
 import mobile from "@/assets/img/mobile.png";
 import innoLogo from "@/assets/minin 1.png"
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { QRCode } from "antd";
 
 const MobileDirection = () => {
@@ -67,7 +67,7 @@ const MobileDirection = () => {
           {/* Right side - Mobile phones mockup */}
           <div className="flex-1 flex justify-center lg:justify-end">
             <div className="relative">
-              <Image src={mobile} alt="mobile application" />
+              <AppImage src={mobile} alt="mobile application" />
             </div>
           </div>
         </div>

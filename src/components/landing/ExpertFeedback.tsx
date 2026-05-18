@@ -1,10 +1,10 @@
-"use client";
 
+import { assetUrl } from "@/lib/assetUrl";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { IoMdStar } from "react-icons/io";
 import { LuMoveLeft, LuMoveRight } from "react-icons/lu";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import expert_1_avatar from "@/assets/img/person/person-f-1.webp";
 import expert_2_avatar from "@/assets/img/person/person-m-1.webp";
 import expert_3_avatar from "@/assets/img/person/person-f-2.webp";
@@ -94,7 +94,7 @@ const ExpertFeedback = () => {
      style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
       }}
     >
       <section className="py-16 bg-transparent" id="expert-feedback">
@@ -154,7 +154,7 @@ const ExpertFeedback = () => {
                         {item.position}
                       </p>
                       <div className="flex items-center gap-4">
-                        <Image
+                        <AppImage
                           src={item?.image}
                           alt={item.full_name}
                           width={48}

@@ -1,10 +1,9 @@
-"use client";
-import { useRouter, usePathname } from "next/navigation";
+import { useNavigate, useLocation } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import Avatar from "@/assets/img/avatar.png";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { Dropdown, MenuProps } from "antd";
 
 interface ProfileDropdownProps {
@@ -18,9 +17,9 @@ interface ProfileDropdownProps {
 }
 
 export default function ProfileDropdown({ user, onLogout }: ProfileDropdownProps) {
-    const router = useRouter();
+    const navigate = useNavigate();
     const t = useTranslations("profile");
-    const pathname = usePathname();
+    const { pathname } = useLocation();
     // Extract locale from pathname (assumes /[locale]/...)
     const locale = pathname?.split("/")[1] || "uz";
 
@@ -29,7 +28,7 @@ export default function ProfileDropdown({ user, onLogout }: ProfileDropdownProps
     };
 
     const handleProfileClick = () => {
-        router.push(`/${locale}/profile`);
+        navigate(`/${locale}/profile`);
     };
 
     const handleLogout = () => {
@@ -75,7 +74,7 @@ export default function ProfileDropdown({ user, onLogout }: ProfileDropdownProps
         <Dropdown menu={{ items }} trigger={["click"]} placement="bottom" arrow>
             <div className="flex items-center gap-2 cursor-pointer">
                 <div className="relative flex items-center !w-8 !h-8 rounded-full border border-gray-300 bg-white overflow-hidden shadow-sm cursor-pointer hover:ring-1 hover:border-blue-600 hover:ring-gray-300 transition">
-                    <Image
+                    <AppImage
                         width={32}
                         height={32}
                         src={Avatar}

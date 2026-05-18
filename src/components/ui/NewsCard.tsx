@@ -1,7 +1,6 @@
-"use client";
 import { ArrowRight } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { Link } from "@/lib/navigation";
+import { useTranslations } from "@/i18n/useTranslations";
 import { Image as AntdImage } from "antd";
 
 interface NewsCardProps {

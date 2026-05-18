@@ -1,5 +1,5 @@
 "use client"
-import Image from 'next/image';
+import AppImage from "@/lib/AppImage";
 import { useState } from 'react';
 
 export default function TestimonialsSection() {
@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
                         <h3 className="text-xl font-bold mb-4">{testimonial.title}</h3>
                         <p className="mb-6">{testimonial.content}</p>
                         <div className="flex items-center">
-                          <Image 
+                          <AppImage 
                             src="/assets/img/services/616.jpg" 
                             className="w-12 h-12 rounded-full mr-4" 
                             alt={testimonial.author}
@@ -53,7 +53,7 @@ export default function TestimonialsSection() {
                         </div>
                       </div>
                       <div className="md:w-1/3 hidden md:block">
-                        <Image 
+                        <AppImage 
                           src={testimonial.image} 
                           className="w-full h-auto rounded-lg" 
                           alt="Testimonial"

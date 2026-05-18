@@ -1,11 +1,13 @@
-"use client"
-import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import section from '@/assets/img/section_bg_2.jpg';
+import React, { useState } from "react";
+import { useTranslations } from "@/i18n/useTranslations";
+import section from "@/assets/img/section_bg_2.jpg";
+import { assetUrl } from "@/lib/assetUrl";
+
+type FaqItem = { question: string; answer: string };
 
 const FAQSection = () => {
-  const t = useTranslations('faq');
-  const faqItems = t.raw('items');
+  const t = useTranslations("faq");
+  const faqItems = (t.raw("items") as FaqItem[] | undefined) ?? [];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const handleToggle = (idx: number) => {
@@ -18,7 +20,7 @@ const FAQSection = () => {
         width: "100%",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
       }}
     >
     <section className="faq-9 faq section bg-transparent dark:bg-gray-900" id="faq">

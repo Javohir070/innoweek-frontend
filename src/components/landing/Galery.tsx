@@ -1,10 +1,9 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { Image as AntdImage } from "antd";
 import galery_1 from "@/assets/img/abstract/gallery_1732534936.jpg";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IGalleryItem, IResponse } from "@/types";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import { ArrowsAltOutlined } from "@ant-design/icons";
 import "antd/dist/reset.css";
 

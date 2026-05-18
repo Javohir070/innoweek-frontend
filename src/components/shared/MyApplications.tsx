@@ -1,9 +1,10 @@
-"use client";
 import { FetchInstance } from "@/api/FetchInstance";
+import { assetUrl } from "@/lib/assetUrl";
 import section from "@/assets/img/section_bg_2.jpg";
 import { IApplication, IResponse } from "@/types";
-import { useTranslations } from "next-intl";
-import { useRouter, useParams } from "next/navigation";
+import { useTranslations } from "@/i18n/useTranslations";
+import { useRouter } from "@/lib/navigation";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const MyApplications = () => {
@@ -54,7 +55,7 @@ const MyApplications = () => {
     <div
       className="min-h-32 p-4 lg:p-6 rounded-2xl !shadow-lg overflow-hidden border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500 h-full"
       style={{
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

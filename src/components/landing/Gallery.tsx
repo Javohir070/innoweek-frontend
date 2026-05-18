@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import AppImage from "@/lib/AppImage";
 
 export default function GallerySection() {
 
@@ -25,7 +25,7 @@ export default function GallerySection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {galleryItems.map((item) => (
             <div key={item.id} className="relative group overflow-hidden rounded-lg">
-              <Image
+              <AppImage
                 src={item.src}
                 alt={item.alt}
                 width={400}

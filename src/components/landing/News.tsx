@@ -1,16 +1,16 @@
-"use client";
 import { useEffect, useState, useRef } from "react";
+import { assetUrl } from "@/lib/assetUrl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
-import { useParams } from "next/navigation";
+import { useParams } from "react-router-dom";
 import { INewsListItem, IResponse } from "@/types";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from "@/i18n/useTranslations";
+import { Link } from "@/lib/navigation";
 import section from "@/assets/img/section_bg_2.jpg";
 
 export default function NewsSection() {
@@ -48,7 +48,7 @@ export default function NewsSection() {
       style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
       }}
     >
       <section
@@ -115,7 +115,7 @@ export default function NewsSection() {
                       </div>
                       <div className="flex -mt-5 items-center w-full lg:w-[45%]">
                         <div className="featured-img-wrapper rounded-lg overflow-hidden w-full h-full">
-                          <Image
+                          <AppImage
                             src={
                               item?.poster
                                 ? `${BASE_URL}/upload/news/${item?.poster}_big_720.png`

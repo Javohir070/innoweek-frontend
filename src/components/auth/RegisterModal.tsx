@@ -1,6 +1,6 @@
 "use client"
 import { FetchInstance } from "@/api/FetchInstance";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter } from "@/lib/navigation";
 import {
   IComplateResponce,
   IProfessionItem,
@@ -16,7 +16,7 @@ import React, {
 } from "react";
 import { toast } from "react-toastify";
 import CheckYourTicket from "./CheckYourTicket";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 
 type RegisterModalProps = {
   open: boolean;

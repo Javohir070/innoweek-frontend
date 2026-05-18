@@ -1,0 +1,2 @@
+import{bK as t,aq as s}from"./index-CBgdqqfK.js";function i(e,a,n){return t({queryKey:["news","list",e,a,n],queryFn:async()=>{const{data:r}=await s.get(`/api/v1.0/news/all?limit=${n}&page=${a}&lang=${e}&archive_id=8`);return r}})}function y(e,a){return t({queryKey:["news","detail",e,a],queryFn:async()=>{const{data:n}=await s.get(`/api/v1.0/news/get/${e}?lang=${a}`);return n},enabled:!!e})}export{i as a,y as u};
+//# sourceMappingURL=useNews-CYd9e6LH.js.map

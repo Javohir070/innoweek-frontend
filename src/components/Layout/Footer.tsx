@@ -1,22 +1,22 @@
 import bg from "@/assets/img/footer_bg.png";
 import footer_logo from "@/assets/img/services/1234.png";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import {
   RiFacebookBoxFill,
   RiInstagramFill,
   RiTelegram2Fill,
   RiYoutubeFill,
 } from "react-icons/ri";
-import { useTranslations } from "next-intl";
-import { Link, useRouter as Router } from "@/i18n/navigation";
-import { usePathname, useParams } from "next/navigation";
+import { useTranslations } from "@/i18n/useTranslations";
+import { Link, useRouter as Router } from "@/lib/navigation";
+import { useLocation, useParams } from "react-router-dom";
 
 const Footer = () => {
   const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
   const params = useParams();
   const router = Router();
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   const activeLang = params?.locale || "en";
 
@@ -63,7 +63,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <div className="md:w-1/4">
             <div className="flex flex-row items-center gap-4">
-              <Image src={footer_logo} alt="Footer Logo" className="w-32" />
+              <AppImage src={footer_logo} alt="Footer Logo" className="w-32" />
             </div>
             <p className="text-lg mb-1 ml-1.5">{t("follow_us")}</p>
             <ul className="list-none p-0 flex flex-row gap-4 ml-1.5">

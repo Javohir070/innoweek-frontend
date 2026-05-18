@@ -1,11 +1,10 @@
-"use client";
 import { FetchInstance } from "@/api/FetchInstance";
-import { UserProfile } from "@/app/[locale]/profile/page";
-import { useRouter } from "@/i18n/navigation";
+import type { UserProfile } from "@/hooks/queries/useUser";
+import { useRouter } from "@/lib/navigation";
 import { IProgramEvent, IResponse } from "@/types";
 import { Button, Modal } from "antd";
 import { PlusCircleIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import { useState } from "react";
 
 interface IProps {

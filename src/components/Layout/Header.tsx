@@ -1,15 +1,14 @@
-"use client";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { FetchInstance } from "@/api/FetchInstance";
-import { IResponse } from "@/types";
+import AppImage from "@/lib/AppImage";
+import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useCurrentUser } from "@/hooks/queries/useUser";
 import { Select } from "antd";
 import innoweekLogo from "@/assets/img/logo_inno.png";
-import { useTranslations } from "next-intl";
-import { Link, useRouter as Router } from "@/i18n/navigation";
-import { usePathname, useParams, useRouter } from "next/navigation";
+import { useTranslations } from "@/i18n/useTranslations";
+import { Link, useRouter as Router } from "@/lib/navigation";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { LoginOutlined } from "@ant-design/icons";
-import dynamic from "next/dynamic";
+import { lazy, Suspense } from "react";
 // import { IoMdPerson } from "react-icons/io";
 // import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
 
@@ -17,85 +16,17 @@ import uzFlag from "@/assets/img/uz.avif";
 import ruFlag from "@/assets/img/rus.webp";
 import enFlag from "@/assets/img/eng.webp";
 
-interface UserProfile {
-  id: number;
-  user_type: number;
-  first_name: string;
-  last_name: string;
-  middle_name: string | null;
-  company_name: string | null;
-  company_inn: string | null;
-  company_logo: string | null;
-  pinfl: string | null;
-  passport_serial: string | null;
-  passport_number: string | null;
-  address: string | null;
-  position: string | null;
-  phone: string | null;
-  avatar: string | null;
-  username: string | null;
-  email: string | null;
-  email_verified_at: string | null;
-  confirmed: boolean;
-  status: string;
-  created_at: string;
-  updated_at: string;
-  country_id: number;
-  country_name: string | null;
-  region_id: number | null;
-  district_id: number | null;
-  p_type_id: number | null;
-  department_id: number | null;
-  birth_date: string | null;
-  profession_id: number | null;
-  organization: string | null;
-  gender: string | number | null;
-  ticket: {
-    id: number;
-    user_id: number;
-    archive_id: number;
-    ticket_id: string;
-    status: string;
-    created_at: string;
-    updated_at: string;
-  };
-  role?: string;
-  country?: string | object | null;
-  profession?: object | null;
-}
-
-const ProfileDropdown = dynamic(() => import("./ProfileDropdown"), {
-  ssr: false,
-});
+const ProfileDropdown = lazy(() => import("./ProfileDropdown"));
 
 export default function Header() {
-  const [user, setUser] = useState<UserProfile | null>(null);
-  // Fetch user info on mount
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await FetchInstance<IResponse<UserProfile>>(
-          "/api/v1.0/user/me",
-          { method: "POST" }
-        );
-        if (res?.success && res.data) {
-          setUser(res.data);
-        } else {
-          setUser(null);
-        }
-      } catch (err) {
-        console.log(err);
-        setUser(null);
-      }
-    };
-    fetchUser();
-  }, []);
+  const queryClient = useQueryClient();
+  const { data: user = null } = useCurrentUser();
   const [activeMenu, setActiveMenu] = useState("#hero");
   const t = useTranslations("header");
   const registerLangs = useTranslations("header");
   const router = Router();
-  const routerLang = useRouter();
-  const pathname = usePathname();
+  const routerLang = useNavigate();
+  const { pathname } = useLocation();
   const params = useParams();
   const [activeLang, setActiveLang] = useState(params.locale ?? "uz");
 
@@ -105,10 +36,8 @@ export default function Header() {
   const changeLang = (lang: string) => {
     setActiveLang(lang);
     const newPath = pathname.replace(/^\/(uz|ru|en)/, `/${lang}`);
-    routerLang.push(newPath);
+    routerLang(newPath);
   };
-
-  console.log("user data in header", user);
 
   const menu = [
     { label: t("HOME"), key: "/" },
@@ -165,7 +94,7 @@ export default function Header() {
           href="/"
           className="logo d-flex align-items-center me-auto me-xl-0 rounded-lg"
         >
-          <Image src={innoweekLogo} alt="Logo" className="w-[110px]" />
+          <AppImage src={innoweekLogo} alt="Logo" className="w-[110px]" />
         </Link>
 
         <nav id="navmenu" className="navmenu !uppercase">
@@ -230,7 +159,6 @@ export default function Header() {
                               handleMenuClick(subItem.key);
                             }
                           }}
-                          scroll={false}
                         >
                           {subItem.label}
                         </Link>
@@ -245,6 +173,7 @@ export default function Header() {
 
         <div className="flex max-[1200px]:hidden items-center justify-end gap-3">
           {user ? (
+            <Suspense fallback={null}>
             <ProfileDropdown
               user={{
                 first_name: user?.first_name,
@@ -253,11 +182,13 @@ export default function Header() {
                 id: user?.id,
               }}
               onLogout={() => {
-                setUser(null);
+                localStorage.removeItem("token");
                 localStorage.removeItem("auth_token");
-                window.location.href = "/";
+                queryClient.removeQueries({ queryKey: ["user", "me"] });
+                window.location.href = `/${params.locale ?? "uz"}`;
               }}
             />
+            </Suspense>
           ) : (
             <>
               <button
@@ -285,7 +216,7 @@ export default function Header() {
 
           {/* <div className=" bayroq w-full  !-mr-4 ml-2">
             {activeLang === "uz" ? (
-              <Image
+              <AppImage
                 className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2"
                 src={uzFlag}
                 alt="UZ"
@@ -293,7 +224,7 @@ export default function Header() {
                 height={20}
               />
             ) : activeLang === "en" ? (
-              <Image
+              <AppImage
                 className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2"
                 src={enFlag}
                 alt="EN"
@@ -301,7 +232,7 @@ export default function Header() {
                 height={20}
               />
             ) : (
-              <Image
+              <AppImage
                 className="!w-[22px] !h-[22px] object-cover rounded-full shadow m-2"
                 src={ruFlag}
                 alt="RU"
@@ -314,7 +245,7 @@ export default function Header() {
             value={shortLabel[activeLang as keyof typeof shortLabel]}
             onChange={changeLang}
             style={{ width: 80, textAlign: "center" }}
-            dropdownMatchSelectWidth={false}
+            popupMatchSelectWidth={false}
             options={langOptions}
             // dropdownRender={(menu) => (
             //   <div className="!p-0 text-center bg-white text-blue-600 font-medium">
@@ -432,7 +363,7 @@ export default function Header() {
                 <div className="flex items-center mt-2">
                   <div className=" bayroq w-full mt-1   mr-2">
                     {activeLang === "uz" ? (
-                      <Image
+                      <AppImage
                         className="!w-[22px] !h-[22px] object-cover rounded-full"
                         src={uzFlag}
                         alt="UZ"
@@ -440,7 +371,7 @@ export default function Header() {
                         height={14}
                       />
                     ) : activeLang === "en" ? (
-                      <Image
+                      <AppImage
                         className="!w-[22px] !h-[22px] object-cover rounded-full"
                         src={enFlag}
                         alt="EN"
@@ -448,7 +379,7 @@ export default function Header() {
                         height={14}
                       />
                     ) : (
-                      <Image
+                      <AppImage
                         className="!w-[22px] !h-[22px] object-cover rounded-full"
                         src={ruFlag}
                         alt="RU"
@@ -465,7 +396,7 @@ export default function Header() {
                         setIsMenuOpen(false);
                       }}
                       style={{ width: "100%" }}
-                      dropdownMatchSelectWidth={false}
+                      popupMatchSelectWidth={false}
                       options={langOptions}
                       // dropdownClassName="!p-0 !text-center"
                       classNames={{

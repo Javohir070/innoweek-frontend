@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import { useState } from "react";
 
 const AcceptTerms = () => {

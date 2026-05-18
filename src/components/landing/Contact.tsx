@@ -1,6 +1,5 @@
-"use client";
 import { BASE_URL } from "@/api/FetchInstance";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import React, { useState } from "react";
 
 const ContactSection = () => {

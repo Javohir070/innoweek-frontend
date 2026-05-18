@@ -1,12 +1,12 @@
-"use client";
 
+import { assetUrl } from "@/lib/assetUrl";
 import { FetchInstance } from "@/api/FetchInstance";
 import section from "@/assets/img/section_bg_2.jpg";
 import { IEventDetail, IResponse } from "@/types";
 import { Card, Empty, Spin, Tag, Divider } from "antd";
 import { CalendarIcon, MapPinIcon, ClockIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "@/i18n/useTranslations";
 
 const MyEvents = () => {
   const t = useTranslations("my_events");
@@ -56,7 +56,7 @@ const MyEvents = () => {
     <div
       className="min-h-32 p-4 lg:p-6 rounded-2xl !shadow-lg overflow-hidden border border-gray-200 dark:!border-gray-700 shadow-gray-300 dark:shadow-blue-500 h-full"
       style={{
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -93,7 +93,7 @@ const MyEvents = () => {
                   <div
                     className="h-36 !w-full flex items-center justify-center text-center "
                     style={{
-                      backgroundImage: `url(${section.src})`,
+                      backgroundImage: `url(${assetUrl(section)})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}

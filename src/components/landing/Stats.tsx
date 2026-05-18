@@ -1,4 +1,3 @@
-"use client";
 import {
   ChevronLeft,
   ChevronRight,
@@ -9,15 +8,16 @@ import {
   UserCheckIcon,
   Users,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import { useState, useRef } from "react";
 import section from "@/assets/img/section_bg_2.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { BASE_URL } from "@/api/FetchInstance";
+import { assetUrl } from "@/lib/assetUrl";
 
 export default function StatsSection() {
   const t = useTranslations("stats");
@@ -105,7 +105,7 @@ export default function StatsSection() {
       style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
       }}
     >
       <section

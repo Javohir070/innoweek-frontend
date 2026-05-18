@@ -1,9 +1,8 @@
-"use client";
 import { useState } from "react";
 import about_10 from "@/assets/img/portfolio/portfolio-10.webp";
 import about_11 from "@/assets/img/portfolio/portfolio-11.webp";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
+import AppImage from "@/lib/AppImage";
+import { useTranslations } from "@/i18n/useTranslations";
 
 export default function AboutSection() {
   const t = useTranslations("about");
@@ -69,12 +68,12 @@ export default function AboutSection() {
                 data-aos="zoom-out"
                 data-aos-delay="400"
               >
-                <Image
+                <AppImage
                   src={about_10}
                   alt="Business Meeting"
                   className="img-fluid main-image rounded-4 shadow-lg dark:shadow-gray-700/50"
                 />
-                <Image
+                <AppImage
                   src={about_11}
                   alt="Team Discussion"
                   className="img-fluid small-image rounded-4 shadow-lg dark:shadow-gray-700/50"

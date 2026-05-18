@@ -1,12 +1,11 @@
-"use client";
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import innoweekLogo from "@/assets/img/services/1234.png";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
+import AppImage from "@/lib/AppImage";
+import { useTranslations } from "@/i18n/useTranslations";
 import RegisterModal2 from "../auth/RegisterModal2";
-import { Link } from "@/i18n/navigation";
+import { Link } from "@/lib/navigation";
 const HeroVideo = "/video/1.mp4";
 
 export default function HeroSection() {
@@ -72,7 +71,7 @@ export default function HeroSection() {
           <div className="row">
             <div className="col-lg-7 content-col" data-aos="fade-up">
               <div className="content">
-                <div className="main-heading">
+                <div className="main-heading text-white">
                   <h1>{t("Ideas without borders")}</h1>
                 </div>
 
@@ -102,7 +101,7 @@ export default function HeroSection() {
             <div className="col-lg-5" data-aos="zoom-out">
               <div className="visual-content">
                 <div className="fluid-shape">
-                  <Image
+                  <AppImage
                     src={innoweekLogo}
                     alt="Abstract Fluid Shape"
                     className="fluid-img"

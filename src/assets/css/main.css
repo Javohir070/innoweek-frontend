@@ -77,6 +77,10 @@
   --accent-color: #3f51b5;
 }
 
+a {
+  text-decoration: none;
+}
+
 .dark {
   /* Dark mode colors */
   --default-color: #e2e8f0;

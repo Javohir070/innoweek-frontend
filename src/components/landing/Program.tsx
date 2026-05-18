@@ -1,12 +1,11 @@
-"use client";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import { useEffect, useState } from "react";
 import { DownCircleOutlined } from "@ant-design/icons";
 import { FetchInstance } from "@/api/FetchInstance";
 import { IProgramEvent, IResponse } from "@/types";
-import { useParams } from "next/navigation";
+import { useParams } from "react-router-dom";
 import StoreEvets from "../shared/StoreEvets";
-import { Link } from "@/i18n/navigation";
+import { Link } from "@/lib/navigation";
 
 // Program sahifadagi ma'lumotlar massiv ko'rinishida:
 

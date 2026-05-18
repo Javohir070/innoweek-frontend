@@ -1,13 +1,13 @@
-"use client";
 import React, { useEffect, useState } from "react";
+import { assetUrl } from "@/lib/assetUrl";
 import userAvatar from "@/assets/img/person/person-m-7.webp";
-import Image from "next/image";
+import AppImage from "@/lib/AppImage";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IResponse, ISpeakerItem } from "@/types";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 import section from "@/assets/img/section_bg_2.jpg";
 import Aos from "aos";
-import { useParams } from "next/navigation";
+import { useParams } from "react-router-dom";
 import { DownCircleOutlined } from "@ant-design/icons";
 
 const SpeakersSection = () => {
@@ -40,7 +40,7 @@ const SpeakersSection = () => {
       style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundImage: `url(${section.src})`,
+        backgroundImage: `url(${assetUrl(section)})`,
       }}
     >
       <section
@@ -63,7 +63,7 @@ const SpeakersSection = () => {
               >
                 <div className="team-member d-flex grid grid-cols-3 !bg-[#0085d4]  dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300 ">
                   <div className="member-img">
-                    <Image
+                    <AppImage
                       src={
                         item?.image ? `${BASE_URL}${item?.image}` : userAvatar
                       }

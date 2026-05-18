@@ -1,14 +1,13 @@
-"use client";
-import React, { useEffect, useState, useCallback } from "react";
-import { useTranslations } from "next-intl";
+import React, { useEffect, useState, useCallback, useRef } from "react";
+import { assetUrl } from "@/lib/assetUrl";
+import { useTranslations } from "@/i18n/useTranslations";
 import minin1 from "@/assets/minin 1.png";
 import minin2 from "@/assets/img/logo_inno.png";
 import minin3 from "@/assets/img/vazirlik_logo.jpg";
-import QRCode from "react-qr-code";
-import Image from "next/image";
+import { QRCodeSVG } from "qrcode.react";
+import AppImage from "@/lib/AppImage";
 import { IResponse, ITicketDetail } from "@/types";
-import html2canvas from "html2canvas";
-import { useRef } from "react";
+import { toPng } from "html-to-image";
 import { FetchInstance } from "@/api/FetchInstance";
 import section from "@/assets/img/section_bg_2.jpg";
 
@@ -17,6 +16,16 @@ interface Props {
   full_number: string;
 }
 
+const oklchFilter = (node: Node) => {
+  if (!(node instanceof HTMLElement)) return true;
+  const computedStyle = window.getComputedStyle(node);
+  return !(
+    computedStyle.color.includes("oklch") ||
+    computedStyle.backgroundColor.includes("oklch") ||
+    computedStyle.borderColor.includes("oklch")
+  );
+};
+
 const MyTicket: React.FC<Props> = ({ ticket_id, full_number }) => {
   const t = useTranslations("ticket");
   const [ticketData, setTicketData] = useState<ITicketDetail | null>(null);
@@ -24,47 +33,36 @@ const MyTicket: React.FC<Props> = ({ ticket_id, full_number }) => {
   const ticketRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
-    if (ticketRef.current) {
+    if (!ticketRef.current) return;
+
+    try {
+      const dataUrl = await toPng(ticketRef.current, {
+        pixelRatio: 2,
+        cacheBust: true,
+        backgroundColor: "rgba(0,0,0,0)",
+        filter: oklchFilter,
+      });
+      const link = document.createElement("a");
+      link.download = `ticket-${ticket_id}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (error) {
+      console.error("Ticket yuklab olishda xatolik:", error);
       try {
-        const canvas = await html2canvas(ticketRef.current, {
-          useCORS: true,
-          allowTaint: false,
-          scale: 2,
-          backgroundColor: null,
-          ignoreElements: (element) => {
-            // oklch ranglarini o'z ichiga olgan elementlarni e'tiborsiz qoldirish
-            const computedStyle = window.getComputedStyle(element);
-            return (
-              computedStyle.color.includes("oklch") ||
-              computedStyle.backgroundColor.includes("oklch") ||
-              computedStyle.borderColor.includes("oklch")
-            );
-          },
+        const dataUrl = await toPng(ticketRef.current, {
+          pixelRatio: 1,
+          cacheBust: true,
+          backgroundColor: "#ffffff",
         });
         const link = document.createElement("a");
         link.download = `ticket-${ticket_id}.png`;
-        link.href = canvas.toDataURL("image/png");
+        link.href = dataUrl;
         link.click();
-      } catch (error) {
-        console.error("Ticket yuklab olishda xatolik:", error);
-        // Fallback: simple screenshot
-        try {
-          const canvas = await html2canvas(ticketRef.current, {
-            useCORS: true,
-            allowTaint: true,
-            scale: 1,
-            backgroundColor: "#ffffff",
-          });
-          const link = document.createElement("a");
-          link.download = `ticket-${ticket_id}.png`;
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-        } catch (fallbackError) {
-          alert(
-            "Ticketni yuklab olishda xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring."
-          );
-          console.error("Fallback ham ishlamadi:", fallbackError);
-        }
+      } catch (fallbackError) {
+        alert(
+          "Ticketni yuklab olishda xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring."
+        );
+        console.error("Fallback ham ishlamadi:", fallbackError);
       }
     }
   };
@@ -96,24 +94,24 @@ const MyTicket: React.FC<Props> = ({ ticket_id, full_number }) => {
           <div
             ref={ticketRef}
             style={{
-              backgroundImage: `url(${section.src})`,
+              backgroundImage: `url(${assetUrl(section)})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
             className="rounded-xl p-6 min-w-[340px] shadow-lg flex flex-col gap-1"
           >
             <div className="flex justify-between items-center mb-2">
-              <Image
+              <AppImage
                 src={minin3}
                 alt="Logo"
                 className="h-12 w-[70px] object-fit-contain"
               />
-              <Image
+              <AppImage
                 src={minin2}
                 alt="Logo"
                 className="h-12 w-[130px] object-fit-contain"
               />
-              <Image
+              <AppImage
                 src={minin1}
                 alt="Logo"
                 className="h-12 w-[70px] object-fit-contain"
@@ -124,11 +122,8 @@ const MyTicket: React.FC<Props> = ({ ticket_id, full_number }) => {
                 {ticketData?.user?.first_name?.toUpperCase() ?? ""}{" "}
                 {ticketData?.user?.last_name?.toUpperCase() ?? ""}
               </div>
-              {/* <div className="text-lg font-bold tracking-wider !text-gray-900">
-                {t("electronic_ticket")}
-              </div> */}
-              <div className="flex flex-row items-center justify-center">
-                <QRCode value={full_number} className="w-[180px] py-3" />
+              <div className="flex flex-row items-center justify-center py-3">
+                <QRCodeSVG value={full_number} size={180} level="M" />
               </div>
             </div>
             <div className=" text-sm text-center">{t("ticket_to_enter")}</div>

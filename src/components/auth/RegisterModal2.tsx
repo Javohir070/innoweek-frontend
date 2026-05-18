@@ -1,6 +1,6 @@
-"use client"
 import { FetchInstance } from "@/api/FetchInstance";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "@/lib/navigation";
+import { useParams } from "react-router-dom";
 import {
   IComplateResponce,
   IProfessionItem,
@@ -15,7 +15,7 @@ import React, {
   useEffect,
 } from "react";
 import { toast } from "react-toastify";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "@/i18n/useTranslations";
 
 import img1 from "@/assets/img/ITweek1.jpg";
 import img2 from "@/assets/img/service-2.jpg";
