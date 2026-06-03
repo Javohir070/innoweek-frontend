@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import innoweekLogo from "@/assets/img/services/1234.png";
+import innoweekLogo from "@/assets/img/services/111 copy.svg";
 import AppImage from "@/lib/AppImage";
 import { useTranslations } from "@/i18n/useTranslations";
 import RegisterModal2 from "../auth/RegisterModal2";
@@ -88,8 +88,8 @@ export default function HeroSection() {
                     </Link>
                   </div> */}
                   {!token && (
-                    <div className="cta-button hover:bg-[#e3a127] hover:border-[#e3a127] rounded-full">
-                      <Link href="/register" className="btn border">
+                    <div className="cta-button hover:bg-[#e3a127] hover:border-[#e3a127] rounded-full py-1 px-2">
+                      <Link href="/register" className="btn border ">
                         <span className="text-white">{t("REGISTER")}</span>
                       </Link>
                     </div>

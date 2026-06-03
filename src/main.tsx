@@ -8,7 +8,6 @@ import "@ant-design/v5-patch-for-react-19";
 import "@/i18n";
 import App from "./App";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import "./globals.css";
 import "@/assets/css/main.css";
 import "@/assets/vendor/bootstrap/css/bootstrap.min.css";
 import "@/assets/vendor/bootstrap-icons/bootstrap-icons.css";
@@ -16,6 +15,7 @@ import "@/assets/vendor/aos/aos.css";
 import "@/assets/vendor/swiper/swiper-bundle.min.css";
 import "@/assets/vendor/glightbox/css/glightbox.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./globals.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCurrentUser } from "@/hooks/queries/useUser";
 import { Select } from "antd";
-import innoweekLogo from "@/assets/img/logo_inno.png";
+import innoweekLogo from "@/assets/img/services/111.svg";
 import { useTranslations } from "@/i18n/useTranslations";
 import { Link, useRouter as Router } from "@/lib/navigation";
 import { useLocation, useParams, useNavigate } from "react-router-dom";

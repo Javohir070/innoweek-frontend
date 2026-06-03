@@ -33,7 +33,7 @@ export default function AboutSection() {
       <div className="container" data-aos="fade-up" data-aos-delay="100">
         <div className="row gy-4 align-items-center justify-content-between">
           <div className="col-xl-5" data-aos="fade-up" data-aos-delay="200">
-            <span className="about-meta !text-black dark:!text-white">INNOWEEK 2025</span>
+            <span className="about-meta !text-black dark:!text-white">INNOWEEK 2026</span>
             <h2 className="about-title !text-black dark:!text-white">{t("title")}</h2>
             <p className="about-description text-black dark:!text-gray-300">{t("description")}</p>
 

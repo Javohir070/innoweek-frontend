@@ -1,5 +1,6 @@
 import bg from "@/assets/img/footer_bg.png";
-import footer_logo from "@/assets/img/services/1234.png";
+import { assetUrl } from "@/lib/assetUrl";
+import footer_logo from "@/assets/img/services/111 copy.svg";
 import AppImage from "@/lib/AppImage";
 import {
   RiFacebookBoxFill,
@@ -48,11 +49,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white relative">
+    <footer className="w-full bg-gray-900 text-white relative">
       <div
         className="absolute inset-0 bg-black opacity-70"
         style={{
-          backgroundImage: `url(${bg.src})`,
+          backgroundImage: `url(${assetUrl(bg)})`,
           backgroundSize: "100% 100%",
           backgroundPosition: "center center",
           zIndex: 0,

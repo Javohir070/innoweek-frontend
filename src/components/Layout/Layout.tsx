@@ -9,7 +9,7 @@ interface IlayoutProps {
 
 const Layout: React.FC<IlayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className="w-full min-w-0">
       <Header />
       {children}
       <Footer />
