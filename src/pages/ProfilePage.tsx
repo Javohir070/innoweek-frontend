@@ -81,11 +81,11 @@ interface ProfessionObj {
 const SIDEBAR_ITEMS = [
   { key: "profile", labelKey: "sidebar_profile", icon: <IoPersonSharp /> },
   // { key: "programm", labelKey: "sidebar_program", icon: <FaTicketAlt /> },
-  {
-    key: "certificate",
-    labelKey: "sidebar_certificate",
-    icon: <PiCertificateFill />,
-  },
+  // {
+  //   key: "certificate",
+  //   labelKey: "sidebar_certificate",
+  //   icon: <PiCertificateFill />,
+  // },
   // { key: "ticket", labelKey: "sidebar_ticket", icon: <FaTicketAlt /> },
   // { key: "applications", labelKey: "sidebar_eco_ediethon", icon: <FaTicketAlt /> },
 ];

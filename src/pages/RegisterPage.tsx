@@ -69,6 +69,7 @@ function RegisterRolePageInner({
   const params = useParams();
 
   const handleSubmit = async (values: FormValues) => {
+    setLoading(true);
     if (getRecaptchaToken) {
       const token = await getRecaptchaToken();
       if (!token) {
@@ -79,7 +80,6 @@ function RegisterRolePageInner({
         return;
       }
     }
-    setLoading(true);
     setError({});
 
     let mappedForm: Record<string, string | number | boolean | undefined> = {};
@@ -120,8 +120,6 @@ function RegisterRolePageInner({
           body: JSON.stringify(mappedForm),
         }
       );
-      console.log(res);
-
       if (res?.success) {
         setRegisterBody(mappedForm);
         setAuthKey(res?.data?.auth_key);
