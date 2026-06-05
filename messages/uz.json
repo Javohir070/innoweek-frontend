@@ -4,7 +4,7 @@
   },
   "ticket": {
     "electronic_ticket": "ELEKTRON CHIPTA",
-    "ticket_to_enter": "InnoWeek-2025 tadbiriga kirish uchun chipta",
+    "ticket_to_enter": "InnoWeek-2026 tadbiriga kirish uchun chipta",
     "validity_period": "Amal qilish muddati",
     "date_and_time_of_visit": "Tashrif vaqti",
     "address": "Toshkent, Mirzo Ulug'bek tumani, Milliy Bog' ko'chasi, 1",
@@ -174,15 +174,15 @@
       },
       {
         "question": "СAEx ga qanday yetib borsa buladi?",
-        "answer": "2025-yil 9–11-oktabr kunlari boʻlib oʻtadigan “InnoWeek-2025”da ishtirok etish uchun qulaylik yaratish maqsadida Oliy taʼlim, fan va innovatsiyalar vazirligi, “O‘zbekiston” mehmonxonasi hamda “Do‘stlik” metro bekatlaridan \"CAEx Uzbekistan\" koʻrgazmalar majmuasiga bepul avtobuslar qatnovi yoʻlga qoʻyiladi."
+        "answer": "2026-yil 27–29-oktabr kunlari boʻlib oʻtadigan “InnoWeek-2026”da ishtirok etish uchun qulaylik yaratish maqsadida Oliy taʼlim, fan va innovatsiyalar vazirligi, “O‘zbekiston” mehmonxonasi hamda “Do‘stlik” metro bekatlaridan \"CAEx Uzbekistan\" koʻrgazmalar majmuasiga bepul avtobuslar qatnovi yoʻlga qoʻyiladi."
       },
       {
         "question": "CAEx hududi yaqinida restoran va qahvaxonalar mavjudmi?",
         "answer": "Koʻrgazma pavilyonida mahalliy restoranlar va qahvaxonalar tarmogʻi faoliyat yuritadi."
       },
       {
-        "question": "“InnoWeek-2025” doirasida belgilangan forumlar qaysi manzillarda oʻtkaziladi.",
-        "answer": "“InnoWeek-2025” doirasida belgilangan tadbirlarning barchasi CAEx hududida oʻtkaziladi. Koʻrgazma dasturi bilan (.......) havola orqali, tadbir davomida esa maxsus tablolar orqali onlayn tanishishingiz mumkin."
+        "question": "“InnoWeek-2026” doirasida belgilangan forumlar qaysi manzillarda oʻtkaziladi.",
+        "answer": "“InnoWeek-2026” doirasida belgilangan tadbirlarning barchasi CAEx hududida oʻtkaziladi."
       }
     ]
   },
