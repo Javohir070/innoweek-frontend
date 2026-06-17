@@ -1,5 +1,8 @@
+import { useRef } from "react";
 import { BASE_URL } from "@/api/axios";
-import { Image as AntdImage, Spin } from "antd";
+import { Image as AntdImage, Carousel, Spin } from "antd";
+import type { CarouselRef } from "antd/es/carousel";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { useNewsDetail } from "@/hooks/queries/useNews";
 
@@ -7,6 +10,8 @@ export default function NewsDetailPage() {
   const params = useParams();
   const newsId = params?.newsId as string;
   const locale = params?.locale as string;
+
+  const carouselRef = useRef<CarouselRef>(null);
 
   const { data: response, isLoading } = useNewsDetail(newsId, locale);
   const data = response?.data;
@@ -23,22 +28,82 @@ export default function NewsDetailPage() {
     return <div className="container section-title">Yangilik topilmadi</div>;
   }
 
+  // Combine the main image and gallery items into a single list of slides
+  const slides: string[] = [];
+  if (data.image) {
+    slides.push(`${BASE_URL}/upload/news/${data.image}_big_720.png`);
+  }
+  (data.gallery ?? [])
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .forEach((item) => {
+      const url = item.image_url
+        ? `${BASE_URL}${item.image_url}`
+        : `${BASE_URL}/upload/news/${item.image}_big_720.png`;
+      slides.push(url);
+    });
+
+  const hasMultiple = slides.length > 1;
+
   return (
     <div className="container pb-10 pt-20 mt-4 prose min-h-[65vh]">
-      {data.image && (
-        <AntdImage
-          src={`${BASE_URL}/upload/news/${data?.image}_big_720.png`}
-          alt={data.title}
-          width={320}
-          height={180}
-          rootClassName="float-left w-full lg:w-1/4 mr-4"
-          className="object-cover rounded-lg"
-          preview={false}
-        />
-      )}
       <span className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold pt-4 ">
         {data.title}
       </span>
+      {slides.length > 0 && (
+        <div className="relative mb-6 w-full overflow-hidden rounded-xl group">
+          <AntdImage.PreviewGroup>
+            <Carousel
+              ref={carouselRef}
+              dots={hasMultiple}
+              draggable
+              autoplay={hasMultiple}
+              autoplaySpeed={5000}
+            >
+              {slides.map((src, index) => (
+                <div key={index}>
+                  <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden bg-black/5 dark:bg-white/5 max-h-[500px]">
+                    {/* Blurred background fills empty space when the image ratio doesn't match */}
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 scale-110 bg-cover bg-center blur-2xl"
+                      style={{ backgroundImage: `url(${src})` }}
+                    />
+                    <AntdImage
+                      src={src}
+                      alt={`${data.title} - ${index + 1}`}
+                      rootClassName="relative z-[1] w-full h-full"
+                      className="!h-full !w-full object-contain"
+                      preview={{ mask: null }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </Carousel>
+          </AntdImage.PreviewGroup>
+
+          {hasMultiple && (
+            <>
+              <button
+                type="button"
+                aria-label="Previous slide"
+                onClick={() => carouselRef.current?.prev()}
+                className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-black opacity-0 shadow-md transition hover:bg-white group-hover:opacity-100 dark:bg-black/60 dark:text-white"
+              >
+                <LeftOutlined />
+              </button>
+              <button
+                type="button"
+                aria-label="Next slide"
+                onClick={() => carouselRef.current?.next()}
+                className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-black opacity-0 shadow-md transition hover:bg-white group-hover:opacity-100 dark:bg-black/60 dark:text-white"
+              >
+                <RightOutlined />
+              </button>
+            </>
+          )}
+        </div>
+      )}
       <span
         className="prose prose-lg max-w-none text-black dark:text-white"
         dangerouslySetInnerHTML={{ __html: data.description }}

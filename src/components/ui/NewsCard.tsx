@@ -18,13 +18,13 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
     <Link href={`/news/${id}`}>
       <div className="group relative bg-white text-black dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer">
         <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div className="relative h-[250px] overflow-hidden">
+        <div className="relative h-[200px] overflow-hidden">
           <AntdImage
             src={image}
             alt={title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-            width={300}
-            height={200}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 min-h-[200px]"
+            // width={300}
+            // height={200}
           />
           <div className="absolute inset-0 dark:bg-gradient-to-t dark:from-slate-900/80 dark:via-transparent dark:to-transparent"></div>
           <div className="absolute top-4 left-4">

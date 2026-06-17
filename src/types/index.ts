@@ -6,6 +6,14 @@ export interface IPagination {
   total_pages: number;
 }
 
+export interface INewsGalleryItem {
+  id: number;
+  news_id: number;
+  image: string;
+  order: number;
+  image_url: string;
+}
+
 export interface INewsListItem {
   id: number;
   title: string;
@@ -13,6 +21,7 @@ export interface INewsListItem {
   image: string;
   poster: string | null;
   created_at: string;
+  gallery?: INewsGalleryItem[];
 }
 export interface IResponse<T> {
   status: number;
