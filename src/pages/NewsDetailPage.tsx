@@ -51,7 +51,7 @@ export default function NewsDetailPage() {
         {data.title}
       </span>
       {slides.length > 0 && (
-        <div className="relative mb-6 w-full overflow-hidden rounded-xl group">
+        <div className="relative mb-6 mt-4 w-full overflow-hidden rounded-xl group">
           <AntdImage.PreviewGroup>
             <Carousel
               ref={carouselRef}
