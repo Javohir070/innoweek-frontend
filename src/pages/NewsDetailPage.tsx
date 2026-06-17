@@ -50,11 +50,11 @@ export default function NewsDetailPage() {
 
   return (
     <div className="container pb-10 pt-20 mt-4 prose min-h-[65vh]">
-      <div className="flex gap-4 items-start mb-2">
+      <div className="flex gap-4 items-start mb-3">
         <button
           type="button"
           onClick={() => router.back()}
-          className="mb-4 inline-flex items-center gap-2 border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+          className="inline-flex items-center gap-2 border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
         >
           <ArrowLeft className="h-4 w-4" />
           Orqaga
