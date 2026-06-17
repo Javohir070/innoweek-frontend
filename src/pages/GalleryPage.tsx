@@ -1,4 +1,3 @@
-
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IGalleryItem, IResponse } from "@/types";
 import { useEffect, useState } from "react";
@@ -11,14 +10,14 @@ import "antd/dist/reset.css";
 const Gallery = () => {
   const t = useTranslations("gallery_page");
   const [data, setData] = useState<IGalleryItem[]>([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0); // umumiy elementlar soni
 
   const getGalery = async () => {
     try {
       const res = await FetchInstance<IResponse<IGalleryItem[]>>(
-        `/api/v1.0/gallery/list?limit=${limit}&page=${page}&archive_id=8`
+        `/api/v1.0/gallery/list?limit=${limit}&page=${page}&archive_id=9`,
       );
       setData(res?.data);
       setTotal(res?.pagination?.total || 0);
@@ -32,16 +31,18 @@ const Gallery = () => {
   }, [limit, page]);
 
   // Ant Design Image.PreviewGroup uchun rasm url'lari
-  const images = data.map((item) => (item?.image ? `${BASE_URL}${item?.image}` : ""));
+  const images = data.map((item) =>
+    item?.image ? `${BASE_URL}${item?.image}` : "",
+  );
 
   return (
-    <section id="lavhalar" className="portfolio section bg-transparent mt-10">
+    <section id="lavhalar" className="portfolio section bg-transparent mt-10 ">
       <div className="container section-title">
         <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
         <div className="text-black dark:!text-white">{t("PHOTO_GALLERY")}</div>
       </div>
       <div className="container">
-        <div className="isotope-layout">
+        <div className="isotope-layout min-h-[50vh]">
           <AntdImage.PreviewGroup items={images}>
             <div className="row g-4 isotope-container">
               {data?.map((item) => (
@@ -53,7 +54,7 @@ const Gallery = () => {
                     <figure className="entry-image">
                       <AntdImage
                         src={item?.image ? `${BASE_URL}${item?.image}` : ""}
-                         width={"100%"}
+                        width={"100%"}
                         height={"100%"}
                         alt="Lavha 1"
                         className="img-fluid rounded-lg cursor-pointer"
@@ -86,7 +87,7 @@ const Gallery = () => {
             pageSize={limit}
             total={total}
             showSizeChanger
-            pageSizeOptions={[5, 10, 20, 50, 100]}
+            pageSizeOptions={[12, 24, 48, 100]}
             onChange={(p, l) => {
               setPage(p);
               setLimit(l);

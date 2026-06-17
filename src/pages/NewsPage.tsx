@@ -10,7 +10,7 @@ export default function NewsPage() {
   const t = useTranslations("news");
   const params = useParams();
   const locale = (params?.locale as string) || "uz";
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
   const [page, setPage] = useState(1);
 
   const { data: response, isLoading } = useNewsList(locale, page, limit);
@@ -52,7 +52,7 @@ export default function NewsPage() {
           pageSize={limit}
           total={total}
           showSizeChanger
-          pageSizeOptions={[5, 10, 20, 50, 100]}
+          pageSizeOptions={[12, 24, 48, 100]}
           onChange={(p, l) => {
             setPage(p);
             setLimit(l);

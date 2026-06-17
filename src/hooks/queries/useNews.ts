@@ -7,7 +7,7 @@ export function useNewsList(locale: string, page: number, limit: number) {
     queryKey: ["news", "list", locale, page, limit],
     queryFn: async () => {
       const { data } = await api.get<IResponse<INewsListItem[]>>(
-        `/api/v1.0/news/all?limit=${limit}&page=${page}&lang=${locale}&archive_id=8`
+        `/api/v1.0/news/all?limit=${limit}&page=${page}&lang=${locale}&archive_id=9`
       );
       return data;
     },

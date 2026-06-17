@@ -20,7 +20,7 @@ const SpeakersSection = () => {
   const getSpeakers = async () => {
     try {
       const res = await FetchInstance<IResponse<ISpeakerItem[]>>(
-        `/api/v1.0/speakers/all?&limit=${limit}&archive_id=8&lang=${lang}`
+        `/api/v1.0/speakers/all?&limit=${limit}&archive_id=9&lang=${lang}`
       );
       setData(res?.data);
       setTotal(res?.pagination?.total);
