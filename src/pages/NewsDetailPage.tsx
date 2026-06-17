@@ -3,14 +3,17 @@ import { BASE_URL } from "@/api/axios";
 import { Image as AntdImage, Carousel, Spin } from "antd";
 import type { CarouselRef } from "antd/es/carousel";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { ArrowLeft } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useNewsDetail } from "@/hooks/queries/useNews";
+import { useRouter } from "@/lib/navigation";
 
 export default function NewsDetailPage() {
   const params = useParams();
   const newsId = params?.newsId as string;
   const locale = params?.locale as string;
 
+  const router = useRouter();
   const carouselRef = useRef<CarouselRef>(null);
 
   const { data: response, isLoading } = useNewsDetail(newsId, locale);
@@ -47,11 +50,21 @@ export default function NewsDetailPage() {
 
   return (
     <div className="container pb-10 pt-20 mt-4 prose min-h-[65vh]">
-      <span className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold pt-4 ">
-        {data.title}
-      </span>
+      <div className="flex gap-4 items-start mb-2">
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className="mb-4 inline-flex items-center gap-2 border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Orqaga
+        </button>
+        <span className="!text-lg m-0 leading-6 md:!text-2xl md:leading-9 text-black dark:!text-white !font-bold">
+          {data.title}
+        </span>
+      </div>
       {slides.length > 0 && (
-        <div className="relative mb-6 mt-4 w-full overflow-hidden rounded-xl group">
+        <div className="relative mb-6 w-full overflow-hidden rounded-xl group">
           <AntdImage.PreviewGroup>
             <Carousel
               ref={carouselRef}
