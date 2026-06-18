@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import { Link } from "@/lib/navigation";
 import { useTranslations } from "@/i18n/useTranslations";
 import { Image as AntdImage } from "antd";
@@ -11,7 +11,7 @@ interface NewsCardProps {
   createdAt: string;
 }
 
-const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
+const NewsCard: React.FC<NewsCardProps> = ({ title, image, id , createdAt }) => {
   const t = useTranslations("news");
 
   return (
@@ -35,6 +35,12 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, image, id }) => {
         </div>
 
         <div className="relative p-3 space-y-2">
+          {createdAt && (
+            <div className="inline-flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+              <Calendar className="w-3.5 h-3.5" />
+              {createdAt}
+            </div>
+          )}
           <div className="min-h-[80px]">
             <h3 className="!text-[17px]   font-bold dark:!text-white !text-gray-800 leading-tight group-hover:text-blue-400 transition-colors duration-300 mt-2 mb-0 line-clamp-4">
               {title}

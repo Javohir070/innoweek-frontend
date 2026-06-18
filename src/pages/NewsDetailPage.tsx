@@ -3,7 +3,7 @@ import { BASE_URL } from "@/api/axios";
 import { Image as AntdImage, Carousel, Spin } from "antd";
 import type { CarouselRef } from "antd/es/carousel";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useNewsDetail } from "@/hooks/queries/useNews";
 import { useRouter } from "@/lib/navigation";
@@ -115,6 +115,12 @@ export default function NewsDetailPage() {
               </button>
             </>
           )}
+        </div>
+      )}
+      {data.created_at && (
+        <div className="mb-3 inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+          <Calendar className="h-4 w-4" />
+          {data.created_at}
         </div>
       )}
       <span

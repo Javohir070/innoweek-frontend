@@ -6,7 +6,7 @@ import AppImage from "@/lib/AppImage";
 import { useTranslations } from "@/i18n/useTranslations";
 import RegisterModal2 from "../auth/RegisterModal2";
 import { Link } from "@/lib/navigation";
-const HeroVideo = "/video/1.mp4";
+const HeroVideo = "/video/FINA11L.mp4";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
