@@ -15,9 +15,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import AppImage from "@/lib/AppImage";
-import { BASE_URL } from "@/api/FetchInstance";
 import { assetUrl } from "@/lib/assetUrl";
+import mediaIcon from "@/assets/img/mediaIcon.png";
 
 export default function StatsSection() {
   const t = useTranslations("stats");
@@ -63,7 +62,8 @@ export default function StatsSection() {
       value: "50+",
       title: t("stats_6_title"),
       description: t("stats_6_description"),
-      icon: <Icon className="text-white" />,
+      // icon: <Icon className="text-white" />,
+      icon: <img src={mediaIcon} alt="mediaIcon" width={80} height={80} />,
     },
   ];
 
@@ -121,20 +121,6 @@ export default function StatsSection() {
         </div>
 
         <div>
-          {/* <button
-            onClick={scrollLeft}
-            className=" md:flex absolute sm:left-[-23px] max-[620px]:top-6 max-[620px]:left-[40%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 !rounded-full p-2 shadow hover:bg-black transition"
-          >
-            <ChevronLeft />
-          </button>
-
-          <button
-            onClick={scrollRight}
-            className=" md:flex absolute sm:right-[-23px] max-[620px]:top-6 max-[620px]:left-[55%] top-1/2 -translate-y-1/2 z-10 bg-[#0085d4] text-white dark:bg-gray-900 p-2 shadow hover:bg-black transition !rounded-full"
-          >
-            <ChevronRight />
-          </button> */}
-
           <div className="container " data-aos="fade-left" data-aos-delay="100">
             <Swiper
               onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -217,48 +203,6 @@ export default function StatsSection() {
               </div>
             </Swiper>
           </div>
-
-          {/* <section className="stats section min-w-full bg-transparent">
-            <div
-              className="container"
-              data-aos="fade-left"
-              data-aos-delay="100"
-            >
-              <div
-                ref={scrollContainerRef}
-                id="scrollContainer"
-                className="overflow-x-hidden scroll-smooth flex gap-4"
-              >
-                <div className="g-4 flex gap-6">
-                  {stats.map((stat, index) => (
-                    <div
-                      key={index}
-                      className="min-w-[300px] w-[80vw] sm:w-[26vw] sm:max-w-[500px]"
-                    >
-                      <div
-                        className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
-                        data-aos="fade-left"
-                        data-aos-delay={100 * (index + 1)}
-                      >
-                        <div className="metric-header">
-                          <div className="metric-icon-wrapper ">
-                            {stat?.icon}
-                          </div>
-                          <div className="metric-value">
-                            <span className="text-4xl">{stat.value}</span>
-                          </div>
-                        </div>
-                        <div className="metric-info">
-                          <h4 className="text-sm !sm:text-2xl">{stat.title}</h4>
-                          <p className="text-white">{stat.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section> */}
         </div>
       </section>
     </div>
