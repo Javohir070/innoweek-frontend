@@ -1,4 +1,3 @@
-
 import { assetUrl } from "@/lib/assetUrl";
 import React, { useState, useEffect } from "react";
 import AppImage from "@/lib/AppImage";
@@ -9,11 +8,32 @@ import expert_1_avatar from "@/assets/img/person/person-f-1.webp";
 import expert_2_avatar from "@/assets/img/person/person-m-1.webp";
 import expert_3_avatar from "@/assets/img/person/person-f-2.webp";
 import expert_4_avatar from "@/assets/img/person/person-f-3.webp";
+import expert_5_avatar from "@/assets/img/person/expert-5.jpg";
+import expert_6_avatar from "@/assets/img/person/expert-6.jpg";
+import expert_7_avatar from "@/assets/img/person/expert-7.jpg";
 import section from "@/assets/img/section_bg_2.jpg";
 
 const ExpertFeedback = () => {
   const t = useTranslations("expert_feedback");
   const data = [
+    {
+      full_name: t("feedback_5_expert"),
+      position: t("feedback_5_desc"),
+      image: expert_5_avatar,
+      country: t("expert_5_country"),
+    },
+    {
+      full_name: t("feedback_6_expert"),
+      position: t("feedback_6_desc"),
+      image: expert_6_avatar,
+      country: t("expert_6_country"),
+    },
+    {
+      full_name: t("feedback_7_expert"),
+      position: t("feedback_7_desc"),
+      image: expert_7_avatar,
+      country: t("expert_7_country"),
+    },
     {
       full_name: t("feedback_1_expert"),
       position: t("feedback_1_desc"),
@@ -90,8 +110,9 @@ const ExpertFeedback = () => {
   }, [autoScroll]);
 
   return (
-    <div className=" !w-full"
-     style={{
+    <div
+      className=" !w-full"
+      style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundImage: `url(${assetUrl(section)})`,
@@ -134,25 +155,27 @@ const ExpertFeedback = () => {
                 <div
                   className="flex transition-transform duration-400 ease-in-out"
                   style={{
-                    width: `${data.length * 330 + (data.length - 1) * 24}px`,
-                    transform: `translateX(-${currentIndex * (330 + 24)}px)`,
+                    width: `${data.length * 495 + (data.length - 1) * 24}px`,
+                    transform: `translateX(-${currentIndex * (495 + 24)}px)`,
                   }}
                 >
                   {data.map((item, idx) => (
                     <div
                       key={idx}
-                      className="bg-[#0085d4] dark:bg-gray-800 text-white w-[360px] p-6 rounded-lg flex flex-col justify-center mr-6 last:mr-0"
+                      className="bg-[#0085d4] dark:bg-gray-800 text-white w-[500px] p-6 rounded-lg flex flex-col !justify-between mr-6 last:mr-0"
                     >
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i}>
-                            <IoMdStar className="text-lg" />
-                          </span>
-                        ))}
+                      <div>
+                        <div className="flex gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i}>
+                              <IoMdStar className="text-lg" />
+                            </span>
+                          ))}
+                        </div>
+                        <p className="italic mb-4 mt-3 text-[15px]">
+                          {item.position}
+                        </p>
                       </div>
-                      <p className="italic mb-4 mt-3 text-[15px]">
-                        {item.position}
-                      </p>
                       <div className="flex items-center gap-4">
                         <AppImage
                           src={item?.image}

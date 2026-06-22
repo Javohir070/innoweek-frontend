@@ -1,22 +1,27 @@
 import { useState } from "react";
-import about_10 from "@/assets/img/portfolio/portfolio-10.webp";
-import about_11 from "@/assets/img/portfolio/portfolio-11.webp";
+// import about_10 from "@/assets/img/portfolio/portfolio-10.webp";
+// import about_11 from "@/assets/img/portfolio/portfolio-11.webp";
+import exchange_10 from "@/assets/img/portfolio/exchange_10.jpg";
+import exchange_11 from "@/assets/img/portfolio/exchange_11.jpg";
 import AppImage from "@/lib/AppImage";
 import { useTranslations } from "@/i18n/useTranslations";
 
 export default function AboutSection() {
   const t = useTranslations("about");
-  const locale = typeof window !== 'undefined' ? (window.location.pathname.split('/')[1] || 'uz') : 'uz';
+  const locale =
+    typeof window !== "undefined"
+      ? window.location.pathname.split("/")[1] || "uz"
+      : "uz";
 
   const [currentLang] = useState("uz");
 
   const features: string[] = [
-    t('features_1'),
-    t('features_2'),
-    t('features_3'),
-    t('features_4'),
-    t('features_5'),
-    t('features_6'),
+    t("features_1"),
+    t("features_2"),
+    t("features_3"),
+    t("features_4"),
+    t("features_5"),
+    t("features_6"),
   ];
   return (
     <section
@@ -33,29 +38,41 @@ export default function AboutSection() {
       <div className="container" data-aos="fade-up" data-aos-delay="100">
         <div className="row gy-4 align-items-center justify-content-between">
           <div className="col-xl-5" data-aos="fade-up" data-aos-delay="200">
-            <span className="about-meta !text-black dark:!text-white">INNOWEEK 2026</span>
-            <h2 className="about-title !text-black dark:!text-white">{t("title")}</h2>
-            <p className="about-description text-black dark:!text-gray-300">{t("description")}</p>
+            <span className="about-meta !text-black dark:!text-white">
+              INNOWEEK 2026
+            </span>
+            <h2 className="about-title !text-black dark:!text-white">
+              {t("title")}
+            </h2>
+            <p className="about-description text-black dark:!text-gray-300">
+              {t("description")}
+            </p>
 
             <div className="row feature-list-wrapper">
               <div className="col-md-6">
                 <ul className="feature-list">
-                  {features.slice(0, 3)
-                    .map((feature, index) => (
-                      <li key={index} className="text-gray-700 dark:text-gray-300">
-                        <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i> {feature}
-                      </li>
-                    ))}
+                  {features.slice(0, 3).map((feature, index) => (
+                    <li
+                      key={index}
+                      className="text-gray-700 dark:text-gray-300"
+                    >
+                      <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i>{" "}
+                      {feature}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="col-md-6">
                 <ul className="feature-list">
-                  {features.slice(3)
-                    .map((feature, index) => (
-                      <li key={index} className="text-gray-700 dark:text-gray-300">
-                        <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i> {feature}
-                      </li>
-                    ))}
+                  {features.slice(3).map((feature, index) => (
+                    <li
+                      key={index}
+                      className="text-gray-700 dark:text-gray-300"
+                    >
+                      <i className="bi bi-check-circle-fill !text-[#0085d4] dark:text-blue-400"></i>{" "}
+                      {feature}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -69,12 +86,12 @@ export default function AboutSection() {
                 data-aos-delay="400"
               >
                 <AppImage
-                  src={about_10}
+                  src={exchange_11}
                   alt="Business Meeting"
                   className="img-fluid main-image rounded-4 shadow-lg dark:shadow-gray-700/50"
                 />
                 <AppImage
-                  src={about_11}
+                  src={exchange_10}
                   alt="Team Discussion"
                   className="img-fluid small-image rounded-4 shadow-lg dark:shadow-gray-700/50"
                 />

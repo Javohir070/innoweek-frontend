@@ -200,7 +200,16 @@
     "expert_3_country": "Angliya",
     "feedback_4_desc": "“Toshkentdagi InnoWeek oddiy koʻrgazma emas — bu Markaziy Osiyo bozoriga kirish uchun strategik eshik. Bu yerda oʻsish energiyasi va xalqaro hamkorlik uchun ulkan salohiyat seziladi.”",
     "feedback_4_expert": "Yerbol Suleymanov",
-    "expert_4_country": "Qozog'iston"
+    "expert_4_country": "Qozog'iston",
+    "feedback_5_desc": "“InnoWeek–2025” ko‘rgazmasida taqdim etilgan turli innovatsiyalarni ko‘rib juda katta taassurot oldim. Ba’zilari nisbatan kichik va bosqichma-bosqich rivojlanishga yo‘naltirilgan bo‘lsa, boshqalari juda katta salohiyatga ega yirik g‘oyalar ekan. Ayniqsa, “aqlli shahar” (smart city) konsepsiyasi bo‘yicha ishlanmalar, dronlar va robotlarga oid texnik yechimlar menga juda yoqdi.",
+    "feedback_5_expert": "Rik Leymans",
+    "expert_5_country": "Niderlandiya",
+    "feedback_6_desc": "Men O‘zbekistonga ilk bor tashrif buyurdim. Boy tarix va madaniyatga ega ushbu yurt menda nihoyatda chuqur taassurot qoldirdi. Shuningdek, mazkur tadbir kutganimdan ham yuqori darajada tashkil etilgan bo‘lib, u O‘zbekistonning kelajakdagi jadal taraqqiyotidan dalolat beradi. Yaponiya va O‘zbekiston o‘rtasidagi do‘stona hamkorlikning yanada rivojlanishiga chin dildan tilakdoshman.",
+    "feedback_6_expert": "Morimoto Shigeo",
+    "expert_6_country": "Yaponiya", 
+    "feedback_7_desc": "InnoWeekda bo‘lishimdan nihoyatda mamnunman. Innovatsiyalarning sifati, taqdimotlarning darajasi, ayniqsa yoshlardagi ishtiyoq va hayajon nihoyatda yuqori bo‘lgani meni juda hayratda qoldirdi. O‘zbekistonning kelajagi uchun sizlarning ilm-fanga va ilmga asoslangan innovatsiyalarga shunchalik katta sarmoya, energiya va fidoyilik bilan yondoshayotganingiz juda yaxshi ijobiy belgidir. Meni eng ko‘p hayratlantirgani – bu yerda kuzatilgan ijobiy ruh, ishtiyoq, ko‘rgan innovatsion g‘oyalarim, texnologiyalar, agrotech sohasidagi yutuqlar bo‘ldi. Bularning barchasi ushbu mamlakat jadal rivojlanayotganini anglatadi.",
+    "feedback_7_expert": "Sir Piter Glukman", 
+    "expert_7_country": "Yangi Zelandiya"
   },
   "login": {
     "login_title": "Kirish",
@@ -564,7 +573,7 @@
     "no_program_info": "Ushbu dastur haqida ma'lumot mavjud emas.",
     "specialists_participating": "Ushbu dasturda ishtirok etuvchi mutaxassislar",
     "no_speaker_data": "Spiker ma'lumotlari topilmadi",
-    "no_speakers_added": "Ushbu dastur uchun hali spiker ma'lumotlari qo'shilmagan.", 
+    "no_speakers_added": "Ushbu dastur uchun hali spiker ma'lumotlari qo'shilmagan.",
     "moderator": "Moderator",
     "MODERATORS": "MODERATORLAR",
     "no_moderator_data": "Moderator ma'lumotlari topilmadi",
