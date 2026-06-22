@@ -182,7 +182,7 @@ const ExpertFeedback = () => {
                           alt={item.full_name}
                           width={48}
                           height={48}
-                          className="rounded-full"
+                          className="rounded-full w-[48px] h-[48px] object-cover"
                         />
                         <div>
                           <p className="font-semibold m-0">{item.full_name}</p>
