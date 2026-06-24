@@ -61,7 +61,7 @@ export default function ContestsPage() {
       id="portfolio"
       className="testimonials section-light-background bg-transparent min-h-[85vh]"
     >
-      <div className="container section-title mt-5 pb-4">
+      <div className="container section-title mt-5 pb-4 !px-8">
         <h2 className="text-black dark:!text-white">INNOWEEK</h2>
         <div className="text-black dark:!text-white">{t("invention_section")}</div>
       </div>
@@ -78,9 +78,13 @@ export default function ContestsPage() {
         </div>
 
         <div>
-          <h2 className="mb-6 text-lg font-bold text-gray-900 md:text-xl">
+          <div className="container section-title !pb-6">
+            <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+            <div className="text-black dark:!text-white">{t("tijorat_section")}</div>
+          </div>
+          {/* <h2 className="mb-6 text-lg font-bold text-gray-900 md:text-xl">
             {t("tijorat_section")}
-          </h2>
+          </h2> */}
           <ContestGrid
             items={tijorat.data}
             loading={tijorat.isLoading}
