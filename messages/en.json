@@ -19,6 +19,7 @@
     "NEWS": "NEWS",
     "INNOWEEK": "INNOWEEK",
     "GALLERY": "GALLERY",
+    "CONTESTS": "CONTESTS",
     "FAQ": "FAQ",
     "MARKETPLACE": "MARKETPLACE",
     "CONTACT": "CONTACT",
@@ -31,6 +32,22 @@
     "REGISTER": "SIGN UP",
     "login": "LOGIN",
     "ECO-EDIETHON": "ECO-IDEATHON"
+  },
+  "contests": {
+    "page_title": "Contests",
+    "back": "Back",
+    "invention_section": "Invention and rationalization review contests",
+    "tijorat_section": "Preparing developments for commercialization",
+    "start_date": "Start date",
+    "end_date": "End date",
+    "ended_date": "Ended date",
+    "day": "Day",
+    "hour": "Hour",
+    "minute": "Min",
+    "second": "Sec",
+    "open_contest": "Open contest",
+    "load_error": "Failed to load contests",
+    "empty": "No contests found"
   },
   "langs": {
     "uz": "Uzbek",

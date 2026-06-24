@@ -19,6 +19,7 @@
     "NEWS": "НОВОСТИ",
     "INNOWEEK": "INNOWEEK",
     "GALLERY": "ГАЛЕРЕЯ",
+    "CONTESTS": "КОНКУРСЫ",
     "FAQ": "ВОПРОС-ОТВЕТ",
     "MARKETPLACE": "МАРКЕТПЛЕЙС",
     "CONTACT": "КОНТАКТЫ",
@@ -31,6 +32,22 @@
     "REGISTER": "РЕГИСТРАЦИЯ",
     "login": " Войти",
     "ECO-EDIETHON": "ECO-IDEATHON"
+  },
+  "contests": {
+    "page_title": "Конкурсы",
+    "back": "Назад",
+    "invention_section": "Конкурсы по изобретательству и рационализации",
+    "tijorat_section": "Подготовка разработок к коммерциализации",
+    "start_date": "Дата начала",
+    "end_date": "Дата окончания",
+    "ended_date": "Дата завершения",
+    "day": "День",
+    "hour": "Час",
+    "minute": "Мин",
+    "second": "Сек",
+    "open_contest": "Открыть конкурс",
+    "load_error": "Не удалось загрузить конкурсы",
+    "empty": "Конкурсы не найдены"
   },
   "langs": {
     "uz": "Узбекский",

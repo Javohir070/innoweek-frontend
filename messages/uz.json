@@ -26,6 +26,7 @@
     "SPEAKERS": "SPIKERLAR",
     "PARTNERS": "HAMKORLAR",
     "GALLERY": "GALEREYA",
+    "CONTESTS": "TANLOVLAR",
     "QAMROV": "QAMROV",
     "DASTUR": "DASTUR",
     "SPIKERLAR": "SPIKERLAR",
@@ -36,6 +37,22 @@
     "REGISTER": "RO'YXATDAN O'TISH",
     "login": " Kirish",
     "ECO-EDIETHON": "ECO-IDEATHON"
+  },
+  "contests": {
+    "page_title": "Tanlovlar",
+    "back": "Orqaga",
+    "invention_section": "Ixtirochilik va ratsionalizatorlik boʻyicha koʻrik tanlovlar",
+    "tijorat_section": "Ishlanmalarni tijoratlashtirishga tayyorlash",
+    "start_date": "Boshlangan vaqti",
+    "end_date": "Tugash vaqti",
+    "ended_date": "Tugagan vaqti",
+    "day": "Kun",
+    "hour": "Soat",
+    "minute": "Daq",
+    "second": "Sek",
+    "open_contest": "Tanlovni ochish",
+    "load_error": "Tanlovlar yuklanmadi",
+    "empty": "Tanlovlar topilmadi"
   },
   "about_timeline": {
     "about_us": "Biz haqimizda",

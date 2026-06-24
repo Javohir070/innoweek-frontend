@@ -54,8 +54,9 @@ export default function Header() {
       ],
     },
     { label: t("GALLERY"), key: "/gallery" },
+    { label: t("CONTESTS"), key: "/contests" },
     { label: t("InnoMarket"), key: "https://innomarket.uz" },
-    { label: t("CONTACT"), key: "#contact" },
+    // { label: t("CONTACT"), key: "#contact" },
   ];
 
   const sectionAnchors = [

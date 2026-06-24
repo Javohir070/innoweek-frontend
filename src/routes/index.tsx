@@ -18,6 +18,7 @@ const ChatbotPage = lazy(() => import("@/pages/ChatbotPage"));
 const EcoIdeathonPage = lazy(() => import("@/pages/EcoIdeathonPage"));
 const EcoIdeathonFormPage = lazy(() => import("@/pages/EcoIdeathonFormPage"));
 const EcoIdeathonAppPage = lazy(() => import("@/pages/EcoIdeathonAppPage"));
+const ContestsPage = lazy(() => import("@/pages/ContestsPage"));
 
 export default function AppRoutes() {
   return (
@@ -31,6 +32,7 @@ export default function AppRoutes() {
         <Route path="register" element={<RegisterPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="gallery" element={<GalleryPage />} />
+        <Route path="contests" element={<ContestsPage />} />
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
         <Route path="program-detail/:programId" element={<ProgramDetailPage />} />
         <Route path="spikers" element={<SpikersPage />} />
