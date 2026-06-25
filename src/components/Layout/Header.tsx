@@ -53,6 +53,14 @@ export default function Header() {
         { label: t("HAMKORLAR"), key: "#clients" },
       ],
     },
+    {
+      label: t("ARCHIVE"),
+      key: "#archive",
+      dropdown: [
+        { label: t("INNOWEEK 2024"), key: "https://2024.innoweek.uz" },
+        { label: t("INNOWEEK 2025"), key: "https://2025.innoweek.uz" },
+      ],
+    },
     { label: t("GALLERY"), key: "/gallery" },
     { label: t("CONTESTS"), key: "/contests" },
     { label: t("InnoMarket"), key: "https://innomarket.uz" },
