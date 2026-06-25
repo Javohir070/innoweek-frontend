@@ -53,6 +53,9 @@ export default function Header() {
         { label: t("HAMKORLAR"), key: "#clients" },
       ],
     },
+    { label: t("GALLERY"), key: "/gallery" },
+    { label: t("CONTESTS"), key: "/contests" },
+    { label: t("InnoMarket"), key: "https://innomarket.uz" },
     {
       label: t("ARCHIVE"),
       key: "#archive",
@@ -61,10 +64,6 @@ export default function Header() {
         { label: t("INNOWEEK 2025"), key: "https://2025.innoweek.uz" },
       ],
     },
-    { label: t("GALLERY"), key: "/gallery" },
-    { label: t("CONTESTS"), key: "/contests" },
-    { label: t("InnoMarket"), key: "https://innomarket.uz" },
-    // { label: t("CONTACT"), key: "#contact" },
   ];
 
   const sectionAnchors = [
