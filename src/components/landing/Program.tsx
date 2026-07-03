@@ -53,7 +53,7 @@ export default function ProgramSection() {
   ) => {
     try {
       const response = await FetchInstance<IResponse<IProgramEvent[]>>(
-        `/api/v1.0/schedules/list?date=${date}&lang=${locale}`
+        `/api/v1.0/schedules/list?date=${date}&lang=${locale}&archive_id=9`
       );
       setData(response?.data || []);
     } catch (error) {
@@ -63,10 +63,10 @@ export default function ProgramSection() {
   };
 
   useEffect(() => {
-    getProgramEvents("2025-10-09", setVisibleDays1);
-    getProgramEvents("2025-10-10", setVisibleDays2);
-    getProgramEvents("2025-10-11", setVisibleDays3);
-  }, []);
+    getProgramEvents("2026-10-27", setVisibleDays1);
+    getProgramEvents("2026-10-28", setVisibleDays2);
+    getProgramEvents("2026-10-29", setVisibleDays3);
+  }, [locale]);
 
   return (
     <section

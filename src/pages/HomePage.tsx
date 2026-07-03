@@ -23,7 +23,7 @@ export default function HomePage() {
           <NewsSection />
           <AboutSection />
           <StatsSection />
-          {/* <ProgramSection /> */}
+          <ProgramSection />
           <SpeakersSection />
           <PartnersSection />
           <ExpertFeedback />
