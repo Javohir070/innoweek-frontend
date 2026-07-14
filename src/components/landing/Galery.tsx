@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Image as AntdImage } from "antd";
 import galery_1 from "@/assets/img/abstract/gallery_1732534936.jpg";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { IGalleryItem, IResponse } from "@/types";
 import { useTranslations } from "@/i18n/useTranslations";
 import { ArrowsAltOutlined } from "@ant-design/icons";
+import { assetUrl } from "@/lib/assetUrl";
 import "antd/dist/reset.css";
+
+const fallbackImage = assetUrl(galery_1);
 
 const GalerySection = () => {
   const t = useTranslations("gallery");
@@ -16,9 +19,10 @@ const GalerySection = () => {
       const res = await FetchInstance<IResponse<IGalleryItem[]>>(
         "/api/v1.0/gallery/list?limit=8&archive_id=9"
       );
-      setData(res?.data);
+      setData(Array.isArray(res?.data) ? res.data : []);
     } catch (error) {
       console.log(error);
+      setData([]);
     }
   };
 
@@ -26,9 +30,14 @@ const GalerySection = () => {
     getGalery();
   }, []);
 
-  // Ant Design Image.PreviewGroup uchun rasm url'lari
-  const images = data.map((item) =>
-    item?.image ? `${BASE_URL}${item?.image}` : galery_1.src
+  const images = useMemo(
+    () =>
+      data
+        .map((item) =>
+          item?.image ? `${BASE_URL}${item.image}` : fallbackImage
+        )
+        .filter((src): src is string => Boolean(src)),
+    [data]
   );
 
   return (
@@ -47,48 +56,47 @@ const GalerySection = () => {
           data-layout="masonry"
           data-sort="original-order"
         >
-          <AntdImage.PreviewGroup items={images}>
+          <AntdImage.PreviewGroup items={images.length ? images : undefined}>
             <div
               className="row g-4 isotope-container"
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              {data?.map((item) => (
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-ui relative"
-                  key={item?.id}
-                >
-                  <article className="portfolio-entry">
-                    <figure className="entry-image dark:brightness-90 relative">
-                      <AntdImage
-                        src={
-                          item?.image
-                            ? `${BASE_URL}${item?.image}`
-                            : galery_1.src
-                        }
-                        width={"100%"}
-                        height={"100%"}
-                        alt="Lavha 1"
-                        className="img-fluid rounded-lg cursor-pointer relative"
-                        style={{ objectFit: "cover" }}
-                        preview={{
-                          src: item?.image
-                            ? `${BASE_URL}${item?.image}`
-                            : galery_1.src,
-                          mask: (
-                            <div
-                              className="absolute left-[16px] bottom-[16px] bg-[#0085d4] hover:bg-gray-900 bg-opacity-80 rounded-md p-2 flex items-center gap-2 shadow"
-                              style={{ zIndex: 2 }}
-                            >
-                              <ArrowsAltOutlined style={{ fontSize: 22 }} />
-                            </div>
-                          ),
-                        }}
-                      />
-                    </figure>
-                  </article>
-                </div>
-              ))}
+              {data.map((item) => {
+                const src = item?.image
+                  ? `${BASE_URL}${item.image}`
+                  : fallbackImage;
+                return (
+                  <div
+                    className="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-ui relative"
+                    key={item?.id}
+                  >
+                    <article className="portfolio-entry">
+                      <figure className="entry-image dark:brightness-90 relative">
+                        <AntdImage
+                          src={src}
+                          width={"100%"}
+                          height={"100%"}
+                          alt="Lavha 1"
+                          className="img-fluid rounded-lg cursor-pointer relative"
+                          style={{ objectFit: "cover" }}
+                          preview={{
+                            src,
+                            mask: (
+                              <div
+                                className="absolute left-[16px] bottom-[16px] bg-[#0085d4] hover:bg-gray-900 bg-opacity-80 rounded-md p-2 flex items-center gap-2 shadow"
+                                style={{ zIndex: 2 }}
+                              >
+                                <ArrowsAltOutlined style={{ fontSize: 22 }} />
+                              </div>
+                            ),
+                          }}
+                        />
+                      </figure>
+                    </article>
+                  </div>
+                );
+              })}
             </div>
           </AntdImage.PreviewGroup>
         </div>
