@@ -72,12 +72,14 @@ const ContactSection = () => {
         <div className="contact-main-wrapper flex flex-col lg:flex-row gap-8">
           <div className="map-wrapper rounded-lg overflow-hidden border dark:border-gray-700">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.1766398490977!2d69.42026617659344!3d41.32677217130777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef716040d8001%3A0xaf24862e6ceb4cb5!2sCAEx%20(Central%20Asian%20Expocenter)!5e0!3m2!1sru!2s!4v1751562905394!5m2!1sru!2s"
+              title="CAEx map"
+              src="https://maps.google.com/maps?q=41.326772,69.422445&z=16&hl=uz&output=embed"
               width="100%"
               height="100%"
               loading="lazy"
-              className="bg-white dark:bg-gray-800"
-            ></iframe>
+              referrerPolicy="no-referrer-when-downgrade"
+              className="bg-white dark:bg-gray-800 border-0"
+            />
           </div>
 
           <div className="contact-content w-full">
