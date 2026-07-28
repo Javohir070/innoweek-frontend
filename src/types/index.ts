@@ -30,6 +30,22 @@ export interface IResponse<T> {
   pagination: IPagination;
 }
 
+export interface IExpertOpinion {
+  id: number;
+  full_name: string;
+  title: string;
+  image: string;
+  country_id: number;
+  is_active: boolean;
+  created_at: string;
+  country: {
+    id: number;
+    name_uz: string;
+    name_en: string;
+    name_ru: string;
+  } | null;
+}
+
 export interface CountryObj {
   name_uz?: string;
   name_en?: string;
