@@ -75,17 +75,11 @@ export default function NewsDetailPage() {
             >
               {slides.map((src, index) => (
                 <div key={index}>
-                  <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden bg-black/5 dark:bg-white/5 max-h-[500px]">
-                    {/* Blurred background fills empty space when the image ratio doesn't match */}
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 scale-110 bg-cover bg-center blur-2xl"
-                      style={{ backgroundImage: `url(${src})` }}
-                    />
+                  <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden max-h-[500px]">
                     <AntdImage
                       src={src}
                       alt={`${data.title} - ${index + 1}`}
-                      rootClassName="relative z-[1] w-full h-full"
+                      rootClassName="relative w-full h-full"
                       className="!h-full !w-full object-contain"
                       preview={{ mask: null }}
                     />

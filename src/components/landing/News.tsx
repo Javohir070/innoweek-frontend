@@ -102,16 +102,13 @@ export default function NewsSection() {
                 <Link href={`/news/${item?.id}`}>
                   <div className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[100px]">
                     <div className="flex flex-col  lg:flex-row  gap-5  w-full h-full  lg:h-[400px] overflow-hidden">
-                      <div className="flex flex-col gap-y-3.5 w-full lg:w-[55%] overflow-hidden">
+                      <div className="flex flex-col justify-center gap-y-3.5 w-full lg:w-[55%] overflow-hidden">
                         <h2 className="!text-white dark:!text-white">
                           {item?.title}
                         </h2>
-                        <div
-                          className="line-clamp-9 !text-white dark:!text-gray-300 !font-normal not-italic !font-nunito-sans *:!font-nunito-sans"
-                          dangerouslySetInnerHTML={{
-                            __html: item?.description,
-                          }}
-                        ></div>
+                        <span className="inline-flex w-fit items-center rounded-full border border-white/80 bg-white/10 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white hover:!text-[#0085d4]">
+                          {t("more")}
+                        </span>
                       </div>
                       <div className="flex -mt-5 items-center w-full lg:w-[45%]">
                         <div className="featured-img-wrapper rounded-lg overflow-hidden w-full h-full">
