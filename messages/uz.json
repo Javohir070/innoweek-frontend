@@ -72,7 +72,9 @@
     "day": "Kun",
     "hour": "Soat",
     "minute": "Daqiqa",
-    "second": "Soniya"
+    "second": "Soniya",
+    "event_dates": "27–29 OKTABR",
+    "venue": "CAEx UZBEKISTAN"
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
@@ -88,10 +90,13 @@
     "features_4": "Agrosanoat texnologiyalari",
     "features_5": "Aqlli shaharlar",
     "features_6": "Robototexnika va dronlar",
-    "about_section_title": "INNOWEEK HAQIDA"
+    "about_section_title": "INNOWEEK HAQIDA",
+    "more": "KO'PROQ MA'LUMOT",
+    "less": "YOPISH"
   },
   "stats": {
     "COVERAGE": "QAMROV",
+    "subtitle": "InnoWeek raqamlarda",
     "stats_1_title": "Ko'rgazma maydoni",
     "stats_1_description": "Tadbirlar uchun alohida 2000m2",
     "stats_2_title": "Tashrif buyuruvchilar",
@@ -111,7 +116,14 @@
     "day_1": "27-OKTABR",
     "day_2": "28-OKTABR",
     "day_3": "29-OKTABR",
-    "LOAD_MORE": "Ko'proq ko'rish"
+    "LOAD_MORE": "Ko'proq ko'rish",
+    "READ_MORE": "Ko'proq o'qish",
+    "day_1_num": "27",
+    "day_1_month": "OKTABR",
+    "day_2_num": "28",
+    "day_2_month": "OKTABR",
+    "day_3_num": "29",
+    "day_3_month": "OKTABR"
   },
   "speakers": {
     "INNOWEEK": "INNOWEEK",
@@ -210,9 +222,9 @@
     "expert_5_country": "Niderlandiya",
     "feedback_6_desc": "Men O‘zbekistonga ilk bor tashrif buyurdim. Boy tarix va madaniyatga ega ushbu yurt menda nihoyatda chuqur taassurot qoldirdi. Shuningdek, mazkur tadbir kutganimdan ham yuqori darajada tashkil etilgan bo‘lib, u O‘zbekistonning kelajakdagi jadal taraqqiyotidan dalolat beradi. Yaponiya va O‘zbekiston o‘rtasidagi do‘stona hamkorlikning yanada rivojlanishiga chin dildan tilakdoshman.",
     "feedback_6_expert": "Morimoto Shigeo",
-    "expert_6_country": "Yaponiya", 
+    "expert_6_country": "Yaponiya",
     "feedback_7_desc": "InnoWeekda bo‘lishimdan nihoyatda mamnunman. Innovatsiyalarning sifati, taqdimotlarning darajasi, ayniqsa yoshlardagi ishtiyoq va hayajon nihoyatda yuqori bo‘lgani meni juda hayratda qoldirdi. O‘zbekistonning kelajagi uchun sizlarning ilm-fanga va ilmga asoslangan innovatsiyalarga shunchalik katta sarmoya, energiya va fidoyilik bilan yondoshayotganingiz juda yaxshi ijobiy belgidir. Meni eng ko‘p hayratlantirgani – bu yerda kuzatilgan ijobiy ruh, ishtiyoq, ko‘rgan innovatsion g‘oyalarim, texnologiyalar, agrotech sohasidagi yutuqlar bo‘ldi. Bularning barchasi ushbu mamlakat jadal rivojlanayotganini anglatadi.",
-    "feedback_7_expert": "Sir Piter Glukman", 
+    "feedback_7_expert": "Sir Piter Glukman",
     "expert_7_country": "Yangi Zelandiya"
   },
   "login": {

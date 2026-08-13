@@ -7,16 +7,29 @@ import { PlusCircleIcon } from "lucide-react";
 import { useTranslations } from "@/i18n/useTranslations";
 import { useState } from "react";
 
+/** Ushbu tadbirlarga saytdan yozilib bo'lmaydi */
+const NON_REGISTRABLE_EVENT_IDS = [40, 60];
+
+/** Tadbirga ro'yxatdan o'tish tugmasi ko'rinadimi */
+export function canRegisterForEvent(eventId?: number): boolean {
+  return eventId != null && !NON_REGISTRABLE_EVENT_IDS.includes(eventId);
+}
+
 interface IProps {
   event_data: IProgramEvent;
   size?: "large" | "small" | "middle";
   type?: "primary" | "default" | "dashed" | "text" | "link";
+  /** Tugma stilini tashqaridan almashtirish uchun */
+  className?: string;
+  icon?: React.ReactNode;
 }
 
 const StoreEvets = ({
   event_data,
   size = "middle",
   type = "primary",
+  className,
+  icon,
 }: IProps) => {
   const t = useTranslations("store_events");
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -79,10 +92,10 @@ const StoreEvets = ({
 
   return (
     <>
-      {!([40, 60].includes(event_data?.id)) && (
+      {canRegisterForEvent(event_data?.id) && (
         <Button
           type={type}
-          icon={<PlusCircleIcon className="pt-1" />}
+          icon={icon ?? <PlusCircleIcon className="pt-1" />}
           onClick={() => {
             setIsModalVisible(true);
             fetchProfile();
@@ -90,7 +103,10 @@ const StoreEvets = ({
           size={size}
           color="primary"
           variant="outlined"
-          className="!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
+          className={
+            className ??
+            "!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
+          }
         >
           {t("register")}
         </Button>

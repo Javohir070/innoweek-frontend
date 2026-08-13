@@ -2,8 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { assetUrl } from "@/lib/assetUrl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 import AppImage from "@/lib/AppImage";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
@@ -56,7 +54,7 @@ export default function NewsSection() {
         className="testimonials !bg-transparent dark:bg-gray-900 transition-colors duration-300 pt-2 !p-0"
       >
         <div className="container section-title pb-4" data-aos="fade-up">
-          <h2 className="text-black dark:!text-white py-1">INNOWEEK</h2>
+          {/* <h2 className="text-black dark:!text-white py-1">INNOWEEK</h2> */}
           <div className="text-black dark:!text-gray-300">
             {t("Latest News")}
           </div>

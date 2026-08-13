@@ -1,9 +1,10 @@
 import AppImage from "@/lib/AppImage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCurrentUser } from "@/hooks/queries/useUser";
 import { Select } from "antd";
-import innoweekLogo from "@/assets/img/services/111.svg";
+import innoweekLogoDark from "@/assets/img/services/111.svg";
+import innoweekLogoLight from "@/assets/img/services/111 copy.svg";
 import { useTranslations } from "@/i18n/useTranslations";
 import { Link, useRouter as Router } from "@/lib/navigation";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
@@ -32,6 +33,20 @@ export default function Header() {
 
   // importlar tepasida kerakli state:
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const homePath = `/${activeLang}`;
+  const isHome = pathname === homePath || pathname === `${homePath}/`;
+
+  /** Bosh sahifa tepasida header shaffof bo'ladi (hero videosi ustida) */
+  const transparent = isHome && !scrolled && !isMenuOpen;
 
   const changeLang = (lang: string) => {
     setActiveLang(lang);
@@ -79,6 +94,17 @@ export default function Header() {
     "#spikers",
   ];
 
+  /** Bo'lim (anchor) tanlanganmi — tanlangan bo'lsa "Bosh sahifa" belgilanmaydi */
+  const anchorSelected =
+    activeMenu !== "#hero" && sectionAnchors.includes(activeMenu);
+
+  const isActiveItem = (key: string) => {
+    if (key.startsWith("http")) return false;
+    if (key.startsWith("#")) return activeMenu === key;
+    if (key === "/") return !anchorSelected && isHome;
+    return pathname.startsWith(`${homePath}${key}`);
+  };
+
   const handleMenuClick = (key: string) => {
     setActiveMenu(key);
   };
@@ -96,16 +122,33 @@ export default function Header() {
   };
 
   return (
-    <header className="header flex items-center fixed-top bg-white dark:bg-gray-800 text-gray-900 shadow w-full z-50">
+    <header
+      className={`header flex items-center fixed-top w-full z-50 transition-all duration-300 ${
+        transparent
+          ? "bg-transparent"
+          : "bg-white dark:bg-gray-800 text-gray-900 shadow"
+      }`}
+    >
       <div className="container-fluid container-xl py-2 flex justify-between items-center w-full">
         <Link
           href="/"
           className="logo d-flex align-items-center me-auto me-xl-0 rounded-lg"
         >
-          <AppImage src={innoweekLogo} alt="Logo" className="w-[110px]" />
+          <AppImage
+            src={transparent ? innoweekLogoLight : innoweekLogoDark}
+            alt="Logo"
+            className="w-[110px]"
+          />
         </Link>
 
-        <nav id="navmenu" className="navmenu !uppercase">
+        <nav
+          id="navmenu"
+          className={`navmenu !uppercase transition-colors duration-300 ${
+            transparent
+              ? "[&>ul>li>a]:!text-white"
+              : "[&>ul>li>a]:!text-black dark:[&>ul>li>a]:!text-amber-50"
+          }`}
+        >
           <ul>
             {menu.map((item, index) => (
               <li
@@ -114,9 +157,7 @@ export default function Header() {
               >
                 <Link
                   href={item.key}
-                  className={`${
-                    activeMenu === item.key ? "active" : ""
-                  } !font-raleway !font-semibold !text-black hover:!text-blue-500 dark:!text-amber-50`}
+                  className="!font-raleway !font-semibold hover:!text-blue-500"
                   onClick={(e) => {
                     if (item.key === "/spikers") {
                       router.push(`/${activeLang}/spikers`);
@@ -140,7 +181,15 @@ export default function Header() {
                     }
                   }}
                 >
-                  {item.dropdown ? <span>{item.label}</span> : item.label}
+                  <span
+                    className={`inline-block border-b-2 pb-1 !font-raleway !font-semibold transition-colors duration-300 ${
+                      isActiveItem(item.key)
+                        ? "border-[#0085d4]"
+                        : "border-transparent"
+                    }`}
+                  >
+                    {item.label}
+                  </span>
                 </Link>
                 {item.dropdown && (
                   <ul>
@@ -200,7 +249,11 @@ export default function Header() {
           ) : (
             <>
               <button
-                className="!outline-none px-4 py-1 border-[1px] border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white !rounded-full whitespace-nowrap"
+                className={`!outline-none px-4 py-1 border-[1px] !rounded-full whitespace-nowrap transition-colors duration-300 ${
+                  transparent
+                    ? "border-white !text-white hover:bg-white hover:!text-gray-900"
+                    : "border-gray-800 !text-gray-800 hover:bg-gray-800 hover:!text-white"
+                }`}
                 onClick={() => {
                   router.push(`/register`);
                 }}
@@ -215,7 +268,11 @@ export default function Header() {
                   }}
                 >
                   <span className="text-sm font-medium">
-                    <LoginOutlined className="inline-block text-2xl" />
+                    <LoginOutlined
+                      className={`inline-block text-2xl transition-colors duration-300 ${
+                        transparent ? "!text-white" : ""
+                      }`}
+                    />
                   </span>
                 </button>
               </div>
@@ -260,7 +317,11 @@ export default function Header() {
             //     {menu}
             //   </div>
             // )}
-            className="text-center uppercase font-semibold"
+            className={`text-center uppercase font-semibold ${
+              transparent
+                ? "!bg-transparent [&_.ant-select-selector]:!bg-transparent [&_.ant-select-selector]:!border-transparent [&_.ant-select-selector]:!shadow-none [&_.ant-select-selection-item]:!text-white [&_.ant-select-arrow]:!text-white"
+                : ""
+            }`}
             // popupClassName="!p-0 text-center"
           />
         </div>
@@ -269,12 +330,14 @@ export default function Header() {
       <div className="xl:hidden absolute top-4 right-4 z-50">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-gray-800 dark:text-white focus:outline-none"
+          className={`focus:outline-none transition-colors duration-300 ${
+            transparent ? "text-white" : "text-gray-800 dark:text-white"
+          }`}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMenuOpen ? (
             <svg
-              className="w-7 h-7 text-white"
+              className="w-7 h-7"
               fill="none"
               stroke="currentColor"
               strokeWidth={2}
@@ -338,7 +401,15 @@ export default function Header() {
                       setIsMenuOpen(false); // menyuni yopish
                     }}
                   >
-                    {item.label}
+                    <span
+                      className={`inline-block border-b-2 pb-0.5 transition-colors duration-300 ${
+                        isActiveItem(item.key)
+                          ? "border-[#0085d4]"
+                          : "border-transparent"
+                      }`}
+                    >
+                      {item.label}
+                    </span>
                   </Link>
                 </li>
               ))}

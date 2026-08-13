@@ -1,103 +1,119 @@
 import {
   ChevronLeft,
   ChevronRight,
-  Globe2Icon,
-  Image as Icon,
+  Flag,
   ListChecks,
-  Map,
-  UserCheckIcon,
+  MapPin,
+  Newspaper,
+  UserCheck,
   Users,
 } from "lucide-react";
 import { useTranslations } from "@/i18n/useTranslations";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import section from "@/assets/img/section_bg_2.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 import { assetUrl } from "@/lib/assetUrl";
-import mediaIcon from "@/assets/img/mediaIcon.png";
+
+/* ─── Halqa geometriyasi (viewBox 100×100, markaz 50,50) ───────────────
+   Yoy nuqtadan boshlanadi, asta ingichkalashadi va 5 ta kichik
+   nuqtacha bilan tugaydi. SVG `stroke` ingichkalasha olmagani uchun
+   yoy to'ldirilgan lenta (path) sifatida hisoblanadi.                    */
+const RING_RADIUS = 46;
+const ARC_START_DEG = -90; // tepadan boshlanadi
+const ARC_SWEEP_DEG = 200;
+const ARC_WIDTH_START = 2.8;
+const ARC_WIDTH_END = 0.7;
+
+function polar(deg: number, r: number) {
+  const a = (deg * Math.PI) / 180;
+  return { x: 50 + r * Math.cos(a), y: 50 + r * Math.sin(a) };
+}
+
+/** Kengligi boshidan oxirigacha toraygan yoy — to'ldirilgan kontur */
+function taperedArcPath(steps = 64): string {
+  const outer: string[] = [];
+  const inner: string[] = [];
+
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const deg = ARC_START_DEG + ARC_SWEEP_DEG * t;
+    const w = ARC_WIDTH_START + (ARC_WIDTH_END - ARC_WIDTH_START) * t;
+    const o = polar(deg, RING_RADIUS + w / 2);
+    const n = polar(deg, RING_RADIUS - w / 2);
+    outer.push(`${o.x.toFixed(2)},${o.y.toFixed(2)}`);
+    inner.push(`${n.x.toFixed(2)},${n.y.toFixed(2)}`);
+  }
+
+  return `M${outer.join("L")}L${inner.reverse().join("L")}Z`;
+}
+
+const ARC_PATH = taperedArcPath();
+const ARC_HEAD = polar(ARC_START_DEG, RING_RADIUS);
+
+/** Yoydan keyingi 5 ta kichrayib boruvchi nuqtacha — yoy oxirining
+    qalinligidan boshlanadi, shunda bo'g'inda sakrash bo'lmaydi */
+const TRAIL_DOTS = [0, 1, 2, 3, 4].map((i) => {
+  const { x, y } = polar(
+    ARC_START_DEG + ARC_SWEEP_DEG + 5.5 + i * 6.5,
+    RING_RADIUS
+  );
+  return { x, y, r: 0.85 - i * 0.12, opacity: 0.8 - i * 0.12 };
+});
 
 export default function StatsSection() {
   const t = useTranslations("stats");
 
-  const [currentLang] = useState("uz");
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<any>(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+  // `description` hozircha ko'rsatilmaydi (dizayn bo'yicha), lekin keyin
+  // qaytarish uchun ma'lumotda saqlanadi.
   const stats = [
     {
-      value: "15 000 m2",
+      value: "15 000 m²",
       title: t("stats_1_title"),
       description: t("stats_1_description"),
-      icon: <Map className="text-white" />,
+      Icon: MapPin,
+      ringSpeed: 9,
     },
     {
       value: "1200+",
       title: t("stats_2_title"),
       description: t("stats_2_description"),
-      icon: <Users className="text-white" />,
+      Icon: Users,
+      ringSpeed: 11,
     },
     {
       value: "1000+",
       title: t("stats_3_title"),
       description: t("stats_3_description"),
-      icon: <ListChecks className="text-white" />,
+      Icon: ListChecks,
+      ringSpeed: 8,
     },
     {
       value: "15000+",
       title: t("stats_4_title"),
       description: t("stats_4_description"),
-      icon: <UserCheckIcon className="text-white" />,
+      Icon: UserCheck,
+      ringSpeed: 12,
     },
     {
       value: "20+",
       title: t("stats_5_title"),
       description: t("stats_5_description"),
-      icon: <Globe2Icon className="text-white" />,
+      Icon: Flag,
+      ringSpeed: 10,
     },
     {
       value: "50+",
       title: t("stats_6_title"),
       description: t("stats_6_description"),
-      // icon: <Icon className="text-white" />,
-      icon: <img src={mediaIcon} alt="mediaIcon" width={80} height={80} />,
+      Icon: Newspaper,
+      ringSpeed: 13,
     },
   ];
-
-  // const scrollLeft = () => {
-  //   if (scrollContainerRef.current) {
-  //     if (window.innerWidth < 768) {
-  //       scrollContainerRef.current.scrollBy({
-  //         left: -window.innerWidth * 0.86,
-  //         behavior: "smooth",
-  //       });
-  //     } else {
-  //       scrollContainerRef.current.scrollBy({
-  //         left: -500,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   }
-  // };
-
-  // const scrollRight = () => {
-  //   if (scrollContainerRef.current) {
-  //     if (window.innerWidth < 768) {
-  //       scrollContainerRef.current.scrollBy({
-  //         left: window.innerWidth * 0.86,
-  //         behavior: "smooth",
-  //       });
-  //     } else {
-  //       scrollContainerRef.current.scrollBy({
-  //         left: 500,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   }
-  // };
 
   return (
     <div
@@ -109,28 +125,36 @@ export default function StatsSection() {
       }}
     >
       <section
-        className="relative !pb-0 !pt-10 px-4 md:px-10 bg-transparent"
+        className="relative bg-transparent !pt-8 !pb-8 px-4 md:px-10"
         id="stats"
       >
-        <div
-          className="container section-title absolute z-[20] pb-0"
-          data-aos="fade-up"
-        >
-          <h2 className="text-black dark:!text-white">INNOWEEK</h2>
-          <div className="text-black dark:!text-white">{t("COVERAGE")}</div>
-        </div>
+        <div className="container">
+          {/* Sarlavha bloki */}
+          <div className="mb-12 lg:mb-14" data-aos="fade-up">
+            {/* <div className="flex items-center gap-4">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b2545] dark:text-white">
+                INNOWEEK
+              </span>
+              <span className="h-[2px] w-24 rounded-full bg-[#0085d4]" />
+            </div> */}
+            <h2 className="!mt-3 !mb-1 !text-3xl !font-bold !text-[#0b2545] sm:!text-4xl dark:!text-white">
+              {t("COVERAGE")}
+            </h2>
+            <p className="!m-0 !text-base !text-gray-500 dark:!text-gray-400">
+              {t("subtitle")}
+            </p>
+          </div>
 
-        <div>
-          <div className="container " data-aos="fade-left" data-aos-delay="100">
+          <div data-aos="fade-up" data-aos-delay="100">
             <Swiper
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               key={stats.length}
               modules={[Navigation, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={3}
+              spaceBetween={24}
+              slidesPerView={1}
               loop={true}
               autoplay={{
-                delay: 2000,
+                delay: 2500,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
@@ -151,57 +175,101 @@ export default function StatsSection() {
                 }
               }}
               breakpoints={{
-                320: {
-                  slidesPerView: 1,
-                },
-                768: {
-                  slidesPerView: 2,
-                },
-                1024: {
-                  slidesPerView: 3,
-                },
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 },
+                1536: { slidesPerView: 5 },
               }}
-              className="testimonials-slider !pb-5 stats section bg-transparent"
+              className="!pb-2"
             >
-              {stats.map((stat, index) => (
-                <SwiperSlide key={stat.title}>
-                  <div className="min-w-[300px]">
-                    <div
-                      className="metric-card bg-[#0085d4] dark:bg-[#1b262c] text-white"
-                      data-aos="fade-left"
-                      data-aos-delay={100 * (index + 1)}
-                    >
-                      <div className="metric-header">
-                        <div className="metric-icon-wrapper ">{stat?.icon}</div>
-                        <div className="metric-value">
-                          <span className="text-4xl">{stat.value}</span>
-                        </div>
-                      </div>
-                      <div className="metric-info">
-                        <h4 className="text-sm !sm:text-2xl">{stat.title}</h4>
-                        <p className="text-white">{stat.description}</p>
+              {stats.map(({ value, title, Icon, ringSpeed }) => (
+                <SwiperSlide key={title}>
+                  <div className="flex justify-center py-4">
+                    <div className="relative aspect-square w-full max-w-[240px]">
+                      {/* Doimiy och halqa */}
+                      <svg
+                        viewBox="0 0 100 100"
+                        className="absolute inset-0 h-full w-full"
+                        aria-hidden
+                      >
+                        <circle
+                          cx="50"
+                          cy="50"
+                          r={RING_RADIUS}
+                          fill="none"
+                          stroke="#dbe4f0"
+                          strokeWidth="1"
+                        />
+                      </svg>
+
+                      {/* Aylanib turuvchi ko'k yoy */}
+                      <svg
+                        viewBox="0 0 100 100"
+                        className="absolute inset-0 h-full w-full animate-spin motion-reduce:animate-none"
+                        style={{
+                          animationDuration: `${ringSpeed}s`,
+                          // Qalin nuqta oldinda ketishi uchun teskari aylanadi
+                          animationDirection: "reverse",
+                        }}
+                        aria-hidden
+                      >
+                        {/* Ingichkalashib boruvchi yoy */}
+                        <path d={ARC_PATH} fill="#0085d4" />
+                        {/* Yoy boshidagi nuqta */}
+                        <circle
+                          cx={ARC_HEAD.x}
+                          cy={ARC_HEAD.y}
+                          r="3.2"
+                          fill="#0085d4"
+                        />
+                        {/* Yoy oxiridagi 5 ta kichrayuvchi nuqtacha */}
+                        {TRAIL_DOTS.map((dot, i) => (
+                          <circle
+                            key={i}
+                            cx={dot.x}
+                            cy={dot.y}
+                            r={dot.r}
+                            fill="#0085d4"
+                            opacity={dot.opacity}
+                          />
+                        ))}
+                      </svg>
+
+                      {/* Ichki qism */}
+                      <div className="absolute inset-[8%] flex flex-col items-center justify-center rounded-full bg-white/75 px-6 text-center backdrop-blur-sm dark:bg-gray-800/80">
+                        <span className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#0085d4]/10 text-[#0085d4] dark:bg-[#0085d4]/20">
+                          <Icon className="h-7 w-7" strokeWidth={1.6} />
+                        </span>
+                        <span className="text-2xl font-bold leading-tight text-[#0085d4] sm:text-3xl">
+                          {value}
+                        </span>
+                        <span className="mt-2 text-sm font-medium leading-snug text-gray-700 dark:text-gray-200">
+                          {title}
+                        </span>
                       </div>
                     </div>
                   </div>
                 </SwiperSlide>
               ))}
-
-              {/* Navigation buttons */}
-              <div className="w-100 d-flex align-items-center justify-center gap-4 mt-10">
-                <button
-                  ref={prevRef}
-                  className="bg-[#0085d4] hover:bg-black text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
-                >
-                  <ChevronLeft />
-                </button>
-                <button
-                  ref={nextRef}
-                  className="bg-[#0085d4] hover:bg-black text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300 "
-                >
-                  <ChevronRight />
-                </button>
-              </div>
             </Swiper>
+
+            {/* Navigatsiya tugmalari */}
+            <div className="mt-6 flex items-center justify-center gap-4">
+              <button
+                ref={prevRef}
+                aria-label="Oldingi"
+                className="flex h-12 w-12 items-center justify-center !rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors duration-300 hover:border-[#0085d4] hover:text-[#0085d4]"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                ref={nextRef}
+                aria-label="Keyingi"
+                className="flex h-12 w-12 items-center justify-center !rounded-full bg-[#0085d4] text-white shadow-lg shadow-[#0085d4]/25 transition-colors duration-300 hover:bg-[#006eb3]"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
       </section>

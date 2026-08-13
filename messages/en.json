@@ -73,7 +73,9 @@
     "day": "Days",
     "hour": "Hours",
     "minute": "Minutes",
-    "second": "Seconds"
+    "second": "Seconds",
+    "event_dates": "OCTOBER 27–29",
+    "venue": "CAEx UZBEKISTAN"
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
@@ -89,10 +91,13 @@
     "features_4": "Agri tech & Green tech",
     "features_5": "Smart Cities",
     "features_6": "Robotics & Drones",
-    "about_section_title": "ABOUT INNOWEEK"
+    "about_section_title": "ABOUT INNOWEEK",
+    "more": "LEARN MORE",
+    "less": "SHOW LESS"
   },
   "stats": {
     "COVERAGE": "COVERAGE",
+    "subtitle": "InnoWeek in numbers",
     "stats_1_title": "Exhibition area",
     "stats_1_description": "Separate 2000m2 for events",
     "stats_2_title": "Visitors",
@@ -112,7 +117,14 @@
     "day_1": "October 27",
     "day_2": "October 28",
     "day_3": "October 29",
-    "LOAD_MORE": "Load More"
+    "LOAD_MORE": "Load More",
+    "READ_MORE": "Read more",
+    "day_1_num": "27",
+    "day_1_month": "OCTOBER",
+    "day_2_num": "28",
+    "day_2_month": "OCTOBER",
+    "day_3_num": "29",
+    "day_3_month": "OCTOBER"
   },
   "speakers": {
     "INNOWEEK": "INNOWEEK",

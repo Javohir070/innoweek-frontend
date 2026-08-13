@@ -73,7 +73,9 @@
     "day": "День",
     "hour": "Час",
     "minute": "Минута",
-    "second": "Секунд"
+    "second": "Секунд",
+    "event_dates": "27–29 ОКТЯБРЯ",
+    "venue": "CAEx UZBEKISTAN"
   },
   "news": {
     "INNOWEEK": "INNOWEEK",
@@ -89,10 +91,13 @@
     "features_4": "Агропромышленные технологии",
     "features_5": "Умные города",
     "features_6": "Робототехника и дроны",
-    "about_section_title": "ОБ INNOWEEK"
+    "about_section_title": "ОБ INNOWEEK",
+    "more": "ПОДРОБНЕЕ",
+    "less": "СВЕРНУТЬ"
   },
   "stats": {
     "COVERAGE": "ОХВАТ",
+    "subtitle": "InnoWeek в цифрах",
     "stats_1_title": "Выставочная площадь",
     "stats_1_description": "Отдельно 2000м2 для мероприятий",
     "stats_2_title": "Посетители",
@@ -112,7 +117,14 @@
     "day_1": "27-ОКТЯБРЯ",
     "day_2": "28-ОКТЯБРЯ",
     "day_3": "29-ОКТЯБРЯ",
-    "LOAD_MORE": "Загрузить больше"
+    "LOAD_MORE": "Загрузить больше",
+    "READ_MORE": "Подробнее",
+    "day_1_num": "27",
+    "day_1_month": "ОКТЯБРЯ",
+    "day_2_num": "28",
+    "day_2_month": "ОКТЯБРЯ",
+    "day_3_num": "29",
+    "day_3_month": "ОКТЯБРЯ"
   },
   "speakers": {
     "INNOWEEK": "INNOWEEK",
