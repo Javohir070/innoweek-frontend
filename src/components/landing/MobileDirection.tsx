@@ -6,7 +6,7 @@ import { QRCode } from "antd";
 
 const MobileDirection = () => {
   return (
-    <section className="mobile-direction-section py-16 bg-gradient-to-b from-gray-50 to-white">
+    <section className="mobile-direction-section py-8 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left side - Text and Download buttons */}

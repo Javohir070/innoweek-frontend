@@ -74,73 +74,80 @@ export default function HeroSection() {
       <section className="hero section bg-transparent !p-0 !mt-16 xl:!mt-0 !min-h-[1100px] lg:!min-h-[800px] xl:!h-screen xl:!min-h-screen">
         <div className="container bg-transparent">
           <div className="row items-center">
-            <div className="col-12 col-lg-7 content-col" data-aos="fade-up">
-              <div className="content">
-                <div className="main-heading text-white">
-                  <h1>{t("Ideas without borders")}</h1>
-                </div>
-
-                <div className="description !mt-6 !mb-8">
-                  <p className="!text-base !leading-relaxed !text-white/70 lg:!text-lg lg:max-w-[85%]">
-                    {t("hero description")}
-                  </p>
-                </div>
-
-                {!token && (
-                  <div className="buttonslink">
-                    <Link href="/register">
-                      <span className="group inline-flex items-center gap-3 rounded-xl bg-[#0085d4] px-7 py-3.5 text-sm font-semibold uppercase tracking-wide !text-white shadow-lg shadow-[#0085d4]/30 transition-all duration-300 hover:bg-[#006eb3] hover:shadow-xl">
-                        {t("REGISTER")}
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </span>
-                    </Link>
-                  </div>
-                )}
-
-                {!countdown.expired && (
-                  <div
-                    className="mt-10 inline-flex items-stretch rounded-2xl border border-white/20 bg-white/10 px-1 py-4 backdrop-blur-md sm:px-3"
-                    data-aos="fade-up"
-                    data-aos-delay="200"
-                  >
-                    {countdownItems.map((item, index) => (
-                      <div
-                        key={item.label}
-                        className={`flex min-w-[68px] flex-col items-center px-3 sm:min-w-[92px] sm:px-6 ${
-                          index > 0 ? "border-l border-white/20" : ""
-                        }`}
-                      >
-                        <span className="text-3xl font-bold leading-none text-white sm:text-4xl">
-                          {item.value}
-                        </span>
-                        <span className="mt-2 text-[10px] font-medium uppercase tracking-widest text-white/60 sm:text-xs">
-                          {item.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+            {/* Chap ustun — logo, sana, tugma va countdown.
+                Mobilda sarlavha birinchi turishi uchun tartib almashtiriladi. */}
+            <div
+              className="col-12 col-lg-6 content-col order-2 lg:!order-1"
+              data-aos="fade-up"
+            >
+              <div className="fluid-shape !mx-0 lg:!max-w-[430px]">
+                <AppImage
+                  src={innoweekLogo}
+                  alt="INNOWEEK 2026"
+                  className="fluid-img"
+                />
               </div>
+
+              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-white">
+                <span className="text-lg font-semibold uppercase tracking-wide sm:text-xl">
+                  {t("event_dates")}
+                </span>
+                <span className="hidden h-5 w-px bg-white/40 sm:block" />
+                <span className="text-lg font-semibold uppercase tracking-wide sm:text-xl">
+                  {t("venue")}
+                </span>
+              </div>
+
+              {!token && (
+                <div className="buttonslink mt-8">
+                  <Link href="/register">
+                    <span className="group inline-flex items-center gap-3 rounded-xl bg-[#0085d4] px-7 py-3.5 text-sm font-semibold uppercase tracking-wide !text-white shadow-lg shadow-[#0085d4]/30 transition-all duration-300 hover:bg-[#006eb3] hover:shadow-xl">
+                      {t("REGISTER")}
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </Link>
+                </div>
+              )}
+
+              {!countdown.expired && (
+                <div
+                  className="mt-8 inline-flex items-stretch self-start rounded-2xl border border-white/20 bg-white/10 px-1 py-4 backdrop-blur-md sm:px-3"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
+                  {countdownItems.map((item, index) => (
+                    <div
+                      key={item.label}
+                      className={`flex min-w-[68px] flex-col items-center px-3 sm:min-w-[92px] sm:px-6 ${
+                        index > 0 ? "border-l border-white/20" : ""
+                      }`}
+                    >
+                      <span className="text-3xl font-bold leading-none text-white sm:text-4xl">
+                        {item.value}
+                      </span>
+                      <span className="mt-2 text-[10px] font-medium uppercase tracking-widest text-white/60 sm:text-xs">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <div className="col-12 col-lg-5" data-aos="zoom-out">
-              <div className="visual-content">
-                <div className="fluid-shape">
-                  <AppImage
-                    src={innoweekLogo}
-                    alt="INNOWEEK 2026"
-                    className="fluid-img"
-                  />
-                  <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-white">
-                    <span className="text-lg font-semibold tracking-wide sm:text-xl">
-                      {t("event_dates")}
-                    </span>
-                    <span className="hidden h-5 w-px bg-white/40 sm:block" />
-                    <span className="text-lg font-semibold tracking-wide sm:text-xl">
-                      {t("venue")}
-                    </span>
-                  </div>
-                </div>
+            {/* O'ng ustun — asosiy sarlavha */}
+            <div
+              className="col-12 col-lg-6 order-1 mb-12 lg:!order-2 lg:!mb-0"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <div className="main-heading text-white lg:!pl-8">
+                <h1>{t("Ideas without borders")}</h1>
+              </div>
+
+              <div className="description !mt-6 !mb-0 lg:!pl-8">
+                <p className="!text-base !leading-relaxed !text-white/70 lg:!text-lg">
+                  {t("hero description")}
+                </p>
               </div>
             </div>
           </div>

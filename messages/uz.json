@@ -128,7 +128,9 @@
   "speakers": {
     "INNOWEEK": "INNOWEEK",
     "SPEAKERS": "SPIKERLAR",
-    "LOAD_MORE": "Ko'proq ko'rish"
+    "LOAD_MORE": "Ko'proq ko'rish",
+    "subtitle": "Innoweek doirasida xalqaro ekspertlar, yetakchi olimlar va innovatsion soha mutaxassislari ishtirok etadi.",
+    "ALL_SPEAKERS": "Barcha ma'ruzachilar"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",
@@ -156,7 +158,10 @@
     "form_message_placeholder": "Taklif kiriting",
     "form_loading": "Yuklanmoqda",
     "form_sent_message": "Xabaringiz yuborildi. Rahmat!",
-    "form_submit": "Yuborish"
+    "form_submit": "Yuborish",
+    "open_map": "Xaritada ochish",
+    "help_title": "BIZ SIZGA YORDAM BERISHGA TAYYORMIZ!",
+    "help_text": "Savollaringiz bormi? Bizning jamoamiz sizning xabaringizga tez orada javob beradi."
   },
   "check_ticket": {
     "are_you_registered": "Ro'yxatdan o'tganmisiz?",
@@ -205,6 +210,8 @@
   "expert_feedback": {
     "about_us": "BIZ HAQIMIZDA",
     "experts_opinion": "EKSPERTLAR FIKRI",
+    "read_more": "Batafsil",
+    "read_less": "Yopish",
     "feedback_1_desc": "“InnoWeek chinakam global muloqot maydoniga aylandi. Bu yerda shunchaki gʻoyalar emas, balki butun mintaqaga tadbiq etilishi mumkin boʻlgan amaliy yechimlar yaratilmoqda.”",
     "feedback_1_expert": "Turaj Amrey",
     "expert_1_country": "Eron",

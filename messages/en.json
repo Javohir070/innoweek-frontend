@@ -129,7 +129,9 @@
   "speakers": {
     "INNOWEEK": "INNOWEEK",
     "SPEAKERS": "SPEAKERS",
-    "LOAD_MORE": "Load More"
+    "LOAD_MORE": "Load More",
+    "subtitle": "International experts, leading scientists and innovation specialists take part in Innoweek.",
+    "ALL_SPEAKERS": "All speakers"
   },
   "partners": {
     "INNOWEEK": "INNOWEEK",
@@ -162,7 +164,10 @@
     "form_message_placeholder": "Enter Message",
     "form_loading": "Loading",
     "form_sent_message": "Your message has been sent. Thank you!",
-    "form_submit": "Send Message"
+    "form_submit": "Send Message",
+    "open_map": "Open in maps",
+    "help_title": "WE ARE READY TO HELP YOU!",
+    "help_text": "Have questions? Our team will reply to your message shortly."
   },
   "check_ticket": {
     "are_you_registered": "Are you registered?",
@@ -204,6 +209,8 @@
   "expert_feedback": {
     "about_us": "ABOUT US",
     "experts_opinion": "EXPERTS FEEDBACK",
+    "read_more": "Read more",
+    "read_less": "Show less",
     "feedback_1_desc": "“InnoWeek became a true platform for global dialogue. It’s not just about ideas here — it’s about real solutions that can be scaled across the region.”",
     "feedback_1_expert": "Turaj Amraee",
     "expert_1_country": "Iran",

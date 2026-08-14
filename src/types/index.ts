@@ -53,23 +53,26 @@ export interface CountryObj {
 }
 
 export interface ISpeakerItem {
+  id: number;
   full_name: string;
   position: string;
   image: string;
+  country_id: number;
+  type: string;
   created_at: string;
   country: {
-    id: 1;
-    user_id: 1;
-    name_uz: "O'zbekiston";
-    name_en: "Uzbekistan";
-    name_ru: "\u0423\u0437\u0431\u0435\u043a\u0438\u0441\u0442\u0430\u043d";
-    state_code: null;
-    phone_code: null;
-    flag: null;
-    status: "active";
-    created_at: null;
-    updated_at: null;
-  };
+    id: number;
+    user_id: number;
+    name_uz: string;
+    name_en: string;
+    name_ru: string;
+    state_code: string | null;
+    phone_code: string | null;
+    flag: string | null;
+    status: string;
+    created_at: string | null;
+    updated_at: string | null;
+  } | null;
 }
 
 export interface IGalleryItem {

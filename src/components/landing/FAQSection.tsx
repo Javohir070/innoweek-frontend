@@ -25,7 +25,7 @@ const FAQSection = () => {
     >
     <section className="faq-9 faq section bg-transparent dark:bg-gray-900" id="faq">
       <div className="container section-title" data-aos="fade-up">
-        <h2 className="text-black  dark:!text-white">INNOWEEK</h2>
+        {/* <h2 className="text-black  dark:!text-white">INNOWEEK</h2> */}
         <div className="text-black  dark:!text-gray-300">FAQ</div>
       </div>
       <div className="container">

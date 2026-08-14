@@ -96,19 +96,10 @@ export default function ProgramSection() {
       className="resume section !pt-8 !pb-10 bg-white dark:!bg-[#031119] transition-colors duration-300"
     >
       <div className="container">
-        {/* Sarlavha */}
-        <div className="mb-10 text-center" data-aos="fade-up">
-          <div className="flex items-center justify-center gap-4">
-            <span className="h-px w-12 bg-[#0085d4]/40 sm:w-16" />
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0085d4]">
-              INNOWEEK
-            </span>
-            <span className="h-px w-12 bg-[#0085d4]/40 sm:w-16" />
-          </div>
-          <h2 className="!mt-2 !mb-3 !text-3xl !font-bold !text-[#0b2545] sm:!text-4xl dark:!text-white">
-            {t("PROGRAM")}
-          </h2>
-          <span className="mx-auto block h-[3px] w-14 rounded-full bg-[#0085d4]" />
+        {/* Sarlavha — eski uslub */}
+        <div className="section-title !pb-4" data-aos="fade-up">
+          {/* <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2> */}
+          <div className="text-black dark:!text-gray-300">{t("PROGRAM")}</div>
         </div>
 
         <div data-aos="fade-up" data-aos-delay="100">

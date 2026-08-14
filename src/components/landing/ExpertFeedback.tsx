@@ -1,5 +1,5 @@
 import { assetUrl } from "@/lib/assetUrl";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import AppImage from "@/lib/AppImage";
 import { IoMdStar } from "react-icons/io";
 import { LuMoveLeft, LuMoveRight } from "react-icons/lu";
@@ -16,12 +16,89 @@ import expert_6_avatar from "@/assets/img/person/expert-6.jpg";
 import expert_7_avatar from "@/assets/img/person/expert-7.jpg";
 import section from "@/assets/img/section_bg_2.jpg";
 
+/** Karta kengligi va ular orasidagi masofa (px) — surish hisobi shu qiymatlarga bog'liq */
+const CARD_WIDTH = 500;
+const CARD_GAP = 24;
+
 type FeedbackItem = {
   full_name: string;
   position: string;
   image: string;
   country: string;
 };
+
+/**
+ * Bitta ekspert kartasi. Matn boshida 5 qatorga qisqartiriladi;
+ * agar matn sig'masa, «Batafsil» tugmasi paydo bo'ladi.
+ */
+function FeedbackCard({
+  item,
+  moreLabel,
+  lessLabel,
+  onToggle,
+}: {
+  item: FeedbackItem;
+  moreLabel: string;
+  lessLabel: string;
+  onToggle: (expanded: boolean) => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const [isClamped, setIsClamped] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
+  // Matn 5 qatorga sig'yaptimi — faqat yig'ilgan holatda o'lchaymiz
+  useEffect(() => {
+    if (expanded) return;
+    const el = textRef.current;
+    if (!el) return;
+    setIsClamped(el.scrollHeight > el.clientHeight + 1);
+  }, [item.position, expanded]);
+
+  return (
+    <div className="bg-[#0085d4] dark:bg-gray-800 text-white w-[500px] shrink-0 self-start min-h-[300px] p-6 rounded-lg flex flex-col !justify-between mr-6 last:mr-0">
+      <div>
+        <div className="flex gap-1">
+          {[...Array(5)].map((_, i) => (
+            <span key={i}>
+              <IoMdStar className="text-lg" />
+            </span>
+          ))}
+        </div>
+        <p
+          ref={textRef}
+          className={`italic mb-2 mt-3 text-[15px] ${expanded ? "" : "line-clamp-5"}`}
+        >
+          {item.position}
+        </p>
+        {(isClamped || expanded) && (
+          <button
+            type="button"
+            onClick={() => {
+              setExpanded((prev) => !prev);
+              onToggle(!expanded);
+            }}
+            className="mb-4 text-[13px] font-semibold text-white/90 underline underline-offset-4 hover:text-white transition-colors"
+          >
+            {expanded ? lessLabel : moreLabel}
+          </button>
+        )}
+      </div>
+      <div className="flex items-center gap-4">
+        <AppImage
+          src={item.image}
+          alt={item.full_name}
+          width={48}
+          height={48}
+          className="rounded-full w-[48px] h-[48px] object-cover"
+        />
+        <div>
+          <p className="font-semibold m-0">{item.full_name}</p>
+          <p className="text-sm text-white/80 m-0">{item.country}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const ExpertFeedback = () => {
   const t = useTranslations("expert_feedback");
@@ -80,6 +157,8 @@ const ExpertFeedback = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [autoScroll, setAutoScroll] = useState(true);
+  /** Nechta karta yoyilgan — bittasi ochiq bo'lsa avto-surish to'xtaydi */
+  const [openCount, setOpenCount] = useState(0);
   const pairCount = 1;
 
   const data = useMemo(
@@ -129,7 +208,7 @@ const ExpertFeedback = () => {
   }, [data.length]);
 
   useEffect(() => {
-    if (!autoScroll || data.length === 0) return;
+    if (!autoScroll || openCount > 0 || data.length === 0) return;
 
     const interval = setInterval(() => {
       setIsAnimating(true);
@@ -140,7 +219,7 @@ const ExpertFeedback = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [autoScroll, currentIndex, data.length]);
+  }, [autoScroll, openCount, currentIndex, data.length]);
 
   const handlePrev = () => {
     if (isAnimating || data.length === 0) return;
@@ -180,82 +259,56 @@ const ExpertFeedback = () => {
         backgroundImage: `url(${assetUrl(section)})`,
       }}
     >
-      <section className="py-16 bg-transparent" id="expert-feedback">
+      <section className="!py-10 bg-transparent" id="expert-feedback">
         <div className="container mx-auto">
-          <div className="section-title" data-aos="fade-up">
-            <h2 className="text-black dark:!text-white">INNOWEEK</h2>
+          <div className="section-title !pb-4" data-aos="fade-up">
+            {/* <h2 className="text-black dark:!text-white">INNOWEEK</h2> */}
             <div className="text-black dark:!text-gray-300">
-              {t("about_us")}
+              {t("experts_opinion")}
             </div>
           </div>
-          <div className="flex relative flex-col md:flex-row items-start gap-6">
-            <div className="flex flex-col items-center md:items-start w-full md:w-1/5">
-              <h3 className="text-xl !font-bold text-black dark:!text-gray-300 mb-6">
-                {t("experts_opinion")}
-              </h3>
-              <div className="md:absolute md:bottom-10 flex items-center gap-3 mt-6 md:mt-0">
-                <button
-                  onClick={handlePrev}
-                  className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
-                  disabled={isAnimating}
-                >
-                  <LuMoveLeft size={28} />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
-                  disabled={isAnimating}
-                >
-                  <LuMoveRight size={28} />
-                </button>
-              </div>
-            </div>
-            <div className="w-full md:w-4/5 flex justify-center">
-              <div className="overflow-hidden w-full">
-                <div
-                  className="flex transition-transform duration-400 ease-in-out"
-                  style={{
-                    width: `${Math.max(data.length, 1) * 495 + Math.max(data.length - 1, 0) * 24}px`,
-                    transform: `translateX(-${currentIndex * (495 + 24)}px)`,
+          {/* Slayder — butun kenglikda */}
+          <div className="w-full overflow-hidden">
+            <div
+              className="flex transition-transform duration-400 ease-in-out"
+              style={{
+                width: `${Math.max(data.length, 1) * CARD_WIDTH + Math.max(data.length - 1, 0) * CARD_GAP}px`,
+                transform: `translateX(-${currentIndex * (CARD_WIDTH + CARD_GAP)}px)`,
+              }}
+            >
+              {data.map((item, idx) => (
+                <FeedbackCard
+                  key={`${item.full_name}-${idx}`}
+                  item={item}
+                  moreLabel={t("read_more")}
+                  lessLabel={t("read_less")}
+                  onToggle={(open) => {
+                    setAutoScroll(false);
+                    setOpenCount((prev) => prev + (open ? 1 : -1));
                   }}
-                >
-                  {data.map((item, idx) => (
-                    <div
-                      key={`${item.full_name}-${idx}`}
-                      className="bg-[#0085d4] dark:bg-gray-800 text-white w-[500px] p-6 rounded-lg flex flex-col !justify-between mr-6 last:mr-0"
-                    >
-                      <div>
-                        <div className="flex gap-1">
-                          {[...Array(5)].map((_, i) => (
-                            <span key={i}>
-                              <IoMdStar className="text-lg" />
-                            </span>
-                          ))}
-                        </div>
-                        <p className="italic mb-4 mt-3 text-[15px]">
-                          {item.position}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <AppImage
-                          src={item.image}
-                          alt={item.full_name}
-                          width={48}
-                          height={48}
-                          className="rounded-full w-[48px] h-[48px] object-cover"
-                        />
-                        <div>
-                          <p className="font-semibold m-0">{item.full_name}</p>
-                          <p className="text-sm text-white/80 m-0">
-                            {item.country}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                />
+              ))}
             </div>
+          </div>
+
+          {/* Boshqaruv tugmalari — slayder ostida */}
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <button
+              onClick={handlePrev}
+              aria-label="Oldingi"
+              className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
+              disabled={isAnimating}
+            >
+              <LuMoveLeft size={28} />
+            </button>
+            <button
+              onClick={handleNext}
+              aria-label="Keyingi"
+              className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
+              disabled={isAnimating}
+            >
+              <LuMoveRight size={28} />
+            </button>
           </div>
         </div>
       </section>
