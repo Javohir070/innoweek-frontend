@@ -2,19 +2,115 @@ import { useParams } from "react-router-dom";
 import { assetUrl } from "@/lib/assetUrl";
 import section from "@/assets/img/section_bg_2.jpg";
 import { useTranslations } from "@/i18n/useTranslations";
-import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
+import { FetchInstance } from "@/api/FetchInstance";
 import { useEffect, useState, useCallback } from "react";
-import { IProgramDetail, IProgramDetailResponse } from "@/types";
-import AppImage from "@/lib/AppImage";
-import userAvatar from "@/assets/img/avatar.png";
+import {
+  IProgramDetail,
+  IProgramDetailResponse,
+  IProgramSpeaker,
+  ISpeakerItem,
+} from "@/types";
+import { UserRound } from "lucide-react";
+import SpeakerCard from "@/components/landing/SpeakerCard";
 import AboutTimeline from "@/components/AboutTimeline/AboutTimeline";
 import StoreEvets from "@/components/shared/StoreEvets";
+
+/**
+ * Dastur spikeri (tilga bo'lingan maydonlar) → bosh sahifadagi
+ * `SpeakerCard` kutadigan ko'rinishga o'tkazish.
+ */
+function toSpeakerCardItem(
+  person: IProgramSpeaker,
+  lang?: string
+): ISpeakerItem {
+  const fullName =
+    lang === "ru"
+      ? person.full_name_ru
+      : lang === "en"
+        ? person.full_name_en
+        : person.full_name_uz;
+  const job =
+    lang === "ru" ? person.job_ru : lang === "en" ? person.job_en : person.job_uz;
+
+  return {
+    id: person.id,
+    full_name: fullName,
+    position: job,
+    image: person.image,
+    country_id: person.country_id,
+    type: person.type,
+    created_at: person.created_at,
+    // Dastur API'si to'liq davlat obyektini qaytarmaydi — bayroq `country_id`
+    // bo'yicha aniqlanadi.
+    country: null,
+  };
+}
+
+/** Ma'lumot yo'q holati — bo'sh kadr o'rniga ixcham va tartibli blok */
+function EmptyPeople({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-[#0085d4]/30 bg-white/70 px-6 py-10 text-center dark:border-gray-600 dark:bg-gray-800/60">
+      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0085d4]/10 text-[#0085d4] dark:bg-[#0085d4]/20">
+        <UserRound className="h-6 w-6" strokeWidth={1.6} />
+      </span>
+      <h4 className="!m-0 !text-base !font-semibold !text-[#0b2545] dark:!text-white">
+        {title}
+      </h4>
+      <p className="!m-0 !text-sm !text-gray-500 dark:!text-gray-400">{text}</p>
+    </div>
+  );
+}
+
+/** Moderatorlar / spikerlar bo'limi — bosh sahifadagi karta uslubida */
+function PeopleSection({
+  eyebrow,
+  title,
+  people,
+  lang,
+  emptyTitle,
+  emptyText,
+}: {
+  eyebrow: string;
+  title: string;
+  people: IProgramSpeaker[];
+  lang?: string;
+  emptyTitle: string;
+  emptyText: string;
+}) {
+  return (
+    <div className="container">
+      <div className="section-title !pb-4">
+        <h2 className="!mb-3 !leading-none text-black dark:!text-white">
+          {eyebrow}
+        </h2>
+        <div className="text-black dark:!text-gray-300">{title}</div>
+      </div>
+
+      {people.length > 0 ? (
+        <div
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          {people.map((person) => (
+            <SpeakerCard
+              key={person.id}
+              speaker={toSpeakerCardItem(person, lang)}
+              locale={lang || "uz"}
+            />
+          ))}
+        </div>
+      ) : (
+        <EmptyPeople title={emptyTitle} text={emptyText} />
+      )}
+    </div>
+  );
+}
 
 export default function ProgramDetailPage() {
   const params = useParams();
   const lang = params?.locale;
   const t = useTranslations("program-detail");
-  console.log(params?.programId);
 
   const [data, setData] = useState<IProgramDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -25,7 +121,6 @@ export default function ProgramDetailPage() {
       const res: IProgramDetailResponse = await FetchInstance(
         `/api/v1.0/schedules/${params?.programId}/list?lang=${params?.locale}`
       );
-      console.log(res);
       setData(res?.data);
     } catch (error) {
       console.log(error);
@@ -66,7 +161,7 @@ export default function ProgramDetailPage() {
     >
       <AboutTimeline data={data} />
       <div className="flex justify-center">
-          <StoreEvets event_data={data?.schedule} size="large" />
+        <StoreEvets event_data={data?.schedule} size="large" />
       </div>
 
       <div
@@ -77,139 +172,25 @@ export default function ProgramDetailPage() {
           backgroundImage: `url(${assetUrl(section)})`,
         }}
       >
-        {/* Moderators Section */}
-        <div className="container mb-12">
-          <div className="container section-title">
-            <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
-            <div className="text-black dark:!text-gray-300">
-              {t("moderator")}
-            </div>
-          </div>
-          {data?.moderators?.length > 0 && (
-            <div className="row gy-4">
-              {data?.moderators?.map((moderator) => (
-                <div
-                  className="col-lg-6 col-sm-6"
-                  data-aos-delay="100"
-                  key={moderator.id}
-                >
-                  <div className="team-member d-flex grid grid-cols-3 !bg-[#0085d4] dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300">
-                    <div className="member-img">
-                      <AppImage
-                        src={
-                          moderator.image
-                            ? `${BASE_URL}${moderator.image}`
-                            : userAvatar
-                        }
-                        className="img-fluid rounded-lg !w-full !h-[450px] sm:!h-[300px] lg:!h-[200px] !object-cover"
-                        alt={moderator.full_name_uz}
-                        loading="lazy"
-                        width={200}
-                        height={200}
-                      />
-                    </div>
-                    <div className="member-info flex-grow-1 max-[767px]:!py-3">
-                      <h4 className="text-white dark:!text-white mb-1">
-                        {lang == "uz" && moderator.full_name_uz}
-                        {lang == "ru" && moderator.full_name_ru}
-                        {lang == "en" && moderator.full_name_en}
-                      </h4>
-                      <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
-                        {lang == "uz" && moderator.job_uz}
-                        {lang == "ru" && moderator.job_ru}
-                        {lang == "en" && moderator.job_en}
-                      </span>
-                      <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
-                        {lang == "uz" && moderator?.description_uz}
-                        {lang == "ru" && moderator?.description_ru}
-                        {lang == "en" && moderator?.description_en}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-          {data?.moderators?.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-gray-500 dark:text-gray-400">
-                <h4 className="text-xl font-semibold mb-2 text-black">
-                  {t("no_moderator_data")}
-                </h4>
-                <p>{t("no_moderators_added")}</p>
-              </div>
-            </div>
-          )}
+        <div className="mb-12">
+          <PeopleSection
+            eyebrow={t("INNOWEEK")}
+            title={t("moderator")}
+            people={data?.moderators ?? []}
+            lang={lang}
+            emptyTitle={t("no_moderator_data")}
+            emptyText={t("no_moderators_added")}
+          />
         </div>
 
-        {/* Speakers Section */}
-        <div className="container">
-          <div className="container section-title">
-            <h2 className="text-black dark:!text-white">{t("INNOWEEK")}</h2>
-            <div className="text-black dark:!text-gray-300">
-              {t("SPEAKERS")}
-            </div>
-          </div>
-
-          {data?.speakers?.length > 0 && (
-            <div>
-              <div className="row gy-4">
-                {data?.speakers?.map((speaker) => (
-                  <div
-                    className="col-lg-6 col-sm-6"
-                    data-aos-delay="100"
-                    key={speaker.id}
-                  >
-                    <div className="team-member d-flex grid grid-cols-3 !bg-[#0085d4] dark:!bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700/50 hover:shadow-md dark:hover:shadow-gray-600/50 transition-all duration-300">
-                      <div className="member-img">
-                        <AppImage
-                          src={
-                            speaker.image
-                              ? `${BASE_URL}${speaker?.image}`
-                              : userAvatar
-                          }
-                          className="img-fluid rounded-lg !w-full !h-[450px] sm:!h-[300px] lg:!h-[200px] !object-cover"
-                          alt={speaker?.full_name_uz}
-                          loading="lazy"
-                          width={200}
-                          height={200}
-                        />
-                      </div>
-                      <div className="member-info flex-grow-1 max-[767px]:!py-3">
-                        <h4 className="text-white dark:!text-white mb-1">
-                          {lang == "uz" && speaker.full_name_uz}
-                          {lang == "ru" && speaker.full_name_ru}
-                          {lang == "en" && speaker.full_name_en}
-                        </h4>
-                        <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
-                          <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
-                            {lang == "uz" && speaker.job_uz}
-                            {lang == "ru" && speaker.job_ru}
-                            {lang == "en" && speaker.job_en}
-                          </span>
-                        </span>
-                        {/* <span className="text-white dark:!text-gray-400 max-[767px]:!m-0 block">
-                          🌍 {speaker.country.name}
-                        </span> */}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {data?.speakers?.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-gray-500 dark:text-gray-400">
-                <h4 className="text-xl font-semibold mb-2">
-                  {t("no_speaker_data")}
-                </h4>
-                <p>{t("no_speakers_added")}</p>
-              </div>
-            </div>
-          )}
-        </div>
+        <PeopleSection
+          eyebrow={t("INNOWEEK")}
+          title={t("SPEAKERS")}
+          people={data?.speakers ?? []}
+          lang={lang}
+          emptyTitle={t("no_speaker_data")}
+          emptyText={t("no_speakers_added")}
+        />
       </div>
     </section>
   );
