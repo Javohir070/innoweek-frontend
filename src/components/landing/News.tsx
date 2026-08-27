@@ -3,18 +3,27 @@ import { assetUrl } from "@/lib/assetUrl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import AppImage from "@/lib/AppImage";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
 import { useParams } from "react-router-dom";
 import { INewsListItem, IResponse } from "@/types";
 import { useTranslations } from "@/i18n/useTranslations";
 import { Link } from "@/lib/navigation";
 import section from "@/assets/img/section_bg_2.jpg";
+import { SliderDots, SliderNav } from "@/components/ui/SliderNav";
+
+/** Karta chap panelining rangi — dizayndagi to'q ko'k */
+const CARD_COLOR = "#1057cf";
+
+/** Tavsifdagi HTML teglarni olib tashlash */
+const stripTags = (html?: string) =>
+  (html ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
 export default function NewsSection() {
   const t = useTranslations("news");
   const params = useParams();
   const [data, setData] = useState<INewsListItem[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const getNews = async () => {
@@ -30,8 +39,6 @@ export default function NewsSection() {
     getNews();
   }, [params?.locale]);
 
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
   const swiperRef = useRef<any>(null);
 
   useEffect(() => {
@@ -53,74 +60,110 @@ export default function NewsSection() {
         id="portfolio"
         className="testimonials !bg-transparent dark:bg-gray-900 transition-colors duration-300 pt-2 !p-0"
       >
-        <div className="container section-title pb-4" data-aos="fade-up">
-          {/* <h2 className="text-black dark:!text-white py-1">INNOWEEK</h2> */}
-          <div className="text-black dark:!text-gray-300">
-            {t("Latest News")}
+        {/* Sarlavha + «Barcha yangiliklar» tugmasi */}
+        <div className="container !pb-6" data-aos="fade-up">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="section-title !pb-0">
+              <h2 className="!mb-3 !leading-none text-black dark:!text-white">
+                  {t("INNOWEEK")}
+                </h2>
+              <div className="text-black dark:!text-gray-300">
+                {t("Latest News")}
+              </div>
+            </div>
+
+            <Link href="/news">
+              <span className="group inline-flex items-center gap-3 rounded-lg border border-[#0085d4]/40 bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wide !text-[#0b57d0] shadow-sm transition-colors duration-300 hover:bg-[#0085d4]/5 dark:border-gray-600 dark:bg-gray-800 dark:!text-white">
+                {t("all_news")}
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </Link>
           </div>
         </div>
 
-        <div
-          className="container m-auto !px-0"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
+        <div className="container m-auto" data-aos="fade-up" data-aos-delay="100">
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            key={data.length} // <-- yangi key
+            key={data.length}
             modules={[Navigation, Autoplay]}
             spaceBetween={30}
             slidesPerView={1}
             loop={true}
             autoplay={{
-              delay: 3000, // Changed to 2 seconds (2000ms)
-              disableOnInteraction: false, // Continue autoplay after user interaction
-              pauseOnMouseEnter: true, // Pause on hover
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
-            speed={800} // Smooth transition speed
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            onInit={(swiper) => {
-              if (
-                typeof swiper.params.navigation === "object" &&
-                swiper.params.navigation
-              ) {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
-                swiper.navigation.init();
-                swiper.navigation.update();
-              }
-            }}
-            className="testimonials-slider !pb-5"
+            speed={800}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+            className="testimonials-slider !pb-0"
           >
             {data.map((item) => (
               <SwiperSlide key={item.id}>
                 <Link href={`/news/${item?.id}`}>
-                  <div className="testimonial-item hover:cursor-pointer !h-wull !bg-[#0085d4] dark:!bg-gray-800 m-3  rounded-lg shadow dark:shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] flex !min-h-[100px]">
-                    <div className="flex flex-col  lg:flex-row  gap-5  w-full h-full  lg:h-[400px] overflow-hidden">
-                      <div className="flex flex-col justify-center gap-y-3.5 w-full lg:w-[55%] overflow-hidden">
-                        <h2 className="!text-white dark:!text-white">
+                  <div className="group relative overflow-hidden rounded-3xl shadow-[0_24px_60px_-30px_rgba(12,45,110,0.55)] transition-all duration-300 hover:shadow-[0_30px_70px_-28px_rgba(12,45,110,0.65)]">
+                    {/* Mobil: rasm yuqorida */}
+                    <div className="lg:hidden">
+                      <AppImage
+                        src={
+                          item?.poster
+                            ? `${BASE_URL}/upload/news/${item?.poster}_big_720.png`
+                            : `${BASE_URL}/upload/news/${item?.image}_big_720.png`
+                        }
+                        className="!h-[220px] !w-full object-cover"
+                        alt={item?.title}
+                        width={720}
+                        height={220}
+                      />
+                    </div>
+
+                    <div className="relative lg:min-h-[420px]">
+                      {/* Desktop: rasm o'ng tomonda */}
+                      <div className="absolute inset-y-0 right-0 hidden w-[55%] lg:block">
+                        <AppImage
+                          src={
+                            item?.poster
+                              ? `${BASE_URL}/upload/news/${item?.poster}_big_720.png`
+                              : `${BASE_URL}/upload/news/${item?.image}_big_720.png`
+                          }
+                          className="!h-full !w-full object-cover"
+                          alt={item?.title}
+                          width={720}
+                          height={420}
+                        />
+                      </div>
+
+                      {/* Chap ko'k panel */}
+                      <div
+                        className="relative z-10 flex flex-col justify-center gap-5 p-7 sm:p-10 lg:min-h-[420px] lg:w-[62%] lg:pr-24 lg:[clip-path:polygon(0%_0%,100%_0%,86%_100%,0%_100%)] dark:!bg-gray-800"
+                        style={{ backgroundColor: CARD_COLOR }}
+                      >
+                        <span className="inline-flex w-fit items-center rounded-full bg-white/20 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+                          {t("INNOWEEK")}
+                        </span>
+
+                        <h2 className="!mb-0 !text-2xl !font-bold !leading-snug !text-white line-clamp-3 sm:!text-3xl dark:!text-white">
                           {item?.title}
                         </h2>
-                        <span className="inline-flex w-fit items-center rounded-full border border-white/80 bg-white/10 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white hover:!text-[#0085d4]">
-                          {t("more")}
-                        </span>
-                      </div>
-                      <div className="flex -mt-5 items-center w-full lg:w-[45%]">
-                        <div className="featured-img-wrapper rounded-lg overflow-hidden w-full h-full">
-                          <AppImage
-                            src={
-                              item?.poster
-                                ? `${BASE_URL}/upload/news/${item?.poster}_big_720.png`
-                                : `${BASE_URL}/upload/news/${item?.image}_big_720.png`
-                            }
-                            className="featured-img !w-full object-cover !h-[400px]"
-                            alt={item?.title}
-                            width={400}
-                            height={400}
-                          />
+
+                        {stripTags(item?.description) && (
+                          <p className="!mb-0 max-w-[520px] text-[15px] leading-relaxed text-white/85 line-clamp-3">
+                            {stripTags(item?.description)}
+                          </p>
+                        )}
+
+                        <div className="mt-1 flex flex-wrap items-center gap-x-8 gap-y-4">
+                          <span className="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-[#0b57d0] transition-transform duration-300 group-hover:translate-x-1">
+                            {t("more")}
+                            <ArrowRight className="h-4 w-4" />
+                          </span>
+
+                          {item?.created_at && (
+                            <span className="inline-flex items-center gap-2 text-sm text-white/85">
+                              <Calendar className="h-4 w-4" />
+                              {String(item.created_at).slice(0, 10)}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -128,23 +171,21 @@ export default function NewsSection() {
                 </Link>
               </SwiperSlide>
             ))}
-
-            {/* Navigation buttons */}
-            <div className="w-100 d-flex align-items-center justify-center gap-4">
-              <button
-                ref={prevRef}
-                className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
-              >
-                <ChevronLeft />
-              </button>
-              <button
-                ref={nextRef}
-                className="bg-[#0085d4] dark:bg-gray-700 hover:bg-black dark:hover:bg-amber-600 text-white !rounded-full w-12 h-12 flex items-center justify-center text-2xl transition-colors duration-300"
-              >
-                <ChevronRight />
-              </button>
-            </div>
           </Swiper>
+
+          {/* Navigatsiya: strelkalar + nuqtalar */}
+          {data.length > 1 && (
+            <SliderNav
+              onPrev={() => swiperRef.current?.slidePrev()}
+              onNext={() => swiperRef.current?.slideNext()}
+            >
+              <SliderDots
+                count={data.length}
+                activeIndex={activeIndex}
+                onSelect={(index) => swiperRef.current?.slideToLoop(index)}
+              />
+            </SliderNav>
+          )}
         </div>
       </section>
     </div>

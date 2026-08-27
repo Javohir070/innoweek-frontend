@@ -109,6 +109,19 @@ export default function HeroSection() {
                 </div>
               )}
 
+            
+            </div>
+
+            {/* O'ng ustun — asosiy sarlavha */}
+            <div
+              className="col-12 col-lg-6 order-1 mb-12 lg:!order-2 lg:!mb-0 lg:!pl-8"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <div className="main-heading text-white">
+                <h1>{t("Ideas without borders")}</h1>
+              </div>
+
               {!countdown.expired && (
                 <div
                   className="mt-8 inline-flex items-stretch self-start rounded-2xl border border-white/20 bg-white/10 px-1 py-4 backdrop-blur-md sm:px-3"
@@ -132,23 +145,12 @@ export default function HeroSection() {
                   ))}
                 </div>
               )}
-            </div>
 
-            {/* O'ng ustun — asosiy sarlavha */}
-            <div
-              className="col-12 col-lg-6 order-1 mb-12 lg:!order-2 lg:!mb-0"
-              data-aos="fade-up"
-              data-aos-delay="150"
-            >
-              <div className="main-heading text-white lg:!pl-8">
-                <h1>{t("Ideas without borders")}</h1>
-              </div>
-
-              <div className="description !mt-6 !mb-0 lg:!pl-8">
+              {/* <div className="description !mt-6 !mb-0 lg:!pl-8">
                 <p className="!text-base !leading-relaxed !text-white/70 lg:!text-lg">
                   {t("hero description")}
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

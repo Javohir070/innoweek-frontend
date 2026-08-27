@@ -2,7 +2,6 @@ import { assetUrl } from "@/lib/assetUrl";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import AppImage from "@/lib/AppImage";
 import { IoMdStar } from "react-icons/io";
-import { LuMoveLeft, LuMoveRight } from "react-icons/lu";
 import { useTranslations } from "@/i18n/useTranslations";
 import { useParams } from "react-router-dom";
 import { BASE_URL, FetchInstance } from "@/api/FetchInstance";
@@ -15,10 +14,27 @@ import expert_5_avatar from "@/assets/img/person/expert-5.jpg";
 import expert_6_avatar from "@/assets/img/person/expert-6.jpg";
 import expert_7_avatar from "@/assets/img/person/expert-7.jpg";
 import section from "@/assets/img/section_bg_2.jpg";
+import { SliderNav } from "@/components/ui/SliderNav";
 
-/** Karta kengligi va ular orasidagi masofa (px) — surish hisobi shu qiymatlarga bog'liq */
-const CARD_WIDTH = 500;
+/** Kartalar orasidagi masofa (px) — surish hisobi shu qiymatga bog'liq */
 const CARD_GAP = 24;
+
+/** Ekran kengligiga qarab bir vaqtda ko'rinadigan kartalar soni */
+function useVisibleCount() {
+  const [visible, setVisible] = useState(3);
+
+  useEffect(() => {
+    const update = () => {
+      const width = window.innerWidth;
+      setVisible(width < 640 ? 1 : width < 1024 ? 2 : 3);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return visible;
+}
 
 type FeedbackItem = {
   full_name: string;
@@ -36,11 +52,13 @@ function FeedbackCard({
   moreLabel,
   lessLabel,
   onToggle,
+  cardWidth,
 }: {
   item: FeedbackItem;
   moreLabel: string;
   lessLabel: string;
   onToggle: (expanded: boolean) => void;
+  cardWidth: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [isClamped, setIsClamped] = useState(false);
@@ -55,7 +73,8 @@ function FeedbackCard({
   }, [item.position, expanded]);
 
   return (
-    <div className="bg-[#0085d4] dark:bg-gray-800 text-white w-[500px] shrink-0 self-start min-h-[300px] p-6 rounded-lg flex flex-col !justify-between mr-6 last:mr-0">
+    <div className="bg-[#0085d4] dark:bg-gray-800 text-white shrink-0 self-start min-h-[300px] p-6 rounded-lg flex flex-col !justify-between"
+      style={{ width: cardWidth }}>
       <div>
         <div className="flex gap-1">
           {[...Array(5)].map((_, i) => (
@@ -159,12 +178,18 @@ const ExpertFeedback = () => {
   const [autoScroll, setAutoScroll] = useState(true);
   /** Nechta karta yoyilgan — bittasi ochiq bo'lsa avto-surish to'xtaydi */
   const [openCount, setOpenCount] = useState(0);
-  const pairCount = 1;
+  const visibleCount = useVisibleCount();
 
   const data = useMemo(
     () => [...apiData, ...staticData],
     [apiData, staticData]
   );
+
+  /** Oxirgi karta ham to'liq ko'rinishi uchun surish chegarasi */
+  const maxIndex = Math.max(0, data.length - visibleCount);
+  /** Bitta karta kengligi va bir qadamdagi siljish — konteynerga nisbatan */
+  const cardWidth = `calc((100% - ${(visibleCount - 1) * CARD_GAP}px) / ${visibleCount})`;
+  const stepWidth = `calc(${cardWidth} + ${CARD_GAP}px)`;
 
   useEffect(() => {
     const fetchExperts = async () => {
@@ -204,8 +229,8 @@ const ExpertFeedback = () => {
   }, [locale]);
 
   useEffect(() => {
-    setCurrentIndex(0);
-  }, [data.length]);
+    setCurrentIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
 
   useEffect(() => {
     if (!autoScroll || openCount > 0 || data.length === 0) return;
@@ -213,20 +238,20 @@ const ExpertFeedback = () => {
     const interval = setInterval(() => {
       setIsAnimating(true);
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + pairCount) % data.length);
+        setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
         setIsAnimating(false);
       }, 400);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [autoScroll, openCount, currentIndex, data.length]);
+  }, [autoScroll, openCount, currentIndex, data.length, maxIndex]);
 
   const handlePrev = () => {
     if (isAnimating || data.length === 0) return;
     setIsAnimating(true);
     setAutoScroll(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev - pairCount + data.length) % data.length);
+      setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
       setIsAnimating(false);
     }, 400);
   };
@@ -236,7 +261,7 @@ const ExpertFeedback = () => {
     setIsAnimating(true);
     setAutoScroll(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + pairCount) % data.length);
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
       setIsAnimating(false);
     }, 400);
   };
@@ -272,14 +297,15 @@ const ExpertFeedback = () => {
             <div
               className="flex transition-transform duration-400 ease-in-out"
               style={{
-                width: `${Math.max(data.length, 1) * CARD_WIDTH + Math.max(data.length - 1, 0) * CARD_GAP}px`,
-                transform: `translateX(-${currentIndex * (CARD_WIDTH + CARD_GAP)}px)`,
+                gap: `${CARD_GAP}px`,
+                transform: `translateX(calc(${-currentIndex} * ${stepWidth}))`,
               }}
             >
               {data.map((item, idx) => (
                 <FeedbackCard
                   key={`${item.full_name}-${idx}`}
                   item={item}
+                  cardWidth={cardWidth}
                   moreLabel={t("read_more")}
                   lessLabel={t("read_less")}
                   onToggle={(open) => {
@@ -292,24 +318,13 @@ const ExpertFeedback = () => {
           </div>
 
           {/* Boshqaruv tugmalari — slayder ostida */}
-          <div className="mt-8 flex items-center justify-center gap-3">
-            <button
-              onClick={handlePrev}
-              aria-label="Oldingi"
-              className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
+          {data.length > visibleCount && (
+            <SliderNav
+              onPrev={handlePrev}
+              onNext={handleNext}
               disabled={isAnimating}
-            >
-              <LuMoveLeft size={28} />
-            </button>
-            <button
-              onClick={handleNext}
-              aria-label="Keyingi"
-              className="bg-[#0085D4] text-white p-2 !rounded-full focus:bg-blue-500 hover:bg-[#006eb3] transition-colors"
-              disabled={isAnimating}
-            >
-              <LuMoveRight size={28} />
-            </button>
-          </div>
+            />
+          )}
         </div>
       </section>
     </div>

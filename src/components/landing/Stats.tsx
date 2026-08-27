@@ -1,6 +1,4 @@
 import {
-  ChevronLeft,
-  ChevronRight,
   Flag,
   ListChecks,
   MapPin,
@@ -12,8 +10,9 @@ import { useTranslations } from "@/i18n/useTranslations";
 import { useRef } from "react";
 import section from "@/assets/img/section_bg_2.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { assetUrl } from "@/lib/assetUrl";
+import { SliderNav } from "@/components/ui/SliderNav";
 
 /* ─── Halqa geometriyasi (viewBox 100×100, markaz 50,50) ───────────────
    Yoy nuqtadan boshlanadi, asta ingichkalashadi va 5 ta kichik
@@ -65,8 +64,6 @@ export default function StatsSection() {
   const t = useTranslations("stats");
 
   const swiperRef = useRef<any>(null);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
 
   // `description` hozircha ko'rsatilmaydi (dizayn bo'yicha), lekin keyin
   // qaytarish uchun ma'lumotda saqlanadi.
@@ -149,7 +146,7 @@ export default function StatsSection() {
             <Swiper
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               key={stats.length}
-              modules={[Navigation, Autoplay]}
+              modules={[Autoplay]}
               spaceBetween={24}
               slidesPerView={1}
               loop={true}
@@ -159,21 +156,6 @@ export default function StatsSection() {
                 pauseOnMouseEnter: true,
               }}
               speed={800}
-              navigation={{
-                prevEl: prevRef.current,
-                nextEl: nextRef.current,
-              }}
-              onInit={(swiper) => {
-                if (
-                  typeof swiper.params.navigation === "object" &&
-                  swiper.params.navigation
-                ) {
-                  swiper.params.navigation.prevEl = prevRef.current;
-                  swiper.params.navigation.nextEl = nextRef.current;
-                  swiper.navigation.init();
-                  swiper.navigation.update();
-                }
-              }}
               breakpoints={{
                 640: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
@@ -254,22 +236,11 @@ export default function StatsSection() {
             </Swiper>
 
             {/* Navigatsiya tugmalari */}
-            <div className="mt-6 flex items-center justify-center gap-4">
-              <button
-                ref={prevRef}
-                aria-label="Oldingi"
-                className="flex h-12 w-12 items-center justify-center !rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors duration-300 hover:border-[#0085d4] hover:text-[#0085d4]"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                ref={nextRef}
-                aria-label="Keyingi"
-                className="flex h-12 w-12 items-center justify-center !rounded-full bg-[#0085d4] text-white shadow-lg shadow-[#0085d4]/25 transition-colors duration-300 hover:bg-[#006eb3]"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
+            <SliderNav
+              onPrev={() => swiperRef.current?.slidePrev()}
+              onNext={() => swiperRef.current?.slideNext()}
+              className="!mt-6"
+            />
           </div>
         </div>
       </section>
