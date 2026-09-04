@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, useState } from "react";
 import AppImage from "@/lib/AppImage";
 import { BASE_URL } from "@/api/FetchInstance";
 import { flagUrl } from "@/lib/countryFlag";
@@ -19,6 +19,7 @@ export default function SpeakerCard({
   locale: string;
 }) {
   const gradientId = useId();
+  const [flagFailed, setFlagFailed] = useState(false);
   const flag = flagUrl(speaker.country?.id ?? speaker.country_id);
   const ringSpeed = RING_SPEEDS[speaker.id % RING_SPEEDS.length];
 
@@ -97,12 +98,13 @@ export default function SpeakerCard({
           height={116}
         />
 
-        {flag && (
+        {flag && !flagFailed && (
           <img
             src={flag}
             alt={countryName || ""}
             title={countryName || undefined}
             loading="lazy"
+            onError={() => setFlagFailed(true)}
             className="absolute bottom-0 left-0 h-8 w-8 rounded-full border-2 border-white object-cover shadow-md dark:border-gray-800"
           />
         )}
