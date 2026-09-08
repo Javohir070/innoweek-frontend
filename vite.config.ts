@@ -40,34 +40,6 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api-tijorat/, ""),
       },
-      "/api-internship": {
-        target: "https://api-internship.ilmiy.uz",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api-internship/, ""),
-      },
-    },
-  },
-  preview: {
-    proxy: {
-      "/api-internship": {
-        target: "https://api-internship.ilmiy.uz",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api-internship/, ""),
-      },
-      "/api-ixtiro": {
-        target: "https://api-ixtiro.ilmiy.uz",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api-ixtiro/, ""),
-      },
-      "/api-tijorat": {
-        target: "https://back-tijorat.ilmiy.uz",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api-tijorat/, ""),
-      },
     },
   },
 });

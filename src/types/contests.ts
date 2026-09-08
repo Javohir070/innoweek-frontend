@@ -18,19 +18,9 @@ export interface TijoratContest {
   current_time?: string;
 }
 
-export interface InternshipContest {
-  id: number;
-  name: string;
-  image: string;
-  start_date: string;
-  end_date: string;
-  organization?: string;
-  contest_type?: number;
-}
-
 export interface ContestCardData {
   id: number;
-  /** Unique key across APIs (e.g. ixtiro-1, internship-25) */
+  /** Unique key across APIs (e.g. ixtiro-1, tijorat-2) */
   key: string;
   name: string;
   image: string;
