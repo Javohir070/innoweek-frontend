@@ -8,9 +8,9 @@ const tijoratOrigin =
   import.meta.env.VITE_TIJORAT_API_URL ||
   (import.meta.env.DEV ? "/api-tijorat" : "https://back-tijorat.ilmiy.uz");
 
+/** CORS yo‘q — brauzerda faqat same-origin proxy orqali (Vite/nginx) */
 const internshipOrigin =
-  import.meta.env.VITE_INTERNSHIP_API_URL ||
-  (import.meta.env.DEV ? "/api-internship" : "https://api-internship.ilmiy.uz");
+  (import.meta.env.VITE_INTERNSHIP_API_URL || "").trim() || "/api-internship";
 
 export const ixtiroApi = axios.create({
   baseURL: ixtiroOrigin,
