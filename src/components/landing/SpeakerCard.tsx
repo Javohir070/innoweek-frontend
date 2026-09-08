@@ -91,8 +91,18 @@ export default function SpeakerCard({
         </svg>
 
         <AppImage
-          src={speaker.image ? `${BASE_URL}${speaker.image}` : userAvatar}
-          alt={speaker.full_name}
+          src={
+            speaker.image
+              ? speaker.image.startsWith("http")
+                ? speaker.image
+                : `${BASE_URL.replace(/\/$/, "")}${
+                    speaker.image.startsWith("/")
+                      ? speaker.image
+                      : `/${speaker.image}`
+                  }`
+              : userAvatar
+          }
+          alt={speaker.full_name || ""}
           className="absolute left-[7%] top-[7%] h-[86%] w-[86%] rounded-full object-cover"
           width={116}
           height={116}

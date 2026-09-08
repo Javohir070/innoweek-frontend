@@ -58,10 +58,13 @@ function EventProgramImage({
     );
   }
 
+  const mediaBase = BASE_URL.replace(/\/$/, "");
+  const src = `${mediaBase}/upload/news/${image}_big_720.png`;
+
   return (
     <div className={BOX_CLASS} style={BOX_SHADOW}>
       <AppImage
-        src={`${BASE_URL}/upload/news/${image}_big_720.png`}
+        src={src}
         alt={alt}
         className="mx-auto block max-h-[560px] w-auto max-w-full rounded-md object-contain"
         width={720}
@@ -69,6 +72,7 @@ function EventProgramImage({
         onError={() => setIsBroken(true)}
         onLoad={(event) => {
           const img = event.currentTarget;
+          // Backend ba'zan 5×7 px «zaglushka» qaytaradi — uni dastur deb ko'rsatmaymiz
           if (
             img.naturalWidth < MIN_IMAGE_SIDE ||
             img.naturalHeight < MIN_IMAGE_SIDE

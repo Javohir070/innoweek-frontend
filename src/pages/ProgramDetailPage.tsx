@@ -87,11 +87,7 @@ function PeopleSection({
       </div>
 
       {people.length > 0 ? (
-        <div
-          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {people.map((person) => (
             <SpeakerCard
               key={person.id}

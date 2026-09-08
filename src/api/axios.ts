@@ -1,9 +1,10 @@
 import axios, { type AxiosRequestConfig } from "axios";
 
-const API_ORIGIN =
-  import.meta.env.VITE_API_BASE_URL || "https://2025.innoweek.uz";
+const API_ORIGIN = (
+  import.meta.env.VITE_API_BASE_URL || "https://2025.innoweek.uz"
+).trim();
 
-/** Dev: bo'sh — so'rovlar Vite proxy orqali ketadi (CORS yo'q) */
+/** Media/API origin (masalan http://api.innoweek.uz) */
 export const BASE_URL = API_ORIGIN;
 
 export const api = axios.create({
