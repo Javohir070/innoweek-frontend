@@ -35,6 +35,7 @@ export function useInventionContests() {
       );
       return (data.data?.results ?? []).map((item) => ({
         id: item.id,
+        key: `ixtiro-${item.id}`,
         name: item.name,
         image: item.image,
         startDate: item.start_date,
@@ -55,6 +56,7 @@ export function useTijoratContests() {
       const { data } = await tijoratApi.get<TijoratListResponse>("/contest/");
       return (data.data?.items ?? []).map((item) => ({
         id: item.id,
+        key: `tijorat-${item.id}`,
         name: item.name,
         image: item.image,
         startDate: item.start_date,

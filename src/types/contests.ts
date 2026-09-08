@@ -20,6 +20,8 @@ export interface TijoratContest {
 
 export interface ContestCardData {
   id: number;
+  /** Unique key across both APIs (e.g. ixtiro-1, tijorat-2) */
+  key: string;
   name: string;
   image: string;
   startDate: string;
