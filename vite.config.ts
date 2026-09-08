@@ -40,6 +40,12 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api-tijorat/, ""),
       },
+      "/api-internship": {
+        target: "https://api-internship.ilmiy.uz",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api-internship/, ""),
+      },
     },
   },
 });

@@ -8,6 +8,9 @@ interface ImportMetaEnv {
   readonly VITE_TIJORAT_API_URL?: string;
   readonly VITE_IXTIRO_SITE_URL?: string;
   readonly VITE_TIJORAT_SITE_URL?: string;
+  readonly VITE_INTERNSHIP_API_URL?: string;
+  readonly VITE_INTERNSHIP_SITE_URL?: string;
+  readonly VITE_INTERNSHIP_MEDIA_URL?: string;
 }
 
 interface ImportMeta {

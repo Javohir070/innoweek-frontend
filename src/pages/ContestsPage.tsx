@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import ContestCard from "@/components/contests/ContestCard";
 import { isContestEnded } from "@/components/contests/CountdownTimer";
 import {
+  useInternshipContests,
   useInventionContests,
   useTijoratContests,
 } from "@/hooks/queries/useContests";
@@ -16,12 +17,20 @@ export default function ContestsPage() {
   const t = useTranslations("contests");
   const invention = useInventionContests();
   const tijorat = useTijoratContests();
+  const internship = useInternshipContests();
 
-  const loading = invention.isLoading || tijorat.isLoading;
-  const error = invention.isError && tijorat.isError;
+  const loading =
+    invention.isLoading || tijorat.isLoading || internship.isLoading;
+  const error =
+    invention.isError && tijorat.isError && internship.isError;
 
   const contests = useMemo(() => {
-    const merged = [...(invention.data ?? []), ...(tijorat.data ?? [])];
+    const merged = [
+      ...(invention.data ?? []),
+      ...(tijorat.data ?? []),
+      ...(internship.data ?? []),
+    ];
+
     return merged.sort((a, b) => {
       const aActive = isContestActive(a) ? 0 : 1;
       const bActive = isContestActive(b) ? 0 : 1;
@@ -30,7 +39,7 @@ export default function ContestsPage() {
         new Date(b.endDate).getTime() - new Date(a.endDate).getTime()
       );
     });
-  }, [invention.data, tijorat.data]);
+  }, [invention.data, tijorat.data, internship.data]);
 
   return (
     <section
