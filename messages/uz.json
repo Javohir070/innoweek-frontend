@@ -245,7 +245,8 @@
     "login_error": "Kirishda xato yuz berdi",
     "login_success": "Muvaffaqiyatli tizimga kirdingiz!",
     "forgot_password": "Parolni unutdingizmi?",
-    "phone_format": "Telefon raqami (901234567)"
+    "phone_format": "Telefon raqami (901234567)",
+    "telegram_register": "Telegram orqali ro'yxatdan o'tish"
   },
   "register_modal": {
     "register_modal_title": "Umumiy ma'lumot",

@@ -244,7 +244,8 @@
     "login_error": "Ошибка входа",
     "login_success": "Успешно вошли в систему!",
     "forgot_password": "Забыли пароль?",
-    "phone_format": "Формат телефона (901234567)"
+    "phone_format": "Формат телефона (901234567)",
+    "telegram_register": "Регистрация через Telegram"
   },
   "register_modal": {
     "register_modal_title": "Общая информация",
