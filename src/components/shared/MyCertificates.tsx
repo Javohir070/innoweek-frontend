@@ -29,20 +29,6 @@ function handleDownloadCertificate(filePath: string, certificateId: number) {
   document.body.removeChild(link);
 }
 
-/** API X-Frame-Options: SAMEORIGIN — to‘g‘ridan-to‘g‘ri embed ishlamaydi.
- * Dev: Vite /certificate proxy; prod: same-origin /certificate proxy kerak. */
-function toEmbedUrl(filePath: string) {
-  try {
-    const url = new URL(filePath);
-    if (url.hostname === "api.innoweek.uz") {
-      return `${url.pathname}${url.search}`;
-    }
-  } catch {
-    /* relative path */
-  }
-  return filePath;
-}
-
 function CertificateCard({
   certificate,
   t,
@@ -51,30 +37,18 @@ function CertificateCard({
   t: (key: string) => string;
 }) {
   const fileUrl = certificate.file_path;
-  const embedUrl = toEmbedUrl(fileUrl);
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden">
       <div className="flex flex-col md:flex-row md:items-center p-6 gap-6">
         <div className="flex-shrink-0">
-          <a
-            href={fileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full md:w-64 h-40 bg-gray-100 rounded-lg overflow-hidden border border-gray-200 relative group"
-            title={t("view_certificate")}
-          >
+          <div className="w-full md:w-64 h-40 bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
             <embed
-              src={embedUrl}
+              src={fileUrl}
               type="application/pdf"
-              className="w-full h-full pointer-events-none"
+              className="w-full h-full"
             />
-            <span className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/35 transition-colors">
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white text-[#0085d4] text-sm font-semibold px-3 py-1.5 rounded-full shadow">
-                {t("view_certificate")}
-              </span>
-            </span>
-          </a>
+          </div>
         </div>
 
         <div className="flex-1 text-black">
