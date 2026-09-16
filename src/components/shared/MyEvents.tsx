@@ -18,7 +18,7 @@ const MyEvents = () => {
     try {
       setLoading(true);
       const res = await FetchInstance<IResponse<IEventDetail[]>>(
-        "/api/v1.0/user/events/get"
+        "/api/v1.0/user/events/get?archive_id=9"
       );
       console.log(res?.data);
       setEvents(res?.data || []);

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/api/axios";
-import type { IResponse } from "@/types";
+import type { CountryObj, IResponse } from "@/types";
 
 export interface UserProfile {
   id: number;
@@ -13,6 +13,7 @@ export interface UserProfile {
   avatar?: string | null;
   status?: string;
   organization?: string | null;
+  position?: string | null;
   gender?: string | number | null;
   ticket?: {
     id: number;
@@ -29,7 +30,7 @@ export interface UserProfile {
     name_ru?: string;
     [key: string]: unknown;
   } | null;
-  country?: string | object | null;
+  country?: string | CountryObj | null;
   number?: {
     id: number;
     full_number: string;

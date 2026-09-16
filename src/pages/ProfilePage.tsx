@@ -80,7 +80,7 @@ interface ProfessionObj {
 
 const SIDEBAR_ITEMS = [
   { key: "profile", labelKey: "sidebar_profile", icon: <IoPersonSharp /> },
-  // { key: "programm", labelKey: "sidebar_program", icon: <FaTicketAlt /> },
+  { key: "programm", labelKey: "sidebar_program", icon: <FaTicketAlt /> },
   {
     key: "certificate",
     labelKey: "sidebar_certificate",
@@ -263,37 +263,32 @@ export default function ProfilePage() {
                     <ProfileField
                       label={t("country")}
                       value={(() => {
-                        if (
-                          profile.country &&
-                          typeof profile.country === "object"
-                        ) {
+                        const country = profile.country;
+                        if (country && typeof country === "object") {
                           const locale = params?.locale || "uz";
                           if (locale === "en")
                             return (
-                              profile.country.name_en ||
-                              profile.country.name_uz ||
-                              profile.country.name_ru ||
+                              country.name_en ||
+                              country.name_uz ||
+                              country.name_ru ||
                               "-"
                             );
                           if (locale === "ru")
                             return (
-                              profile.country.name_ru ||
-                              profile.country.name_uz ||
-                              profile.country.name_en ||
+                              country.name_ru ||
+                              country.name_uz ||
+                              country.name_en ||
                               "-"
                             );
                           return (
-                            profile.country.name_uz ||
-                            profile.country.name_en ||
-                            profile.country.name_ru ||
+                            country.name_uz ||
+                            country.name_en ||
+                            country.name_ru ||
                             "-"
                           );
                         }
-                        if (
-                          typeof profile.country === "string" &&
-                          profile.country
-                        ) {
-                          return profile.country;
+                        if (typeof country === "string" && country) {
+                          return country;
                         }
                         return "-";
                       })()}
@@ -374,7 +369,7 @@ export default function ProfilePage() {
               <div className="p-0 md:p-8 min-h-[400px]">
                 <MyTicket
                   ticket_id={profile?.ticket?.ticket_id}
-                  full_number={profile?.number?.full_number}
+                  full_number={profile?.number?.full_number ?? ""}
                 />
               </div>
             </div>
