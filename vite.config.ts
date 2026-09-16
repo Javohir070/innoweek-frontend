@@ -40,6 +40,18 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api-tijorat/, ""),
       },
+      // PDF preview: X-Frame-Options: SAMEORIGIN ni olib tashlaymiz
+      "/certificate": {
+        target: "https://api.innoweek.uz",
+        changeOrigin: true,
+        secure: false,
+        configure: (proxy) => {
+          proxy.on("proxyRes", (proxyRes) => {
+            delete proxyRes.headers["x-frame-options"];
+            delete proxyRes.headers["content-security-policy"];
+          });
+        },
+      },
     },
   },
 });

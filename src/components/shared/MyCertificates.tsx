@@ -10,7 +10,20 @@ import {
 } from "@/hooks/queries/useCertificates";
 
 function certificateUrl(filePath: string): string {
-  // Backend to'liq URL yoki /certificate/... yo'lini qaytaradi — BASE_URL qo'shilmaydi
+  return filePath;
+}
+
+/** Embed uchun same-origin yo'l — API X-Frame-Options: SAMEORIGIN bloklaydi */
+function certificateEmbedUrl(filePath: string): string {
+  try {
+    const url = new URL(filePath, window.location.origin);
+    if (url.pathname.startsWith("/certificate")) {
+      return `${url.pathname}${url.search}`;
+    }
+  } catch {
+    // ignore
+  }
+  if (filePath.startsWith("/certificate")) return filePath;
   return filePath;
 }
 
@@ -28,6 +41,7 @@ function handleDownloadCertificate(filePath: string, certificateId: number) {
   link.href = certificateUrl(filePath);
   link.download = `certificate_${certificateId}.pdf`;
   link.target = "_blank";
+  link.rel = "noopener noreferrer";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -41,22 +55,30 @@ function CertificateCard({
   t: (key: string) => string;
 }) {
   const fileUrl = certificateUrl(certificate.file_path);
+  const embedUrl = certificateEmbedUrl(certificate.file_path);
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden">
       <div className="flex flex-col md:flex-row md:items-center p-6 gap-6">
         <div className="flex-shrink-0">
-          <div className="w-full md:w-64 h-40 bg-gray-300 rounded-lg flex items-center justify-center overflow-hidden">
-            <object
-              data={fileUrl}
-              type="application/pdf"
-              className="w-full h-full"
-            >
-              <p className="text-center text-gray-600 px-2">
-                {t("pdf_support_required")}
-              </p>
-            </object>
-          </div>
+          <a
+            href={fileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full md:w-64 h-40 bg-gray-100 rounded-lg overflow-hidden border border-gray-200 relative group"
+            title={t("view_certificate")}
+          >
+            <iframe
+              src={`${embedUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+              title={certificate.schedule?.title || t("main_certificate_title")}
+              className="w-full h-full pointer-events-none border-0"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/35 transition-colors">
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white text-[#0085d4] text-sm font-semibold px-3 py-1.5 rounded-full shadow">
+                {t("view_certificate")}
+              </span>
+            </span>
+          </a>
         </div>
 
         <div className="flex-1 text-black">
@@ -84,7 +106,15 @@ function CertificateCard({
             </div>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-2 flex flex-wrap gap-2">
+            {/* <a
+              href={fileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border-2 border-[#0085d4] text-[#0085d4] px-6 py-2 font-semibold !rounded-lg transition-colors inline-flex items-center gap-2 hover:bg-[#0085d4]/5"
+            >
+              {t("view_certificate")}
+            </a> */}
             <button
               type="button"
               onClick={() =>

@@ -37,16 +37,15 @@ export default function AppRoutes() {
         <Route path="program-detail/:programId" element={<ProgramDetailPage />} />
         <Route path="spikers" element={<SpikersPage />} />
         <Route path="map" element={<MapPage />} />
-        <Route path="chatbot" element={<ChatbotPage />} />
-        <Route path="eco-ideathon-disabled" element={<EcoIdeathonPage />} />
-        <Route
+        {/* <Route path="eco-ideathon-disabled" element={<EcoIdeathonPage />} /> */}
+        {/* <Route
           path="eco-ideathon-disabled/form"
           element={<EcoIdeathonFormPage />}
         />
         <Route
           path="eco-ideathon-disabled/:appId"
           element={<EcoIdeathonAppPage />}
-        />
+        /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/uz" replace />} />

@@ -281,8 +281,8 @@
     "otp_title_email": "Email orqali yuborilgan 6 xonali kodni kiriting",
     "otp_description_email": "Elektron pochtangizga yuborilgan 6 xonali kodni kiriting.",
     "registration_successful": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi.",
-    "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan.",
-    "email_allready_registered": "Ushbu email manzili allaqachon ro'yxatdan o'tgan.",
+    "phone_allready_registered": "Ushbu telefon raqami allaqachon ro'yxatdan o'tgan. Parolni unutdingizmi? shu bo'lim orqali parolni tiklang.",
+    "email_allready_registered": "Ushbu email manzili allaqachon ro'yxatdan o'tgan. Parolni unutdingizmi? shu bo'lim orqali parolni tiklang.",
     "pattern_err": "Kamida 8 ta belgi, 1 ta katta harf, 1 ta kichik harf va 1 ta maxsus belgi bo‘lishi kerak"
   },
   "accept_terms": {
@@ -375,6 +375,7 @@
     "issue_date": "Berilgan sana",
     "not_available": "Mavjud emas",
     "download": "Yuklab olish",
+    "view_certificate": "Ko'rish",
     "error_loading_main_certificate": "Asosiy sertifikatni yuklashda xatolik",
     "please_try_again_later": "Iltimos, keyinroq qayta urinib ko'ring",
     "My_Ticket": "Mening Chiptam",

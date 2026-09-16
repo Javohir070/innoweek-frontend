@@ -280,8 +280,8 @@
     "otp_title_email": "Enter the 6-digit code sent via Email",
     "otp_description_email": "Enter the 6-digit code sent to your email address.",
     "registration_successful": "Registration successful.",
-    "phone_allready_registered": "This phone number is already registered.",
-    "email_allready_registered": "This email address is already registered.",
+    "phone_allready_registered": "This phone number is already registered. Forgot your password? Reset it through that section.",
+    "email_allready_registered": "This email address is already registered. Forgot your password? Reset it through that section.",
     "pattern_err": "Must be at least 8 characters, 1 uppercase letter, 1 lowercase letter, and 1 special character"
   },
   "accept_terms": {
@@ -375,6 +375,7 @@
     "issue_date": "Issue date",
     "not_available": "Not available",
     "download": "Download",
+    "view_certificate": "View",
     "error_loading_main_certificate": "Error loading main certificate",
     "please_try_again_later": "Please try again later",
     "My_Ticket": "My Ticket",

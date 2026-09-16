@@ -1,5 +1,4 @@
 import AboutSection from "@/components/landing/About";
-import ChatBot from "@/components/landing/Chatbot";
 import ContactSection from "@/components/landing/Contact";
 import ExpertFeedback from "@/components/landing/ExpertFeedback";
 import FAQSection from "@/components/landing/FAQSection";
@@ -19,7 +18,7 @@ export default function HomePage() {
       <HeroSection />
       <section className="!p-0 bg-transparent ">
         <main className="main relative z-10">
-          <ChatBot />
+          {/* <ChatBot /> */}
           <NewsSection />
           <AboutSection />
           <StatsSection />
