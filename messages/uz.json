@@ -421,6 +421,7 @@
     "login_required": "Tadbirga yozilish uchun profilingizga kirish kerak",
     "enter": "Kirish",
     "register": "Ro'yxatdan o'tish",
+    "register_horizon_europe": "Horizon Europe dan ro'yxatdan o'tish",
     "register_event": "Tadbirga yozilish",
     "cancel": "Bekor qilish",
     "registration_successful": "Tadbirga muvaffaqiyatli yozildingiz!",

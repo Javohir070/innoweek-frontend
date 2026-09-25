@@ -10,9 +10,18 @@ import { useState } from "react";
 /** Ushbu tadbirlarga saytdan yozilib bo'lmaydi */
 const NON_REGISTRABLE_EVENT_IDS = [40, 60];
 
+/** Horizon Europe — tashqi Guestbooster formasi orqali ro'yxatdan o'tadi */
+const HORIZON_EUROPE_EVENT_ID = 79;
+const HORIZON_EUROPE_REGISTER_URL =
+  "https://www.guestbooster.be/innoweek2026/";
+
 /** Tadbirga ro'yxatdan o'tish tugmasi ko'rinadimi */
 export function canRegisterForEvent(eventId?: number): boolean {
   return eventId != null && !NON_REGISTRABLE_EVENT_IDS.includes(eventId);
+}
+
+export function isHorizonEuropeEvent(eventId?: number): boolean {
+  return eventId === HORIZON_EUROPE_EVENT_ID;
 }
 
 interface IProps {
@@ -90,27 +99,52 @@ const StoreEvets = ({
     }
   };
 
+  const isHorizon = isHorizonEuropeEvent(event_data?.id);
+  const showRegister = canRegisterForEvent(event_data?.id);
+
   return (
     <>
-      {canRegisterForEvent(event_data?.id) && (
-        <Button
-          type={type}
-          icon={icon ?? <PlusCircleIcon className="pt-1" />}
-          onClick={() => {
-            setIsModalVisible(true);
-            fetchProfile();
-          }}
-          size={size}
-          color="primary"
-          variant="outlined"
-          className={
-            className ??
-            "!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
-          }
-        >
-          {t("register")}
-        </Button>
-      )}
+      <div className="flex flex-col items-center gap-2">
+        {showRegister && (
+          <Button
+            type={type}
+            icon={icon ?? <PlusCircleIcon className="pt-1" />}
+            onClick={() => {
+              setIsModalVisible(true);
+              fetchProfile();
+            }}
+            size={size}
+            color="primary"
+            variant="outlined"
+            className={
+              className ??
+              "!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50"
+            }
+          >
+            {t("register")}
+          </Button>
+        )}
+        {showRegister && isHorizon && (
+          <Button
+            type={type}
+            icon={icon ?? <PlusCircleIcon className="pt-1" />}
+            href={HORIZON_EUROPE_REGISTER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            size={size}
+            color="primary"
+            variant="outlined"
+            className={
+              className ??
+              "!border-2 !border-[#0085d4] !text-[#0085d4] hover:!bg-blue-50 mr-2.5"
+            }
+          >
+            {t("register_horizon_europe")}
+          </Button>
+        )}
+
+
+      </div>
 
       <Modal
         title={registerSuccess ? t("success") : event_data.title || t("detail")}
@@ -120,54 +154,54 @@ const StoreEvets = ({
         footer={
           registerSuccess
             ? [
-                <Button
-                  key="ok"
-                  type="primary"
-                  onClick={() => setIsModalVisible(false)}
-                >
-                  {t("close")}
-                </Button>,
-              ]
+              <Button
+                key="ok"
+                type="primary"
+                onClick={() => setIsModalVisible(false)}
+              >
+                {t("close")}
+              </Button>,
+            ]
             : [
-                <>
-                  {!profile && !loading ? (
-                    <span style={{ marginTop: 16 }}>
-                      <p style={{ color: "orange", marginBottom: 8 }}>
-                        {t("login_required")}
-                      </p>
-                      <Button
-                        type="default"
-                        onClick={() => {
-                          push("/login");
-                        }}
-                        style={{ marginRight: 8 }}
-                      >
-                        {t("enter")}
-                      </Button>
-                      <Button
-                        type="link"
-                        onClick={() => {
-                          push("/register");
-                        }}
-                      >
-                        {t("register")}
-                      </Button>
-                    </span>
-                  ) : (
+              <>
+                {!profile && !loading ? (
+                  <span style={{ marginTop: 16 }}>
+                    <p style={{ color: "orange", marginBottom: 8 }}>
+                      {t("login_required")}
+                    </p>
                     <Button
-                      key="register"
-                      type="primary"
-                      loading={registerLoading}
-                      onClick={handleRegister}
+                      type="default"
+                      onClick={() => {
+                        push("/login");
+                      }}
+                      style={{ marginRight: 8 }}
                     >
-                      {t("register_event")}
+                      {t("enter")}
                     </Button>
-                  )}
-                </>,
-                <Button key="cancel" onClick={() => setIsModalVisible(false)}>
-                  {t("cancel")}
-                </Button>,
-              ]
+                    <Button
+                      type="link"
+                      onClick={() => {
+                        push("/register");
+                      }}
+                    >
+                      {t("register")}
+                    </Button>
+                  </span>
+                ) : (
+                  <Button
+                    key="register"
+                    type="primary"
+                    loading={registerLoading}
+                    onClick={handleRegister}
+                  >
+                    {t("register_event")}
+                  </Button>
+                )}
+              </>,
+              <Button key="cancel" onClick={() => setIsModalVisible(false)}>
+                {t("cancel")}
+              </Button>,
+            ]
         }
       >
         {registerSuccess ? (

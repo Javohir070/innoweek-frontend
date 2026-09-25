@@ -421,6 +421,7 @@
     "login_required": "Вам необходимо войти в систему, чтобы зарегистрироваться на событие",
     "enter": "Войти",
     "register": "Зарегистрироваться",
+    "register_horizon_europe": "Регистрация через Horizon Europe",
     "register_event": "Зарегистрироваться на событие",
     "cancel": "Отмена",
     "registration_successful": "Успешно зарегистрированы на событие!",

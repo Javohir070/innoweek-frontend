@@ -111,7 +111,7 @@ export default function AboutTimeline({ data }: { data: IProgramDetail }) {
           </h3>
           <section
             id="resume"
-            className="resume py-[20px] pb-5 section bg-white dark:!bg-[#031119] transition-colors duration-300"
+            className="resume py-[20px] pb-4 section bg-white dark:!bg-[#031119] transition-colors duration-300"
           >
             <div className="container">
               <div className="row">
