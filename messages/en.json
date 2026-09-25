@@ -421,7 +421,7 @@
     "login_required": "You need to log in to register for the event",
     "enter": "Log In",
     "register": "Register",
-    "register_horizon_europe": "Register via Horizon Europe",
+    "register_horizon_europe": "Register from Horizon Europe",
     "register_event": "Register for event",
     "cancel": "Cancel",
     "registration_successful": "Successfully registered for the event!",
